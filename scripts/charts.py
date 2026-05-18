@@ -45,12 +45,14 @@ def _set_chinese_font() -> None:
 _set_chinese_font()
 
 DARK_BG = "#0E1A2B"
+BG_DARK = DARK_BG
 PANEL = "#16273D"
 ACCENT = "#E0B574"
 ACCENT_2 = "#7BB7E8"
 ACCENT_3 = "#7FCBA4"
 ACCENT_4 = "#E67D7D"
 TEXT = "#F2F4F7"
+TXT_DIM = "#B6C4D6"
 GRID = "#324863"
 
 plt.rcParams.update(
@@ -307,6 +309,459 @@ def chart_attribution() -> None:
     save(fig, "chart_attribution.png")
 
 
+def chart_theory_timeline() -> None:
+    """资产配置理论演进时间线（P7），等距节点布局。"""
+    nodes = [
+        (1952, "MPT",              "Markowitz\n均值方差"),
+        (1990, "BL 模型",           "Black-Litterman\n引入主观观点"),
+        (2005, "全天候 / 风险平价",  "桥水：从资金预算\n到风险预算"),
+        (2012, "因子投资",          "Smart Beta\n风险溢价可复制"),
+        (2018, "TDF / TRF",        "目标日期 / 目标风险\n生命周期对齐"),
+    ]
+    n = len(nodes)
+    fig, ax = plt.subplots(figsize=(14, 4.8))
+    xs = np.arange(n) + 0.5
+    ax.set_xlim(0, n)
+    ax.set_ylim(-1.1, 1.2)
+    ax.axhline(0, color=GRID, linewidth=2, xmin=0.02, xmax=0.98)
+    ax.annotate("", xy=(n - 0.02, 0), xytext=(n - 0.18, 0),
+                arrowprops=dict(arrowstyle="->", color=ACCENT, lw=2))
+    for x, (year, name, desc) in zip(xs, nodes):
+        ax.scatter([x], [0], s=900, color=ACCENT, zorder=5,
+                   edgecolors=TEXT, linewidth=1.2)
+        ax.text(x, 0, str(year), ha="center", va="center",
+                color=BG_DARK, fontsize=11, weight="bold", zorder=6)
+        ax.text(x, 0.65, name, ha="center", va="center",
+                color=TEXT, fontsize=13, weight="bold")
+        ax.text(x, -0.65, desc, ha="center", va="center",
+                color=TXT_DIM, fontsize=10.5)
+        ax.plot([x, x], [0.07, 0.50], color=GRID, linewidth=0.8)
+        ax.plot([x, x], [-0.07, -0.45], color=GRID, linewidth=0.8)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.set_title("资产配置理论的演进脉络（70 年）", fontsize=14, pad=14)
+    save(fig, "chart_theory_timeline.png")
+
+
+def chart_three_layer_pyramid() -> None:
+    """SAA / TAA / 再平衡 三层金字塔（P8）。"""
+    from matplotlib.patches import Polygon
+    fig, ax = plt.subplots(figsize=(9.5, 5.6))
+
+    layers = [
+        # (y_low, y_high, half_width_low, half_width_high, label, sub, color)
+        (0.0, 0.36, 0.95, 0.78,
+         "战略配置 SAA", "长期均衡 · 决定 70%—80% 长期回报", ACCENT_2),
+        (0.36, 0.66, 0.78, 0.55,
+         "战术配置 TAA", "6—12 月偏离 ±5%—±15% · 把握中期机会", ACCENT_3),
+        (0.66, 0.92, 0.55, 0.20,
+         "动态再平衡", "纪律化 · 长期 α 0.3%—0.8%", ACCENT),
+    ]
+    for y0, y1, hw0, hw1, label, sub, color in layers:
+        poly = Polygon(
+            [(-hw0, y0), (hw0, y0), (hw1, y1), (-hw1, y1)],
+            closed=True, facecolor=color, edgecolor=BG_DARK, linewidth=2,
+            alpha=0.92,
+        )
+        ax.add_patch(poly)
+        cy = (y0 + y1) / 2
+        ax.text(0, cy + 0.04, label, ha="center", va="center",
+                color=BG_DARK, fontsize=14, weight="bold")
+        ax.text(0, cy - 0.05, sub, ha="center", va="center",
+                color=BG_DARK, fontsize=10)
+
+    # 右侧注释
+    ax.annotate("回答：长期“配什么”",
+                xy=(0.95, 0.18), xytext=(1.25, 0.18),
+                color=ACCENT_2, fontsize=11, va="center",
+                arrowprops=dict(arrowstyle="-", color=ACCENT_2, lw=1))
+    ax.annotate("回答：阶段性“偏多少”",
+                xy=(0.78, 0.51), xytext=(1.25, 0.51),
+                color=ACCENT_3, fontsize=11, va="center",
+                arrowprops=dict(arrowstyle="-", color=ACCENT_3, lw=1))
+    ax.annotate("回答：何时“拉回来”",
+                xy=(0.55, 0.79), xytext=(1.25, 0.79),
+                color=ACCENT, fontsize=11, va="center",
+                arrowprops=dict(arrowstyle="-", color=ACCENT, lw=1))
+
+    ax.set_xlim(-1.1, 2.5)
+    ax.set_ylim(-0.08, 1.05)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.set_title("SAA / TAA / 动态再平衡 三层框架", fontsize=14, pad=10)
+    save(fig, "chart_three_layer_pyramid.png")
+
+
+def chart_fof_market_growth() -> None:
+    """公募 FOF 市场规模与产品数增长（P9）。"""
+    years = list(range(2017, 2026))
+    # 示意性估算（亿元）
+    size = [10, 60, 220, 510, 880, 1100, 1300, 1400, 1500]
+    count = [5, 60, 140, 220, 320, 380, 440, 480, 520]
+
+    fig, ax1 = plt.subplots(figsize=(10, 5.5))
+    bars = ax1.bar(years, size, color=ACCENT, alpha=0.92,
+                   edgecolor=BG_DARK, width=0.65, label="规模(亿元)")
+    for b, v in zip(bars, size):
+        ax1.text(b.get_x() + b.get_width()/2, v + 30, f"{v}",
+                 ha="center", color=TEXT, fontsize=9)
+    ax1.set_ylabel("规模(亿元)", color=ACCENT, fontsize=11)
+    ax1.set_xlabel("年份", fontsize=11)
+    ax1.set_ylim(0, max(size) * 1.25)
+    ax1.tick_params(axis="y", colors=ACCENT)
+    ax1.grid(True, axis="y", linestyle="--", alpha=0.3)
+
+    ax2 = ax1.twinx()
+    ax2.plot(years, count, color=ACCENT_2, marker="o",
+             linewidth=2.2, label="产品数")
+    ax2.set_ylabel("产品数(只)", color=ACCENT_2, fontsize=11)
+    ax2.tick_params(axis="y", colors=ACCENT_2)
+    ax2.set_ylim(0, max(count) * 1.3)
+
+    ax1.set_title("中国公募 FOF 市场：规模与产品数（2017—2025，示意）",
+                  fontsize=13, pad=12)
+    ax1.set_xticks(years)
+    # combined legend
+    h1, l1 = ax1.get_legend_handles_labels()
+    h2, l2 = ax2.get_legend_handles_labels()
+    ax1.legend(h1 + h2, l1 + l2, facecolor=PANEL, edgecolor=GRID,
+               labelcolor=TEXT, loc="upper left")
+    save(fig, "chart_fof_market_growth.png")
+
+
+def chart_nine_assets_grid() -> None:
+    """九类资产 3×3 画像卡片（P11）。"""
+    from matplotlib.patches import FancyBboxPatch
+    cells = [
+        # (name, return%, vol%, corr_to_a),
+        ("境内权益",     "年化 7%—8%",  "波动 22%",   "与 A 股 1.00"),
+        ("港股",         "年化 3%—5%",  "波动 23%",   "与 A 股 0.60"),
+        ("海外权益",     "年化 10%—14%", "波动 18%",   "与 A 股 0.30"),
+        ("利率债",       "年化 4%",      "波动 2.5%",  "与 A 股 -0.05"),
+        ("信用债",       "年化 5%",      "波动 4%",    "与 A 股 0.15"),
+        ("可转债",       "年化 6%—8%",   "波动 12%",   "与 A 股 0.70"),
+        ("黄金 / 商品",  "年化 7%",      "波动 14%",   "与 A 股 0.10"),
+        ("公募 REITs",   "年化 5%—6%",   "波动 11%",   "与 A 股 0.40"),
+        ("现金 / 货基",  "年化 2%",      "波动 0.2%",  "与 A 股 0.00"),
+    ]
+    fig, ax = plt.subplots(figsize=(14, 6.2))
+    ax.set_xlim(0, 3)
+    ax.set_ylim(0, 3)
+    ax.set_aspect("auto")
+    pad = 0.06
+    colors_cycle = [ACCENT, ACCENT_2, ACCENT_3, ACCENT, ACCENT_2,
+                    ACCENT_3, ACCENT, ACCENT_2, ACCENT_3]
+    for idx, (name, r, v, c) in enumerate(cells):
+        col = idx % 3
+        row = 2 - idx // 3
+        x = col + pad
+        y = row + pad
+        w = 1 - 2 * pad
+        h = 1 - 2 * pad
+        box = FancyBboxPatch(
+            (x, y), w, h, boxstyle="round,pad=0.01,rounding_size=0.04",
+            linewidth=1.2, edgecolor=GRID, facecolor=PANEL,
+        )
+        ax.add_patch(box)
+        # accent bar left
+        bar = FancyBboxPatch(
+            (x, y), 0.06, h, boxstyle="round,pad=0.0,rounding_size=0.02",
+            linewidth=0, facecolor=colors_cycle[idx],
+        )
+        ax.add_patch(bar)
+        ax.text(x + 0.13, y + h - 0.20, name,
+                color=TEXT, fontsize=14, weight="bold", va="center")
+        ax.text(x + 0.13, y + h - 0.45, r,
+                color=ACCENT, fontsize=11, va="center")
+        ax.text(x + 0.13, y + h - 0.65, v,
+                color=TXT_DIM if False else "#B6C4D6",
+                fontsize=11, va="center")
+        ax.text(x + 0.13, y + h - 0.85, c,
+                color="#B6C4D6", fontsize=11, va="center")
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.set_title("九类可投资产画像卡片（示意）", fontsize=14, pad=10)
+    save(fig, "chart_nine_assets_grid.png")
+
+
+def chart_equity_matrix() -> None:
+    """境内权益 市值 × 风格 2D 矩阵图（P14）。"""
+    from matplotlib.patches import FancyBboxPatch
+    rows = ["大盘", "中盘", "小盘"]          # 市值
+    cols = ["价值 / 红利", "质量", "成长"]    # 风格
+    cells = {
+        ("大盘", "价值 / 红利"): ("沪深 300 / 红利低波", ACCENT_2),
+        ("大盘", "质量"):       ("中证 A50 / 上证 50", ACCENT),
+        ("大盘", "成长"):       ("沪深 300 成长", ACCENT_3),
+        ("中盘", "价值 / 红利"): ("中证 500 红利", ACCENT_2),
+        ("中盘", "质量"):       ("中证 500 质量", ACCENT),
+        ("中盘", "成长"):       ("中证 500 / 创业板", ACCENT_3),
+        ("小盘", "价值 / 红利"): ("中证 1000 红利", ACCENT_2),
+        ("小盘", "质量"):       ("中证 1000 质量", ACCENT),
+        ("小盘", "成长"):       ("中证 1000 / 科创板", ACCENT_3),
+    }
+    fig, ax = plt.subplots(figsize=(11, 5.6))
+    n_rows, n_cols = len(rows), len(cols)
+    ax.set_xlim(0, n_cols + 1.1)
+    ax.set_ylim(0, n_rows + 0.8)
+    # column header
+    for j, c in enumerate(cols):
+        ax.text(j + 1.4, n_rows + 0.45, c, ha="center", va="center",
+                color=ACCENT, fontsize=12, weight="bold")
+    # row header
+    for i, r in enumerate(rows):
+        ax.text(0.4, n_rows - i - 0.5, r, ha="center", va="center",
+                color=ACCENT, fontsize=12, weight="bold")
+    for (rn, cn), (label, color) in cells.items():
+        i = rows.index(rn)
+        j = cols.index(cn)
+        x = j + 0.9
+        y = n_rows - i - 1 + 0.1
+        box = FancyBboxPatch(
+            (x, y), 1.0, 0.8, boxstyle="round,pad=0.01,rounding_size=0.06",
+            facecolor=PANEL, edgecolor=color, linewidth=1.5,
+        )
+        ax.add_patch(box)
+        ax.text(x + 0.5, y + 0.4, label, ha="center", va="center",
+                color=TEXT, fontsize=11)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.set_title("境内权益：市值 × 风格  二维矩阵（示意）", fontsize=14, pad=8)
+    ax.text(n_cols + 1.0, n_rows + 0.45, "→ 风格",
+            color=TXT_DIM, fontsize=10, ha="right", va="center")
+    ax.text(0.4, 0.1, "↑ 市值", color=TXT_DIM, fontsize=10,
+            ha="center", va="center")
+    save(fig, "chart_equity_matrix.png")
+
+
+def chart_bond_allocation() -> None:
+    """稳健型 FOF 债券底仓建议配比（P17）饼图。"""
+    labels = ["利率债 40%", "高等级信用 40%", "可转债 10%", "中资美元债 10%"]
+    sizes = [40, 40, 10, 10]
+    colors = [ACCENT_2, ACCENT_3, ACCENT, "#9B8DD9"]
+    fig, ax = plt.subplots(figsize=(8.5, 5.6))
+    wedges, _ = ax.pie(
+        sizes, colors=colors, startangle=90,
+        wedgeprops=dict(width=0.42, edgecolor=BG_DARK, linewidth=2),
+    )
+    # central label
+    ax.text(0, 0.05, "债券底仓", ha="center", va="center",
+            color=ACCENT, fontsize=14, weight="bold")
+    ax.text(0, -0.18, "稳健型 FOF 建议", ha="center", va="center",
+            color=TXT_DIM, fontsize=10)
+    # outer labels
+    angles = []
+    cum = 0
+    for s in sizes:
+        cum += s
+        angles.append((cum - s / 2) / 100 * 360 + 90)
+    for ang, label, color in zip(angles, labels, colors):
+        rad = np.deg2rad(ang)
+        x = 1.25 * np.cos(rad)
+        y = 1.25 * np.sin(rad)
+        ha = "left" if x >= 0 else "right"
+        ax.text(x, y, label, ha=ha, va="center", color=color,
+                fontsize=12, weight="bold")
+    ax.set_xlim(-1.9, 1.9)
+    ax.set_ylim(-1.4, 1.4)
+    ax.set_title("稳健型 FOF 债券底仓建议（示意）", fontsize=13, pad=12)
+    save(fig, "chart_bond_allocation.png")
+
+
+def chart_risk_budget() -> None:
+    """60/40 资金权重 vs 风险贡献 对比柱状图（P21）。"""
+    categories = ["资金权重", "风险贡献"]
+    stock = [60, 92]
+    bond  = [40, 8]
+    x = np.arange(len(categories))
+    width = 0.55
+
+    fig, ax = plt.subplots(figsize=(10, 5.6))
+    b1 = ax.bar(x, stock, width, color=ACCENT_4, label="股票", edgecolor=BG_DARK)
+    b2 = ax.bar(x, bond,  width, bottom=stock, color=ACCENT_2,
+                label="债券", edgecolor=BG_DARK)
+    for i in range(len(x)):
+        ax.text(i, stock[i] / 2, f"股票 {stock[i]}%",
+                ha="center", va="center", color="white",
+                fontsize=14, weight="bold")
+        ax.text(i, stock[i] + bond[i] / 2, f"债券 {bond[i]}%",
+                ha="center", va="center", color=BG_DARK,
+                fontsize=12, weight="bold")
+        ax.text(i, 105, categories[i], ha="center",
+                color=ACCENT, fontsize=14, weight="bold")
+    ax.set_ylim(0, 115)
+    ax.set_xticks([])
+    ax.set_yticks([0, 25, 50, 75, 100])
+    ax.set_yticklabels(["0%", "25%", "50%", "75%", "100%"])
+    ax.axhline(50, color=GRID, linewidth=1, linestyle="--", alpha=0.6)
+    ax.text(1.45, 70, "→  名义“股 6 债 4”\n     实质“股 9 债 1”",
+            color=ACCENT, fontsize=12, va="center")
+    ax.set_title("同一个 60 / 40 组合：资金权重 vs 风险贡献",
+                 fontsize=13, pad=14)
+    ax.legend(facecolor=PANEL, edgecolor=GRID, labelcolor=TEXT,
+              loc="upper right")
+    save(fig, "chart_risk_budget.png")
+
+
+def chart_rebalance_compare() -> None:
+    """再平衡机制三种触发方式对比（P28）。"""
+    fig, axes = plt.subplots(1, 3, figsize=(14, 4.6))
+
+    # Panel 1: 定期（日历）
+    ax = axes[0]
+    months = np.arange(0, 24)
+    target = np.ones_like(months) * 60
+    actual = 60 + 8 * np.sin(months / 2.0)
+    ax.plot(months, target, color=ACCENT, linewidth=1.5, linestyle="--",
+            label="目标 60%")
+    ax.plot(months, actual, color=ACCENT_2, linewidth=1.8, label="实际权重")
+    # quarterly triggers
+    for q in range(3, 24, 3):
+        ax.axvline(q, color=ACCENT_4, alpha=0.5, linewidth=1)
+    ax.set_title("定期触发（每季度）", color=TEXT, fontsize=12, pad=8)
+    ax.set_xlabel("月", color=TEXT)
+    ax.set_ylim(45, 75)
+    ax.legend(facecolor=PANEL, edgecolor=GRID, labelcolor=TEXT, fontsize=9,
+              loc="upper right")
+    ax.grid(True, linestyle="--", alpha=0.3)
+
+    # Panel 2: 阈值
+    ax = axes[1]
+    actual2 = 60 + 6 * np.sin(months / 1.8) + 3 * np.cos(months / 1.1)
+    ax.plot(months, np.ones_like(months) * 60, color=ACCENT,
+            linestyle="--", linewidth=1.5, label="目标 60%")
+    ax.plot(months, actual2, color=ACCENT_2, linewidth=1.8, label="实际权重")
+    ax.fill_between(months, 55, 65, color=ACCENT_3, alpha=0.15,
+                    label="±5% 区间带")
+    # trigger points
+    for i, v in enumerate(actual2):
+        if v > 65 or v < 55:
+            ax.scatter([months[i]], [v], color=ACCENT_4, s=40, zorder=5)
+    ax.set_title("阈值触发（±5%）", color=TEXT, fontsize=12, pad=8)
+    ax.set_xlabel("月", color=TEXT)
+    ax.set_ylim(45, 75)
+    ax.legend(facecolor=PANEL, edgecolor=GRID, labelcolor=TEXT,
+              fontsize=9, loc="upper right")
+    ax.grid(True, linestyle="--", alpha=0.3)
+
+    # Panel 3: 波动率触发
+    ax = axes[2]
+    vol = 8 + 4 * np.sin(months / 1.5) + np.random.default_rng(7).normal(0, 1.0, 24)
+    threshold = 12
+    ax.plot(months, vol, color=ACCENT_2, linewidth=1.8, label="组合波动率(%)")
+    ax.axhline(threshold, color=ACCENT_4, linestyle="--", linewidth=1.5,
+               label="降仓阈值 12%")
+    for i, v in enumerate(vol):
+        if v > threshold:
+            ax.scatter([months[i]], [v], color=ACCENT_4, s=40, zorder=5)
+    ax.set_title("波动率触发（突破即降仓）", color=TEXT, fontsize=12, pad=8)
+    ax.set_xlabel("月", color=TEXT)
+    ax.set_ylim(2, 16)
+    ax.legend(facecolor=PANEL, edgecolor=GRID, labelcolor=TEXT,
+              fontsize=9, loc="upper right")
+    ax.grid(True, linestyle="--", alpha=0.3)
+
+    fig.suptitle("再平衡的三种触发机制：直观对比", fontsize=14,
+                 color=TEXT, y=1.02)
+    save(fig, "chart_rebalance_compare.png")
+
+
+def chart_alternative_alloc() -> None:
+    """另类敞口配置区间（P34）堆叠条形图。"""
+    fig, ax = plt.subplots(figsize=(10, 5.6))
+    # 三类另类资产，每类给 min/max 区间
+    categories = ["公募 REITs", "黄金 ETF", "商品 ETF"]
+    mins = [3, 3, 0]
+    maxs = [6, 7, 2]
+    colors = [ACCENT_2, ACCENT, ACCENT_3]
+    y = np.arange(len(categories))
+    for i, (mn, mx, c) in enumerate(zip(mins, maxs, colors)):
+        ax.barh(y[i], mx - mn, left=mn, color=c, height=0.55,
+                edgecolor=BG_DARK)
+        ax.text(mn - 0.3, y[i], f"{mn}%", ha="right", va="center",
+                color=TXT_DIM, fontsize=10)
+        ax.text(mx + 0.3, y[i], f"{mx}%", ha="left", va="center",
+                color=TEXT, fontsize=11, weight="bold")
+        ax.text((mn + mx) / 2, y[i], categories[i],
+                ha="center", va="center", color=BG_DARK,
+                fontsize=12, weight="bold")
+    # total range overlay
+    ax.axvspan(6, 15, color=ACCENT, alpha=0.08)
+    ax.axvline(6,  color=ACCENT, linewidth=1, linestyle="--", alpha=0.7)
+    ax.axvline(15, color=ACCENT, linewidth=1, linestyle="--", alpha=0.7)
+    ax.text(10.5, -0.65,
+            "另类合计配比建议 6%—15%   →   Sharpe 提升 0.1—0.3",
+            ha="center", color=ACCENT, fontsize=11, weight="bold")
+    ax.set_yticks(y)
+    ax.set_yticklabels([])
+    ax.set_xlabel("组合占比 (%)", color=TEXT)
+    ax.set_xlim(-1.2, 17)
+    ax.set_ylim(-1.0, len(categories) - 0.4)
+    ax.set_xticks(range(0, 17, 2))
+    ax.grid(True, axis="x", linestyle="--", alpha=0.3)
+    ax.set_title("公募 FOF 另类敞口配置区间（示意）", fontsize=13, pad=12)
+    save(fig, "chart_alternative_alloc.png")
+
+
+def chart_glide_path() -> None:
+    """目标日期 FOF 下滑曲线（P36）。"""
+    years_to_retire = np.arange(40, -1, -1)
+    # 国际通用版（如 Vanguard 风格）
+    intl = np.piecewise(
+        years_to_retire.astype(float),
+        [years_to_retire >= 25, (years_to_retire < 25) & (years_to_retire >= 5),
+         years_to_retire < 5],
+        [lambda y: 90.0 - (40 - y) * 0,
+         lambda y: 90 - (25 - y) / 20 * 60,
+         lambda y: 30 - (5 - y) / 5 * 10],
+    )
+    # 本土化更陡版
+    cn = np.piecewise(
+        years_to_retire.astype(float),
+        [years_to_retire >= 30, (years_to_retire < 30) & (years_to_retire >= 5),
+         years_to_retire < 5],
+        [lambda y: 80.0,
+         lambda y: 80 - (30 - y) / 25 * 55,
+         lambda y: 25 - (5 - y) / 5 * 5],
+    )
+    fig, ax = plt.subplots(figsize=(10, 5.4))
+    ax.plot(years_to_retire, intl, color=ACCENT_2, linewidth=2.0,
+            label="国际通用下滑曲线", linestyle="--")
+    ax.plot(years_to_retire, cn, color=ACCENT, linewidth=2.6,
+            label="国内本土化（更陡）")
+    ax.fill_between(years_to_retire, 0, cn, color=ACCENT, alpha=0.10)
+    ax.set_xlabel("距退休年限", color=TEXT)
+    ax.set_ylabel("权益资产占比 (%)", color=TEXT)
+    ax.invert_xaxis()  # 离退休越近越靠右
+    ax.set_ylim(0, 100)
+    ax.set_xlim(40, 0)
+    # 关键节点标注
+    ax.scatter([40], [intl[0]], color=ACCENT_2, s=60, zorder=5)
+    ax.scatter([0],  [intl[-1]], color=ACCENT_2, s=60, zorder=5)
+    ax.scatter([40], [cn[0]],   color=ACCENT, s=80, zorder=5)
+    ax.scatter([0],  [cn[-1]],  color=ACCENT, s=80, zorder=5)
+    ax.annotate("入职期\n权益 80%—90%", xy=(40, 85), xytext=(35, 92),
+                color=TEXT, fontsize=10,
+                arrowprops=dict(arrowstyle="->", color=GRID))
+    ax.annotate("退休后\n权益 20%—25%", xy=(0, 22), xytext=(6, 8),
+                color=TEXT, fontsize=10,
+                arrowprops=dict(arrowstyle="->", color=GRID))
+    ax.grid(True, linestyle="--", alpha=0.3)
+    ax.legend(facecolor=PANEL, edgecolor=GRID, labelcolor=TEXT,
+              loc="upper right")
+    ax.set_title("养老 FOF 下滑曲线：国际通用 vs 国内本土化（示意）",
+                 fontsize=13, pad=12)
+    save(fig, "chart_glide_path.png")
+
+
 def main() -> None:
     print("[charts] 开始生成图表 ...")
     chart_asset_long_term()
@@ -315,6 +770,17 @@ def main() -> None:
     chart_all_weather_backtest()
     chart_stress_test()
     chart_attribution()
+    # 二期新增 10 张
+    chart_theory_timeline()
+    chart_three_layer_pyramid()
+    chart_fof_market_growth()
+    chart_nine_assets_grid()
+    chart_equity_matrix()
+    chart_bond_allocation()
+    chart_risk_budget()
+    chart_rebalance_compare()
+    chart_alternative_alloc()
+    chart_glide_path()
     print("[charts] 全部生成完毕。")
 
 

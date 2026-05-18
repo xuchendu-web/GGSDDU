@@ -364,8 +364,18 @@ def make_content_slide(
     image: str | None = None,
     image_width_cm: float = 18.0,
     image_right: bool = True,
+    image_layout: str | None = None,   # "right" | "left" | "top" | "full"
+    image_height_cm: float | None = None,
     footnote: str | None = None,
 ) -> None:
+    """Render a content slide. `image_layout` (when given) overrides `image_right`.
+
+    Layouts:
+      - "right" (default): bullets left, image right
+      - "left":  image left, bullets right
+      - "top":   wide image at top, bullets below
+      - "full":  image fills the body area, bullets ignored
+    """
     slide = add_blank(prs)
     _set_slide_background(slide)
     _add_header_footer(slide, chapter_label, page_idx)
@@ -374,27 +384,63 @@ def make_content_slide(
     body_top = Cm(4.7)
     body_h = SLIDE_H - Cm(6.5)
 
+    if image_layout is None:
+        image_layout = "right" if image_right else "left"
+
     if image:
         img_path = CHARTS_DIR / image
-        if image_right:
-            text_x, text_w = Cm(1.2), Cm(12.5)
-            img_x = Cm(14.2)
+
+        if image_layout == "top":
+            img_w = Cm(image_width_cm if image_width_cm else 30.0)
+            pic = slide.shapes.add_picture(
+                str(img_path), Cm(1.2), body_top, width=img_w)
+            # clamp height: leave room for bullets below
+            max_img_h = Cm(8.5) if bullets else body_h
+            if pic.height > max_img_h:
+                ratio = max_img_h / pic.height
+                pic.height = int(pic.height * ratio)
+                pic.width = int(pic.width * ratio)
+            # center horizontally if narrower than slide
+            pic.left = int((SLIDE_W - pic.width) / 2)
+            if bullets:
+                bullets_y = body_top + pic.height + Cm(0.3)
+                bullets_h = SLIDE_H - bullets_y - Cm(1.3)
+                _add_multiline(
+                    slide, bullets,
+                    Cm(1.2), bullets_y, SLIDE_W - Cm(2.4), bullets_h,
+                    size=14, line_space=1.35,
+                )
+
+        elif image_layout == "full":
+            img_w = Cm(image_width_cm if image_width_cm else 30.0)
+            pic = slide.shapes.add_picture(
+                str(img_path), Cm(1.2), body_top, width=img_w)
+            if pic.height > body_h:
+                ratio = body_h / pic.height
+                pic.height = int(pic.height * ratio)
+                pic.width = int(pic.width * ratio)
+            pic.left = int((SLIDE_W - pic.width) / 2)
+            pic.top = int(body_top + (body_h - pic.height) / 2)
+
         else:
-            text_x, text_w = Cm(16.5), Cm(15.5)
-            img_x = Cm(1.2)
-        img_w = Cm(image_width_cm)
-        # add image (height auto, but clamp later)
-        pic = slide.shapes.add_picture(str(img_path), img_x, body_top, width=img_w)
-        # if too tall, scale down
-        if pic.height > body_h:
-            ratio = body_h / pic.height
-            pic.height = int(pic.height * ratio)
-            pic.width = int(pic.width * ratio)
-        _add_multiline(
-            slide, bullets,
-            text_x, body_top, text_w, body_h,
-            size=14, line_space=1.45,
-        )
+            if image_layout == "right":
+                text_x, text_w = Cm(1.2), Cm(12.5)
+                img_x = Cm(14.2)
+            else:
+                text_x, text_w = Cm(16.5), Cm(15.5)
+                img_x = Cm(1.2)
+            img_w = Cm(image_width_cm)
+            pic = slide.shapes.add_picture(
+                str(img_path), img_x, body_top, width=img_w)
+            if pic.height > body_h:
+                ratio = body_h / pic.height
+                pic.height = int(pic.height * ratio)
+                pic.width = int(pic.width * ratio)
+            _add_multiline(
+                slide, bullets,
+                text_x, body_top, text_w, body_h,
+                size=14, line_space=1.45,
+            )
     else:
         _add_multiline(
             slide, bullets,
@@ -625,54 +671,62 @@ def build() -> None:
 
     # ========== Chapter 2 ==========
     ch2 = "第二章  资产配置理论的演进与公募FOF的位置"
-    # P7
+    # P7 - timeline
     make_content_slide(
         prs, ch2,
         "资产配置理论的演进脉络",
-        "从均值方差 → 风险平价 → 因子投资 → 目标日期 / 目标风险",
+        "70 年理论积淀，公募 FOF 是其零售化的产品载体",
         [
-            "1952 年 Markowitz 均值方差：现代资产配置的起点，"
-            "但对预期收益估计极度敏感",
-            "1990 年代 Black-Litterman：引入主观观点，"
-            "解决“极端权重”问题",
-            "2005 年前后 桥水 全天候 / 风险平价：从“资金预算”转向“风险预算”",
-            "2010 年代 因子投资 / Smart Beta：把超额收益拆解为可复制的风险溢价",
-            "2010 年代后 TDF / TRF：把投资目标与客户生命周期对齐，"
-            "公募 FOF 是其在国内的产品落地",
+            "均值方差 (1952)：现代资产配置的起点，但对预期收益估计极敏感",
+            "Black-Litterman (1990)：引入主观观点，解决“极端权重”",
+            "全天候 / 风险平价 (2005)：从“资金预算”转向“风险预算”",
+            "因子投资 (2010s)：把超额收益拆解为可复制的风险溢价",
+            "TDF / TRF (2010s+)：投资目标与客户生命周期对齐",
         ],
+        image="chart_theory_timeline.png",
+        image_layout="top",
+        image_width_cm=30.0,
         page_idx=7,
     )
-    # P8
+    # P8 - pyramid
     make_content_slide(
         prs, ch2,
         "SAA / TAA / 动态再平衡 三层框架",
         "把投资过程“拆三层”，明确各自的目标与边界",
         [
-            "战略配置 SAA：基于长期均衡假设与客户风险偏好，"
-            "确定大类资产中枢；解释组合 70%—80% 的长期回报",
-            "战术配置 TAA：基于 6—12 个月的宏观 / 估值 / 趋势判断，"
-            "对中枢做 ±5%—±15% 的偏离",
-            "动态再平衡：按既定规则把组合拉回目标，"
-            "长期可贡献 0.3%—0.8% 的年化 α",
-            "三层的清晰分工 → 让“配置”与“择时”可以分别归因、分别考核",
-            "公募 FOF 的合规优势：边界明确，便于把三层框架写进产品合同",
+            "战略配置 SAA：长期均衡 +"
+            "客户风险偏好，解释 70%—80% 长期回报",
+            "战术配置 TAA：基于 6—12 月宏观 / 估值 / 趋势，"
+            "做 ±5%—±15% 偏离",
+            "动态再平衡：纪律化触发，"
+            "长期贡献 0.3%—0.8% 年化 α",
+            "三层清晰分工 → 配置与择时可分别归因 / 分别考核",
+            "公募 FOF 合规优势：边界明确，"
+            "三层框架可直接写入合同",
         ],
+        image="chart_three_layer_pyramid.png",
+        image_layout="right",
+        image_width_cm=17.0,
         page_idx=8,
     )
-    # P9
+    # P9 - growth
     make_content_slide(
         prs, ch2,
         "中国公募FOF市场现状",
-        "8 年发展 · 1500 亿元规模 · 头部集中",
+        "8 年发展 · 1500 亿元规模 · 仍有 10 倍空间",
         [
             "运作时间：自 2017 年首批获批至今，已运行 8 年",
-            "市场规模：产品数量超 500 只，总规模约 1500 亿元，"
-            "相比海外仍有 10 倍空间",
-            "产品分类：普通 FOF / 养老目标日期 / 养老目标风险 / ETF-FOF 四类",
-            "头部集中：前 10 名管理人占行业规模约 60%",
-            "三大趋势：①养老 FOF 借第三支柱起量　②ETF-FOF 成本优势凸显"
-            "　③全球配置型逐步推出",
+            "市场规模：产品数 超 500 只，"
+            "总规模约 1500 亿元",
+            "对标海外：成熟市场 FOF 规模 3 万亿美元 +，"
+            "国内渗透率不足 1/30",
+            "产品分类：普通 / 养老目标日期 / 养老目标风险 / ETF-FOF",
+            "三大趋势：养老起量 · ETF-FOF 降费 · 全球配置型推出",
         ],
+        image="chart_fof_market_growth.png",
+        image_layout="right",
+        image_width_cm=17.5,
+        footnote="数据来源：基于行业公开口径估算（2017—2025），仅供示意",
         page_idx=9,
     )
     # P10 - table
@@ -703,20 +757,19 @@ def build() -> None:
 
     # ========== Chapter 3 ==========
     ch3 = "第三章【主线一】全球多元资产研究与对比"
-    # P11
+    # P11 - nine-grid
     make_content_slide(
         prs, ch3,
         "可投大类资产画像总览",
         "九类资产 = SAA 的“原子集合”",
         [
-            "境内权益：沪深300 / 中证500 / 中证1000 —— 长期 β 与风格暴露",
-            "港股：恒生 / 恒生科技 / 高股息 —— 差异化 β、估值修复期权",
-            "海外权益：标普 / 纳指 / 欧洲 / 日本 / 印度 / 越南 —— 独立 β 来源",
-            "利率债 / 信用债：组合的“减震器”与稳定 carry 来源",
-            "黄金：避险与抗通胀；商品 ETF（豆粕 / 有色 / 能化）：再通胀场景对冲",
-            "公募 REITs：股债之外的第三类现金流，与股债相关性低",
-            "现金 / 货基：流动性管理与战术弹药",
+            "一个好的 FOF 组合 = 把风险来源分布在尽量多的“独立桶”里 ——"
+            "下一页起逐一展开各类资产的研究与对比",
         ],
+        image="chart_nine_assets_grid.png",
+        image_layout="top",
+        image_width_cm=30.0,
+        footnote="数据来源：基于公开指数 2010—2025 口径估算，仅供示意",
         page_idx=11,
     )
     # P12 - chart
@@ -756,20 +809,22 @@ def build() -> None:
         footnote="说明：象限内资产推荐为方向性示意，实操中需结合估值与拥挤度",
         page_idx=13,
     )
-    # P14
+    # P14 - matrix
     make_content_slide(
         prs, ch3,
-        "境内权益拆解：市值 × 风格的二维矩阵",
+        "境内权益拆解：市值 × 风格 二维矩阵",
         "境内权益不是单一资产，而是一个可主动管理的“矩阵”",
         [
-            "市值维度：沪深300（大盘价值/质量）/ 中证500（中盘成长）/"
-            " 中证1000（小盘高弹性）",
-            "风格维度：红利低波（震荡市占优）/ 质量与成长（景气上行期占优）",
-            "行业维度：科创板 / 创业板 / 中证消费 / 中证医药 等主题指数补足结构性敞口",
-            "公募 FOF 的实战做法：宽基 + 风格 + 主题 三层组合，"
+            "市值维度：大盘 / 中盘 / 小盘 决定 β 与流动性",
+            "风格维度：价值 / 红利 / 质量 / 成长 决定 α 与波动",
+            "实战做法：宽基 + 风格 + 主题 三层组合，"
             "并通过风格轮动信号做动态再平衡",
-            "工具选择：宽基用 ETF 控成本，风格 / 主题可结合主动基金获取增厚",
+            "工具选择：宽基用 ETF 控成本，"
+            "风格 / 主题结合主动基金获取增厚",
         ],
+        image="chart_equity_matrix.png",
+        image_layout="right",
+        image_width_cm=18.0,
         page_idx=14,
     )
     # P15
@@ -805,22 +860,25 @@ def build() -> None:
         ],
         page_idx=16,
     )
-    # P17
+    # P17 - bond pie
     make_content_slide(
         prs, ch3,
         "固定收益：四个工具桶",
         "稳定 carry · 久期防御 · 信用 alpha · option 切换",
         [
-            "利率债（国债 / 政金债）：组合的减震器，与权益负相关或低相关",
+            "利率债（国债 / 政金债）：组合减震器，"
+            "与权益负相关或低相关",
             "高等级信用债：稳定 carry，"
-            "需控制单券集中度与行业暴露",
-            "可转债：股性 / 债性切换的“option”，"
-            "在权益估值底部具备非对称性",
-            "中资美元债（QDII）：捕捉美元利率与中资信用利差，"
-            "兼具汇率敞口",
-            "稳健型 FOF 债券底仓建议："
-            "利率 40% · 信用 40% · 转债 10% · 美元债 10%",
+            "控制单券集中度与行业暴露",
+            "可转债：股 / 债切换的“option”，"
+            "权益估值底部具备非对称性",
+            "中资美元债（QDII）：美元 carry +"
+            "中资信用利差 + 汇率敞口",
+            "→ 右图：稳健型 FOF 债券底仓建议配比",
         ],
+        image="chart_bond_allocation.png",
+        image_layout="right",
+        image_width_cm=16.0,
         page_idx=17,
     )
     # P18
@@ -894,19 +952,25 @@ def build() -> None:
 
     # ========== Chapter 4 ==========
     ch4 = "第四章【主线二】组合管理：风险预算 / 风险控制 / 收益拆解"
-    # P21
+    # P21 - risk budget bar
     make_content_slide(
         prs, ch4,
         "从“资金预算”到“风险预算”：范式转变",
-        "让真实风险敞口与管理者意图保持一致",
+        "同一个 60 / 40 ：左为资金权重，右为真实风险贡献",
         [
-            "传统 60/40 组合：股票占资金 60%，但贡献组合波动 90%+",
+            "60/40 名义“股 6 债 4”，"
+            "实际股票贡献组合波动 90%+",
             "风险预算：按风险贡献分配，"
-            "若希望股债风险贡献 50/50，股票资金权重通常仅 25%—30%",
-            "意义：避免“假分散”——名义多资产，实质权益单一暴露",
-            "落地：以波动率 / VaR / 边际贡献作为度量，进入组合优化器",
-            "公募 FOF 的合规优势：风险预算可被结构化写入合同与日常合规监控",
+            "股债 50/50 风险贡献对应资金权重约 25/75",
+            "意义：避免“假分散”——"
+            "名义多资产，实质权益单一暴露",
+            "落地：以波动率 / VaR / 边际贡献为度量，"
+            "进入组合优化器",
+            "公募 FOF 合规优势：风险预算可写入合同与日常合规监控",
         ],
+        image="chart_risk_budget.png",
+        image_layout="right",
+        image_width_cm=17.5,
         page_idx=21,
     )
     # P22
@@ -1017,21 +1081,20 @@ def build() -> None:
         footnote="数据为示意性估算，正式压力测试需使用历史价格序列与因子模型",
         page_idx=27,
     )
-    # P28
+    # P28 - rebalance compare (top wide)
     make_content_slide(
         prs, ch4,
         "再平衡机制：低买高卖的物化",
-        "定期 · 阈值 · 波动率触发  三种机制对比",
+        "定期 · 阈值 · 波动率触发  三种机制直观对比",
         [
-            "定期：每季 / 每半年，简单有纪律，但可能错过结构性机会",
-            "阈值：偏离目标权重 ±5% / ±10% 即触发，"
-            "智能但交易频率不可控",
-            "波动率触发：组合波动突破阈值即降仓，"
-            "适合追求稳定波动的产品",
-            "实践组合：定期为主 + 阈值为辅 + 波动率为应急",
-            "长期 α 贡献：经验上 0.3%—0.8% 年化，"
-            "且能显著平滑客户体验",
+            "定期：纪律性强但可能错过结构性机会 · 阈值：智能但交易频率不可控 · "
+            "波动率触发：敏感、适合稳波动产品",
+            "实践组合：定期为主  +  阈值为辅  +  波动率为应急；"
+            "长期 α 经验值 0.3%—0.8% / 年",
         ],
+        image="chart_rebalance_compare.png",
+        image_layout="top",
+        image_width_cm=30.0,
         page_idx=28,
     )
     # P29 - chart
@@ -1129,19 +1192,22 @@ def build() -> None:
         ],
         page_idx=33,
     )
-    # P34
+    # P34 - alternative alloc range
     make_content_slide(
         prs, ch5,
         "思路 4：另类敞口 —— 公募 REITs + 商品 ETF",
         "把另类纳入组合，补全公募 FOF 的资产维度",
         [
             "现状：传统公募 FOF 的另类敞口几乎为零",
-            "目标：未来提升至 5%—15%",
-            "构成：公募 REITs 3%—8%、黄金 ETF 5%—10%、商品 ETF 0%—5%",
+            "目标：合计配比 6%—15%",
+            "构成：公募 REITs · 黄金 ETF · 商品 ETF",
             "效果：显著降低尾部风险，"
             "经验上 Sharpe 提升 0.1—0.3",
-            "差异化：在公募 FOF 的“红海产品”中形成清晰区分度",
+            "差异化：在“红海产品”中形成清晰区分度",
         ],
+        image="chart_alternative_alloc.png",
+        image_layout="right",
+        image_width_cm=17.5,
         page_idx=34,
     )
     # P35
@@ -1161,20 +1227,24 @@ def build() -> None:
         ],
         page_idx=35,
     )
-    # P36
+    # P36 - glide path
     make_content_slide(
         prs, ch5,
         "思路 6：养老 FOF 与目标日期下滑曲线的本土化",
         "第三支柱 Y 份额 —— 未来 5—10 年最确定的增量",
         [
-            "下滑曲线：客户距离退休年限缩短 →"
+            "下滑曲线：客户距退休年限缩短 →"
             "权益仓位从 80% 逐步降至 20%",
-            "本土化要点 1：下滑曲线斜率更陡（国内权益波动更大）",
-            "本土化要点 2：退休后阶段把高股息 + REITs 作为核心仓位",
-            "本土化要点 3：海外资产作为分散源，降低单一市场风险",
+            "本土化 1：下滑曲线斜率更陡（国内权益波动更大）",
+            "本土化 2：退休后阶段以高股息 + REITs 为核心仓位",
+            "本土化 3：海外资产作分散源，"
+            "降低单一市场风险",
             "渠道落地：与银行养老金账户深度结合，"
-            "嵌入定投与“目标日期一键配置”",
+            "嵌入定投与“一键配置”",
         ],
+        image="chart_glide_path.png",
+        image_layout="right",
+        image_width_cm=17.5,
         page_idx=36,
     )
 
