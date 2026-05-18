@@ -23,17 +23,25 @@ OUTPUT_DIR = PROJECT_ROOT / "output"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 OUTPUT_FILE = OUTPUT_DIR / "FOF资产配置新思路.pptx"
 
-# Theme colors -----------------------------------------------------------------
-BG_DARK   = RGBColor(0x0E, 0x1A, 0x2B)
-BG_PANEL  = RGBColor(0x16, 0x27, 0x3D)
-BG_PANEL2 = RGBColor(0x1B, 0x2F, 0x4A)
-TXT_MAIN  = RGBColor(0xF2, 0xF4, 0xF7)
-TXT_DIM   = RGBColor(0xB6, 0xC4, 0xD6)
-ACCENT    = RGBColor(0xE0, 0xB5, 0x74)   # gold
-ACCENT_2  = RGBColor(0x7B, 0xB7, 0xE8)   # blue
-ACCENT_3  = RGBColor(0x7F, 0xCB, 0xA4)   # green
-ACCENT_4  = RGBColor(0xE6, 0x7D, 0x7D)   # red
-DIVIDER   = RGBColor(0x32, 0x48, 0x63)
+# Theme colors (Light / Fresh) -------------------------------------------------
+BG_PAGE   = RGBColor(0xFF, 0xFF, 0xFF)   # slide background
+BG_CARD   = RGBColor(0xF8, 0xFA, 0xFC)   # slate-50, primary card
+BG_CARD2  = RGBColor(0xF1, 0xF5, 0xF9)   # slate-100
+INK       = RGBColor(0x0F, 0x17, 0x2A)   # slate-900, primary text
+TXT_MAIN  = INK
+TXT_DIM   = RGBColor(0x64, 0x74, 0x8B)   # slate-500
+ACCENT    = RGBColor(0xF5, 0x9E, 0x0B)   # amber-500 (primary)
+ACCENT_2  = RGBColor(0x3B, 0x82, 0xF6)   # blue-500
+ACCENT_3  = RGBColor(0x10, 0xB9, 0x81)   # emerald-500
+ACCENT_4  = RGBColor(0xEF, 0x44, 0x44)   # red-500
+ACCENT_5  = RGBColor(0x8B, 0x5C, 0xF6)   # violet-500
+DIVIDER   = RGBColor(0xE2, 0xE8, 0xF0)   # slate-200
+WHITE     = RGBColor(0xFF, 0xFF, 0xFF)
+
+# Back-compat aliases (legacy names used throughout)
+BG_DARK   = BG_PAGE     # slide background (was navy, now white)
+BG_PANEL  = BG_CARD     # card background  (was dark navy, now light)
+BG_PANEL2 = BG_CARD2
 
 FONT_HEAD = "微软雅黑"
 FONT_BODY = "微软雅黑"
@@ -62,6 +70,16 @@ def _set_solid_fill(shape, rgb: RGBColor) -> None:
     shape.fill.solid()
     shape.fill.fore_color.rgb = rgb
     shape.line.fill.background()
+
+
+def _set_card_fill(shape, fill_rgb: RGBColor,
+                   border_rgb: RGBColor = DIVIDER,
+                   border_pt: float = 0.75) -> None:
+    """Solid fill + visible border. Used for light-theme cards on white page."""
+    shape.fill.solid()
+    shape.fill.fore_color.rgb = fill_rgb
+    shape.line.color.rgb = border_rgb
+    shape.line.width = Pt(border_pt)
 
 
 def _add_rect(slide, x, y, w, h, rgb: RGBColor):
@@ -140,10 +158,9 @@ def _add_multiline(
     return box
 
 
-def _set_slide_background(slide, rgb: RGBColor = BG_DARK) -> None:
+def _set_slide_background(slide, rgb: RGBColor = BG_PAGE) -> None:
     bg = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, SLIDE_W, SLIDE_H)
     _set_solid_fill(bg, rgb)
-    # send to back
     spTree = bg._element.getparent()
     spTree.remove(bg._element)
     spTree.insert(2, bg._element)
@@ -197,55 +214,73 @@ def add_blank(prs: Presentation):
 
 def make_title_slide(prs: Presentation) -> None:
     slide = add_blank(prs)
-    _set_slide_background(slide, BG_DARK)
+    _set_slide_background(slide, BG_PAGE)
 
-    # Left vertical accent band
-    band = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
-                                  Cm(0), Cm(0), Cm(0.6), SLIDE_H)
-    _set_solid_fill(band, ACCENT)
+    # 顶部细线（amber）
+    top_bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
+                                     Cm(0), Cm(0), SLIDE_W, Cm(0.35))
+    _set_solid_fill(top_bar, ACCENT)
 
-    # Soft panel right
-    panel = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
-                                   Cm(18), Cm(2.5), Cm(14.5), Cm(14))
-    _set_solid_fill(panel, BG_PANEL)
+    # 右侧"演讲提纲"卡片（带边框）
+    panel = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,
+                                   Cm(19.5), Cm(2.6), Cm(13.0), Cm(13.5))
+    _set_card_fill(panel, BG_CARD, border_rgb=DIVIDER, border_pt=1.0)
 
-    # Top mini-label
+    # 顶部 mini-label
     _add_text(
         slide, "ASSET  ALLOCATION  ·  FOF  ·  2026",
-        Cm(2.0), Cm(2.4), Cm(20), Cm(0.8),
+        Cm(2.0), Cm(1.5), Cm(22), Cm(0.8),
         size=12, color=ACCENT, font=FONT_HEAD, bold=True,
     )
 
-    # Main title
+    # 主标题（拆三行，突出主旨）
     _add_text(
         slide, "资产配置视角下的",
-        Cm(2.0), Cm(4.5), Cm(22), Cm(2.0),
-        size=40, color=TXT_MAIN, bold=True, font=FONT_HEAD,
+        Cm(2.0), Cm(3.6), Cm(18), Cm(2.0),
+        size=36, color=INK, bold=True, font=FONT_HEAD,
     )
     _add_text(
-        slide, "公募FOF投资新思路",
-        Cm(2.0), Cm(6.7), Cm(22), Cm(2.3),
-        size=46, color=ACCENT, bold=True, font=FONT_HEAD,
+        slide, "公募FOF投资",
+        Cm(2.0), Cm(6.0), Cm(18), Cm(2.4),
+        size=54, color=INK, bold=True, font=FONT_HEAD,
+    )
+    _add_text(
+        slide, "新思路",
+        Cm(2.0), Cm(8.7), Cm(18), Cm(2.4),
+        size=54, color=ACCENT, bold=True, font=FONT_HEAD,
     )
 
-    # Divider
+    # 分隔线
     div = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
-                                 Cm(2.0), Cm(9.7), Cm(8), Cm(0.08))
+                                 Cm(2.0), Cm(11.7), Cm(6), Cm(0.10))
     _set_solid_fill(div, ACCENT)
 
-    # Subtitle: double main lines
+    # 副标题：双主线
     _add_text(
-        slide, "双主线：全球多元资产研究  ×  组合管理（风险预算 / 风险控制 / 收益拆解）",
-        Cm(2.0), Cm(10.2), Cm(28), Cm(1.0),
-        size=16, color=TXT_DIM, font=FONT_BODY,
-    )
-
-    # Right panel content
-    _add_text(
-        slide, "演讲提纲",
-        Cm(18.7), Cm(3.0), Cm(13), Cm(0.9),
+        slide, "双主线",
+        Cm(2.0), Cm(12.1), Cm(3), Cm(0.7),
         size=14, color=ACCENT, bold=True, font=FONT_HEAD,
     )
+    _add_text(
+        slide, "全球多元资产研究   ×   风险预算驱动的组合管理",
+        Cm(5.2), Cm(12.1), Cm(20), Cm(0.7),
+        size=15, color=INK, bold=True, font=FONT_BODY,
+    )
+    _add_text(
+        slide, "覆盖 A 股 / 港股 / 美股 / 海外权益 / 黄金 / 商品 / 利率债 / 信用债 / REITs",
+        Cm(2.0), Cm(13.0), Cm(17), Cm(0.7),
+        size=12, color=TXT_DIM, font=FONT_BODY,
+    )
+
+    # 右侧卡片：演讲提纲
+    _add_text(
+        slide, "演讲提纲",
+        Cm(20.3), Cm(3.2), Cm(11.0), Cm(0.9),
+        size=15, color=ACCENT, bold=True, font=FONT_HEAD,
+    )
+    bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
+                                 Cm(20.3), Cm(4.0), Cm(2.0), Cm(0.08))
+    _set_solid_fill(bar, ACCENT)
     panel_lines = [
         "宏观新常态下的配置困局",
         "资产配置理论与公募FOF定位",
@@ -257,18 +292,18 @@ def make_title_slide(prs: Presentation) -> None:
     ]
     _add_multiline(
         slide, panel_lines,
-        Cm(18.7), Cm(4.0), Cm(13.0), Cm(11),
-        size=14, color=TXT_MAIN, bullet_color=ACCENT, line_space=1.45,
+        Cm(20.3), Cm(4.4), Cm(11.5), Cm(11),
+        size=13, color=INK, bullet_color=ACCENT, line_space=1.55,
     )
 
-    # Bottom presenter line
+    # 底部演讲人信息
     _add_text(
-        slide, "面向 银行总部  |  分享时长 约 60 分钟  |  共 42 页",
+        slide, "面向 银行总部     |     分享时长 约 60 分钟     |     共 42 页",
         Cm(2.0), SLIDE_H - Cm(2.2), Cm(28), Cm(0.8),
         size=12, color=TXT_DIM, font=FONT_BODY,
     )
     _add_text(
-        slide, "演讲人：　　　　　　　　　　　日期：2026",
+        slide, "演讲人：　　　　　　　　　日期：2026",
         Cm(2.0), SLIDE_H - Cm(1.3), Cm(28), Cm(0.7),
         size=11, color=TXT_DIM, font=FONT_BODY,
     )
@@ -294,19 +329,20 @@ def make_toc_slide(prs: Presentation) -> None:
         x = Cm(1.5) + col * Cm(16.5)
         y = start_y + row * gap_y
 
-        # number block
-        n = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, x, y, Cm(1.6), col_h)
-        _set_solid_fill(n, BG_PANEL)
+        # number block - amber filled
+        n = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,
+                                   x, y, Cm(1.6), col_h)
+        _set_card_fill(n, ACCENT, border_rgb=ACCENT, border_pt=0)
         _add_text(slide, num, x, y, Cm(1.6), col_h,
-                  size=22, color=ACCENT, bold=True, align=PP_ALIGN.CENTER,
+                  size=22, color=WHITE, bold=True, align=PP_ALIGN.CENTER,
                   anchor=MSO_ANCHOR.MIDDLE, font=FONT_HEAD)
-        # name block
-        nb = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
+        # name block - light card with subtle border
+        nb = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,
                                     x + Cm(1.7), y, col_w - Cm(1.7), col_h)
-        _set_solid_fill(nb, BG_PANEL2)
+        _set_card_fill(nb, BG_CARD, border_rgb=DIVIDER, border_pt=1.0)
         _add_text(slide, name,
                   x + Cm(1.9), y, col_w - Cm(2.0), col_h,
-                  size=15, color=TXT_MAIN, anchor=MSO_ANCHOR.MIDDLE,
+                  size=15, color=INK, anchor=MSO_ANCHOR.MIDDLE,
                   font=FONT_BODY)
 
 
@@ -314,38 +350,41 @@ def make_section_divider(prs: Presentation, chapter_idx: int,
                           subtitle: str, page_idx: int) -> None:
     num, name = CHAPTERS[chapter_idx]
     slide = add_blank(prs)
-    _set_slide_background(slide, BG_DARK)
-    # left band
+    _set_slide_background(slide, BG_PAGE)
+
+    # left amber accent band
     band = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
-                                  Cm(0), Cm(0), Cm(0.6), SLIDE_H)
+                                  Cm(0), Cm(0), Cm(0.8), SLIDE_H)
     _set_solid_fill(band, ACCENT)
 
-    # Huge chapter mark
+    # 顶部小字
+    _add_text(
+        slide, f"CHAPTER  0{chapter_idx + 1}",
+        Cm(2.5), Cm(3.0), Cm(20), Cm(0.8),
+        size=12, color=TXT_DIM, font=FONT_HEAD, bold=True,
+    )
+
+    # 大章节号
     _add_text(
         slide, f"第 {num} 章",
-        Cm(2.5), Cm(4.5), Cm(12), Cm(2.0),
-        size=22, color=ACCENT, bold=True, font=FONT_HEAD,
+        Cm(2.5), Cm(4.2), Cm(12), Cm(2.2),
+        size=28, color=ACCENT, bold=True, font=FONT_HEAD,
     )
+    # 章节标题（大）
     _add_text(
         slide, name,
-        Cm(2.5), Cm(6.5), Cm(28), Cm(3.0),
-        size=40, color=TXT_MAIN, bold=True, font=FONT_HEAD,
+        Cm(2.5), Cm(6.6), Cm(28), Cm(3.5),
+        size=46, color=INK, bold=True, font=FONT_HEAD,
     )
-    # divider
+    # divider line
     div = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
-                                 Cm(2.5), Cm(10.5), Cm(6), Cm(0.08))
+                                 Cm(2.5), Cm(11.0), Cm(8), Cm(0.10))
     _set_solid_fill(div, ACCENT)
     _add_text(
         slide, subtitle,
-        Cm(2.5), Cm(11.0), Cm(28), Cm(2.0),
-        size=16, color=TXT_DIM, font=FONT_BODY,
+        Cm(2.5), Cm(11.5), Cm(28), Cm(2.0),
+        size=17, color=TXT_DIM, font=FONT_BODY,
     )
-    _add_text(
-        slide, f"CHAPTER  0{chapter_idx + 1}",
-        Cm(2.5), SLIDE_H - Cm(2.3), Cm(20), Cm(0.8),
-        size=11, color=DIVIDER, font=FONT_HEAD, bold=True,
-    )
-    # page no
     _add_text(
         slide, f"{page_idx} / {TOTAL_PAGES}",
         SLIDE_W - Cm(4.5), SLIDE_H - Cm(0.95), Cm(3.3), Cm(0.55),
@@ -502,7 +541,7 @@ def make_table_slide(
     for i, h in enumerate(headers):
         cell = tbl.cell(0, i)
         cell.fill.solid()
-        cell.fill.fore_color.rgb = ACCENT
+        cell.fill.fore_color.rgb = ACCENT_2
         tf = cell.text_frame
         tf.word_wrap = True
         tf.margin_left = Cm(0.15)
@@ -517,11 +556,11 @@ def make_table_slide(
         run.font.name = FONT_HEAD
         run.font.size = Pt(13)
         run.font.bold = True
-        run.font.color.rgb = BG_DARK
+        run.font.color.rgb = WHITE
 
     # body rows
     for ri, row in enumerate(rows, start=1):
-        row_color = BG_PANEL if ri % 2 == 1 else BG_PANEL2
+        row_color = WHITE if ri % 2 == 1 else BG_CARD
         for ci, val in enumerate(row):
             cell = tbl.cell(ri, ci)
             cell.fill.solid()
@@ -533,16 +572,16 @@ def make_table_slide(
             tf.margin_top = Cm(0.06)
             tf.margin_bottom = Cm(0.06)
             p = tf.paragraphs[0]
-            p.alignment = PP_ALIGN.LEFT if ci == 0 else PP_ALIGN.LEFT
+            p.alignment = PP_ALIGN.LEFT
             p.text = ""
             run = p.add_run()
             run.text = val
             run.font.name = FONT_BODY
             run.font.size = Pt(11.5)
-            run.font.color.rgb = TXT_MAIN
+            run.font.color.rgb = INK
             if ci == 0:
                 run.font.bold = True
-                run.font.color.rgb = ACCENT
+                run.font.color.rgb = ACCENT_2
 
     if footnote:
         _add_text(
@@ -554,27 +593,43 @@ def make_table_slide(
 
 def make_end_slide(prs: Presentation, page_idx: int) -> None:
     slide = add_blank(prs)
-    _set_slide_background(slide, BG_DARK)
-    # decorative
-    panel = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
-                                   Cm(0), Cm(7.5), SLIDE_W, Cm(4.0))
-    _set_solid_fill(panel, BG_PANEL)
+    _set_slide_background(slide, BG_PAGE)
+
+    # 顶部 amber 细线
+    top_bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
+                                     Cm(0), Cm(0), SLIDE_W, Cm(0.35))
+    _set_solid_fill(top_bar, ACCENT)
+    # 底部 amber 细线
+    bot_bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
+                                     Cm(0), SLIDE_H - Cm(0.35), SLIDE_W, Cm(0.35))
+    _set_solid_fill(bot_bar, ACCENT)
+
+    # 中央浅色色块（弱化）
+    panel = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,
+                                   Cm(4), Cm(5.5), SLIDE_W - Cm(8), Cm(8.0))
+    _set_card_fill(panel, BG_CARD, border_rgb=DIVIDER, border_pt=1)
 
     _add_text(
         slide, "Q & A",
-        Cm(0), Cm(8.0), SLIDE_W, Cm(3.0),
-        size=80, color=ACCENT, bold=True,
+        Cm(0), Cm(6.0), SLIDE_W, Cm(3.5),
+        size=96, color=ACCENT, bold=True,
         align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE,
         font=FONT_HEAD,
     )
     _add_text(
-        slide, "全球多元资产  ×  风险预算驱动的组合管理 ——  公募FOF 的下一个十年",
-        Cm(0), Cm(12.5), SLIDE_W, Cm(1.2),
-        size=18, color=TXT_MAIN, align=PP_ALIGN.CENTER, font=FONT_BODY,
+        slide, "全球多元资产  ×  风险预算驱动的组合管理",
+        Cm(0), Cm(10.8), SLIDE_W, Cm(1.0),
+        size=18, color=INK, bold=True, align=PP_ALIGN.CENTER,
+        font=FONT_BODY,
+    )
+    _add_text(
+        slide, "—— 公募 FOF 的下一个十年 ——",
+        Cm(0), Cm(11.8), SLIDE_W, Cm(0.9),
+        size=14, color=ACCENT, align=PP_ALIGN.CENTER, font=FONT_BODY,
     )
     _add_text(
         slide, "感谢聆听  ·  欢迎指正",
-        Cm(0), Cm(14.2), SLIDE_W, Cm(1.0),
+        Cm(0), Cm(15.0), SLIDE_W, Cm(1.0),
         size=14, color=TXT_DIM, align=PP_ALIGN.CENTER, font=FONT_BODY,
     )
     _add_text(
@@ -653,19 +708,22 @@ def build() -> None:
         footnote="数据来源：基于公开市场指数口径估算，仅供示意",
         page_idx=5,
     )
-    # P6
+    # P6 - single vs FOF structure
     make_content_slide(
         prs, ch1,
-        "单一资产 / 单一基金的困境 → FOF 与多元配置的必然性",
-        "回答“靠天吃饭”与“靠人吃饭”两个问题",
+        "单一资产 / 单一基金的困境 → FOF 的必然性",
+        "FOF 双层结构在“资产”与“管理人”两个维度同时分散",
         [
-            "单一资产 → “靠天吃饭”：宏观情景一变，组合即遭重创",
-            "单一基金 → “靠人吃饭”：α 集中暴露于单一管理人，风格漂移、规模冲击难以规避",
-            "多元资产配置：在“天”的维度上分散风险来源",
-            "FOF 双层结构：在“人”的维度上分散管理人 α 风险",
-            "全球 FOF 规模超 3 万亿美元，国内仅 1500 亿元，"
-            "渗透率仅为美国市场的 1/30，潜在空间巨大",
+            "单一资产 → “靠天吃饭”：宏观情景一变即遭重创",
+            "单一基金 → “靠人吃饭”：α 集中于单一管理人",
+            "多元资产配置 → 解决“天”：风险来源分散",
+            "FOF 双层结构 → 解决“人”：管理人 α 分散",
+            "全球 FOF 规模 > 3 万亿美元，国内 1500 亿元，"
+            "渗透率仅为美国 1/30",
         ],
+        image="chart_single_vs_fof.png",
+        image_layout="top",
+        image_width_cm=29.0,
         page_idx=6,
     )
 
@@ -827,37 +885,42 @@ def build() -> None:
         image_width_cm=18.0,
         page_idx=14,
     )
-    # P15
+    # P15 - AH premium chart
     make_content_slide(
         prs, ch3,
         "港股与中概：被低估的差异化 β",
         "AH 折价 30%+ · 高股息 + 恒生科技 双引擎",
         [
-            "恒生科技：新经济与互联网平台的核心代理",
-            "恒生高股息：低估值 + 高股息率（多年 6%+），"
-            "适合稳健型组合的“类债”仓位",
-            "AH 溢价：长期处于 130—150 区间，"
-            "提供 A/H 套利与配置切换空间",
+            "恒生科技：新经济与互联网平台核心代理",
+            "恒生高股息：低估值 + 高股息率（6%+），"
+            "适合稳健型“类债”仓位",
+            "AH 溢价长期 130—150 区间："
+            "提供 A/H 套利与切换空间",
             "与 A 股相关性 ~0.6：相关但不重合，"
             "提供边际分散",
-            "工具：港股通主动基金、恒生科技 ETF、恒生高股息 ETF",
+            "工具：港股通主动基金、恒生科技 ETF、高股息 ETF",
         ],
+        image="chart_ah_premium.png",
+        image_layout="right",
+        image_width_cm=17.5,
+        footnote="数据为公开口径示意性估算，仅供方法论展示",
         page_idx=15,
     )
-    # P16
+    # P16 - global equity allocation
     make_content_slide(
         prs, ch3,
         "海外权益：公募FOF 通过 QDII 实现",
-        "把全球权益纳入战略配置，是公募FOF 的差异化新阵地",
+        "全球权益是公募 FOF 最具差异化的“独立 β”阵地",
         [
-            "核心 β：标普500 / 纳指100 —— 海外权益敞口的 50%+",
-            "成熟市场补充：欧洲STOXX 50 / 日经225 / TOPIX —— 配置 10%—20%",
-            "新兴市场 α 增厚：印度 Nifty / 越南 VN30 —— 占比 10%—20%",
-            "QDII 额度紧约束：建议同类备 2—3 只替代品，"
-            "并跟踪基金申购暂停 / 限购公告",
-            "汇率维度：美元升值期 QDII 享汇兑收益，"
-            "贬值期需评估是否对冲（公募 FOF 主要靠不同币种 QDII 间接调节）",
+            "核心 β：美股（标普 + 纳指）占海外权益 50%+",
+            "成熟市场补充：欧洲 + 日本 25%—30%",
+            "新兴市场 α 增厚：印度 + 越南 15%—20%",
+            "QDII 额度紧约束：同类备 2—3 只替代品",
+            "汇率维度：通过不同币种 QDII 间接调节",
         ],
+        image="chart_global_equity_alloc.png",
+        image_layout="top",
+        image_width_cm=29.0,
         page_idx=16,
     )
     # P17 - bond pie
@@ -881,40 +944,33 @@ def build() -> None:
         image_width_cm=16.0,
         page_idx=17,
     )
-    # P18
+    # P18 - commodity ETF cards
     make_content_slide(
         prs, ch3,
         "黄金与商品：公募FOF 唯一的“类商品”通道",
         "在公募合规边界内，把商品敞口纳入组合",
         [
-            "黄金 ETF：境内多只规模超百亿，"
-            "提供避险 + 抗通胀 + 美元对冲三重价值",
-            "豆粕 ETF：农产品代理，"
-            "对冲食品 / CPI 上行风险",
-            "有色金属 ETF：铜 / 铝周期代理，"
-            "再通胀场景受益",
-            "能源化工 ETF：油气链条代理，"
-            "对冲地缘冲突与能源价格上行",
-            "实操要点：警惕升贴水与展期损耗，"
-            "建议黄金 5%—10%、商品 ETF 0%—5%",
+            "实操要点：警惕升贴水与展期损耗 · 黄金 5%—10% 是核心仓位 · "
+            "其余商品 ETF 合计 0%—5%，更多作为战术弹药",
         ],
+        image="chart_commodity_etfs.png",
+        image_layout="top",
+        image_width_cm=30.0,
         page_idx=18,
     )
-    # P19
+    # P19 - REITs breakdown
     make_content_slide(
         prs, ch3,
         "公募REITs：第三类资产的崛起",
-        "2021 年起 · 规模约 1500 亿 · 分红率 4%—8%",
+        "2021 年起步 · 4 年规模增长 8 倍 · 与股债低相关",
         [
-            "底层资产：产业园 / 仓储物流 / 保障房 / 高速公路 / 能源等",
-            "现金流稳定，与股债相关性较低，"
-            "对稳健型 FOF 是天然 α 来源",
-            "估值敏感度：受贴现率（10Y 国债）变动影响较大，"
-            "需关注利率周期",
-            "流动性：单只 REITs 流动性有限，"
-            "建议组合内 3%—8% 配比，分散于不同类型",
-            "未来扩募 + 二级市场流动性改善 → 配置空间持续打开",
+            "底层现金流稳定，与股债相关性低 → 稳健型 FOF 的天然 α",
+            "受贴现率影响大，需关注利率周期变动",
+            "单只流动性有限 → 组合配比 3%—8%，分散于不同类型",
         ],
+        image="chart_reits_breakdown.png",
+        image_layout="top",
+        image_width_cm=30.0,
         page_idx=19,
     )
     # P20 - table
@@ -973,40 +1029,36 @@ def build() -> None:
         image_width_cm=17.5,
         page_idx=21,
     )
-    # P22
+    # P22 - rp methods comparison
     make_content_slide(
         prs, ch4,
-        "风险平价与全天候：核心方法对比",
-        "ERC / MDP / MV 的适用场景",
+        "风险平价与全天候：三种核心算法对比",
+        "ERC / MDP / MV 在同一资产池下的配比差异（公募 FOF 主流：低波约束下的 ERC）",
         [
-            "桥水全天候：股 / 债 / 商品 / 黄金按风险贡献等权，"
-            "再加杠杆达到目标波动率",
-            "ERC（等风险贡献）：稳健、可解释，"
-            "公募 FOF 实务主流方案（低波约束下）",
-            "MDP（最大分散化）：追求多样性比率最大，"
-            "适合资产数量较多的组合",
-            "MV（最小方差）：追求绝对波动最低，"
-            "适合极致稳健型产品",
-            "公募 FOF 不能加杠杆 → 实践中常用“低波约束下的 ERC”作为核心配置算法",
+            "ERC：稳健、可解释 → 公募 FOF 主流方案 · "
+            "MDP：追求多样性比率最大 · "
+            "MV：追求绝对波动最低",
         ],
+        image="chart_rp_methods.png",
+        image_layout="top",
+        image_width_cm=30.0,
         page_idx=22,
     )
-    # P23
+    # P23 - three layer funnel
     make_content_slide(
         prs, ch4,
         "风险预算三层下沉",
-        "大类资产层 → 风格因子层 → 子基金层",
+        "从“黑盒组合”到“透明组合”：每一层都可单独预算与归因",
         [
-            "第一层：大类资产间的风险预算（股 / 债 / 商品 / REITs / 现金）",
-            "第二层：风格因子之间的风险预算"
-            "（价值 / 成长 / 红利 / 低波 / 质量）",
-            "第三层：具体子基金之间的风险预算"
-            "（含规模、换手、容量、稳定性等约束）",
-            "事前预算 + 事后归因 形成闭环 →"
-            "回撤发生时可精确定位贡献来源",
-            "三层下沉的好处：从“黑盒组合”到“透明组合”，"
-            "可向客户与渠道清晰解释",
+            "第 1 层 · 大类资产：股 / 债 / 商品 / REITs / 现金",
+            "第 2 层 · 风格因子：价值 / 成长 / 红利 / 低波 / 质量",
+            "第 3 层 · 子基金：经理画像 + 容量 + 风格穿透",
+            "事前预算 + 事后归因 形成闭环：回撤可精确定位",
+            "对客户 / 渠道：组合可解释、可质询、可追溯",
         ],
+        image="chart_three_layer_funnel.png",
+        image_layout="right",
+        image_width_cm=17.5,
         page_idx=23,
     )
     # P24 - chart
@@ -1028,20 +1080,21 @@ def build() -> None:
         footnote="回测口径为示意性估算，未考虑费用与冲击成本，正式产品需用真实净值数据回测",
         page_idx=24,
     )
-    # P25
+    # P25 - prerisk radar
     make_content_slide(
         prs, ch4,
         "事前风控：把“边界”写进合同",
-        "参数化的风控约束 = 组合的“骨架”",
+        "五维参数随风险偏好分档：稳健 / 平衡 / 进取",
         [
-            "波动率目标：例如年化 ≤ 10%（稳健型）/ ≤ 14%（平衡型）",
-            "最大回撤目标：例如 ≤ -15%（稳健型）/ ≤ -25%（平衡型）",
-            "CVaR / 尾部约束：5% 尾部预期损失 ≤ -2%（按月）",
-            "跟踪误差约束：相对业绩比较基准 TE ≤ 4%",
-            "集中度限制：单只基金 ≤ 10% · 单一管理人 ≤ 20% ·"
-            " 单一策略 ≤ 30%",
-            "流动性约束：T+1 / T+2 可赎部分 ≥ 30%",
+            "波动率目标：≤10% / ≤14% / ≤20%（按风险偏好）",
+            "最大回撤：≤-15% / ≤-25% / ≤-35%",
+            "CVaR 约束：5% 尾部预期损失上限",
+            "跟踪误差：相对基准 TE 上限",
+            "集中度：单基金 ≤10% / 单管理人 ≤20% / 单策略 ≤30%",
         ],
+        image="chart_prerisk_radar.png",
+        image_layout="right",
+        image_width_cm=15.5,
         page_idx=25,
     )
     # P26
@@ -1301,20 +1354,19 @@ def build() -> None:
         footnote="阶梯式产品体系：公募 FOF 做大众富裕的“底盘”，理财 FOF / MOM 做私行的“高级形态”",
         page_idx=38,
     )
-    # P39
+    # P39 - pension metrics cards
     make_content_slide(
         prs, ch6,
         "养老金融与第三支柱：银行的主场",
-        "个人养老金 Y 份额公募FOF —— 渗透率仍不足 10%",
+        "渠道地位：银行是账户主开户方 → 养老 FOF 推广的核心阵地",
         [
-            "政策：个人养老金账户 12000 元 / 年税优额度，"
-            "Y 份额已超 200 只、规模约 800 亿",
-            "渠道地位：银行作为账户主开户方，"
-            "是养老 FOF 推广的核心阵地",
-            "产品端抓手：重点配置目标日期 2030—2045 与稳健型目标风险 FOF",
-            "客户教育抓手：把“长钱长投 / 复利 / 下滑曲线”做成可视化材料",
-            "中长期愿景：第三支柱将成为公募 FOF 最大的单一资金池",
+            "产品端：重点配置目标日期 2030—2045 + 稳健型目标风险 FOF",
+            "客户教育：长钱长投 / 复利 / 下滑曲线 做成可视化材料",
+            "长期愿景：第三支柱将成为公募 FOF 最大单一资金池",
         ],
+        image="chart_pension_metrics.png",
+        image_layout="top",
+        image_width_cm=30.0,
         page_idx=39,
     )
 
@@ -1344,21 +1396,19 @@ def build() -> None:
         footnote="数据为示意性估算，仅作方法论展示，不构成任何产品推荐",
         page_idx=40,
     )
-    # P41
+    # P41 - outlook pillars
     make_content_slide(
         prs, ch7,
-        "展望：AI 投研 · 数据基础设施 · 客户陪伴",
-        "公募 FOF 下一个十年的三大变量",
+        "展望：公募 FOF 的下一个十年",
+        "三大变量决定下一代 FOF 管理人的竞争力",
         [
-            "AI 投研：大模型加速基金研究 / 经理画像 / 会议纪要信号提取，"
-            "单分析师覆盖基金数提升 3—5 倍",
-            "数据基础设施：底层持仓穿透库 + 统一风险因子模型 +"
-            "自动化归因平台 = FOF 专业化的“地基”",
-            "客户陪伴：净值波动期的可信解读 比 净值上涨 更重要",
-            "组织能力：FOF 团队从“选基组”升级为“配置研究院”",
+            "组织能力：FOF 团队从“选基组”升级为“配置研究院”　·　"
             "监管演进：合规边界持续清晰化，"
             "公募 FOF 的产品创新空间反而被打开",
         ],
+        image="chart_outlook_pillars.png",
+        image_layout="top",
+        image_width_cm=30.0,
         page_idx=41,
     )
 

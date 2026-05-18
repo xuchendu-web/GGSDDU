@@ -12,7 +12,7 @@ PPT = PROJECT_ROOT / "output" / "FOF资产配置新思路.pptx"
 EXPECTED_PAGES = 42
 
 EXPECTED_KEYWORDS = {
-    1:  ["公募FOF投资新思路"],
+    1:  ["公募FOF投资", "新思路"],
     2:  ["目录"],
     5:  ["大类资产长期画像"],
     10: ["监管边界"],
