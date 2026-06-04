@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Serenity Clone Ledger</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">local signal intelligence</p>
+        <h1>Serenity<br><span>Clone Ledger</span></h1>
+      </div>
+      <aside class="hero-card">
+        <b></b>
+        <p>从 X/Twitter 文本中抽取 cashtag，写入 SQLite，并把观点时间点叠加到价格曲线上。</p>
+      </aside>
+    </section>
+
+    <section class="kpis" id="kpis" aria-label="概览指标"></section>
+
+    <section class="workspace">
+      <aside class="panel symbol-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">watchlist</p>
+            <h2>Symbols</h2>
+          </div>
+          <input id="symbolSearch" type="search" placeholder="搜索 NVDA">
+        </div>
+        <div class="tabs" aria-label="symbol filters">
+          <button class="active" data-filter="all">全部</button>
+          <button data-filter="priced">有价格</button>
+          <button data-filter="hot">高频</button>
+        </div>
+        <div id="symbols" class="symbols"></div>
+      </aside>
+
+      <section class="panel chart-panel">
+        <div class="panel-head chart-head">
+          <div>
+            <p class="eyebrow">price x mentions</p>
+            <h2 id="activeTitle">读取中</h2>
+          </div>
+          <div id="activeMeta" class="meta-strip"></div>
+        </div>
+        <div id="chart" class="chart" role="img" aria-label="价格与提及时间线"></div>
+        <div id="tooltip" class="tooltip" hidden></div>
+        <div id="neighbors" class="neighbors"></div>
+      </section>
+    </section>
+
+    <section class="panel feed-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">latest tape</p>
+          <h2>Opinion Feed</h2>
+        </div>
+        <span class="soft">最新提及与原文摘要</span>
+      </div>
+      <div id="feed" class="feed"></div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
