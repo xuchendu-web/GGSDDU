@@ -24,12 +24,21 @@ from typing import Any, Iterable
 ROOT = Path(__file__).resolve().parents[1]
 DB_PATH = ROOT / "data" / "serenity.sqlite"
 RAW_DIR = ROOT / "data" / "raw"
+TARGET_HANDLE = "ShanghaoJin"
 CASHTAG_RE = re.compile(r"(?<![A-Za-z0-9_])\$([A-Z][A-Z0-9.]{0,9})(?![A-Za-z0-9_])")
 NOISE_SYMBOLS = {"A", "I", "AI", "CEO", "ETF", "IPO", "USD", "US"}
 
 
 def utc_now() -> str:
     return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+
+
+def clean_handle(value: str | None) -> str:
+    return str(value or "").strip().lstrip("@")
+
+
+def handle_key(value: str | None) -> str:
+    return clean_handle(value).lower()
 
 
 def connect(reset: bool = False) -> sqlite3.Connection:
@@ -125,7 +134,27 @@ def extract_symbols(text: str, *entity_sets: dict[str, Any]) -> list[str]:
     return sorted(s for s in found if 1 < len(s) <= 10 and s not in NOISE_SYMBOLS)
 
 
-def normalize_tweet(node: dict[str, Any], default_source: str) -> dict[str, Any] | None:
+def extract_screen_name(node: dict[str, Any], legacy: dict[str, Any]) -> str:
+    user_result = (((node.get("core") or {}).get("user_results") or {}).get("result") or {})
+    author_obj = node.get("author") if isinstance(node.get("author"), dict) else {}
+    candidates = [
+        ((user_result.get("core") or {}).get("screen_name")),
+        ((user_result.get("legacy") or {}).get("screen_name")),
+        legacy.get("screen_name"),
+        legacy.get("user_screen_name"),
+        author_obj.get("screen_name"),
+        author_obj.get("username"),
+        node.get("author") if isinstance(node.get("author"), str) else None,
+        ((node.get("user") or {}).get("screen_name") if isinstance(node.get("user"), dict) else None),
+    ]
+    for candidate in candidates:
+        handle = clean_handle(candidate)
+        if handle:
+            return handle
+    return "unknown"
+
+
+def normalize_tweet(node: dict[str, Any], default_source: str, target_handle: str | None = TARGET_HANDLE) -> dict[str, Any] | None:
     legacy = node.get("legacy") if isinstance(node.get("legacy"), dict) else node
     tweet_id = str(legacy.get("id_str") or node.get("rest_id") or legacy.get("id") or "").strip()
     text = html.unescape(str(legacy.get("full_text") or legacy.get("text") or node.get("text") or "").strip())
@@ -134,13 +163,10 @@ def normalize_tweet(node: dict[str, Any], default_source: str) -> dict[str, Any]
     if not tweet_id or not text or not created_at:
         return None
 
-    user = (((node.get("core") or {}).get("user_results") or {}).get("result") or {})
-    screen_name = (
-        ((user.get("core") or {}).get("screen_name"))
-        or legacy.get("screen_name")
-        or node.get("author")
-        or "unknown"
-    )
+    screen_name = extract_screen_name(node, legacy)
+    if target_handle and handle_key(screen_name) != handle_key(target_handle):
+        return None
+
     note = (((node.get("note_tweet") or {}).get("note_tweet_results") or {}).get("result") or {})
     note_text = html.unescape(str(note.get("text") or "").strip())
     full_text = note_text or text
@@ -189,11 +215,11 @@ def upsert_tweet(con: sqlite3.Connection, tweet: dict[str, Any]) -> None:
         )
 
 
-def import_json_file(con: sqlite3.Connection, path: Path, source: str) -> int:
+def import_json_file(con: sqlite3.Connection, path: Path, source: str, target_handle: str | None) -> int:
     payload = json.loads(path.read_text(encoding="utf-8"))
     tweets: dict[str, dict[str, Any]] = {}
     for node in walk_json(payload):
-        tweet = normalize_tweet(node, source)
+        tweet = normalize_tweet(node, source, target_handle)
         if tweet and tweet["symbols"]:
             tweets[tweet["tweet_id"]] = tweet
 
@@ -208,15 +234,16 @@ def import_json_file(con: sqlite3.Connection, path: Path, source: str) -> int:
     return len(tweets)
 
 
-def import_json_dir(source: str, path: Path) -> None:
+def import_json_dir(source: str, path: Path, target_handle: str | None) -> None:
     con = connect()
     files = sorted(path.glob("*.json")) if path.is_dir() else [path]
     total = 0
     for file_path in files:
-        count = import_json_file(con, file_path, source)
+        count = import_json_file(con, file_path, source, target_handle)
         print(f"imported {count:>3} tweets from {file_path}")
         total += count
-    print(f"done: {total} tweets with cashtags stored in {DB_PATH}")
+    target = f" @{clean_handle(target_handle)}" if target_handle else ""
+    print(f"done: {total}{target} tweets with cashtags stored in {DB_PATH}")
 
 
 def yahoo_chart(symbol: str, start: dt.datetime, end: dt.datetime) -> dict[str, Any]:
@@ -292,16 +319,17 @@ def synthetic_price(symbol_index: int, day_index: int, base: float) -> tuple[flo
     return close, volume
 
 
-def seed(reset: bool) -> None:
+def seed(reset: bool, target_handle: str = TARGET_HANDLE) -> None:
     con = connect(reset=reset)
     base_time = dt.datetime.now(dt.timezone.utc).replace(hour=13, minute=30, second=0, microsecond=0)
+    author = clean_handle(target_handle) or TARGET_HANDLE
     samples = [
-        ("NVDA", "AI capex keeps rotating back into $NVDA. The setup still depends on data-center backlog quality.", 0, 890.0),
-        ("TSM", "$TSM is the quiet toll road in this cycle; watch foundry utilization before chasing the chart.", 3, 142.0),
+        ("NVDA", "Tracking @ShanghaoJin demo: AI capex keeps rotating back into $NVDA; watch data-center backlog quality.", 0, 890.0),
+        ("TSM", "@ShanghaoJin demo note: $TSM is the quiet toll road in this cycle; utilization matters.", 3, 142.0),
         ("AMD", "If inference demand broadens, $AMD gets a cleaner second look. I want proof in gross margin first.", 5, 158.0),
         ("ASML", "$ASML remains the scarcity asset for leading-edge supply chains, but order timing matters.", 8, 960.0),
         ("SMCI", "$SMCI is high beta infrastructure exposure. Great upside tape, unforgiving downside tape.", 13, 790.0),
-        ("NVDA", "Second mention: $NVDA pullbacks are useful only if the thesis survives hyperscaler budget checks.", 18, 890.0),
+        ("NVDA", "Second @ShanghaoJin-style mention: $NVDA pullbacks only work if hyperscaler budgets hold.", 18, 890.0),
         ("TSM", "$TSM and $ASML are still the cleaner picks-and-shovels read on semi confidence.", 22, 142.0),
         ("AMD", "Keeping $AMD on the watchlist for accelerator share gains, not treating it as confirmed yet.", 29, 158.0),
     ]
@@ -311,10 +339,10 @@ def seed(reset: bool) -> None:
         tweet = {
             "tweet_id": f"demo-{idx}",
             "source": "seed",
-            "author": "serenity_clone",
+            "author": author,
             "created_at": when.isoformat(timespec="seconds").replace("+00:00", "Z"),
             "text": text,
-            "url": f"https://example.com/serenity/demo-{idx}",
+            "url": f"https://x.com/{author}/status/demo-{idx}",
             "favorite_count": 100 + idx * 17,
             "reply_count": 8 + idx,
             "retweet_count": 12 + idx * 2,
@@ -366,10 +394,13 @@ def main() -> None:
 
     seed_parser = sub.add_parser("seed", help="create demo data that works without external accounts")
     seed_parser.add_argument("--reset", action="store_true", help="replace the existing SQLite database")
+    seed_parser.add_argument("--target", default=TARGET_HANDLE, help="demo author handle; default: ShanghaoJin")
 
     import_parser = sub.add_parser("import-json", help="import X/Twitter GraphQL JSON files")
     import_parser.add_argument("--path", type=Path, default=RAW_DIR, help="JSON file or directory")
     import_parser.add_argument("--source", default="x-json", help="source label stored with mentions")
+    import_parser.add_argument("--target", default=TARGET_HANDLE, help="only import tweets by this handle; default: ShanghaoJin")
+    import_parser.add_argument("--include-all", action="store_true", help="disable author filtering")
 
     prices_parser = sub.add_parser("prices", help="download Yahoo daily closes for mentioned symbols")
     prices_parser.add_argument("--days", type=int, default=420)
@@ -379,9 +410,9 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.command == "seed":
-        seed(reset=args.reset)
+        seed(reset=args.reset, target_handle=args.target)
     elif args.command == "import-json":
-        import_json_dir(args.source, args.path)
+        import_json_dir(args.source, args.path, None if args.include_all else args.target)
     elif args.command == "prices":
         fetch_prices(args.days, args.min_mentions)
     elif args.command == "stats":

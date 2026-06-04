@@ -135,7 +135,7 @@ function renderChart(data) {
     const price = prices[index];
     return `
       <button class="mention-dot" style="left:${(x(index) / width) * 100}%; top:${(y(price.close) / height) * 100}%"
-        data-date="${esc(fmtDate(mention.mentioned_at))}" data-price="${esc(money(price.close))}" data-text="${esc(mention.text)}" data-url="${esc(mention.url || "")}"
+        data-date="${esc(fmtDate(mention.mentioned_at))}" data-price="${esc(money(price.close))}" data-author="${esc(mention.author || "ShanghaoJin")}" data-text="${esc(mention.text)}" data-url="${esc(mention.url || "")}"
         aria-label="${esc(data.symbol)} mention ${fmtDate(mention.mentioned_at)}"></button>
     `;
   }).join("");
@@ -179,7 +179,7 @@ function renderChart(data) {
 function showTooltip(dot, tooltip) {
   tooltip.innerHTML = `
     <b>${dot.dataset.price}</b>
-    <span>${dot.dataset.date}</span>
+    <span>@${esc(dot.dataset.author)} / ${dot.dataset.date}</span>
     <p>${esc(clip(dot.dataset.text, 220))}</p>
   `;
   tooltip.style.left = `min(calc(${dot.style.left} + 14px), calc(100% - 280px))`;
@@ -190,7 +190,7 @@ function showTooltip(dot, tooltip) {
 function renderFeed(items) {
   $("feed").innerHTML = items.map((item) => `
     <article class="feed-item">
-      <div><span class="ticker">$${esc(item.symbol)}</span><small>${fmtDate(item.mentioned_at)} / ${esc(item.source)}</small></div>
+      <div><span class="ticker">$${esc(item.symbol)}</span><small>@${esc(item.author || "ShanghaoJin")} / ${fmtDate(item.mentioned_at)} / ${esc(item.source)}</small></div>
       <p>${esc(clip(item.text, 340))}</p>
       <a href="${esc(item.url)}" target="_blank" rel="noreferrer">打开原文</a>
     </article>
