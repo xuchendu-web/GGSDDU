@@ -10,7 +10,7 @@
 - SQLite 存储 tweets、mentions、prices 和导入批次。
 - 支持导入 X/Twitter GraphQL JSON 文件。
 - 支持从 Yahoo Finance 拉取日线价格。
-- 自带 demo seed， بدون X 登录态也能立即体验。
+- 自带 demo seed，无需 X 登录态也能立即体验。
 - 静态 dashboard 支持 symbol 搜索、过滤、价格曲线、mention 标记和最新观点流。
 
 ## 快速开始
