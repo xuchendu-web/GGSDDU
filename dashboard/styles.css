@@ -101,6 +101,11 @@ h1 span {
   animation: beat 1.5s infinite;
 }
 
+.hero-card small {
+  display: block;
+  margin-top: 10px;
+}
+
 .kpis {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

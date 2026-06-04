@@ -1,4 +1,5 @@
-const state = { symbols: [], active: "", filter: "all" };
+const AUTO_REFRESH_MS = 30000;
+const state = { symbols: [], feed: [], active: "", filter: "all", timer: null };
 const $ = (id) => document.getElementById(id);
 
 const fmtDate = (value) => {
@@ -30,14 +31,30 @@ async function getJson(url) {
 }
 
 async function init() {
-  const summary = await getJson("/api/summary");
+  await loadData({ preserveActive: false });
+  state.timer = window.setInterval(() => {
+    loadData({ preserveActive: true }).catch(showError);
+  }, AUTO_REFRESH_MS);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) loadData({ preserveActive: true }).catch(showError);
+  });
+}
+
+async function loadData({ preserveActive }) {
+  const [summary, feed] = await Promise.all([
+    getJson("/api/summary"),
+    getJson("/api/feed?limit=200"),
+  ]);
   state.symbols = summary.symbols || [];
+  state.feed = feed.items || [];
   renderKpis(summary.stats || {});
   renderSymbols();
-  const feed = await getJson("/api/feed?limit=40");
-  renderFeed(feed.items || []);
+  renderFeed();
+  const stillVisible = preserveActive && state.symbols.some((item) => item.symbol === state.active);
   const first = state.symbols.find((item) => item.has_prices) || state.symbols[0];
-  if (first) await selectSymbol(first.symbol);
+  const next = stillVisible ? state.active : first?.symbol;
+  if (next) await selectSymbol(next);
+  updateRefreshStatus();
 }
 
 function renderKpis(stats) {
@@ -57,13 +74,28 @@ function renderKpis(stats) {
 }
 
 function visibleSymbols() {
-  const query = $("symbolSearch").value.trim().toUpperCase();
+  const query = searchQuery();
+  const symbolsFromFeed = new Set(filteredFeed(query).map((item) => item.symbol));
   return state.symbols.filter((item) => {
-    if (query && !item.symbol.includes(query)) return false;
+    if (query && !item.symbol.includes(query) && !symbolsFromFeed.has(item.symbol)) return false;
     if (state.filter === "priced" && !item.has_prices) return false;
     if (state.filter === "hot" && item.mention_count < 2) return false;
     return true;
   });
+}
+
+function searchQuery() {
+  return $("symbolSearch").value.trim().toUpperCase();
+}
+
+function matchesQuery(item, query) {
+  if (!query) return true;
+  return [item.symbol, item.author, item.source, item.text]
+    .some((value) => String(value || "").toUpperCase().includes(query));
+}
+
+function filteredFeed(query = searchQuery()) {
+  return state.feed.filter((item) => matchesQuery(item, query));
 }
 
 function renderSymbols() {
@@ -187,7 +219,7 @@ function showTooltip(dot, tooltip) {
   tooltip.hidden = false;
 }
 
-function renderFeed(items) {
+function renderFeed(items = filteredFeed()) {
   $("feed").innerHTML = items.map((item) => `
     <article class="feed-item">
       <div><span class="ticker">$${esc(item.symbol)}</span><small>@${esc(item.author || "ShanghaoJin")} / ${fmtDate(item.mentioned_at)} / ${esc(item.source)}</small></div>
@@ -195,6 +227,17 @@ function renderFeed(items) {
       <a href="${esc(item.url)}" target="_blank" rel="noreferrer">打开原文</a>
     </article>
   `).join("") || `<p class="empty">暂无导入内容。</p>`;
+}
+
+function updateRefreshStatus() {
+  const el = $("refreshStatus");
+  if (!el) return;
+  el.textContent = `本地数据已刷新：${new Date().toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}`;
+}
+
+function showError(error) {
+  const el = $("refreshStatus");
+  if (el) el.textContent = `刷新失败：${error.message}`;
 }
 
 document.querySelectorAll(".tabs button").forEach((button) => {
@@ -205,7 +248,11 @@ document.querySelectorAll(".tabs button").forEach((button) => {
     renderSymbols();
   });
 });
-$("symbolSearch").addEventListener("input", renderSymbols);
+$("symbolSearch").addEventListener("input", () => {
+  renderSymbols();
+  renderFeed();
+});
 init().catch((error) => {
+  showError(error);
   document.body.insertAdjacentHTML("afterbegin", `<pre class="error">${esc(error.message)}</pre>`);
 });

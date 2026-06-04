@@ -11,7 +11,8 @@
 - 支持导入 X/Twitter GraphQL JSON 文件，并默认过滤为 `@ShanghaoJin` 的推文。
 - 支持从 Yahoo Finance 拉取日线价格。
 - 自带 demo seed，无需 X 登录态也能立即体验。
-- 静态 dashboard 支持 symbol 搜索、过滤、价格曲线、mention 标记和 `@ShanghaoJin` 最新观点流。
+- 静态 dashboard 支持 symbol/作者/推文内容搜索、过滤、价格曲线、mention 标记和 `@ShanghaoJin` 最新观点流。
+- 页面每 30 秒自动刷新本地 API；只要 SQLite 被导入脚本更新，页面会自动反映新数据。
 
 ## 快速开始
 
@@ -63,6 +64,19 @@ python3 scripts/ingest.py import-json --path data/raw --include-all
 ```bash
 python3 scripts/ingest.py prices --days 500 --min-mentions 1
 ```
+
+## 实时更新说明
+
+当前 dashboard 的“实时”是指浏览器自动刷新本地 SQLite/API 数据，不会绕过 X/Twitter 登录态直接在线抓取。
+
+要持续更新，需要把新的 X/Twitter JSON 放入 `data/raw/` 后定时运行：
+
+```bash
+python3 scripts/ingest.py import-json --path data/raw --source x-json
+python3 scripts/ingest.py prices --days 500 --min-mentions 1
+```
+
+例如可以用 cron、systemd timer 或其他调度器定期执行这些命令。
 
 启动 dashboard：
 
