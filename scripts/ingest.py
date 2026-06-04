@@ -205,12 +205,10 @@ def upsert_tweet(con: sqlite3.Connection, tweet: dict[str, Any]) -> None:
         """,
         tweet,
     )
+    con.execute("delete from mentions where tweet_id = ?", (tweet["tweet_id"],))
     for symbol in tweet["symbols"]:
         con.execute(
-            """
-            insert or ignore into mentions(symbol, tweet_id, mentioned_at, text, source)
-            values(?, ?, ?, ?, ?)
-            """,
+            "insert into mentions(symbol, tweet_id, mentioned_at, text, source) values(?, ?, ?, ?, ?)",
             (symbol, tweet["tweet_id"], tweet["created_at"], tweet["text"], tweet["source"]),
         )
 

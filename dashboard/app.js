@@ -24,7 +24,7 @@ const esc = (value) => String(value || "").replace(/[&<>"']/g, (c) => ({
 const clip = (value, length = 260) => value && value.length > length ? `${value.slice(0, length)}...` : (value || "");
 
 async function getJson(url) {
-  const response = await fetch(url);
+  const response = await fetch(url, { cache: "no-store" });
   const payload = await response.json();
   if (!response.ok || payload.error) throw new Error(payload.error || `${response.status} ${url}`);
   return payload;

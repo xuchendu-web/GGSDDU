@@ -78,6 +78,8 @@ python3 scripts/ingest.py prices --days 500 --min-mentions 1
 
 例如可以用 cron、systemd timer 或其他调度器定期执行这些命令。
 
+如果页面内容没有变化，先确认已经重新运行 `import-json`。同一个 tweet id 被重新导入时，系统会重建该 tweet 的 mentions，避免旧正文或旧 symbol 卡在页面上。
+
 启动 dashboard：
 
 ```bash
