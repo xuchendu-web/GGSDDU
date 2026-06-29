@@ -1,0 +1,88 @@
+---
+description: cjpy 量化金融数据库的使用偏好与接口速查（由 cjpy 安装流程添加）
+alwaysApply: true
+---
+
+## Python 解释器使用偏好（由 cjpy 安装流程添加）
+
+cjpy 安装在专用虚拟环境中。执行任何 Python 相关命令时，请**始终用这个绝对路径**，不要用裸 `python` 或 `python3`：
+
+- 解释器：`/home/ubuntu/.cjpy/venv/bin/python`
+- 跑脚本：`/home/ubuntu/.cjpy/venv/bin/python script.py`
+- 一行测试：`/home/ubuntu/.cjpy/venv/bin/python -c "..."`
+- 装包：`/home/ubuntu/.cjpy/venv/bin/python -m pip install <pkg>`
+- 跑 pytest：`/home/ubuntu/.cjpy/venv/bin/python -m pytest`
+
+不要在系统 Python（`/usr/bin/python3` 等）里装包或跑脚本，否则会找不到 cjpy。
+
+> 注：以上路径为本机（cloud agent VM）的安装位置。换到本地机器时，请把该路径替换为本地 cjpy venv 的 Python 绝对路径。
+
+## cjpy 使用偏好（由 cjpy 安装流程添加）
+
+我装了 cjpy 量化金融数据库（可在 `import cjpy` 后使用）。下面是它的常用接口和约定，帮我写涉及金融数据的脚本时**优先使用 cjpy**。
+
+### 常用接口
+
+```python
+import cjpy
+
+# K 线行情（单证券，时序）。cycle: day/1m/5m/15m/30m/60m
+# rate: 不复权/前复权/后复权（默认不复权）
+df = cjpy.get_market_data("SZ000001", "20240101", "20240131", cycle="day")
+
+# 因子值（多证券 × 多日期 × 多因子，一次返回）。
+# 想跨股票横向对比 PE/PB/收盘价等就用它，不要循环 get_market_data。
+df = cjpy.get_factor_data(
+    code=["SZ000001", "SZ000002"],
+    date=["20240331"],
+    factors=["收盘价", "PETTM", "PBMRQ"],
+)
+
+# 财务/基本面表（报表、股本、股东、基金持仓等）
+df = cjpy.get_table_data("SZ000001", "主要财务指标")
+
+# 交易日历。cycle: D/W/M/Q/H/Y
+days = cjpy.get_trading_days("20240101", "20240331", cycle="D")
+
+# 元信息
+all_stocks = cjpy.get_stocks()              # 股票代码列表
+all_funds  = cjpy.get_funds()               # 基金代码列表
+tables     = cjpy.get_supported_tables()    # 可用表名
+factors    = cjpy.get_factor_repo()         # 可用因子定义
+
+# 实时订阅（后台线程）
+sub = cjpy.subscribe(ids=["SZ000001"], fields=["price"])
+# 用 sub.get(timeout=1) 或 sub.drain() 消费事件；完了 sub.stop()
+
+# 简易回测
+from cjpy.research import Backtest
+bt = Backtest()
+net_value = bt.run(port_df, start_date="20240101", end_date="20240331")
+```
+
+### 关键约定（写错会得到错误结果，请遵守）
+
+- **证券代码优先用天软格式** `SZ000001` / `SH600000`；Wind 格式 `000001.SZ` 也接受但内部会转换
+- 日期 `yyyymmdd` 或 `yyyy-mm-dd` 都可
+- `get_factor_data` 中的 `开盘价/最高价/最低价/收盘价` **是后复权**。需要不复权用因子 `不复权收盘价`；需要前复权只能用 `get_market_data(rate="前复权")`
+- `get_table_data` 多数表返回**全部历史**，要按日期列（常见的有 `公布日` / `数据报告期` / `截止日` 等，具体看表）自行过滤
+- 多只股票横截面对比走 `get_factor_data`，**不要**循环 `get_market_data`
+- token 已经在安装时通过 `cjpy.set_token()` 持久化到 `~/.cjpy/config.json`，**不需要也不要**让用户再贴 token
+
+### 自定义因子（天软 TSL 表达式）
+
+```python
+custom = {"振幅": "(high()-low())/sys_prevclose()"}
+df = cjpy.get_factor_data(
+    code=["SZ000001"], date=["20240331"],
+    factors=["振幅"], repo=custom,
+)
+```
+
+### 不确定参数细节时
+
+跑 `help(cjpy.对应函数)` 看完整 docstring：
+
+```bash
+/home/ubuntu/.cjpy/venv/bin/python -c "import cjpy; help(cjpy.get_market_data)"
+```
