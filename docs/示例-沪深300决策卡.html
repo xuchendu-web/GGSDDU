@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沪深300 配置决策卡 · 系统呈现示例</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:#eef1f6; color:#1f2d3d; font-size:14px; line-height:1.6;
+  }
+  .page { max-width:1180px; margin:0 auto; padding:20px 24px 48px; }
+
+  /* 顶栏 */
+  .topbar {
+    background:#0f2b52; color:#fff; border-radius:10px;
+    padding:16px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+  .topbar .title { font-size:20px; font-weight:700; }
+  .topbar .title .code { font-size:13px; font-weight:400; opacity:.75; margin-left:10px; }
+  .topbar .meta { font-size:12px; opacity:.85; text-align:right; line-height:1.8; }
+  .tag { display:inline-block; background:rgba(255,255,255,.14); border-radius:4px; padding:1px 8px; margin-left:6px; font-size:12px; }
+
+  .demo-note {
+    margin:10px 0 18px; padding:8px 14px; background:#fff7e6; border:1px solid #f0c36d;
+    border-radius:6px; color:#8a6100; font-size:12.5px;
+  }
+
+  /* 卡片 */
+  .card { background:#fff; border-radius:10px; padding:20px 24px; margin-bottom:18px; box-shadow:0 1px 3px rgba(15,43,82,.08); }
+  .card h2 {
+    font-size:16px; color:#0f2b52; margin-bottom:14px; padding-left:10px;
+    border-left:4px solid #1a56b0; display:flex; align-items:center; justify-content:space-between;
+  }
+  .card h2 .sub { font-size:12px; color:#8492a6; font-weight:400; }
+
+  /* 核心结论 */
+  .conclusion { display:flex; gap:16px; align-items:stretch; flex-wrap:wrap; }
+  .conclusion .main {
+    flex:1 1 620px; background:#f4f8ff; border:1px solid #d6e4ff; border-radius:8px; padding:16px 18px; font-size:15px;
+  }
+  .conclusion .main b { color:#1a56b0; }
+  .score-box { flex:0 0 150px; background:#0f2b52; color:#fff; border-radius:8px; padding:14px; text-align:center; }
+  .score-box .num { font-size:34px; font-weight:700; }
+  .score-box .lbl { font-size:12px; opacity:.8; }
+  .score-strip { display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
+  .score-strip .pill {
+    background:#f0f3f8; border-radius:6px; padding:8px 14px; font-size:12.5px; color:#4a5b70;
+  }
+  .score-strip .pill b { font-size:16px; color:#0f2b52; margin-left:4px; }
+
+  /* 表格 */
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { background:#1a56b0; color:#fff; font-weight:600; padding:8px 10px; text-align:left; }
+  td { padding:8px 10px; border-bottom:1px solid #e8edf3; vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.num, th.num { text-align:right; }
+  .risk-table th { background:#b03030; }
+  .judge { display:inline-block; border-radius:4px; padding:0 8px; font-size:12px; line-height:20px; }
+  .j-good { background:#e2ecfc; color:#1a56b0; }
+  .j-mid  { background:#f0f3f8; color:#5a6b80; }
+  .j-warn { background:#fdecea; color:#b03030; }
+  .src { color:#8492a6; font-size:11.5px; }
+  .rank1 td { background:#f4f8ff; }
+  .bar { display:inline-block; height:8px; border-radius:4px; background:#1a56b0; vertical-align:middle; margin-right:6px; }
+
+  .two-col { display:flex; gap:18px; flex-wrap:wrap; }
+  .two-col > div { flex:1 1 460px; }
+
+  /* 下钻示例 */
+  .drill {
+    background:#f8fafc; border:1px dashed #b8c6d8; border-radius:8px; padding:14px 16px; margin-top:12px; font-size:13px;
+  }
+  .drill .q { color:#1a56b0; font-weight:600; }
+
+  /* 报告节选 */
+  .report-excerpt { font-size:13.5px; }
+  .report-excerpt ol { padding-left:20px; }
+  .report-excerpt li { margin-bottom:8px; }
+  .cite { color:#1a56b0; font-size:12px; }
+
+  /* 对话 */
+  .chat { display:flex; flex-direction:column; gap:12px; }
+  .msg { max-width:78%; padding:10px 14px; border-radius:10px; font-size:13.5px; }
+  .msg.user { align-self:flex-end; background:#1a56b0; color:#fff; border-bottom-right-radius:2px; }
+  .msg.sys  { align-self:flex-start; background:#f0f3f8; border-bottom-left-radius:2px; }
+  .msg.sys .foot { margin-top:6px; font-size:11.5px; color:#8492a6; border-top:1px solid #dde4ec; padding-top:5px; }
+  .msg.sys table { margin:8px 0 2px; font-size:12.5px; }
+  .msg.sys th { padding:5px 8px; }
+  .msg.sys td { padding:5px 8px; }
+
+  /* 操作栏 */
+  .actions { display:flex; gap:10px; flex-wrap:wrap; }
+  .btn {
+    border:none; border-radius:6px; padding:9px 18px; font-size:13px; cursor:pointer; font-family:inherit;
+  }
+  .btn-primary { background:#1a56b0; color:#fff; }
+  .btn-ghost { background:#fff; color:#1a56b0; border:1px solid #1a56b0; }
+  .btn-monitor { background:#f0f3f8; color:#4a5b70; }
+
+  .footer-note { color:#8492a6; font-size:12px; margin-top:6px; }
+  .neg { color:#b03030; }
+  .pos { color:#1a56b0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 顶栏 -->
+  <div class="topbar">
+    <div class="title">沪深300 · 配置视角决策卡<span class="code">000300.SH ｜ 宽基-大盘</span></div>
+    <div class="meta">
+      分析日期 2026-07-09 ｜ 数据快照 #20260709-0193 ｜ 规则版本 v1.0<span class="tag">场景：配置型</span><span class="tag">读者：机构投资者</span>
+    </div>
+  </div>
+  <div class="demo-note">⚠ 本页为系统输出形态示例，全部数据为示意值，仅用于演示呈现结构。正式环境中每个数字来自客户接入数据源的可溯源快照。</div>
+
+  <!-- 核心结论 -->
+  <div class="card">
+    <h2>核心结论 <span class="sub">每条结论可点击下钻至判断依据</span></h2>
+    <div class="conclusion">
+      <div class="main">
+        估值<b>合理偏低</b>（PE 分位 36%）+ 股债性价比<b>高位</b>（ERP 分位 74%）+ 拥挤度<b>低位</b>，配置时机<b>中性偏积极</b>；
+        产品层建议 <b>510300</b>（流动性与建仓成本最优）；
+        对贵司组合 A 而言成分重叠已达 34%，若目标是增加大盘贝塔，<b>中证A500 ETF 边际分散效果更优</b>（重叠 21%，详见组合关联）。
+      </div>
+      <div class="score-box">
+        <div class="num">72</div>
+        <div class="lbl">综合时机分 / 100<br>中性偏积极</div>
+      </div>
+    </div>
+    <div class="score-strip">
+      <span class="pill">产品质量分（首选）<b>92</b></span>
+      <span class="pill">估值时机分<b>71</b></span>
+      <span class="pill">拥挤度分<b>82</b></span>
+      <span class="pill">组合适配分<b>58</b></span>
+      <span class="pill" style="color:#8492a6">权重：配置型 50/30/—/20，点击切换场景</span>
+    </div>
+  </div>
+
+  <!-- 时机面板 -->
+  <div class="card">
+    <h2>① 时机面板 <span class="sub">信号由计算引擎产出，LLM 不参与计算</span></h2>
+    <div class="two-col">
+      <div>
+        <table>
+          <tr><th>估值与性价比</th><th class="num">当前值</th><th class="num">近5年分位</th><th>判定</th></tr>
+          <tr><td>PE(TTM)</td><td class="num">12.4 倍</td><td class="num">36%</td><td><span class="judge j-good">合理</span> <span class="src">【来源：数据终端，2026-07-08】</span></td></tr>
+          <tr><td>PB(LF)</td><td class="num">1.31 倍</td><td class="num">28%</td><td><span class="judge j-good">合理偏低</span></td></tr>
+          <tr><td>股息率（近12月）</td><td class="num">3.1%</td><td class="num">78%</td><td><span class="judge j-good">偏高，有利</span></td></tr>
+          <tr><td>ERP 股债性价比</td><td class="num">5.8%</td><td class="num">74%</td><td><span class="judge j-good">权益占优</span></td></tr>
+          <tr><td>拥挤度（成交占比）</td><td class="num">8.2%</td><td class="num">34%</td><td><span class="judge j-good">不拥挤</span></td></tr>
+          <tr><td>ETF 资金净流（20日）</td><td class="num">+86 亿元</td><td class="num">—</td><td><span class="judge j-good">正向</span></td></tr>
+        </table>
+      </div>
+      <div>
+        <table>
+          <tr><th>宏观四维</th><th>当前状态</th><th>对宽基影响</th></tr>
+          <tr><td>经济周期</td><td>复苏初期（PMI 50.4，连续 2 月位于荣枯线上）</td><td><span class="judge j-good">正面</span></td></tr>
+          <tr><td>流动性环境</td><td>宽松（DR007 1.62%，低于政策利率）</td><td><span class="judge j-good">正面</span></td></tr>
+          <tr><td>风险偏好</td><td>修复中（两融余额 20 日回升 4.2%）</td><td><span class="judge j-mid">中性偏正</span></td></tr>
+          <tr><td>政策方向</td><td>积极（专项债发行提速）</td><td><span class="judge j-good">正面</span></td></tr>
+        </table>
+        <div class="drill">
+          <div class="q">▾ 下钻示例：为什么"拥挤度"判定为不拥挤？</div>
+          判断规则：宽基成交占全市场比 &gt;25% 为拥挤（规则标定表 v1.0，第 13 行）。当前值 8.2%，近 5 年分位 34%，未触发。
+          <span class="src">【计算明细：快照 #20260709-0193 · 字段 crowding_ratio】</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 产品比选 -->
+  <div class="card">
+    <h2>② 产品比选与推荐 <span class="sub">产品池：跟踪沪深300 · 规模&gt;50亿 · 已按贵司白名单过滤，共 6 只</span></h2>
+    <table>
+      <tr>
+        <th>排名</th><th>代码 / 简称</th><th class="num">综合分</th><th class="num">规模(亿)</th>
+        <th class="num">20日日均成交(亿)</th><th class="num">综合费率</th><th class="num">年化跟踪误差</th><th class="num">折溢价</th><th>关键差异</th>
+      </tr>
+      <tr class="rank1">
+        <td><b>1</b></td><td><b>510300 华泰柏瑞沪深300ETF</b></td>
+        <td class="num"><span class="bar" style="width:60px"></span><b>92</b></td>
+        <td class="num">3,850</td><td class="num">28.6</td><td class="num">0.20%</td><td class="num">0.42%</td><td class="num">+0.03%</td>
+        <td>流动性第一；5 亿建仓冲击成本约 3bp</td>
+      </tr>
+      <tr>
+        <td>2</td><td>510310 易方达沪深300ETF</td>
+        <td class="num"><span class="bar" style="width:56px"></span>89</td>
+        <td class="num">1,420</td><td class="num">9.8</td><td class="num"><b>0.12%</b></td><td class="num">0.48%</td><td class="num">-0.02%</td>
+        <td>全池最低费率，长期持有成本优</td>
+      </tr>
+      <tr>
+        <td>3</td><td>159919 嘉实沪深300ETF</td>
+        <td class="num"><span class="bar" style="width:53px"></span>86</td>
+        <td class="num">1,680</td><td class="num">11.2</td><td class="num">0.20%</td><td class="num">0.45%</td><td class="num">+0.05%</td>
+        <td>深市挂牌，跨市场套利与做市便利</td>
+      </tr>
+      <tr>
+        <td>4</td><td>510330 华夏沪深300ETF</td>
+        <td class="num"><span class="bar" style="width:51px"></span>84</td>
+        <td class="num">960</td><td class="num">6.4</td><td class="num">0.20%</td><td class="num"><b>0.38%</b></td><td class="num">+0.01%</td>
+        <td>跟踪误差最小，适合长持</td>
+      </tr>
+      <tr>
+        <td colspan="9" class="src" style="padding:6px 10px;">… 其余 2 只已折叠（综合分 &lt;80）。评分权重（配置型）：产品质量 50% / 时机 30% / 组合适配 20%。完整评分明细与历史回测报告见证据包。</td>
+      </tr>
+    </table>
+    <div class="drill">
+      <div class="q">▾ 建仓测算（金额 5 亿元，可修改）</div>
+      首选 510300：预计冲击成本约 <b>3bp</b>，单日成交占比 1.7%，建议 <b>T / T+1 两日分批执行</b>；
+      备选 510310：冲击成本约 8bp，但持有 1 年以上费差可覆盖建仓成本差（盈亏平衡持有期约 7 个月）。
+      <span class="src">【测算方法：Almgren-Chriss 简化模型 · 参数版本 v1.0】</span>
+    </div>
+  </div>
+
+  <!-- 组合关联 -->
+  <div class="card">
+    <h2>③ 组合关联 <span class="sub">基于贵司组合 A 持仓（2026-07-08 快照）测算 —— 本模块仅在接入内部持仓后可用</span></h2>
+    <div class="two-col">
+      <div>
+        <table>
+          <tr><th>测算项</th><th class="num">当前</th><th class="num">增配 5% 后</th><th>变化解读</th></tr>
+          <tr><td>与沪深300成分重叠度（按权重）</td><td class="num">34.2%</td><td class="num">39.6%</td><td>重叠偏高，贝塔增量有限</td></tr>
+          <tr><td>大盘风格暴露</td><td class="num">+0.61σ</td><td class="num">+0.99σ</td><td>大盘暴露显著上升</td></tr>
+          <tr><td>价值风格暴露</td><td class="num">+0.24σ</td><td class="num">+0.36σ</td><td>小幅偏向价值</td></tr>
+          <tr><td>组合 vs 基准跟踪误差</td><td class="num">2.1%</td><td class="num">1.8%</td><td>更贴近基准</td></tr>
+        </table>
+      </div>
+      <div>
+        <table>
+          <tr><th>替代方案对比</th><th class="num">与组合重叠</th><th class="num">增配后大盘暴露</th><th>结论</th></tr>
+          <tr><td>沪深300 ETF（510300）</td><td class="num">34.2%</td><td class="num">+0.99σ</td><td><span class="judge j-mid">贝塔增量一般</span></td></tr>
+          <tr><td>中证A500 ETF</td><td class="num">21.4%</td><td class="num">+0.87σ</td><td><span class="judge j-good">边际分散更优</span></td></tr>
+        </table>
+        <div class="drill">
+          ⚠ 组合 A 已持有「某沪深300增强」6.5%：增配被动 300 将稀释其主动收益贡献（近 3 年年化超额 3.8%）。
+          若增配目的为<b>降低组合跟踪误差</b>，被动 300 合理；若为<b>增加大盘贝塔</b>，建议对比 A500 方案。
+          <span class="src">【测算：Barra 风格因子模型 · 组合快照 #A-20260708】</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风险 -->
+  <div class="card">
+    <h2>④ 正向逻辑 ↔ 反向风险 <span class="sub">与核心结论一一对应 · 触发条件全部可量化监控</span></h2>
+    <table class="risk-table">
+      <tr><th>#</th><th>正向逻辑</th><th>反向风险</th><th>触发条件（可订阅监控）</th><th>影响</th></tr>
+      <tr>
+        <td>1</td><td>估值合理偏低支撑配置价值</td><td>盈利下修导致估值被动抬升</td>
+        <td>若全 A 盈利增速连续两个季度低于 0%</td><td><span class="judge j-warn">高</span></td>
+      </tr>
+      <tr>
+        <td>2</td><td>流动性宽松支撑估值扩张</td><td>货币政策转向收紧</td>
+        <td>若 10 年期国债收益率上行超 50bp 至 2.4% 以上</td><td><span class="judge j-warn">中</span></td>
+      </tr>
+      <tr>
+        <td>3</td><td>拥挤度低位，回调风险有限</td><td>风格极致切向小盘，宽基资金流出</td>
+        <td>若沪深300 / 中证2000 收益差连续 3 个月低于 -8%</td><td><span class="judge j-warn">中</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 报告节选 -->
+  <div class="card">
+    <h2>⑤ 七段式深度报告（摘要节选） <span class="sub">完整报告 2500-3500 字，按 TCRII 模板生成，可下钻至任意章节</span></h2>
+    <div class="report-excerpt">
+      <ol>
+        <li><b>核心结论：</b>沪深300 当前处于可配置区间。PE(TTM) 12.4 倍，近 5 年分位 36%，估值合理偏低 <span class="cite">【来源：数据终端，2026-07-08】</span>。</li>
+        <li><b>核心驱动：</b>股债性价比是当前最主要变量。ERP 5.8%，近 5 年分位 74%，权益资产相对占优 <span class="cite">【来源：信号引擎计算，2026-07-09】</span>。</li>
+        <li><b>差异化特征：</b>相较中证A500，沪深300 金融板块超配 6.8 个百分点，行业集中度 CR5 41%，属相对集中 <span class="cite">【来源：指数公司成分数据，2026-06-30】</span>。</li>
+        <li><b>主要风险：</b>若全 A 盈利增速连续两季转负，估值支撑逻辑将被削弱（详见风险对应表）。</li>
+        <li><b>适用情形：</b>低费率 + 高流动性 + 中低波动，适合配置型资金作为核心底仓 <span class="cite">【判定规则：标定表 6.1】</span>。</li>
+      </ol>
+      <div class="src" style="margin-top:8px;">关键信息速览表、第 2-7 部分（配置逻辑 / 指数价值 / 产品分析 / 可比工具 / 适用对象 / 风险提示）在完整报告中展开。</div>
+    </div>
+  </div>
+
+  <!-- 对话 -->
+  <div class="card">
+    <h2>⑥ 对话追问（会话上下文：沪深300 · 组合A） <span class="sub">回答全部落地到工具计算结果，带来源</span></h2>
+    <div class="chat">
+      <div class="msg user">现在这个位置，和 2024 年 9 月那波行情启动前比怎么样？</div>
+      <div class="msg sys">
+        对比两个时点的信号面板（示意）：
+        <table>
+          <tr><th>信号</th><th class="num">2024-09-13</th><th class="num">2026-07-09</th></tr>
+          <tr><td>PE(TTM) 分位</td><td class="num">8%（极端低位）</td><td class="num">36%（合理）</td></tr>
+          <tr><td>ERP 分位</td><td class="num">96%</td><td class="num">74%</td></tr>
+          <tr><td>20日资金净流</td><td class="num">-42 亿</td><td class="num">+86 亿</td></tr>
+        </table>
+        当前估值与性价比的极端程度<b>明显弱于</b> 2024 年 9 月，但资金面为正向（彼时为流出）。两时点信号结构不同，不构成可比的"启动前"形态。
+        <div class="foot">数据：信号引擎历史快照对比 · #20240913 vs #20260709</div>
+      </div>
+      <div class="msg user">如果只买 5000 万，还需要分批吗？</div>
+      <div class="msg sys">
+        不需要。5000 万约占 510300 单日成交额的 0.17%，预计冲击成本 &lt;1bp，单日一次性执行即可。分批的意义在该规模下小于跟踪时点的机会成本。
+        <div class="foot">测算：冲击成本模型 v1.0 · 输入已更新至会话上下文（金额 5000 万）</div>
+      </div>
+      <div class="msg user">帮我设个监控：PE 分位跌破 25% 或者折溢价超 0.5% 时提醒</div>
+      <div class="msg sys">
+        已创建 2 条监控（作用于 000300.SH / 510300）：<br>
+        ① PE(TTM) 近5年分位 &lt; 25% → 推送快评（估值进入低估区间）<br>
+        ② |折溢价| &gt; 0.5% → 即时告警<br>
+        触发后将自动生成 500 字快评并推送至您的工作台与邮箱。
+        <div class="foot">监控配置 #M-0417、#M-0418 · 可在「监控中心」管理</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 操作栏 -->
+  <div class="card">
+    <h2>操作</h2>
+    <div class="actions">
+      <button class="btn btn-primary">生成完整七段式报告</button>
+      <button class="btn btn-ghost">导出投委会材料（PDF）</button>
+      <button class="btn btn-ghost">导出数据底稿（Excel）</button>
+      <button class="btn btn-monitor">⏰ 监控中心（已订阅 2 条）</button>
+      <button class="btn btn-monitor">📦 下载证据包（评分明细 + 数据快照 + 规则版本）</button>
+    </div>
+    <div class="footer-note">
+      证据包用于贵司内部合规复核：包含本次全部原始数据快照（#20260709-0193）、评分计算明细、规则标定表 v1.0、生成日志。
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
