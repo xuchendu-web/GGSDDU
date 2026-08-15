@@ -46,7 +46,12 @@ def list_13f_filings(n: int):
 
 
 def fetch_holdings(accession: str):
-    """下载并解析某期 13F 的信息表 XML,返回 {(发行人,类别,CUSIP): {value, shares}}。"""
+    """下载并解析某期 13F 的信息表 XML。
+
+    以 CUSIP 为唯一键(同一标的在不同季度的发行人名称/股份类别写法常会变,
+    例如 PDD 的 SPONSORED ADS vs SPON ADS、TME 的发行人缩写),避免误报清仓+新建。
+    返回 {CUSIP: {name, title, value, shares}}。
+    """
     acc_nodash = accession.replace("-", "")
     index = fetch(f"https://www.sec.gov/Archives/edgar/data/{int(CIK)}/{acc_nodash}/index.json")
     files = json.loads(index)["directory"]["item"]
@@ -57,15 +62,15 @@ def fetch_holdings(accession: str):
     raw = fetch(f"https://www.sec.gov/Archives/edgar/data/{int(CIK)}/{acc_nodash}/{info_xml}")
     root = ET.fromstring(raw)
     ns = {"n": root.tag.split("}")[0].strip("{")}
-    holdings = defaultdict(lambda: {"value": 0, "shares": 0})
+    holdings = defaultdict(lambda: {"name": "", "title": "", "value": 0, "shares": 0})
     for it in root.findall("n:infoTable", ns):
-        key = (
-            it.find("n:nameOfIssuer", ns).text.strip(),
-            it.find("n:titleOfClass", ns).text.strip(),
-            it.find("n:cusip", ns).text.strip(),
-        )
-        holdings[key]["value"] += int(it.find("n:value", ns).text)
-        holdings[key]["shares"] += int(it.find("n:shrsOrPrnAmt/n:sshPrnamt", ns).text)
+        cusip = it.find("n:cusip", ns).text.strip()
+        name = it.find("n:nameOfIssuer", ns).text.strip()
+        title = it.find("n:titleOfClass", ns).text.strip()
+        holdings[cusip]["name"] = name
+        holdings[cusip]["title"] = title
+        holdings[cusip]["value"] += int(it.find("n:value", ns).text)
+        holdings[cusip]["shares"] += int(it.find("n:shrsOrPrnAmt/n:sshPrnamt", ns).text)
     return dict(holdings)
 
 
@@ -74,23 +79,30 @@ def print_holdings(period: str, meta: dict, holdings: dict):
     print(f"\n===== 报告期 {period}({meta['form']},提交 {meta['filed']}) =====")
     print(f"美股多头总市值: ${total/1e9:.2f}B,持仓 {len(holdings)} 只")
     print(f"{'发行人':36s}{'市值':>12s}{'股数':>16s}{'占比':>8s}")
-    for k, v in sorted(holdings.items(), key=lambda x: -x[1]["value"]):
-        print(f"{k[0][:34]:36s}{'$%.1fM' % (v['value']/1e6):>12s}{v['shares']:>16,}{v['value']/total*100:>7.1f}%")
+    for cusip, v in sorted(holdings.items(), key=lambda x: -x[1]["value"]):
+        print(f"{v['name'][:34]:36s}{'$%.1fM' % (v['value']/1e6):>12s}{v['shares']:>16,}{v['value']/total*100:>7.1f}%")
+
+
+def _name(holdings: dict, cusip: str) -> str:
+    if cusip in holdings and holdings[cusip]["name"]:
+        return holdings[cusip]["name"]
+    return cusip
 
 
 def print_diff(prev_period: str, cur_period: str, prev: dict, cur: dict):
     print(f"\n----- 变动: {prev_period} -> {cur_period} -----")
     changed = False
-    for k in sorted(set(prev) | set(cur), key=lambda k: -cur.get(k, {"value": 0})["value"]):
-        p = prev.get(k, {"shares": 0})["shares"]
-        c = cur.get(k, {"shares": 0})["shares"]
+    for cusip in sorted(set(prev) | set(cur), key=lambda k: -cur.get(k, {"value": 0})["value"]):
+        p = prev.get(cusip, {"shares": 0})["shares"]
+        c = cur.get(cusip, {"shares": 0})["shares"]
+        label = _name(cur, cusip) if c else _name(prev, cusip)
         if p == 0 and c > 0:
-            print(f"  [新建仓] {k[0][:32]:34s} +{c:,} 股")
+            print(f"  [新建仓] {label[:32]:34s} +{c:,} 股")
         elif c == 0 and p > 0:
-            print(f"  [清仓]   {k[0][:32]:34s} -{p:,} 股")
+            print(f"  [清仓]   {label[:32]:34s} -{p:,} 股")
         elif c != p:
             tag = "加仓" if c > p else "减仓"
-            print(f"  [{tag}]   {k[0][:32]:34s} {c-p:+,} 股 ({(c-p)/p*100:+.1f}%)")
+            print(f"  [{tag}]   {label[:32]:34s} {c-p:+,} 股 ({(c-p)/p*100:+.1f}%)")
         else:
             continue
         changed = True
