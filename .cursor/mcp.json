@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "jctrader": {
+      "type": "sse",
+      "url": "http://8.159.152.196:3000/sse?token=friends-chenji"
+    }
+  }
+}
