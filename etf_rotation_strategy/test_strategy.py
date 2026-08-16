@@ -11,23 +11,23 @@ from universe import asset_class
 def test_split_day_zeroed():
     close, _, _ = load_wide()
     ret, _ = clean_returns(close)
-    # 588170 在 2026-07-06 发生份额折算,原始收益约 -67%,应被置 0
     if "588170" in ret.columns:
         day = pd.Timestamp("2026-07-06")
         if day in ret.index:
             assert abs(ret.loc[day, "588170"]) < 1e-12
 
 
-def test_always_full_and_calmar():
+def test_single_etf_2022_2026():
     close, amount, names = load_wide()
     ser, hold, st = run_backtest(close, amount, names, **OFFICIAL)
     days = list(hold)
-    # 首日允许空仓(T+1 生效),之后必须满仓
+    assert days[0] >= pd.Timestamp("2022-01-01")
+    assert days[-1].year == 2026
+    # 首日允许空仓(T+1 生效),之后每天恰好 1 只
     for d in days[1:]:
-        assert len(hold[d]) >= 1, f"empty {d}"
-    assert 5.5 <= st["calmar"] <= 6.2, st["calmar"]
-    assert st["max_drawdown"] < 0.15
-    # 持仓必须来自成交额达标的场内基金
+        assert len(hold[d]) == 1, f"{d} holds {hold[d]}"
+    assert st["years"] >= 4.4
+    assert st["calmar"] >= 1.0
     assert ser.notna().all()
 
 
@@ -49,5 +49,5 @@ if __name__ == "__main__":
     test_split_day_zeroed()
     test_asset_class_money_and_gold()
     test_stats_calmar_identity()
-    test_always_full_and_calmar()
+    test_single_etf_2022_2026()
     print("all tests passed")

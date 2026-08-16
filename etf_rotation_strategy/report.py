@@ -97,7 +97,7 @@ def plot_alloc(hold_df, tag):
     fig, ax = plt.subplots(figsize=(11, 4))
     wide.plot.area(ax=ax, stacked=True, alpha=0.9)
     ax.set_ylabel("Weight")
-    ax.set_title("Asset-class allocation (always fully invested)")
+    ax.set_title("Single-ETF allocation (always 100% in one fund)")
     ax.legend(loc="center left", bbox_to_anchor=(1.01, 0.5), fontsize=8)
     ax.set_ylim(0, 1)
     fig.tight_layout()
@@ -119,28 +119,34 @@ def write_markdown(st, st_long, hold_df):
 
 ## 策略规则
 
+- 回测区间:**2022-01-01 至样本末(2026-08-14)**。
 - 标的池:全部 A 股场内 ETF;每个调仓日动态保留过去 20 日均成交额 **> 1000 万元**、
   且上市满 120 个交易日的基金。
-- 大类资产:在达标池内按货币 / 黄金 / 沪深300 / 中证500 / 中证1000 / 创业板 /
-  科创 / 红利 / 港股 / 美股 / 日经 / 德国 / 商品 各取成交额最大的 1 只作为代表。
-- 双动量:对代表计算 20 日 + 60 日平均动量(波动率调整),取得分最高的 1 类;
-  须同时满足「动量 > 0」且「复权价在 20 日均线上方」,否则切换到货币 ETF。
-- 跟踪止损 8%:持仓相对入场后高点回撤超过 8%,下一交易日切到货币。
-- 每 10 个交易日调仓;T 日收盘信号,T+1 生效;双边换手费率 5bp。
-- **始终 100% 满仓**(货币 ETF 属于场内基金,不持现金)。
+- **每次只持有 1 只 ETF**,始终 100% 满仓。趋势不成立或触发止损时切换到货币 ETF,
+  不持现金。
+- 大类代表:货币 / 黄金 / 沪深300 / 中证500 / 中证1000 / 创业板 / 科创 / 红利 /
+  港股 / 美股 / 日经 / 德国 / 商品,每类取成交额最大的 1 只,再在代表中选得分最高者。
+- 相对动量:10 / 20 / 60 日收益均值 / 20 日波动率。
+- 绝对动量:动量 > 0 且复权价在 20 日均线上方,否则买货币 ETF。
+- 跟踪止损 5%:相对本轮持仓高点回撤超过 5%,下一交易日切到货币;换仓才重置高点。
+- 每 10 个交易日调仓;T 日收盘信号,T+1 生效;双边换手 5bp。
 
-## 官方样本(目标 Calmar 5.8)
+## 官方样本 2022-01-01 ~ 2026-08-14
 
-区间:`2024-12-01` ~ `2026-01-31`(年化按 248 个交易日)
+年化按 248 个交易日。
 
 | 指标 | 数值 |
 | --- | --- |
 | 累计收益 | {st['total_return']*100:.1f}% |
 | 年化收益 | {st['annual_return']*100:.2f}% |
 | 最大回撤 | {st['max_drawdown']*100:.2f}% |
-| **Calmar** | **{st['calmar']:.2f}** |
+| Calmar | {st['calmar']:.2f} |
 | Sharpe | {st['sharpe']:.2f} |
 | 回测年数 | {st['years']:.2f} |
+
+此前 Calmar 5.8 只在 2024-12 ~ 2026-01 的短窗口出现。拉长到 **2022–2026 全样本**
+后,2022 熊市会贡献回撤,同一套「每次 1 只、满仓轮动」规则下 Calmar 约为 1.2,
+做不到 5.8。
 
 ### 年度收益
 
@@ -148,7 +154,7 @@ def write_markdown(st, st_long, hold_df):
 | --- | --- |
 {yearly}
 
-### 持仓天数
+### 持仓天数(每次 1 只)
 
 | 代码 | 名称 | 天数 |
 | --- | --- | --- |
@@ -167,9 +173,6 @@ def write_markdown(st, st_long, hold_df):
 | 年份 | 收益 |
 | --- | --- |
 {yearly_long}
-
-长样本 Calmar 远低于 5.8,说明 5.8 是 **2024-12 至 2026-01 这一段趋势市** 的实现值,
-不是 2019 以来的稳健期望。参数经过该区间搜索,存在过拟合风险。
 
 ## 数据与限制
 
@@ -190,7 +193,7 @@ def main():
     close, amount, names = load_wide()
     _, hold, st, out, hold_df = run_one(close, amount, names, OFFICIAL, "official")
     _, _, st_long, out_long, hold_long = run_one(close, amount, names, LONG_SAMPLE, "long")
-    title = (f"Multi-asset ETF rotation  Calmar={st['calmar']:.2f}  "
+    title = (f"Single-ETF rotation 2022-2026  Calmar={st['calmar']:.2f}  "
              f"Ann={st['annual_return']*100:.1f}%  MDD={st['max_drawdown']*100:.1f}%")
     plot_nav(out, st, "official", title)
     plot_alloc(hold_df, "official")
