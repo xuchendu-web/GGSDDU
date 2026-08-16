@@ -16,14 +16,31 @@ metadata:
 - 用户点名 jctrader / 拐点信号 / 跟踪信号 / 共振 / 拥挤度
 - 需要从信号给出多空、主线和回避方向
 
-## 云端连接（必须先做）
+## 这是 MCP，不是独立产品包
 
-Cursor Cloud 的 MCP 目录经常**只有** `cursor-cloud`，看不到 jctrader 工具。这不代表服务不可用。
+正式接入方式是项目 `.cursor/mcp.json`（与历史 PR 相同）：
 
-按这个顺序取数：
+```json
+{
+  "mcpServers": {
+    "jctrader": {
+      "type": "sse",
+      "url": "http://8.159.152.196:3000/sse?token=friends-chenji"
+    }
+  }
+}
+```
 
-1. 若当前会话已有 jctrader MCP 工具（如 `get_market_sentiment`），直接调用。
-2. 否则立刻用本 skill 自带客户端，不要改去搜网页或编造数据：
+桌面 Cursor 启用该 MCP 后，直接调用 `get_market_sentiment` 等工具。
+
+Cursor Cloud **不支持 SSE**，也不会自动读仓库 `mcp.json`。云端要出现 MCP 工具，需在 [cursor.com/agents](https://cursor.com/agents) 用 stdio 添加 `scripts/jctrader_stdio_mcp.py`。
+
+## 云端取数（当前会话没有 MCP 工具时）
+
+按这个顺序：
+
+1. 若会话已有 jctrader MCP 工具，直接调用。
+2. 否则立刻用本目录客户端，不要改去搜网页或编造数据：
 
 ```bash
 python3 .cursor/skills/jctrader/scripts/jctrader_client.py board
