@@ -1,8 +1,24 @@
-# CJ-data 数据清单（cjpy 0.2.0 实时拉取）
+# CJ-data 数据清单（cjpy 0.5.2）
 
-来源：`cjpy.get_supported_tables()`（101 张表）、`cjpy.get_factor_repo()`（70 个因子）。表名/因子名以接口为准。
+Python API 共 19 个函数；MCP 17 个工具 + 6 个 prompts。表名/因子名以实时 `list_tables()` / `list_factors()` 为准。
 
-## 表格
+`get_supported_tables()` 和 `get_factor_repo()` 已弃用，改用 `list_tables()` / `list_factors()`。
+
+下面表格与因子清单来自 0.2.0 成功拉取的快照。0.5.2 的发现接口（`list_tables` / `list_universes` / `list_factors` / 宏观目录等）若返回 HTTP 403，可先按此清单直接调用 `get_table_data` / `get_factor_data`。
+
+## 0.5.2 新增能力
+
+- 板块与代码：`list_universes`、`get_codes`
+- 指数成分：`get_index_constituents`
+- 宏观：`list_macro_tables`、`list_macro_indicators`、`get_macro_data`
+- 表/行情字段发现：`list_table_fields`、`list_market_fields`
+- Python 文档：`describe_api()` / MCP `describe_python_api`
+- `get_table_data` 支持 `start` / `end`
+- MCP 默认 complete 模式，超 `max_rows`（1–500）不返回残缺数据
+
+已移除 MCP 工具：`search_code`、`help`。
+
+## 表格（0.2.0 快照，101 张）
 
 ### 股票与财务
 
@@ -28,7 +44,7 @@
 
 宏观_国内生产总值简表、宏观_工业增加值简表、宏观_固定资产投资简表、宏观_房地产开发投资与销售简表、宏观_社会消费品零售总额简表、宏观_居民消费价格简表、宏观_工业生产者价格简表、宏观_固定资产投资价格简表、宏观_农产品生产价格简表、宏观_中登每周股票基金户数、宏观_人民币存贷款利率、宏观_央行货币政策工具、宏观_证券及股票期权投资者资金余额及变动、宏观_民间固定资产投资简表、宏观_国内生产总值、宏观_建筑业、宏观_居民收入和支出、宏观_农产品生产者价格、宏观_农业、宏观_人民币汇率中间价
 
-## 内置因子
+## 内置因子（0.2.0 快照，70 个）
 
 行情与规模：股票简称、历史简称、是否A股、上市板、首发价、开盘价、最高价、最低价、收盘价、系统昨收、复权因子、日收益率、成交量、成交额、流通股本、总股本、流通市值、总市值、换手率
 
@@ -40,11 +56,11 @@
 
 盈利：ROETTM
 
-因子库 `说明` 列将 `开盘价/最高价/最低价/收盘价/成交量` 标为不复权。需要前复权时用 `get_market_data(rate="前复权")`。
+需要前复权价格时用 `get_market_data(rate="前复权")`。
 
 ## 相对 Wind 的定位
 
-CJ-data 补的是天软量化研究链路：分钟线、TSL 自定义因子、实时订阅、简易回测，以及期货/期权/可转债/融资融券/ESG 等表。
+CJ-data 补的是天软量化研究链路：分钟线、TSL 自定义因子、实时订阅、简易回测，以及期货/期权/可转债/融资融券/ESG/宏观简表。
 
 Wind（`wind-mcp-skill`）补的是港股美股、公告原文、财经新闻、自然语言选股选基、更完整宏观 EDB。
 
