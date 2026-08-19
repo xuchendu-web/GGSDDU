@@ -1,0 +1,12 @@
+# cj-industry-quadrant-monitor runtime dependencies
+# Python 3.11/3.12. CJPY is an external prerequisite and is not bundled.
+pandas==2.2.2
+numpy==1.26.4
+requests>=2.28,<3
+urllib3>=1.26,<3
+
+plotly==6.9.0
+
+openpyxl==3.1.2
+reportlab==5.0.0
+pypdf>=5,<7
