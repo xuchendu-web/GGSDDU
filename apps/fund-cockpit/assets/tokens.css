@@ -1,0 +1,92 @@
+/* ============================================================
+   公募经营驾驶舱 · Design Tokens
+   从原图抽样：白底 Bento + 金融蓝锚点 + 红涨绿跌
+   ============================================================ */
+:root {
+  /* Page */
+  --bg-page: #eef3f9;
+  --bg-page-top: #e8f0f8;
+  --bg-card: #ffffff;
+  --bg-card-soft: #f7fafc;
+  --bg-header: linear-gradient(180deg, #eaf3fb 0%, #eef3f9 100%);
+
+  /* Brand */
+  --blue-500: #1677ff;
+  --blue-600: #0f62d8;
+  --blue-400: #3c8dff;
+  --blue-300: #69b1ff;
+  --blue-200: #bae0ff;
+  --blue-100: #e6f4ff;
+  --blue-50: #f0f7ff;
+  --title-bar: #1890ff;
+
+  /* Semantic · A股口径：红涨绿跌 */
+  --up: #e5484d;
+  --up-soft: #fff1f0;
+  --down: #2ba471;
+  --down-soft: #f0fff4;
+  --warn: #fa8c16;
+  --warn-soft: #fff7e6;
+  --purple: #8b6cff;
+  --purple-soft: #f3eeff;
+  --gold: #d4a017;
+  --silver: #8e9aaf;
+  --bronze: #c47a3a;
+
+  /* Text */
+  --text-1: #1f2329;
+  --text-2: #4e5969;
+  --text-3: #86909c;
+  --text-4: #c0c6cf;
+  --text-on-blue: #ffffff;
+
+  /* Line */
+  --line: #e6eef6;
+  --line-strong: #d5e0ec;
+  --grid: #eef2f6;
+
+  /* Radius / Shadow */
+  --r-card: 10px;
+  --r-sm: 6px;
+  --r-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(31, 56, 88, 0.04), 0 6px 16px rgba(31, 56, 88, 0.04);
+  --shadow-hover: 0 4px 16px rgba(22, 119, 255, 0.10);
+
+  /* Type */
+  --font: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei",
+    "Segoe UI", system-ui, sans-serif;
+  --font-num: "DIN Alternate", "Tabular Figures", "Roboto", "Inter", var(--font);
+  --fs-kpi: 28px;
+  --fs-kpi-sm: 22px;
+  --fs-title: 14px;
+  --fs-label: 12px;
+  --fs-aux: 11px;
+
+  /* Space */
+  --gap: 10px;
+  --pad: 12px;
+  --header-h: 52px;
+
+  /* Chart series（规模走势堆叠） */
+  --c-fi: #5b7cfa;
+  --c-eq: #5dcaa5;
+  --c-fof: #f2c14e;
+  --c-mm: #f08a8a;
+  --c-sma: #5ec4d4;
+  --c-mmf: #8bb7f0;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text-1);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select { font-family: inherit; }
+.num { font-family: var(--font-num); font-variant-numeric: tabular-nums; letter-spacing: 0.2px; }
+.up { color: var(--up); }
+.down { color: var(--down); }
+.muted { color: var(--text-3); }

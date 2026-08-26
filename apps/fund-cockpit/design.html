@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>经营驾驶舱 · 设计规范</title>
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/app.css" />
+  <link rel="stylesheet" href="assets/design.css" />
+</head>
+<body>
+  <div class="ds-wrap">
+    <header class="topbar" style="padding:0">
+      <div class="brand">
+        <h1 style="font-size:18px">经营驾驶舱 · 设计规范</h1>
+      </div>
+      <nav class="page-nav">
+        <a href="index.html">驾驶舱</a>
+        <a class="active" href="design.html">设计规范</a>
+      </nav>
+    </header>
+
+    <section class="ds-hero">
+      <div>
+        <h1>白底 Bento + 金融蓝锚点</h1>
+        <p class="lead">
+          这是一套给公募管理人内部使用的<strong>经营驾驶舱</strong>语言：浅冷色画布、白卡片拼贴、左侧蓝竖条标题、KPI 用大号等宽数字压住扫读节奏。
+          它服务的不是「好看」，而是管理层 30 秒看全公司、投研一层下钻到产品与研究员。
+        </p>
+        <div class="pill-row">
+          <span class="pill">机构级 BI，不是消费级炫技</span>
+          <span class="pill">高密度但可扫读</span>
+          <span class="pill">红涨绿跌（A股口径）</span>
+          <span class="pill">卡片内过滤，页级时间戳</span>
+        </div>
+      </div>
+      <article class="card">
+        <div class="sec-title"><i class="bar"></i>一句话定位</div>
+        <p class="arch" style="margin:0">
+          视觉上靠近 Ant Design Pro / 内部投研台，而不是 Bloomberg 黑底终端，也不是互联网理财 App。
+          图表用 ECharts 默认能力即可复刻：雷达、堆叠面积、胶囊柱、对数散点、半环仪表。
+        </p>
+      </article>
+    </section>
+
+    <div class="h2"><i class="bar"></i>0. 原图对照</div>
+    <img class="ref-shot" src="assets/original.jpg" alt="原经营驾驶舱截图（风格参考）" />
+
+    <div class="h2"><i class="bar"></i>1. 信息架构：四层下钻，而不是一张网</div>
+    <div class="ia">
+      <article class="card">
+        <h3>L0 经营管理</h3>
+        <p>全公司只数、规模、产品生命周期、当日净申购、本年管理费与产品盈亏。只放「此刻该不该紧张」的数。</p>
+      </article>
+      <article class="card">
+        <h3>L1 公司全景</h3>
+        <p>同业雷达（排名/市占）→ 规模结构走势 → 产品排行 → 管理费节奏 → 渠道质量散点。回答「我们在行业里站哪」。</p>
+      </article>
+      <article class="card">
+        <h3>L2 基金投资</h3>
+        <p>按部门/经理切片：规模 KPI + 产品明细表 + 静态风控。表是主界面，图是旁证。</p>
+      </article>
+      <article class="card">
+        <h3>L3 权益研究</h3>
+        <p>研究员考评榜 → 模拟组合 vs 基准净值 → 行业收益条。投研绩效与观点验证，不和经营 KPI 混排同一语义层。</p>
+      </article>
+    </div>
+
+    <div class="h2"><i class="bar"></i>2. 色板（从原图抽样）</div>
+    <div class="grid-6">
+      <div class="swatch"><div class="chip" style="background:#eef3f9"></div><div class="meta">画布<br><code>#EEF3F9</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#1677ff"></div><div class="meta">品牌蓝<br><code>#1677FF</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#1f2329"></div><div class="meta">主数字<br><code>#1F2329</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#e5484d"></div><div class="meta">涨 / 警示<br><code>#E5484D</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#2ba471"></div><div class="meta">跌 / 对照<br><code>#2BA471</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#8b6cff"></div><div class="meta">形态气泡<br><code>#8B6CFF</code></div></div>
+    </div>
+    <p class="arch">规模堆叠建议固定语义色，不要每页重排：固收 <b style="color:#5b7cfa">#5B7CFA</b> · 权益 <b style="color:#5dcaa5">#5DCAA5</b> · FOF <b style="color:#c9a227">#F2C14E</b> · 货币 <b style="color:#e07070">#F08A8A</b>。销售渠道用更深的银行蓝 vs 更浅的三方绿，对数轴才分得开。</p>
+
+    <div class="h2"><i class="bar"></i>3. 字体层级：数字最大，标签最灰</div>
+    <article class="card">
+      <div class="type-row"><div class="sample" style="font-size:28px;font-weight:700;font-variant-numeric:tabular-nums">4,038.53</div><div class="meta">KPI 主数字 26–28 / 700 / 等宽</div></div>
+      <div class="type-row"><div class="sample" style="font-size:20px;font-weight:700;color:#0f62d8">经营驾驶舱</div><div class="meta">页标题 18–20 / 700 / 品牌蓝</div></div>
+      <div class="type-row"><div class="sample" style="font-size:14px;font-weight:650"><span style="display:inline-block;width:3px;height:12px;background:#1890ff;margin-right:6px;border-radius:2px;vertical-align:-1px"></span>管理规模</div><div class="meta">卡片标题 14 / 650 + 3×14 蓝条</div></div>
+      <div class="type-row"><div class="sample" style="font-size:12px;color:#4e5969">总规模(亿)　同比 7%</div><div class="meta">说明/控件 12 / 400 / #4E5969</div></div>
+      <div class="type-row"><div class="sample" style="font-size:11px;color:#86909c">数据截至日期：2026-08-17</div><div class="meta">辅助 11 / #86909C</div></div>
+    </article>
+
+    <div class="h2"><i class="bar"></i>4. 栅格与卡片</div>
+    <div class="grid-2">
+      <article class="card">
+        <div class="sec-title"><i class="bar"></i>画布规则</div>
+        <p class="arch">目标宽度 1600–1760，卡片圆角 10px，间距 10px，内边距 12。卡片白底 + 1px <code>#E9F0F6</code> 边框 + 极轻投影。不要大阴影、不要玻璃拟态整页、不要深色模式作为默认。</p>
+      </article>
+      <article class="card">
+        <div class="sec-title"><i class="bar"></i>列比（可直接抄）</div>
+        <p class="arch">经营行 1.05 / 1.15 / 1.2 / 1.15；全景 0.92 / 1.55 / 0.95；投资 0.78 / 1.85 / 0.78；研究 0.78 / 1.55 / 1。中间永远给「走势/表」，两侧给 KPI 和榜单。</p>
+      </article>
+    </div>
+
+    <div class="h2"><i class="bar"></i>5. 组件清单</div>
+    <table class="table-spec">
+      <thead><tr><th>组件</th><th>用法</th><th>交互要点</th></tr></thead>
+      <tbody>
+        <tr><td>蓝竖条标题</td><td>每个卡片唯一标题</td><td>不放图标字体，3×14 圆角矩形即可</td></tr>
+        <tr><td>玻璃拟态 3D 图标</td><td>只用于规模/只数 KPI</td><td>蓝=数量，橙=金额，不要到处用</td></tr>
+        <tr><td>Segmented 胶囊</td><td>今年/近一月；固收/权益</td><td>选中填品牌蓝，未选灰字白底</td></tr>
+        <tr><td>日期对 + 快捷档</td><td>规模走势</td><td>快捷档改写区间，手动改日期则档位置「今年」语义</td></tr>
+        <tr><td>部门/经理下拉</td><td>基金投资切片</td><td>部门驱动经理列表与 KPI/表</td></tr>
+        <tr><td>金银铜徽章</td><td>规模榜、考评榜 Top3</td><td>4 名以后用灰序号，不要再上色</td></tr>
+        <tr><td>密集表</td><td>产品信息</td><td>表头冻结、红涨绿跌、行 hover 浅蓝</td></tr>
+        <tr><td>半环风控</td><td>违规时长结构</td><td>长尾用红，短违规用蓝；中心只放「最长天数」</td></tr>
+      </tbody>
+    </table>
+
+    <div class="h2"><i class="bar"></i>6. 图表语言</div>
+    <div class="grid-3">
+      <article class="card"><h3 style="margin:0 0 6px;font-size:13px">气泡 = 生命周期</h3><p class="arch" style="margin:0">X 类目、Y 与半径都映射只数。紫色，白字。发行期为 0 就留空，不要画假点。</p></article>
+      <article class="card"><h3 style="margin:0 0 6px;font-size:13px">胶囊柱 = 申赎</h3><p class="arch" style="margin:0">零轴上下对称，红入绿出。当日 KPI 用偏赭红大字，避免和涨跌红完全撞色。</p></article>
+      <article class="card"><h3 style="margin:0 0 6px;font-size:13px">雷达 = 同业结构</h3><p class="arch" style="margin:0">六边形品类，面积浅蓝。旁边并排排名/市占，不要把数字塞进雷达中心。</p></article>
+      <article class="card"><h3 style="margin:0 0 6px;font-size:13px">堆叠面积 = 规模结构</h3><p class="arch" style="margin:0">无描边、图例置顶。货币与固收通常是主体，颜色饱和度压住，避免「彩虹蛋糕」。</p></article>
+      <article class="card"><h3 style="margin:0 0 6px;font-size:13px">柱+线 = 管理费</h3><p class="arch" style="margin:0">去年蓝柱 / 今年橙柱，累计用线。未发生月份用 null，不要补 0。</p></article>
+      <article class="card"><h3 style="margin:0 0 6px;font-size:13px">对数散点 = 渠道</h3><p class="arch" style="margin:0">规模跨数量级必须 log。银行/券商/三方分色，tooltip 出渠道名。</p></article>
+    </div>
+
+    <div class="h2"><i class="bar"></i>7. 交互原则</div>
+    <div class="grid-2">
+      <article class="card do">
+        <div class="sec-title"><i class="bar"></i>做</div>
+        <p class="arch">过滤下沉到卡片，不在顶栏堆全局筛选项。页头只留「数据截至日期」。榜单/表行可点，驱动右侧图。所有同比箭头遵循 A 股红涨绿跌。缺数标「—」或空，不编 0。</p>
+      </article>
+      <article class="card dont">
+        <div class="sec-title"><i class="bar"></i>不做</div>
+        <p class="arch">不要暗色大屏、不要 3D 饼图、不要把投研组合收益和公司管理费画在同一张图。不要在客户材料里写真实产品名。不要把风控半环做成游戏化血条。</p>
+      </article>
+    </div>
+
+    <div class="h2"><i class="bar"></i>8. 软件落地建议</div>
+    <article class="card">
+      <p class="arch">
+        <b>前端：</b> React / Vue 3 + CSS Grid + ECharts 5。卡片做成 <span class="kbd">Widget</span> 协议：<span class="kbd">title / filters / renderer / queryKey</span>。<br/>
+        <b>布局：</b> 先做 1920 工作台，再考虑 1440 压缩字号；移动端另做「KPI 简报」而不是硬缩这张屏。<br/>
+        <b>数据：</b> 经营层 T+1 估值与 TA 申赎；同业用协会/定期报告披露；投研用内部模拟盘与基准。时间戳必须可追溯。<br/>
+        <b>权限：</b> L0–L1 管理层；L2 按投资部门；L3 研究团队。同一套视觉，不同 query。<br/>
+        <b>下一步：</b> 先冻结 Widget 清单与口径字典，再接真实接口。原型见 <a href="index.html">驾驶舱</a>。
+      </p>
+    </article>
+  </div>
+</body>
+</html>

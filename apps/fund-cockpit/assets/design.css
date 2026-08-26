@@ -1,0 +1,47 @@
+/* Design system page */
+.ds-wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px 48px; }
+.ds-hero {
+  padding: 28px 0 8px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  align-items: end;
+}
+.ds-hero h1 { margin: 0; font-size: 28px; color: var(--blue-600); }
+.ds-hero .lead { color: var(--text-2); font-size: 14px; line-height: 1.7; margin: 10px 0 0; }
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.pill {
+  font-size: 12px; color: var(--blue-600); background: #fff;
+  border: 1px solid var(--blue-200); padding: 4px 10px; border-radius: 999px;
+}
+.h2 {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 16px; margin: 32px 0 12px;
+}
+.h2 .bar { width: 4px; height: 16px; background: var(--title-bar); border-radius: 2px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.swatch {
+  border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: #fff;
+}
+.swatch .chip { height: 56px; }
+.swatch .meta { padding: 8px 10px; font-size: 12px; }
+.swatch code { color: var(--text-3); font-size: 11px; }
+.ia {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+}
+.ia .card h3 { margin: 0 0 6px; font-size: 13px; color: var(--blue-600); }
+.ia .card p { margin: 0; font-size: 12px; color: var(--text-2); line-height: 1.6; }
+.do { border-left: 3px solid var(--down); }
+.dont { border-left: 3px solid var(--up); }
+.table-spec { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; border-radius: 8px; overflow: hidden; }
+.table-spec th, .table-spec td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.table-spec th { background: #f4f8fc; color: var(--text-3); font-weight: 500; }
+.ref-shot { width: 100%; border-radius: 10px; border: 1px solid var(--line); }
+.arch { font-size: 13px; line-height: 1.8; color: var(--text-2); }
+.kbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; background: #f4f8fc; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line); }
+.type-row { display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+.type-row .sample { flex: 1; }
+.type-row .meta { width: 220px; color: var(--text-3); font-size: 12px; }
