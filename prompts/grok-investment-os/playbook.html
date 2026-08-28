@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grok 首席助理任命包</title>
+  <style>
+    :root {
+      --bg: #0e1116;
+      --card: #171b22;
+      --line: #2a3140;
+      --text: #e8edf4;
+      --muted: #8b95a8;
+      --gold: #c4a35a;
+      --red: #c45c4a;
+      --green: #5a9e7c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 15px/1.65 "Source Han Sans SC", "Noto Sans SC", "PingFang SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      padding: 48px 24px 32px;
+      max-width: 920px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--line);
+    }
+    header p.kicker { color: var(--gold); letter-spacing: .12em; font-size: 12px; margin: 0 0 12px; }
+    h1 { font-size: 28px; font-weight: 650; margin: 0 0 12px; }
+    .lead { color: var(--muted); max-width: 720px; }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 24px 80px; }
+    h2 { font-size: 18px; margin: 40px 0 12px; color: var(--gold); }
+    h3 { font-size: 15px; margin: 24px 0 8px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .card strong { color: var(--gold); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid var(--line); text-align: left; padding: 8px 6px; vertical-align: top; }
+    th { color: var(--muted); font-weight: 500; }
+    pre {
+      background: #0b0d12;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      overflow: auto;
+      white-space: pre-wrap;
+      font: 12.5px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    button {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    button:hover { background: var(--gold); color: #111; }
+    ol, ul { color: var(--text); }
+    .muted { color: var(--muted); }
+    .tag { display: inline-block; border: 1px solid var(--line); padding: 0 8px; border-radius: 99px; font-size: 12px; color: var(--muted); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 48px; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="kicker">GROK CUSTOM AGENTS · 4 SLOT OS</p>
+    <h1>任命首席助理，而不是再养一个荐股机器人</h1>
+    <p class="lead">Grok 最多 4 个 Agent，每条指令大约 4000 字。正确结构是 <b>1 个参谋长 + 3 个专家</b>。首席助理不负责把 VICR 再写一遍长文，它负责把你训练成：先假设、再取证、再证伪、再定仓、再复盘。</p>
+  </header>
+  <main>
+    <h2>1. 先搞清能力边界</h2>
+    <div class="grid">
+      <div class="card">Grok <strong>不能</strong>真正调度 Cursor / AlphaPai / cjpy。首席助理的产品是<strong>可复制派工单</strong>，由你 @ 专家或粘到别的工具。</div>
+      <div class="card">改 Instructions 只对<strong>新对话</strong>生效。长线程大约 20 轮就新开，并贴短锚点，否则人格会漂回默认 Grok。</div>
+      <div class="card">Auto-engage <strong>只开首席助理</strong>。事实官/证伪官/组合官关掉，避免抢话。</div>
+      <div class="card">重大标的打开 <strong>Heavy</strong>。四槽并行辩论后，回到首席助理做冲突仲裁。</div>
+    </div>
+
+    <h2>2. 十分钟任命</h2>
+    <ol>
+      <li>grok.com → Settings → Customize → Custom Instructions：贴全局身份。</li>
+      <li>Create Agent × 4：名称与开关见下表，指令贴 01–04 号文件。</li>
+      <li>Settings → Skills：建成 <code>/立项</code> <code>/季报</code> <code>/决策</code> <code>/周会</code>。</li>
+      <li>Workspace 建「投研」；Memory 开；Fun/Spicy 关。</li>
+      <li>开一条<strong>新对话</strong>，粘贴任命词。</li>
+    </ol>
+    <table>
+      <thead><tr><th>槽位</th><th>Name</th><th>Auto-engage</th><th>一句话职责</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>首席助理</td><td>开</td><td>拆任务、派工、合成、纪律；不查原始账</td></tr>
+        <tr><td>2</td><td>事实官</td><td>关</td><td>数字与披露交叉验证，不给买卖</td></tr>
+        <tr><td>3</td><td>证伪官</td><td>关</td><td>打脸假设，给死法与阈值</td></tr>
+        <tr><td>4</td><td>组合官</td><td>关</td><td>仓位、风险桶、进出规则</td></tr>
+      </tbody>
+    </table>
+
+    <h2>3. 写 prompt 只做四件事</h2>
+    <ul>
+      <li><b>角色收窄：</b>一人一事。首席禁止写无派工长文；事实官禁止估值。</li>
+      <li><b>负向规则：</b>Grok 对 NEVER 比“请专业”敏感。禁止愿景估值、禁止年化和解/负税率。</li>
+      <li><b>输出合同：</b>固定标题，才能把三个专家的回传拼成一张决策纸。</li>
+      <li><b>停机条件：</b>没持仓、没假设、没数据截止，就停，不要硬编。</li>
+    </ul>
+
+    <h2>4. 任命词（新对话先贴）</h2>
+    <div class="row"><span class="tag">FIRST MESSAGE</span><button data-copy="appoint">复制</button></div>
+    <pre id="appoint">我任命你为首席助理，从现在起你是投资决策参谋长，管理事实官、证伪官、组合官。
+你不代替他们取数，不写无派工的研报长文。
+先确认编制，再处理我的问题。未问清持仓与决策类型，不准给买卖结论。</pre>
+
+    <h2>5. 日常短锚点</h2>
+    <div class="row"><span class="tag">ANCHOR</span><button data-copy="anchor">复制</button></div>
+    <pre id="anchor">首席助理模式。先派工，再合成。四层标签：事实 / 口径 / 卖方 / 测算。今天只给一件下一步。</pre>
+
+    <h2>6. 固定节奏（体系从这里长出来）</h2>
+    <table>
+      <thead><tr><th>触发</th><th>命令</th><th>默认动作</th></tr></thead>
+      <tbody>
+        <tr><td>新标的</td><td>/立项</td><td>写可证伪假设 + 三张派工单</td></tr>
+        <tr><td>新财报</td><td>/季报</td><td>拆经常性 vs 一次性，对照旧假设</td></tr>
+        <tr><td>想下单</td><td>/决策</td><td>七项闸门，默认「先别做」</td></tr>
+        <tr><td>每周</td><td>/周会</td><td>打过程分，不荐股</td></tr>
+      </tbody>
+    </table>
+
+    <h2>7. 和 Cursor / AlphaPai 怎么分工</h2>
+    <div class="card">
+      Cursor + AlphaPai：10-Q/10-K、指标库、业绩会纪要、交叉验证长文。<br />
+      Grok 首席助理：实时与 X、叙事冲突、仓位纪律、逼你写杀逻辑。<br />
+      事实官需要财报时，应输出可复制取数指令，而不是假装已经查过库。
+    </div>
+
+    <footer>
+      文本源文件在仓库 <code>prompts/grok-investment-os/</code>。指令改完必须新开对话。本包不是投资建议。
+    </footer>
+  </main>
+  <script>
+    document.querySelectorAll("button[data-copy]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const id = btn.getAttribute("data-copy");
+        const text = document.getElementById(id).innerText;
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "已复制";
+        setTimeout(() => (btn.textContent = "复制"), 1200);
+      });
+    });
+  </script>
+</body>
+</html>
