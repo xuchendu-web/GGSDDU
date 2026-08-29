@@ -1,0 +1,12 @@
+{
+  "etfs": [
+    {"code": "518880", "name": "黄金ETF"},
+    {"code": "513100", "name": "纳指ETF"},
+    {"code": "510300", "name": "沪深300ETF"}
+  ],
+  "return_days": 19,
+  "bias_days": 20,
+  "target_bias_pct": [10, 15],
+  "adjust": "qfq",
+  "refresh_seconds": 15
+}
