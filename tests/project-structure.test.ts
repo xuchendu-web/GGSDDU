@@ -24,6 +24,15 @@ describe('微信原生工程结构', () => {
   it('does not expose an input for a user question', () => {
     const home = readFileSync(resolve(root, 'miniprogram/pages/index/index.wxml'), 'utf8');
     expect(home).not.toMatch(/<input|<textarea/);
-    expect(home).toContain('无需输入，也不会采集');
+    expect(home).toContain('放心，不用告诉我');
+  });
+
+  it('uses the playful share copy without old instructional branding', () => {
+    const resultTs = readFileSync(resolve(root, 'miniprogram/pages/result/result.ts'), 'utf8');
+    const resultWxml = readFileSync(resolve(root, 'miniprogram/pages/result/result.wxml'), 'utf8');
+    expect(resultTs).toContain('没别的意思，这页有点像你');
+    expect(resultTs).toContain('随手翻到这句，你看看');
+    expect(resultWxml).toContain('发给那个懂的人');
+    expect(`${resultTs}${resultWxml}`).not.toContain('投资反思卡');
   });
 });

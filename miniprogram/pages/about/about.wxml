@@ -1,21 +1,21 @@
 <view class="page about">
-  <view class="eyebrow">ABOUT</view>
-  <view class="heading">让决定慢下来</view>
-  <view class="paragraph">投资反思卡是随机投资者教育摘句与决策反思工具。它通过经人工审核的内容，帮助用户检查证据、纪律、风险、情绪与复盘过程。</view>
+  <view class="eyebrow">ABOUT THIS BOOK</view>
+  <view class="heading">一本没那么要紧的小书</view>
+  <view class="paragraph">想好一个问题，随手翻一页。它可能答非所问，也可能刚好说中了。笑一下，停一下，剩下的还是你自己想。</view>
 
   <view class="section">
-    <view class="section-title">我们不做什么</view>
-    <view class="paragraph">不提供个股或产品推荐，不提供买卖指令、目标价、收益承诺或行情方向判断；不接入下单；不提供付费抽页、排行或好友助力。</view>
+    <view class="section-title">它不负责什么</view>
+    <view class="paragraph">不荐股，不替你操作，不给目标价、收益承诺或行情方向。说到底，它只负责翻页。</view>
   </view>
 
   <view class="section">
-    <view class="section-title">隐私说明</view>
-    <view class="paragraph">你无需输入问题。我们不采集用户心中所想、证券代码、持仓或好友关系。收藏和最近记录默认仅保存在本机。云端仅接收必要的匿名事件、抽取编号、内容编号、实验分组及入口归因。</view>
+    <view class="section-title">你的问题归你</view>
+    <view class="paragraph">不用输入，也不会采集你心里想的问题、证券代码、持仓或好友关系。留下的页只存在本机；云端只记必要的匿名编号和入口。</view>
   </view>
 
   <view class="section">
-    <view class="section-title">风险提示</view>
-    <view class="paragraph">全部内容仅用于投资者教育与自我反思，不构成投资建议。投资有风险，决策前请结合自身目标、期限与风险承受能力；复杂问题请咨询具备相应资质的专业人士。</view>
+    <view class="section-title">认真说一句</view>
+    <view class="paragraph">这些句子不构成投资建议。投资有风险，决定仍要结合自己的实际情况；复杂问题请咨询具备相应资质的专业人士。</view>
   </view>
 
   <view class="section">

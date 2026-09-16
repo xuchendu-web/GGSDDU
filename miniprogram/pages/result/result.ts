@@ -9,7 +9,7 @@ Page({
     drawId: '',
     source: '',
     shared: false,
-    favoriteText: '收藏这一页',
+    favoriteText: '这页留着',
     shareCopy: 'a'
   },
   async onLoad(options: { drawId?: string; from?: string }) {
@@ -25,7 +25,7 @@ Page({
         source: result.source,
         shared,
         shareCopy: result.experiment.shareCopy,
-        favoriteText: isFavorite(result.card.id) ? '已收藏' : '收藏这一页'
+        favoriteText: isFavorite(result.card.id) ? '已经留着了' : '这页留着'
       });
       reportEvent(shared ? 'share_landing_view' : 'draw_complete', {
         drawId: result.drawId,
@@ -40,7 +40,7 @@ Page({
     const card = this.data.card;
     if (!card) return;
     const active = toggleFavorite(card);
-    this.setData({ favoriteText: active ? '已收藏' : '收藏这一页' });
+    this.setData({ favoriteText: active ? '已经留着了' : '这页留着' });
     reportEvent(active ? 'favorite_add' : 'favorite_remove', { cardId: card.id });
   },
   async drawOwn() {
@@ -55,8 +55,8 @@ Page({
     reportEvent('share_initiated', { drawId: this.data.drawId });
     const title =
       this.data.shareCopy === 'a'
-        ? '这页让我想到你'
-        : '送你一张投资反思卡';
+        ? '没别的意思，这页有点像你'
+        : '随手翻到这句，你看看';
     return {
       title,
       path: buildSharePath(this.data.drawId)

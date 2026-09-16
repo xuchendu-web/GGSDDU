@@ -28,6 +28,7 @@ const prohibited = [
   /[买卖](入|出)[“"'：:]?[A-Z\u4e00-\u9fff]{2,}/,
   /\b(?:SH|SZ)?[036]\d{5}\b/i
 ];
+const didacticTerms = /检查|评估|证据|纪律|核对|决策质量|风险意识/g;
 
 if (CARDS.length < 120 || CARDS.length > 200) {
   errors.push(`内容数量应为 120–200，实际为 ${CARDS.length}`);
@@ -41,9 +42,12 @@ for (const card of CARDS) {
   ids.add(card.id);
   if (!card.title.trim()) errors.push(`${card.id}: 标题为空`);
   if (!card.shortAnswer.trim()) errors.push(`${card.id}: 短答为空`);
+  if (card.title.length > 8) errors.push(`${card.id}: 标题超过 8 字，不够利落`);
+  if (card.shortAnswer.length > 24) errors.push(`${card.id}: 短答超过 24 字，不够轻巧`);
+  if (card.reflectionQuestion.length > 18) errors.push(`${card.id}: 顺便一问超过 18 字`);
   if (!card.reflectionQuestion.endsWith('？')) errors.push(`${card.id}: 反思问题须以问号结尾`);
   if (
-    !['不构成', '不提供', '不评价', '不替代', '不生成', '教育'].some((phrase) =>
+    !['不构成', '不提供', '不评价', '不替代', '不替你', '不生成', '不认可', '生活优先'].some((phrase) =>
       card.boundary.includes(phrase)
     )
   ) {
@@ -60,9 +64,19 @@ for (const card of CARDS) {
   }
 }
 
+const didacticCount = CARDS.reduce((count, card) => {
+  const matches = `${card.title}${card.shortAnswer}${card.reflectionQuestion}`.match(didacticTerms);
+  return count + (matches?.length || 0);
+}, 0);
+if (didacticCount > 3) {
+  errors.push(`说教词共 ${didacticCount} 处，应不超过 3 处`);
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
 
-console.log(`内容校验通过：${CARDS.length} 条，${ids.size} 个唯一 ID，全部为 approved。`);
+console.log(
+  `内容校验通过：${CARDS.length} 条，${ids.size} 个唯一 ID，全部为 approved；说教词 ${didacticCount} 处。`
+);

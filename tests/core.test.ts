@@ -9,7 +9,7 @@ import {
   type EventRecord,
   type Repository
 } from '../cloudfunctions/draw/core';
-import { CARDS } from '../miniprogram/data/cards';
+import { CARDS, CONTENT_VERSION } from '../miniprogram/data/cards';
 import { buildSharePath } from '../miniprogram/utils/service';
 
 class MemoryRepository implements Repository {
@@ -33,6 +33,15 @@ class MemoryRepository implements Repository {
 }
 
 describe('reviewed content pool', () => {
+  it('ships the playful v2 content set with concise copy', () => {
+    expect(CONTENT_VERSION).toBe('2.0.0');
+    expect(CARDS).toHaveLength(144);
+    expect(CARDS.every((card) => card.title.length <= 8 && card.shortAnswer.length <= 24)).toBe(true);
+    expect(
+      CARDS.filter((card) => /检查|评估|证据|纪律|核对/.test(`${card.title}${card.shortAnswer}${card.reflectionQuestion}`))
+    ).toHaveLength(0);
+  });
+
   it('contains only approved cards and respects themes', () => {
     const pool = approvedPool([], 'preopen');
     expect(pool).toHaveLength(12);
