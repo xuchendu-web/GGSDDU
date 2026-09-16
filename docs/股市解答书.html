@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#12100e" />
+  <title>股市解答书</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #2c2416;
+      --muted: #8a7a62;
+      --gold: #b08d4f;
+      --gold-dim: #8d7040;
+      --paper: #f3ead6;
+      --paper-edge: #e6d9bc;
+      --cloth: #14110e;
+      --room: #0c0b0a;
+      --serif: "Noto Serif SC", "Songti SC", "STSong", "SimSun", "Source Han Serif SC", serif;
+      --en: "Cormorant Garamond", "Noto Serif SC", serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--room);
+      color: var(--ink);
+      font-family: var(--serif);
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: calc(18px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));
+      background-image:
+        radial-gradient(ellipse at 50% 30%, rgba(176,141,79,.08), transparent 55%),
+        radial-gradient(ellipse at 50% 120%, rgba(0,0,0,.55), transparent 50%);
+    }
+    .stage {
+      width: min(420px, 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .book-scene {
+      width: 100%;
+      perspective: 1800px;
+    }
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .cover, .sheet {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4.15;
+      border-radius: 3px 10px 10px 3px;
+      overflow: hidden;
+      transform-origin: left center;
+    }
+    .cover {
+      background-color: var(--cloth);
+      background-image:
+        linear-gradient(90deg, rgba(0,0,0,.35), transparent 8%),
+        url("../media/cloth.png");
+      background-size: auto, 280px;
+      color: #f3ead6;
+      box-shadow:
+        0 18px 50px rgba(0,0,0,.45),
+        inset 0 0 0 1px rgba(176,141,79,.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+    }
+    .cover-inner {
+      padding: 12% 12% 14%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+    .cover-kicker {
+      margin: 0;
+      letter-spacing: .38em;
+      font-size: 11px;
+      color: var(--gold);
+    }
+    .cover h1 {
+      margin: 28px 0 10px;
+      font-size: clamp(34px, 9vw, 46px);
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-indent: .18em;
+    }
+    .cover-en {
+      margin: 0;
+      font-family: var(--en);
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(243,234,214,.72);
+      letter-spacing: .08em;
+    }
+    .cover .ornament {
+      width: 168px;
+      height: 22px;
+      margin: 28px 0;
+      background: url("../media/ornament.svg") center / contain no-repeat;
+      opacity: .9;
+      filter: brightness(1.15);
+    }
+    .cover-sub {
+      margin-top: auto;
+      font-size: 13px;
+      letter-spacing: .22em;
+      color: rgba(243,234,214,.62);
+    }
+    .cover-hint {
+      margin: 14px 0 0;
+      font-size: 12px;
+      letter-spacing: .28em;
+      color: var(--gold);
+    }
+
+    .sheet {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(90deg, rgba(90,70,40,.08), transparent 14px),
+        url("../media/paper.png");
+      background-size: auto, 320px;
+      box-shadow:
+        0 16px 40px rgba(0,0,0,.38),
+        inset 0 0 0 1px rgba(255,255,255,.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 11% 12% 10%;
+      text-align: center;
+      transition: transform .7s cubic-bezier(.65,.05,.36,1);
+    }
+    .sheet.is-turning {
+      transform: rotateY(-16deg) translateX(-6px);
+    }
+    .sheet-kicker {
+      position: absolute;
+      top: 7%;
+      left: 0; right: 0;
+      font-size: 11px;
+      letter-spacing: .42em;
+      color: var(--gold-dim);
+    }
+    .asked {
+      margin: 0 0 10px;
+      max-width: 90%;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .04em;
+      line-height: 1.6;
+      min-height: 1.2em;
+    }
+    .sheet .ornament {
+      width: 160px;
+      height: 20px;
+      background: url("../media/ornament.svg") center / contain no-repeat;
+      opacity: .85;
+      flex: 0 0 auto;
+    }
+    .ritual h2, .ask h2 {
+      margin: 0 0 18px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: .28em;
+      text-indent: .28em;
+    }
+    .ritual ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      width: min(88%, 280px);
+    }
+    .ritual li {
+      margin: 0 0 12px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+    .ritual li span {
+      color: var(--gold-dim);
+      letter-spacing: .2em;
+      margin-right: .5em;
+      font-size: 12px;
+    }
+    .whisper {
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .08em;
+      line-height: 1.7;
+      max-width: 88%;
+    }
+    .ask-line {
+      width: min(88%, 280px);
+      margin: 8px 0 22px;
+    }
+    .ask-line textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid rgba(176,141,79,.55);
+      background: transparent;
+      resize: none;
+      outline: none;
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink);
+      text-align: center;
+      min-height: 3.4em;
+      padding: 6px 4px 8px;
+    }
+    .ask-line textarea::placeholder {
+      color: #b5a78c;
+      font-size: 13px;
+    }
+    .oracle {
+      margin: 22px 8px;
+      font-size: clamp(22px, 6.4vw, 30px);
+      font-weight: 600;
+      line-height: 1.55;
+      letter-spacing: .06em;
+      max-width: 16em;
+      min-height: 2.4em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .oracle.rise {
+      animation: rise .7s ease;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+    .page-no {
+      position: absolute;
+      bottom: 6.5%;
+      left: 0; right: 0;
+      font-size: 12px;
+      letter-spacing: .2em;
+      color: var(--muted);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 14px;
+      width: 100%;
+    }
+    .nav[hidden] { display: none !important; }
+    button.ghost, button.solid {
+      appearance: none;
+      border: 0;
+      background: none;
+      font-family: var(--serif);
+      cursor: pointer;
+      letter-spacing: .22em;
+    }
+    button.solid {
+      color: var(--gold);
+      font-size: 13px;
+      padding: 12px 18px;
+      min-height: 44px;
+    }
+    button.ghost {
+      color: #cbb89a;
+      font-size: 12px;
+      padding: 10px 8px;
+      min-height: 44px;
+      opacity: .85;
+    }
+    button.solid:hover, button.ghost:hover { color: #e8d7a8; }
+    button:disabled { opacity: .35; cursor: default; }
+    .breath {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(12,11,10,.42);
+      color: #f3ead6;
+      letter-spacing: .46em;
+      font-size: 14px;
+      z-index: 8;
+    }
+    .breath.on { display: flex; }
+
+    @media (max-width: 420px) {
+      .stage { width: min(100%, 420px); }
+      .oracle { font-size: 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sheet { transition: none; }
+    }
+    @media print {
+      body { background: white; padding: 0; }
+      .nav, .breath, .cover-hint { display: none !important; }
+      .cover, .sheet { box-shadow: none; aspect-ratio: auto; min-height: 90vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="book-scene">
+      <section id="view-cover" class="view active">
+        <div class="cover" id="cover" role="button" tabindex="0" aria-label="翻开封面">
+          <div class="cover-inner">
+            <p class="cover-kicker">想好问题 · 翻开一页</p>
+            <h1>股市解答书</h1>
+            <p class="cover-en">The Book of Market Answers</p>
+            <div class="ornament" aria-hidden="true"></div>
+            <p class="cover-sub">给 A 股个人投资者的神谕</p>
+            <p class="cover-hint">轻触翻开</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-ritual" class="view">
+        <article class="sheet ritual">
+          <p class="sheet-kicker">股市解答书</p>
+          <h2>使用仪式</h2>
+          <ol>
+            <li><span>一</span>只问一个问题。想清楚。</li>
+            <li><span>二</span>把问题放在心里。</li>
+            <li><span>三</span>停一下。吸一口气。</li>
+            <li><span>四</span>翻开一页。只读这一句。</li>
+            <li><span>五</span>自己领会。不要连翻。</li>
+          </ol>
+          <p class="whisper">这是启发，不是投资建议。<br />与计划冲突时，听计划。</p>
+        </article>
+      </section>
+
+      <section id="view-ask" class="view">
+        <article class="sheet ask">
+          <p class="sheet-kicker">股市解答书</p>
+          <h2>所问</h2>
+          <p class="whisper" style="margin-top:0">把问题放在心里。也可以写下。</p>
+          <div class="ask-line">
+            <textarea id="question" maxlength="80" rows="3" placeholder="例如：这一笔，还要不要加？"></textarea>
+          </div>
+          <p class="whisper">只留在这台机器上。不会上传。</p>
+        </article>
+      </section>
+
+      <section id="view-answer" class="view">
+        <article class="sheet" id="answer-sheet">
+          <p class="sheet-kicker">股市解答书</p>
+          <p class="asked" id="asked"></p>
+          <div class="ornament" aria-hidden="true"></div>
+          <p class="oracle" id="oracle"></p>
+          <div class="ornament" aria-hidden="true"></div>
+          <p class="page-no" id="page-no"></p>
+        </article>
+      </section>
+    </div>
+
+    <nav class="nav" id="nav-cover">
+      <button class="solid" type="button" data-act="open">翻开</button>
+    </nav>
+    <nav class="nav" id="nav-ritual" hidden>
+      <button class="ghost" type="button" data-act="back-cover">封面</button>
+      <button class="solid" type="button" data-act="to-ask">我已想好</button>
+    </nav>
+    <nav class="nav" id="nav-ask" hidden>
+      <button class="ghost" type="button" data-act="back-ritual">仪式</button>
+      <button class="solid" type="button" data-act="draw">翻开一页</button>
+    </nav>
+    <nav class="nav" id="nav-answer" hidden>
+      <button class="ghost" type="button" data-act="prev">上一页</button>
+      <button class="solid" type="button" data-act="draw-again">再翻一页</button>
+      <button class="ghost" type="button" data-act="next">下一页</button>
+      <button class="ghost" type="button" data-act="restart">回封面</button>
+    </nav>
+  </div>
+  <div class="breath" id="breath">闭眼 · 吸气 · 翻开</div>
+
+  <script>
+    const ANSWERS = ["先别动手。", "你已经知道了。", "这不是机会。", "等一等。", "现在不是时候。", "可以。", "不可以。", "是。", "不是。", "还不是。", "停手。", "让它去。", "别加了。", "别减。", "只看你的计划。", "仓位先降下来。", "现金也是仓位。", "满仓是情绪。", "轻一点。", "重仓要配得起睡眠。", "三分之一就够。", "这一笔，不要。", "这一笔，值得。", "不要为了交易而交易。", "今天没有必须做的事。", "把手指离开键盘。", "离场是一种能力。", "留下，是另一种。", "你在证明自己，不是在投资。", "别把希望当策略。", "故事讲完了。", "故事才开始。别追。", "利好是给卖的人听的。", "利空里有价格。", "消息是噪音的礼服。", "公告不是神谕。", "别解释 K 线。", "K 线在解释你。", "基本面不会在今晚改写。", "技术面在替情绪说话。", "你没有边。", "先设边，再动手。", "止损不是认输。", "止盈不是告别。", "让利润跑。", "别让亏损睡在账户里。", "规则写在下跌之前。", "你改规则，是因为疼。", "疼的时候不要决策。", "饿的时候不要决策。", "兴奋的时候尤其不要。", "报复交易没有胜负。", "你在追的不是涨，是确认。", "杀跌是把波动交给别人。", "涨时你怕，跌时你信。反过来。", "怕踏空，就会踩实坑。", "踏空不可怕。满仓踏空才可怕。", "机会是公共汽车。", "下一班会来。", "这班车已经走了。", "不要跳车。", "站稳再看方向。", "摊平不是勇敢。", "补仓要配新的理由。", "旧理由已经用过了。", "不要跟成本谈恋爱。", "成本只是你的记忆。", "市场不在乎你的成本。", "解套不是目标。", "活着才是。", "本金是门票。", "先保住门票。", "盈利是租来的。", "回撤会来收租。", "给回撤留房间。", "波动不是风险。破产才是。", "你能承受的，才叫仓位。", "睡得着，才叫仓位。", "如果必须盯盘，仓位就重了。", "关掉软件。", "今天看一次就够。", "刷新不会改变价格。", "刷新只会改变你。", "无聊不是买入理由。", "热闹不是买入理由。", "朋友赚到了，不是理由。", "群里在喊，更不是。", "别听群。", "别听荐股。", "把决策权收回来。", "思考不等于下单。", "盘中不要发明。", "热手会烫。", "冷手会抖。", "停一停，手会回来。", "休息是交易的一部分。", "空仓的日子也算交易日。", "等待不是无能。", "等待是仓位的另一种形式。", "现在该等。", "现在该动。只动一点。", "大动作留给大确定性。", "你没有那么确定。", "确定性是事后才有的词。", "事前只有概率。", "概率不保证这一次。", "这一次也可以放弃。", "放弃也是选择。", "不是每笔都要参与。", "参与欲在替你下单。", "把参与欲关掉。", "市场会惩罚迫不及待的人。", "等不到的，本来就不属于你。", "属于你的，会再给你时间。", "时间站在有现金的人这边。", "杠杆把时间变成敌人。", "不要借来勇气。", "融资是放大，也是倒计时。", "用自己的钱，听自己的心跳。", "心跳太快，就减仓。", "手心出汗，就离场。", "身体比 K 线诚实。", "直觉在说什么？", "直觉不是冲动。", "冲动来得很快。", "让冲动过一夜。", "过一夜再看，还在吗？", "还在，才谈得上行动。", "不在了，说明那是天气。", "别和天气对赌。", "趋势是气候，不是今天的风。", "今天的风，会停。", "气候转变，你不会第一天知道。", "所以要留退路。", "退路不是悲观。", "退路是成年人的标配。", "设好再进。", "没设边，就还没开始。", "先写下来。", "跌的时候你会找借口。", "借口已经准备好了。别用。", "承认看错，只需要一秒钟。", "这一秒最贵。", "贵也要付。", "止损是门票的一部分。", "止盈是礼貌。", "留一点给别人赚。", "你不必赚完。", "贪的是最后一段。", "最后一段最贵。", "见好就收，不是胆小。", "胆小有时是一种仓位。", "胆大要配得起规则。", "规则比信心可靠。", "信心会过期。", "过期的信心叫固执。", "你分得清固执和坚持吗？", "坚持有计划。固执只有成本。", "放下这只。", "再给它一点时间。", "时间不是用来摊平的。", "时间是用来等待条件的。", "条件还没到。", "条件已经到了，你在犹豫。", "犹豫的时候，选更小的仓。", "犹豫的时候，也可以不选。", "不选是合法的。", "空仓不会让你消失。", "账户还在。人还在。这就够。", "活过这轮波动。", "你在重复。", "停下来。改一道手续。", "看得越多，手越痒。", "只留三只观察。", "三只已经够吵。", "噪音会伪装成机会。", "机会很少喊。", "真正的机会，你往往嫌慢。", "慢一点。", "再慢一点。", "慢，是你对不确定性的礼貌。", "市场不欠你快速致富。", "也不欠你公平。", "它只报价。", "报价不是评价。", "涨不是夸奖。跌不是羞辱。", "别把净值当自我。", "你不是你的持仓。", "持仓会换。你还在。", "把身份从盘面上拿回来。", "去散步。", "明天开盘还在。", "今晚没有必须完成的交易。", "把问题交给睡眠。", "A 股夜里不会跑掉。", "你跑得掉的，是情绪。", "一次只问一个问题。", "问得太大。拆小。", "重新问。", "绝对不行。", "暂缓。", "别用生活费。", "这是生活费。放下。", "家人比账户重要。", "不要向市场证明你是对的。", "估值低，也可以更低。", "估值高，也可以更高。", "便宜不是理由。贵也不是。", "你不必每个热点都在。", "涨停不是邀请函。", "跌停不是末日。也不是便宜。", "尾盘的冲动，留给明天。", "日历不是策略。", "龙虎榜不是神谕。", "北向不是神。", "牛市里你会觉得自己是天才。", "熊市里你会觉得世界欺骗你。", "两者都不是事实。", "领会，比答案更重要。", "不要连翻。"];
+    const DIGITS = "零一二三四五六七八九";
+    function toChineseNum(n) {
+      if (n < 10) return DIGITS[n];
+      if (n === 10) return "十";
+      if (n < 20) return "十" + DIGITS[n % 10];
+      if (n < 100) {
+        const t = Math.floor(n / 10), o = n % 10;
+        return DIGITS[t] + "十" + (o ? DIGITS[o] : "");
+      }
+      const h = Math.floor(n / 100), r = n % 100;
+      let s = h === 1 ? "一百" : DIGITS[h] + "百";
+      if (!r) return s;
+      if (r < 10) return s + "零" + DIGITS[r];
+      const t = Math.floor(r / 10), o = r % 10;
+      s += DIGITS[t] + "十";
+      if (o) s += DIGITS[o];
+      return s;
+    }
+
+    const views = {
+      cover: document.getElementById("view-cover"),
+      ritual: document.getElementById("view-ritual"),
+      ask: document.getElementById("view-ask"),
+      answer: document.getElementById("view-answer"),
+    };
+    const navs = {
+      cover: document.getElementById("nav-cover"),
+      ritual: document.getElementById("nav-ritual"),
+      ask: document.getElementById("nav-ask"),
+      answer: document.getElementById("nav-answer"),
+    };
+    const oracleEl = document.getElementById("oracle");
+    const pageEl = document.getElementById("page-no");
+    const askedEl = document.getElementById("asked");
+    const qEl = document.getElementById("question");
+    const sheet = document.getElementById("answer-sheet");
+    const breath = document.getElementById("breath");
+
+    let pageIndex = 0;
+    let lastRandom = -1;
+    let viewName = "cover";
+    let drawing = false;
+
+    function show(name) {
+      viewName = name;
+      Object.keys(views).forEach((k) => {
+        views[k].classList.toggle("active", k === name);
+        navs[k].hidden = k !== name;
+      });
+    }
+
+    function render(i, animate) {
+      pageIndex = (i + ANSWERS.length) % ANSWERS.length;
+      oracleEl.textContent = ANSWERS[pageIndex];
+      pageEl.textContent = "第" + toChineseNum(pageIndex + 1) + "页";
+      const q = (qEl.value || "").trim();
+      askedEl.textContent = q ? "所问  ·  " + q : "";
+      if (animate !== false) {
+        oracleEl.classList.remove("rise");
+        void oracleEl.offsetWidth;
+        oracleEl.classList.add("rise");
+      }
+    }
+
+    function randomIndex() {
+      if (ANSWERS.length < 2) return 0;
+      let i = lastRandom;
+      while (i === lastRandom) i = Math.floor(Math.random() * ANSWERS.length);
+      lastRandom = i;
+      return i;
+    }
+
+    function drawRandom() {
+      if (drawing) return;
+      drawing = true;
+      breath.classList.add("on");
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const wait = reduce ? 60 : 980;
+      window.setTimeout(() => {
+        render(randomIndex());
+        show("answer");
+        breath.classList.remove("on");
+        drawing = false;
+      }, wait);
+    }
+
+    document.getElementById("cover").addEventListener("click", () => show("ritual"));
+    document.getElementById("cover").addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show("ritual"); }
+    });
+
+    document.body.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-act]");
+      if (!btn) return;
+      const act = btn.getAttribute("data-act");
+      if (act === "open") show("ritual");
+      if (act === "back-cover") show("cover");
+      if (act === "to-ask") show("ask");
+      if (act === "back-ritual") show("ritual");
+      if (act === "draw" || act === "draw-again") drawRandom();
+      if (act === "prev") { render(pageIndex - 1); }
+      if (act === "next") { render(pageIndex + 1); }
+      if (act === "restart") show("cover");
+    });
+
+    let touchX = null;
+    sheet.addEventListener("touchstart", (e) => { touchX = e.changedTouches[0].screenX; }, { passive: true });
+    sheet.addEventListener("touchend", (e) => {
+      if (touchX == null || viewName !== "answer") return;
+      const dx = e.changedTouches[0].screenX - touchX;
+      touchX = null;
+      if (dx > 48) render(pageIndex - 1);
+      if (dx < -48) render(pageIndex + 1);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.target === qEl) {
+        if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); drawRandom(); }
+        return;
+      }
+      if (e.key === "Escape") show("cover");
+      if (viewName === "cover" && (e.key === "Enter" || e.key === " ")) show("ritual");
+      else if (viewName === "ritual" && (e.key === "Enter" || e.key === " ")) show("ask");
+      else if (viewName === "ask" && (e.key === "Enter" || e.key === " ")) drawRandom();
+      else if (viewName === "answer") {
+        if (e.key === "ArrowLeft") render(pageIndex - 1);
+        if (e.key === "ArrowRight") render(pageIndex + 1);
+        if (e.key === " " || e.key === "Enter") { e.preventDefault(); drawRandom(); }
+      }
+    });
+
+    (function bootFromQuery() {
+      const p = new URLSearchParams(location.search);
+      const v = p.get("view");
+      if (v === "ritual" || v === "ask" || v === "answer") show(v);
+      if (p.get("q")) qEl.value = p.get("q");
+      const page = Number(p.get("page"));
+      if (v === "answer") render(Number.isFinite(page) && page > 0 ? page - 1 : randomIndex(), false);
+    })();
+  </script>
+</body>
+</html>
