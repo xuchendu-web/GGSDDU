@@ -1,0 +1,21 @@
+{
+  "name": "investor-reflection-miniapp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "微信原生投资者教育摘句与决策反思工具",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "sync:cloud-content": "tsx scripts/sync-cloud-content.ts",
+    "build:cloud": "esbuild cloudfunctions/draw/index.ts --bundle --platform=node --format=cjs --external:wx-server-sdk --outfile=cloudfunctions/draw/index.js",
+    "validate:content": "tsx scripts/validate-content.ts",
+    "verify": "npm run sync:cloud-content && npm run typecheck && npm run validate:content && npm run build:cloud && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "esbuild": "latest",
+    "tsx": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}

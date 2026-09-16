@@ -1,0 +1,27 @@
+<view class="page cover">
+  <view class="eyebrow">JUST ONE PAGE</view>
+  <view class="title">股市随手翻</view>
+  <view class="subtitle">想好问题，随手翻一页</view>
+
+  <view class="book {{opening ? 'opening' : ''}}" bindtap="draw">
+    <view class="book-line"></view>
+    <view class="book-name">先想好一个问题</view>
+    <view class="book-hint">放心，不用告诉我</view>
+  </view>
+
+  <view class="themes">
+    <view class="theme-label">也可以挑个翻法</view>
+    <view class="theme-row">
+      <button class="theme" data-theme="preopen" catchtap="draw">开盘前</button>
+      <button class="theme" data-theme="close" catchtap="draw">收盘后</button>
+      <button class="theme" data-theme="weekend" catchtap="draw">周末复盘</button>
+    </view>
+  </view>
+
+  <button class="primary action" loading="{{loading}}" bindtap="draw">就翻这页</button>
+  <view class="links">
+    <text bindtap="goLibrary">留下的页</text>
+    <text bindtap="goAbout">这是什么</text>
+  </view>
+  <view class="risk-note">随手一页，不替你做决定。</view>
+</view>

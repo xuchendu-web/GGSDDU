@@ -1,0 +1,1442 @@
+[
+  {
+    "id": "card-001",
+    "title": "先喝口水",
+    "shortAnswer": "答案又不会趁你喝水跑掉。",
+    "reflectionQuestion": "它真的赶时间吗？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-002",
+    "title": "门还没开",
+    "shortAnswer": "门还没开，戏已经很足了。",
+    "reflectionQuestion": "要不要先坐下？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-003",
+    "title": "早餐发言",
+    "shortAnswer": "空着肚子的豪言，先打个折。",
+    "reflectionQuestion": "你吃早饭了吗？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-004",
+    "title": "闹钟知道",
+    "shortAnswer": "闹钟负责叫醒，不负责叫对。",
+    "reflectionQuestion": "是谁这么着急？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-005",
+    "title": "今天很长",
+    "shortAnswer": "九点的笃定，下午未必认识。",
+    "reflectionQuestion": "要不给它留点余地？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-006",
+    "title": "先别配乐",
+    "shortAnswer": "音乐一起，普通剧情也像大片。",
+    "reflectionQuestion": "是不是气氛到了？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-007",
+    "title": "手速冠军",
+    "shortAnswer": "快不一定赢，也可能只是快。",
+    "reflectionQuestion": "慢一秒会怎样？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-008",
+    "title": "天气不错",
+    "shortAnswer": "天气不错，和答案关系不大。",
+    "reflectionQuestion": "但心情有关系吗？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-009",
+    "title": "再眨下眼",
+    "shortAnswer": "有些机会，经得起一次眨眼。",
+    "reflectionQuestion": "它还在吗？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-010",
+    "title": "座位还在",
+    "shortAnswer": "没赶上前排，也能看完整场。",
+    "reflectionQuestion": "你非得坐第一排吗？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-011",
+    "title": "先穿鞋",
+    "shortAnswer": "远方很远，鞋带倒是近。",
+    "reflectionQuestion": "眼前哪件小事没弄好？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-012",
+    "title": "晨间新闻",
+    "shortAnswer": "早消息很新，未必很熟。",
+    "reflectionQuestion": "要不要等它自我介绍？",
+    "boundary": "只是随手一页，不替你做决定。",
+    "category": "preopen",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-013",
+    "title": "灯关了",
+    "shortAnswer": "散场以后，主角也要坐地铁。",
+    "reflectionQuestion": "你还在加戏吗？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-014",
+    "title": "今日份",
+    "shortAnswer": "今天已经很满，不必再塞结论。",
+    "reflectionQuestion": "能先空一格吗？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-015",
+    "title": "回放卡顿",
+    "shortAnswer": "记忆自带剪辑，还是导演版。",
+    "reflectionQuestion": "漏掉了哪一幕？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-016",
+    "title": "成绩单",
+    "shortAnswer": "一道题对了，不等于字写得好。",
+    "reflectionQuestion": "过程经得起重播吗？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-017",
+    "title": "下班铃",
+    "shortAnswer": "屏幕下班了，你也可以。",
+    "reflectionQuestion": "还有什么非想不可？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-018",
+    "title": "晚饭重要",
+    "shortAnswer": "晚饭凉了，比数字诚实。",
+    "reflectionQuestion": "先管哪一个？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-019",
+    "title": "今日天气",
+    "shortAnswer": "一天像天气，别急着写成气候。",
+    "reflectionQuestion": "明天会认这句话吗？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-020",
+    "title": "掌声来源",
+    "shortAnswer": "顺利的时候，风也会鼓掌。",
+    "reflectionQuestion": "哪部分是风？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-021",
+    "title": "失物招领",
+    "shortAnswer": "今天丢的也许只是耐心。",
+    "reflectionQuestion": "要不要去领回来？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-022",
+    "title": "关灯以后",
+    "shortAnswer": "黑屏很安静，脑内弹幕不是。",
+    "reflectionQuestion": "谁还在刷屏？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-023",
+    "title": "最后一句",
+    "shortAnswer": "收尾太用力，像没舍得结束。",
+    "reflectionQuestion": "句号放哪儿？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-024",
+    "title": "明天再说",
+    "shortAnswer": "有些答案睡一觉会自己改口。",
+    "reflectionQuestion": "让它睡吗？",
+    "boundary": "只是收盘后的一句闲话，不评价具体标的。",
+    "category": "close",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-025",
+    "title": "周末模式",
+    "shortAnswer": "周末的数字，最好也穿拖鞋。",
+    "reflectionQuestion": "还要这么正式吗？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-026",
+    "title": "柜子有点满",
+    "shortAnswer": "东西多了，名字先互相忘记。",
+    "reflectionQuestion": "你都叫得上来吗？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-027",
+    "title": "植物时间",
+    "shortAnswer": "有些变化，盯着反而看不见。",
+    "reflectionQuestion": "去给花浇水吗？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-028",
+    "title": "大扫除",
+    "shortAnswer": "舍不得扔的盒子，通常最占地方。",
+    "reflectionQuestion": "哪个盒子是空的？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-029",
+    "title": "拼图背面",
+    "shortAnswer": "翻过来一看，大家都一个颜色。",
+    "reflectionQuestion": "真的不一样吗？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-030",
+    "title": "周一还远",
+    "shortAnswer": "离周一还有两顿早饭。",
+    "reflectionQuestion": "非得现在想完吗？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-031",
+    "title": "沙发意见",
+    "shortAnswer": "沙发认为，坐下再说。",
+    "reflectionQuestion": "你同意沙发吗？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-032",
+    "title": "远看一下",
+    "shortAnswer": "退三步，细节终于肯闭嘴。",
+    "reflectionQuestion": "现在看见什么？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-033",
+    "title": "衣柜逻辑",
+    "shortAnswer": "常穿的没几件，挂着的很热闹。",
+    "reflectionQuestion": "哪件只是舍不得？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-034",
+    "title": "日历翻面",
+    "shortAnswer": "一周很短，故事不用写完。",
+    "reflectionQuestion": "下一页留给什么？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-035",
+    "title": "周末来信",
+    "shortAnswer": "寄信的人是周一的你。",
+    "reflectionQuestion": "他会写什么？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-036",
+    "title": "暂停营业",
+    "shortAnswer": "脑子也有打烊时间。",
+    "reflectionQuestion": "门牌挂上了吗？",
+    "boundary": "周末随便翻翻，不构成任何建议。",
+    "category": "weekend",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-037",
+    "title": "声音很大",
+    "shortAnswer": "扩音器很努力，内容不一定。",
+    "reflectionQuestion": "关小声还成立吗？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-038",
+    "title": "截图之外",
+    "shortAnswer": "截图很方，世界不是。",
+    "reflectionQuestion": "边框外藏了什么？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-039",
+    "title": "三个故事",
+    "shortAnswer": "三次巧合，已经会自己起标题了。",
+    "reflectionQuestion": "标题可信吗？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-040",
+    "title": "一起出现",
+    "shortAnswer": "雨伞和下雨总一起，伞没下雨。",
+    "reflectionQuestion": "谁才是原因？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-041",
+    "title": "朋友的朋友",
+    "shortAnswer": "走了三手的话，容易长出尾巴。",
+    "reflectionQuestion": "原话还认得吗？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-042",
+    "title": "数字穿搭",
+    "shortAnswer": "数字换个分母，气质就变了。",
+    "reflectionQuestion": "它今天穿的哪套？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-043",
+    "title": "幸存发言",
+    "shortAnswer": "留下的人，都很擅长留下。",
+    "reflectionQuestion": "没留下的呢？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-044",
+    "title": "旧闻翻新",
+    "shortAnswer": "昨天的面包，今天换了包装。",
+    "reflectionQuestion": "日期藏哪儿了？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-045",
+    "title": "单人合唱",
+    "shortAnswer": "十个转发，也可能只有一个人在唱。",
+    "reflectionQuestion": "真有十个人吗？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-046",
+    "title": "标点很忙",
+    "shortAnswer": "三个感叹号，顶不上一个出处。",
+    "reflectionQuestion": "出处在吗？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-047",
+    "title": "看起来像",
+    "shortAnswer": "长得像答案，是答案的常用伪装。",
+    "reflectionQuestion": "摘掉滤镜呢？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-048",
+    "title": "再问一句",
+    "shortAnswer": "认真追问，是传言的散场铃。",
+    "reflectionQuestion": "它会留下吗？",
+    "boundary": "只是一种说法，不替代你的独立判断。",
+    "category": "evidence",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-049",
+    "title": "雨伞问题",
+    "shortAnswer": "晴天带伞有点傻，淋雨更傻。",
+    "reflectionQuestion": "你怕哪种傻？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-050",
+    "title": "口袋深浅",
+    "shortAnswer": "嘴上说没事，口袋可能有意见。",
+    "reflectionQuestion": "它同意了吗？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-051",
+    "title": "备用钥匙",
+    "shortAnswer": "备用钥匙平时最像废物。",
+    "reflectionQuestion": "真用时找得到吗？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-052",
+    "title": "鸡蛋开会",
+    "shortAnswer": "篮子很多，桌子可能只有一张。",
+    "reflectionQuestion": "桌子稳吗？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-053",
+    "title": "懂了大概",
+    "shortAnswer": "“大概懂了”里的大概，很大。",
+    "reflectionQuestion": "到底多大？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-054",
+    "title": "弹簧床垫",
+    "shortAnswer": "放大的不只快乐，还有半夜。",
+    "reflectionQuestion": "睡得着吗？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-055",
+    "title": "退路风景",
+    "shortAnswer": "退路不浪漫，但通常有路灯。",
+    "reflectionQuestion": "灯亮着吗？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-056",
+    "title": "行李额度",
+    "shortAnswer": "能拎动，和想拎一路，是两回事。",
+    "reflectionQuestion": "要走多远？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-057",
+    "title": "小概率先生",
+    "shortAnswer": "他不常来，所以每次都不打招呼。",
+    "reflectionQuestion": "门锁好了吗？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-058",
+    "title": "同一把伞",
+    "shortAnswer": "看着站得很散，其实共用一把伞。",
+    "reflectionQuestion": "雨大了呢？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-059",
+    "title": "说明书",
+    "shortAnswer": "看不懂的按钮，按下去也会亮。",
+    "reflectionQuestion": "亮了就懂了吗？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-060",
+    "title": "留张椅子",
+    "shortAnswer": "意外来访时，最好还有椅子。",
+    "reflectionQuestion": "家里坐满了吗？",
+    "boundary": "不提供操作指令，只陪你多想半秒。",
+    "category": "risk",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-061",
+    "title": "心里有戏",
+    "shortAnswer": "演员很多，导演临时请假了。",
+    "reflectionQuestion": "谁在抢台词？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-062",
+    "title": "不服一下",
+    "shortAnswer": "“我不服”很响，“为什么”很小。",
+    "reflectionQuestion": "小声那句是什么？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-063",
+    "title": "别人家的",
+    "shortAnswer": "别人家的进度条，不装在你手机里。",
+    "reflectionQuestion": "盯它干什么？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-064",
+    "title": "后悔预告",
+    "shortAnswer": "事情没发生，后悔先来占座。",
+    "reflectionQuestion": "票是谁买的？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-065",
+    "title": "运气领功",
+    "shortAnswer": "运气穿上西装，就像实力本人。",
+    "reflectionQuestion": "领带谁系的？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-066",
+    "title": "怕来不及",
+    "shortAnswer": "越怕来不及，时间越爱看热闹。",
+    "reflectionQuestion": "它真的要关门吗？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-067",
+    "title": "脑子没电",
+    "shortAnswer": "百分之一的电，也敢开十个应用。",
+    "reflectionQuestion": "先充会儿吗？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-068",
+    "title": "群聊沸腾",
+    "shortAnswer": "一百条消息，可能只煮开了一壶水。",
+    "reflectionQuestion": "水里有什么？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-069",
+    "title": "输赢贴纸",
+    "shortAnswer": "贴纸贴在身上，撕下来也还是你。",
+    "reflectionQuestion": "非贴不可吗？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-070",
+    "title": "坐立不安",
+    "shortAnswer": "椅子没有错，今天先别怪它。",
+    "reflectionQuestion": "是谁坐不住？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-071",
+    "title": "深呼吸派",
+    "shortAnswer": "空气免费，但经常被忘记使用。",
+    "reflectionQuestion": "要不要领一份？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-072",
+    "title": "情绪天气",
+    "shortAnswer": "心里下雨，不代表窗外也下。",
+    "reflectionQuestion": "窗帘拉开了吗？",
+    "boundary": "只聊当下感受，不评价具体操作。",
+    "category": "emotion",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-073",
+    "title": "铅笔记得",
+    "shortAnswer": "脑子会改稿，铅笔比较固执。",
+    "reflectionQuestion": "当时写了什么？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-074",
+    "title": "例外先生",
+    "shortAnswer": "他每周只来一次，已经来了七天。",
+    "reflectionQuestion": "今天又是他？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-075",
+    "title": "一句就够",
+    "shortAnswer": "理由排成队，可能只是来壮胆。",
+    "reflectionQuestion": "队长是谁？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-076",
+    "title": "等号很忙",
+    "shortAnswer": "想到了，不等于想好了。",
+    "reflectionQuestion": "中间少了什么？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-077",
+    "title": "旧便签",
+    "shortAnswer": "事前的字丑，但通常比较诚实。",
+    "reflectionQuestion": "还看得清吗？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-078",
+    "title": "临时决定",
+    "shortAnswer": "“临时”住久了，也会收快递。",
+    "reflectionQuestion": "它住多久了？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-079",
+    "title": "按钮很亮",
+    "shortAnswer": "按钮亮着，只说明它通电。",
+    "reflectionQuestion": "你也通电了吗？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-080",
+    "title": "再来一次",
+    "shortAnswer": "同样的门，撞第二次声音更熟。",
+    "reflectionQuestion": "门变了吗？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-081",
+    "title": "理由加长",
+    "shortAnswer": "解释越长，句号越想逃跑。",
+    "reflectionQuestion": "能说短点吗？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-082",
+    "title": "明日版本",
+    "shortAnswer": "明天的你，可能不认今天的补丁。",
+    "reflectionQuestion": "要更新吗？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-083",
+    "title": "先放桌上",
+    "shortAnswer": "放一会儿，冲动会自己显原形。",
+    "reflectionQuestion": "它长什么样？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-084",
+    "title": "手写小字",
+    "shortAnswer": "小字不是重点，却常常最诚实。",
+    "reflectionQuestion": "你跳过哪行？",
+    "boundary": "不提供交易步骤，这页只负责眨眼。",
+    "category": "discipline",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-085",
+    "title": "标题先跑",
+    "shortAnswer": "正文还在系鞋带，标题已经冲线。",
+    "reflectionQuestion": "等正文吗？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-086",
+    "title": "据说本人",
+    "shortAnswer": "“据说”从不留下联系方式。",
+    "reflectionQuestion": "这次留了吗？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-087",
+    "title": "转发十次",
+    "shortAnswer": "话走得越远，行李越多。",
+    "reflectionQuestion": "多了什么？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-088",
+    "title": "昨天今天",
+    "shortAnswer": "旧消息换件新外套，也挺精神。",
+    "reflectionQuestion": "吊牌还在吗？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-089",
+    "title": "匿名亲戚",
+    "shortAnswer": "朋友的表哥，业务范围很广。",
+    "reflectionQuestion": "他今天又懂什么？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-090",
+    "title": "只截一半",
+    "shortAnswer": "另一半可能正在申请出镜。",
+    "reflectionQuestion": "让它进来吗？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-091",
+    "title": "感叹号们",
+    "shortAnswer": "它们排得很齐，就是没带来源。",
+    "reflectionQuestion": "来源迟到了？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-092",
+    "title": "热搜体温",
+    "shortAnswer": "很热，可能只是人多。",
+    "reflectionQuestion": "内容熟了吗？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-093",
+    "title": "数字独白",
+    "shortAnswer": "分母不在，数字就开始自由发挥。",
+    "reflectionQuestion": "搭档去哪儿了？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-094",
+    "title": "专家很多",
+    "shortAnswer": "麦克风数量，和答案数量不是一回事。",
+    "reflectionQuestion": "谁没拿麦？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-095",
+    "title": "刚刚确认",
+    "shortAnswer": "“刚刚”很新，“确认”要另说。",
+    "reflectionQuestion": "谁确认的？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-096",
+    "title": "刷新一下",
+    "shortAnswer": "刷新带来新页面，不保证新世界。",
+    "reflectionQuestion": "手指累了吗？",
+    "boundary": "不认可也不否定传闻，只提醒它会化妆。",
+    "category": "information",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-097",
+    "title": "桌面太满",
+    "shortAnswer": "杯子很多，能喝水的嘴只有一个。",
+    "reflectionQuestion": "都要摆着吗？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-098",
+    "title": "换了名字",
+    "shortAnswer": "名字不同，也可能穿同一双鞋。",
+    "reflectionQuestion": "脚印一样吗？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-099",
+    "title": "购物袋们",
+    "shortAnswer": "袋子分了五个，东西来自一家店。",
+    "reflectionQuestion": "真分开了吗？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-100",
+    "title": "拼盘艺术",
+    "shortAnswer": "颜色很多，不代表味道很多。",
+    "reflectionQuestion": "尝起来呢？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-101",
+    "title": "冰箱深处",
+    "shortAnswer": "放得久，不等于还记得为什么买。",
+    "reflectionQuestion": "那盒是什么？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-102",
+    "title": "工具箱",
+    "shortAnswer": "扳手很多，手还是两只。",
+    "reflectionQuestion": "用得过来吗？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-103",
+    "title": "行李打包",
+    "shortAnswer": "每件都重要，箱子就关不上。",
+    "reflectionQuestion": "谁坐箱子上？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-104",
+    "title": "同款雨衣",
+    "shortAnswer": "看着五颜六色，雨来了都湿。",
+    "reflectionQuestion": "差别在哪儿？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-105",
+    "title": "标签掉了",
+    "shortAnswer": "标签一掉，有些东西突然很陌生。",
+    "reflectionQuestion": "还认得吗？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-106",
+    "title": "房间用途",
+    "shortAnswer": "家具挪多了，可能忘了这是卧室。",
+    "reflectionQuestion": "原来要做什么？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-107",
+    "title": "备用抽屉",
+    "shortAnswer": "空抽屉看着浪费，找东西时很香。",
+    "reflectionQuestion": "留一个吗？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-108",
+    "title": "简单一点",
+    "shortAnswer": "能一口说完，通常比较好记。",
+    "reflectionQuestion": "一口够吗？",
+    "boundary": "不提供比例或产品建议，只看看桌面。",
+    "category": "portfolio",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-109",
+    "title": "录像重播",
+    "shortAnswer": "记忆剪掉的，往往正好是重点。",
+    "reflectionQuestion": "哪段不见了？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-110",
+    "title": "事后编剧",
+    "shortAnswer": "结局一出，伏笔突然到处都是。",
+    "reflectionQuestion": "当时真看见了吗？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-111",
+    "title": "又见面了",
+    "shortAnswer": "同一个坑，今天换了顶帽子。",
+    "reflectionQuestion": "认出来了吗？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-112",
+    "title": "改一个字",
+    "shortAnswer": "整篇重写很累，先改一个字。",
+    "reflectionQuestion": "改哪个？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-113",
+    "title": "运气入镜",
+    "shortAnswer": "它站在角落，却总被裁掉。",
+    "reflectionQuestion": "这次拍到没？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-114",
+    "title": "掌声太早",
+    "shortAnswer": "片尾还没放完，先别急着谢幕。",
+    "reflectionQuestion": "彩蛋呢？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-115",
+    "title": "借口到货",
+    "shortAnswer": "下单时没有，复盘时包邮送达。",
+    "reflectionQuestion": "要签收吗？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-116",
+    "title": "旧问题",
+    "shortAnswer": "答案换了，问题可能没换。",
+    "reflectionQuestion": "还是那一个吗？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-117",
+    "title": "红笔蓝笔",
+    "shortAnswer": "红笔圈错，蓝笔也该圈巧合。",
+    "reflectionQuestion": "蓝笔在哪儿？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-118",
+    "title": "一页足够",
+    "shortAnswer": "写太多，真话会躲进附录。",
+    "reflectionQuestion": "哪句最短？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-119",
+    "title": "下次的你",
+    "shortAnswer": "他不需要演讲，只要一张便签。",
+    "reflectionQuestion": "写哪一句？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-120",
+    "title": "镜子起雾",
+    "shortAnswer": "擦一小块，也比想象全脸强。",
+    "reflectionQuestion": "先擦哪里？",
+    "boundary": "只是回头看一眼，不生成归因结论。",
+    "category": "review",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-121",
+    "title": "未来没回信",
+    "shortAnswer": "可能在路上，也可能没贴邮票。",
+    "reflectionQuestion": "还要催吗？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-122",
+    "title": "大概先生",
+    "shortAnswer": "他说得很满，名字却叫大概。",
+    "reflectionQuestion": "信哪个？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-123",
+    "title": "精准到点",
+    "shortAnswer": "小数点很认真，世界比较随意。",
+    "reflectionQuestion": "谁会先改口？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-124",
+    "title": "还有一种",
+    "shortAnswer": "你列了三种，现实喜欢第四种。",
+    "reflectionQuestion": "椅子够吗？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-125",
+    "title": "明天脾气",
+    "shortAnswer": "明天还没起床，先别替它说话。",
+    "reflectionQuestion": "让它自己说？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-126",
+    "title": "地图边缘",
+    "shortAnswer": "画完的地方，不等于世界尽头。",
+    "reflectionQuestion": "外面是什么？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-127",
+    "title": "熟悉错觉",
+    "shortAnswer": "见过很多次，也可能只是脸熟。",
+    "reflectionQuestion": "真的认识吗？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-128",
+    "title": "误差本人",
+    "shortAnswer": "它不在备注里，也会准时出席。",
+    "reflectionQuestion": "给它留座了吗？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-129",
+    "title": "先不回答",
+    "shortAnswer": "空白不是失败，是纸还在呼吸。",
+    "reflectionQuestion": "急着写满吗？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-130",
+    "title": "意外嘉宾",
+    "shortAnswer": "没在名单上，照样能上台。",
+    "reflectionQuestion": "备用麦在哪儿？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-131",
+    "title": "时间滤镜",
+    "shortAnswer": "看得远，不代表看得清。",
+    "reflectionQuestion": "雾有多大？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-132",
+    "title": "不知道",
+    "shortAnswer": "这三个字，有时比长句更完整。",
+    "reflectionQuestion": "敢让它单独一行吗？",
+    "boundary": "不提供方向判断，未来也没来投稿。",
+    "category": "uncertainty",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-133",
+    "title": "饭还热吗",
+    "shortAnswer": "数字不会凉，饭会。",
+    "reflectionQuestion": "先顾哪边？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-134",
+    "title": "枕头抗议",
+    "shortAnswer": "它等你很久，已经不想开会。",
+    "reflectionQuestion": "今晚几点散会？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-135",
+    "title": "家里有灯",
+    "shortAnswer": "屏幕再亮，也照不到餐桌那边。",
+    "reflectionQuestion": "谁在等你？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-136",
+    "title": "生活费本人",
+    "shortAnswer": "它来负责生活，不来参加冒险。",
+    "reflectionQuestion": "名字写清了吗？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-137",
+    "title": "散步路线",
+    "shortAnswer": "有些答案，走两条街就变小了。",
+    "reflectionQuestion": "鞋在哪儿？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-138",
+    "title": "关机五分钟",
+    "shortAnswer": "世界大概率会自己转。",
+    "reflectionQuestion": "要试试看吗？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-139",
+    "title": "你不等于它",
+    "shortAnswer": "一个数字，装不下一个人。",
+    "reflectionQuestion": "还记得别的自己吗？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-140",
+    "title": "先睡一觉",
+    "shortAnswer": "梦不负责解答，但负责关灯。",
+    "reflectionQuestion": "今晚让它值班？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-141",
+    "title": "找个人说",
+    "shortAnswer": "说出口以后，怪兽通常会缩水。",
+    "reflectionQuestion": "找谁合适？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-142",
+    "title": "周末名单",
+    "shortAnswer": "名单里如果没有生活，就有点可疑。",
+    "reflectionQuestion": "漏了什么？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-143",
+    "title": "手机朝下",
+    "shortAnswer": "桌面突然多出一整片天空。",
+    "reflectionQuestion": "看见了吗？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  },
+  {
+    "id": "card-144",
+    "title": "回到此刻",
+    "shortAnswer": "未来很忙，此刻正在门口等你。",
+    "reflectionQuestion": "要开门吗？",
+    "boundary": "生活优先；复杂问题请咨询有资质的专业人士。",
+    "category": "life",
+    "version": "2.0.0",
+    "reviewStatus": "approved"
+  }
+]

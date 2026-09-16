@@ -1,0 +1,4 @@
+{
+  "desc": "股市随手翻短句小书",
+  "rules": [{ "action": "allow", "page": "*" }]
+}

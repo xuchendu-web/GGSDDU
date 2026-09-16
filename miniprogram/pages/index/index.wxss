@@ -1,0 +1,94 @@
+.cover {
+  text-align: center;
+}
+
+.title {
+  margin-top: 50rpx;
+  font-size: 66rpx;
+  font-weight: 600;
+  letter-spacing: 8rpx;
+}
+
+.subtitle {
+  margin-top: 16rpx;
+  color: #666b64;
+  font-size: 26rpx;
+}
+
+.book {
+  position: relative;
+  margin: 72rpx auto 56rpx;
+  width: 480rpx;
+  height: 550rpx;
+  border-radius: 10rpx 28rpx 28rpx 10rpx;
+  background: #274235;
+  color: #f8f0df;
+  box-shadow: 22rpx 28rpx 50rpx rgba(36, 45, 38, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.book.opening {
+  transform: perspective(900rpx) rotateY(-18deg) translateX(-16rpx);
+  opacity: 0.86;
+}
+
+.book-line {
+  position: absolute;
+  left: 30rpx;
+  top: 0;
+  bottom: 0;
+  width: 2rpx;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.book-name {
+  font-size: 34rpx;
+  letter-spacing: 4rpx;
+}
+
+.book-hint {
+  margin-top: 24rpx;
+  color: rgba(255, 250, 240, 0.65);
+  font-size: 22rpx;
+}
+
+.themes {
+  margin-bottom: 32rpx;
+}
+
+.theme-label {
+  margin-bottom: 18rpx;
+  color: #74786f;
+  font-size: 22rpx;
+}
+
+.theme-row {
+  display: flex;
+  gap: 12rpx;
+}
+
+.theme {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.34);
+  border: 1rpx solid #b7b1a5;
+  color: #37453c;
+  font-size: 24rpx;
+}
+
+.action {
+  width: 420rpx;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 42rpx;
+  margin: 38rpx 0 28rpx;
+  color: #52645a;
+  font-size: 24rpx;
+  text-decoration: underline;
+}

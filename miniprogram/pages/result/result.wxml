@@ -1,0 +1,25 @@
+<view class="page result-page">
+  <view wx:if="{{loading}}" class="loading">这页还在路上…</view>
+  <block wx:elif="{{card}}">
+    <view class="eyebrow">{{shared ? '有人觉得这页像你' : 'JUST ONE PAGE'}}</view>
+    <view class="card">
+      <view class="card-number">{{card.id}}</view>
+      <view class="card-title">{{card.title}}</view>
+      <view class="answer">{{card.shortAnswer}}</view>
+      <view class="divider"></view>
+      <view class="question-label">顺便一问</view>
+      <view class="question">{{card.reflectionQuestion}}</view>
+      <view class="boundary">{{card.boundary}}</view>
+    </view>
+    <view class="actions">
+      <button class="secondary" bindtap="favorite">{{favoriteText}}</button>
+      <button class="primary" open-type="share">发给那个懂的人</button>
+    </view>
+    <button wx:if="{{shared}}" class="next" bindtap="drawOwn">我也随手翻一页</button>
+    <view class="source-note">{{source === 'local' ? '本地内容 · 弱网也能翻' : '这一页来自云端'}}</view>
+  </block>
+  <view wx:else class="empty">
+    <view>这一页可能去散步了</view>
+    <button class="primary" bindtap="backHome">返回首页</button>
+  </view>
+</view>

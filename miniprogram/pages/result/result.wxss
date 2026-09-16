@@ -1,0 +1,93 @@
+.result-page {
+  text-align: center;
+}
+
+.loading,
+.empty {
+  padding-top: 300rpx;
+  color: #667067;
+}
+
+.empty button {
+  margin-top: 44rpx;
+}
+
+.card {
+  box-sizing: border-box;
+  margin: 42rpx auto 38rpx;
+  min-height: 850rpx;
+  padding: 56rpx 52rpx;
+  border: 1rpx solid rgba(68, 72, 64, 0.18);
+  border-radius: 8rpx;
+  background: #fffaf0;
+  box-shadow: 0 24rpx 60rpx rgba(45, 42, 34, 0.12);
+}
+
+.card-number {
+  text-align: right;
+  color: #9a9c94;
+  font-size: 20rpx;
+}
+
+.card-title {
+  margin-top: 90rpx;
+  color: #7a4f31;
+  font-size: 25rpx;
+  letter-spacing: 4rpx;
+}
+
+.answer {
+  margin: 55rpx 0;
+  font-size: 50rpx;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.divider {
+  width: 70rpx;
+  height: 2rpx;
+  margin: 0 auto 52rpx;
+  background: #b89b79;
+}
+
+.question-label {
+  color: #8a8d84;
+  font-size: 21rpx;
+  letter-spacing: 3rpx;
+}
+
+.question {
+  margin-top: 22rpx;
+  font-size: 31rpx;
+  line-height: 1.7;
+}
+
+.boundary {
+  margin-top: 82rpx;
+  color: #8a8d84;
+  font-size: 20rpx;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.actions button {
+  flex: 1;
+}
+
+.next {
+  margin-top: 24rpx;
+  background: transparent;
+  color: #52645a;
+  font-size: 25rpx;
+  text-decoration: underline;
+}
+
+.source-note {
+  margin-top: 28rpx;
+  color: #8b8e86;
+  font-size: 20rpx;
+}

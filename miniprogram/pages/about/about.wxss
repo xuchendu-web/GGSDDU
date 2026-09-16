@@ -1,0 +1,25 @@
+.about {
+  line-height: 1.8;
+}
+
+.heading {
+  margin: 32rpx 0 38rpx;
+  font-size: 50rpx;
+  font-weight: 600;
+}
+
+.section {
+  margin-top: 48rpx;
+}
+
+.section-title {
+  margin-bottom: 12rpx;
+  color: #7a4f31;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.paragraph {
+  color: #4f564f;
+  font-size: 26rpx;
+}

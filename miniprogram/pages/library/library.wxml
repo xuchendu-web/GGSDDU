@@ -1,0 +1,14 @@
+<view class="page">
+  <view class="tabs">
+    <view class="{{tab === 'favorites' ? 'active' : ''}}" data-tab="favorites" bindtap="switchTab">特意留下</view>
+    <view class="{{tab === 'recent' ? 'active' : ''}}" data-tab="recent" bindtap="switchTab">刚刚翻过</view>
+  </view>
+  <view wx:if="{{items.length}}">
+    <view class="item" wx:for="{{items}}" wx:key="id" data-id="{{item.id}}" bindtap="openCard">
+      <view class="item-title">{{item.title}}</view>
+      <view class="item-answer">{{item.shortAnswer}}</view>
+      <view class="item-question">{{item.reflectionQuestion}}</view>
+    </view>
+  </view>
+  <view wx:else class="empty">{{tab === 'favorites' ? '这里还空着，也挺好' : '还没翻过，手很稳'}}</view>
+</view>

@@ -1,0 +1,25 @@
+<view class="page about">
+  <view class="eyebrow">ABOUT THIS BOOK</view>
+  <view class="heading">一本没那么要紧的小书</view>
+  <view class="paragraph">想好一个问题，随手翻一页。它可能答非所问，也可能刚好说中了。笑一下，停一下，剩下的还是你自己想。</view>
+
+  <view class="section">
+    <view class="section-title">它不负责什么</view>
+    <view class="paragraph">不荐股，不替你操作，不给目标价、收益承诺或行情方向。说到底，它只负责翻页。</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">你的问题归你</view>
+    <view class="paragraph">不用输入，也不会采集你心里想的问题、证券代码、持仓或好友关系。留下的页只存在本机；云端只记必要的匿名编号和入口。</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">认真说一句</view>
+    <view class="paragraph">这些句子不构成投资建议。投资有风险，决定仍要结合自己的实际情况；复杂问题请咨询具备相应资质的专业人士。</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">反馈与投诉</view>
+    <view class="paragraph">上线前请将此处替换为已核验的客服邮箱、处理时限与主体信息。</view>
+  </view>
+</view>
