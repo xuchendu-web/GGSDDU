@@ -1,0 +1,44 @@
+page {
+  min-height: 100%;
+  background: #f2ebdd;
+  color: #20261f;
+  font-family: "PingFang SC", "Noto Serif SC", serif;
+}
+
+button {
+  border-radius: 999rpx;
+  font-size: 28rpx;
+}
+
+button::after {
+  border: 0;
+}
+
+.page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 40rpx 36rpx 72rpx;
+}
+
+.eyebrow {
+  color: #7a4f31;
+  font-size: 22rpx;
+  letter-spacing: 5rpx;
+}
+
+.risk-note {
+  color: #6f746d;
+  font-size: 22rpx;
+  line-height: 1.65;
+}
+
+.primary {
+  background: #274235;
+  color: #fffaf0;
+}
+
+.secondary {
+  background: transparent;
+  border: 1rpx solid #8a8e83;
+  color: #274235;
+}

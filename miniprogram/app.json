@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/result/result",
+    "pages/library/library",
+    "pages/about/about"
+  ],
+  "window": {
+    "navigationBarTitleText": "投资反思卡",
+    "navigationBarBackgroundColor": "#F2EBDD",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F2EBDD",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

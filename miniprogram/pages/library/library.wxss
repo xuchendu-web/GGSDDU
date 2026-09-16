@@ -1,0 +1,46 @@
+.tabs {
+  display: flex;
+  gap: 44rpx;
+  margin-bottom: 40rpx;
+  border-bottom: 1rpx solid #c9c2b6;
+}
+
+.tabs view {
+  padding: 18rpx 4rpx;
+  color: #7b7e76;
+}
+
+.tabs .active {
+  border-bottom: 4rpx solid #274235;
+  color: #274235;
+  font-weight: 600;
+}
+
+.item {
+  margin-bottom: 22rpx;
+  padding: 30rpx;
+  border-radius: 10rpx;
+  background: rgba(255, 250, 240, 0.74);
+}
+
+.item-title {
+  color: #7a4f31;
+  font-size: 22rpx;
+}
+
+.item-answer {
+  margin: 13rpx 0;
+  font-size: 31rpx;
+  font-weight: 600;
+}
+
+.item-question {
+  color: #73776f;
+  font-size: 23rpx;
+}
+
+.empty {
+  padding-top: 220rpx;
+  text-align: center;
+  color: #898c84;
+}
