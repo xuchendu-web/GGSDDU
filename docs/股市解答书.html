@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#12100e" />
+  <title>股市解答书</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #2c2416;
+      --muted: #8a7a62;
+      --gold: #b08d4f;
+      --gold-dim: #8d7040;
+      --paper: #f3ead6;
+      --paper-edge: #e6d9bc;
+      --cloth: #14110e;
+      --room: #0c0b0a;
+      --serif: "Noto Serif SC", "Songti SC", "STSong", "SimSun", "Source Han Serif SC", serif;
+      --en: "Cormorant Garamond", "Noto Serif SC", serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--room);
+      color: var(--ink);
+      font-family: var(--serif);
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: calc(18px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));
+      background-image:
+        radial-gradient(ellipse at 50% 30%, rgba(176,141,79,.08), transparent 55%),
+        radial-gradient(ellipse at 50% 120%, rgba(0,0,0,.55), transparent 50%);
+    }
+    .stage {
+      width: min(420px, 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .book-scene {
+      width: 100%;
+      perspective: 1800px;
+    }
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .cover, .sheet {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4.15;
+      border-radius: 3px 10px 10px 3px;
+      overflow: hidden;
+      transform-origin: left center;
+    }
+    .cover {
+      background-color: var(--cloth);
+      background-image:
+        linear-gradient(90deg, rgba(0,0,0,.35), transparent 8%),
+        url("../media/cloth.png");
+      background-size: auto, 280px;
+      color: #f3ead6;
+      box-shadow:
+        0 18px 50px rgba(0,0,0,.45),
+        inset 0 0 0 1px rgba(176,141,79,.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+    }
+    .cover-inner {
+      padding: 12% 12% 14%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+    .cover-kicker {
+      margin: 0;
+      letter-spacing: .38em;
+      font-size: 11px;
+      color: var(--gold);
+    }
+    .cover h1 {
+      margin: 28px 0 10px;
+      font-size: clamp(34px, 9vw, 46px);
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-indent: .18em;
+    }
+    .cover-en {
+      margin: 0;
+      font-family: var(--en);
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(243,234,214,.72);
+      letter-spacing: .08em;
+    }
+    .cover .ornament {
+      width: 168px;
+      height: 22px;
+      margin: 28px 0;
+      background: url("../media/ornament.svg") center / contain no-repeat;
+      opacity: .9;
+      filter: brightness(1.15);
+    }
+    .cover-sub {
+      margin-top: auto;
+      font-size: 13px;
+      letter-spacing: .22em;
+      color: rgba(243,234,214,.62);
+    }
+    .cover-hint {
+      margin: 14px 0 0;
+      font-size: 12px;
+      letter-spacing: .28em;
+      color: var(--gold);
+    }
+
+    .sheet {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(90deg, rgba(90,70,40,.08), transparent 14px),
+        url("../media/paper.png");
+      background-size: auto, 320px;
+      box-shadow:
+        0 16px 40px rgba(0,0,0,.38),
+        inset 0 0 0 1px rgba(255,255,255,.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 11% 12% 10%;
+      text-align: center;
+      transition: transform .7s cubic-bezier(.65,.05,.36,1);
+    }
+    .sheet.is-turning {
+      transform: rotateY(-16deg) translateX(-6px);
+    }
+    .sheet-kicker {
+      position: absolute;
+      top: 7%;
+      left: 0; right: 0;
+      font-size: 11px;
+      letter-spacing: .42em;
+      color: var(--gold-dim);
+    }
+    .asked {
+      margin: 0 0 10px;
+      max-width: 90%;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .04em;
+      line-height: 1.6;
+      min-height: 1.2em;
+    }
+    .sheet .ornament {
+      width: 160px;
+      height: 20px;
+      background: url("../media/ornament.svg") center / contain no-repeat;
+      opacity: .85;
+      flex: 0 0 auto;
+    }
+    .ritual h2, .ask h2 {
+      margin: 0 0 18px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: .28em;
+      text-indent: .28em;
+    }
+    .ritual ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      width: min(88%, 280px);
+    }
+    .ritual li {
+      margin: 0 0 12px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+    .ritual li span {
+      color: var(--gold-dim);
+      letter-spacing: .2em;
+      margin-right: .5em;
+      font-size: 12px;
+    }
+    .whisper {
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .08em;
+      line-height: 1.7;
+      max-width: 88%;
+    }
+    .ask-line {
+      width: min(88%, 280px);
+      margin: 8px 0 22px;
+    }
+    .ask-line textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid rgba(176,141,79,.55);
+      background: transparent;
+      resize: none;
+      outline: none;
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink);
+      text-align: center;
+      min-height: 3.4em;
+      padding: 6px 4px 8px;
+    }
+    .ask-line textarea::placeholder {
+      color: #b5a78c;
+      font-size: 13px;
+    }
+    .oracle {
+      margin: 22px 8px;
+      font-size: clamp(22px, 6.4vw, 30px);
+      font-weight: 600;
+      line-height: 1.55;
+      letter-spacing: .06em;
+      max-width: 16em;
+      min-height: 2.4em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .oracle.rise {
+      animation: rise .7s ease;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+    .page-no {
+      position: absolute;
+      bottom: 6.5%;
+      left: 0; right: 0;
+      font-size: 12px;
+      letter-spacing: .2em;
+      color: var(--muted);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 14px;
+      width: 100%;
+    }
+    .nav[hidden] { display: none !important; }
+    button.ghost, button.solid {
+      appearance: none;
+      border: 0;
+      background: none;
+      font-family: var(--serif);
+      cursor: pointer;
+      letter-spacing: .22em;
+    }
+    button.solid {
+      color: var(--gold);
+      font-size: 13px;
+      padding: 12px 18px;
+      min-height: 44px;
+    }
+    button.ghost {
+      color: #cbb89a;
+      font-size: 12px;
+      padding: 10px 8px;
+      min-height: 44px;
+      opacity: .85;
+    }
+    button.solid:hover, button.ghost:hover { color: #e8d7a8; }
+    button:disabled { opacity: .35; cursor: default; }
+    .breath {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(12,11,10,.42);
+      color: #f3ead6;
+      letter-spacing: .46em;
+      font-size: 14px;
+      z-index: 8;
+    }
+    .breath.on { display: flex; }
+
+    @media (max-width: 420px) {
+      .stage { width: min(100%, 420px); }
+      .oracle { font-size: 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sheet { transition: none; }
+    }
+    @media print {
+      body { background: white; padding: 0; }
+      .nav, .breath, .cover-hint { display: none !important; }
+      .cover, .sheet { box-shadow: none; aspect-ratio: auto; min-height: 90vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="book-scene">
+      <section id="view-cover" class="view active">
+        <div class="cover" id="cover" role="button" tabindex="0" aria-label="翻开封面">
+          <div class="cover-inner">
+            <p class="cover-kicker">想好问题 · 翻开一页</p>
+            <h1>股市解答书</h1>
+            <p class="cover-en">The Book of Market Answers</p>
+            <div class="ornament" aria-hidden="true"></div>
+            <p class="cover-sub">一本正经地胡说</p>
+            <p class="cover-hint">轻触翻开</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-ritual" class="view">
+        <article class="sheet ritual">
+          <p class="sheet-kicker">股市解答书</p>
+          <h2>使用仪式</h2>
+          <ol>
+            <li><span>一</span>想一个问题。一个就好。</li>
+            <li><span>二</span>不必说出口。</li>
+            <li><span>三</span>闭一下眼。</li>
+            <li><span>四</span>翻开。只看这一句。</li>
+            <li><span>五</span>笑一下也行。领会也行。</li>
+          </ol>
+          <p class="whisper">好玩就好。不是投资建议。</p>
+        </article>
+      </section>
+
+      <section id="view-ask" class="view">
+        <article class="sheet ask">
+          <p class="sheet-kicker">股市解答书</p>
+          <h2>所问</h2>
+          <p class="whisper" style="margin-top:0">心里想着。也可以写下。</p>
+          <div class="ask-line">
+            <textarea id="question" maxlength="80" rows="3" placeholder="例如：要不要加这一笔？"></textarea>
+          </div>
+          <p class="whisper">只留在这台机器上。不会上传。</p>
+        </article>
+      </section>
+
+      <section id="view-answer" class="view">
+        <article class="sheet" id="answer-sheet">
+          <p class="sheet-kicker">股市解答书</p>
+          <p class="asked" id="asked"></p>
+          <div class="ornament" aria-hidden="true"></div>
+          <p class="oracle" id="oracle"></p>
+          <div class="ornament" aria-hidden="true"></div>
+          <p class="page-no" id="page-no"></p>
+        </article>
+      </section>
+    </div>
+
+    <nav class="nav" id="nav-cover">
+      <button class="solid" type="button" data-act="open">翻开</button>
+    </nav>
+    <nav class="nav" id="nav-ritual" hidden>
+      <button class="ghost" type="button" data-act="back-cover">封面</button>
+      <button class="solid" type="button" data-act="to-ask">我已想好</button>
+    </nav>
+    <nav class="nav" id="nav-ask" hidden>
+      <button class="ghost" type="button" data-act="back-ritual">仪式</button>
+      <button class="solid" type="button" data-act="draw">翻开一页</button>
+    </nav>
+    <nav class="nav" id="nav-answer" hidden>
+      <button class="ghost" type="button" data-act="prev">上一页</button>
+      <button class="solid" type="button" data-act="draw-again">再翻一页</button>
+      <button class="ghost" type="button" data-act="next">下一页</button>
+      <button class="ghost" type="button" data-act="restart">回封面</button>
+    </nav>
+  </div>
+  <div class="breath" id="breath">闭眼 · 胡说 · 翻开</div>
+
+  <script>
+    const ANSWERS = ["先吃饭。", "你妈知道吗？", "这题超纲了。", "风有点大。", "红色。", "先系鞋带。", "电梯里别按。", "它不回微信。", "今天适合喝水。", "群里那条，当没看见。", "可以。别发朋友圈。", "月亮今晚不管这个。", "答案在沙发缝里。", "你已经笑了。那就不要。", "像等外卖一样等。", "左手。", "这不是你的剧情。", "出门右转。", "先点赞。不，反过来。", "宇宙说：嗯。", "涨停板今天没空。", "把问题放进冰箱。", "遥控器不在你手里。", "问过椅子了吗？", "绿灯也不一定过。", "它比你困。", "这锅，不背。", "北向资金没加你微信。", "再问一遍，小声点。", "好问题。下一个。", "是。", "不是。", "还不是。", "可以。", "不可以。", "绝对不行。", "也许。", "再说。", "当然。", "当然不。", "随缘。", "嗯。", "行吧。", "先喝水。", "先睡觉。", "先开窗。", "闭眼。还在吗？", "今天的云不签字。", "雨还没停。", "它在排队。", "放下手机，数三秒。", "三秒到了。还是算了。", "猫不同意。", "狗同意。你听猫的。", "这杯咖啡凉了。", "快递在柜里。", "取了再说。", "电梯来了。让它走。", "下一班。", "今天发型不对。", "换个杯子。", "Wi-Fi 不稳。", "充电。再问。", "电量红了。先插上。", "闹钟还没响。", "周末再说。", "周一的事周一做。", "周五下午不适合。", "它去旅行了。", "钥匙在另一件外套。", "门没锁。也别进。", "沙发会陷进去。", "窗台风大。", "绿植比你淡定。", "鱼在吐泡。当同意。", "鱼在吐泡。当不同意。", "天气预报在撒谎。", "带伞。别带心情。", "太阳还没同意。", "你饿了。", "你困了。", "你只是手痒。", "下楼买奶茶。", "转角有猫。", "跟着猫。", "群已禁言。很好。", "@所有人 当空气。", "已读不回。", "撤回那条。", "它不认识你的名字。", "K 线在打哈欠。", "盘面像没睡醒。", "站稳扶好。", "下车。这站不是你的。", "导航在胡说。", "今日休息。", "名额已满。", "请取号。", "窗口关上了。", "别转了。坐着。", "椅子比你懂。", "刷新是一种迷信。", "热闹是别人的。", "梦里再说。", "算了。真的算了。", "下课。", "分居一晚。", "开门见山：不要。", "开门见山：要。但明天。", "今晚 A 股关门。", "龙虎榜没请你。", "故事讲完了。鼓掌。", "热点在请客。你不是宾客。", "板子很忙。你很闲。正好。", "跌停板不约。", "红绿在吵架。你出去。", "半只脚。收回来。", "全进去。太热情了。", "热情今晚打烊。", "购物车再躺一天。", "有鸟。看鸟。", "七天无理由。你有理由。", "无理由。更要退。", "晚饭叫你呢。", "别让米饭等涨停。", "F5 退休了。", "Esc。", "Ctrl+Z。", "保存。然后走开。", "发送失败。幸亏。", "对方已拒绝。", "性格不合。分手。", "复合？下次再说。", "别把电视剧当纪录片。", "别把群聊当新闻。", "账户想静静。", "静音。", "勿扰模式：开。", "9:30 是别人的战争。", "预告片经常骗人。", "导演没请你。", "群演也不要当。", "票买贵了。退。", "谢幕。", "灯亮了。该走了。", "出口在右边。", "你在开玩笑吗？", "这会很有趣。对别人。", "别告诉同事。", "再等一个星期。周很随便。", "把这当成一次散步。", "值得等待。也可以不。", "小心。主要是小心自己。", "金钱会解决这个问题吗？", "现在就去？先找拖鞋。", "全力以赴。去洗碗。", "保持开放。窗户那种。", "跟随你的心。心说饿。", "换个角度。侧躺。", "你需要的是休息。真的。", "问问最好的朋友。然后别听。", "不告诉任何人。包括群。", "会很有趣。如果当玩笑。", "这不关你的事。也可能关。", "月亮圆了也不管账户。", "打烊。真的打烊。", "右手。", "出门左转。", "绿色。", "利空穿了件大衣。", "屏幕说：我累了。", "隐身。", "客服不在线。", "留言：算了。", "半对。", "全错。但可爱。", "有新消息。别点。", "偷看一次。扣分。", "生活不看分时图。", "分时图也不看你。", "太阳不看盘。", "鼠标会自己点。别帮它。", "付款前看看窗外。", "试用装。不是正装。", "满减达不到。很好。", "退货窗口还开着。", "先夹菜。", "信封是空的。", "花该浇了。不是现在。", "少冰。问题也少冰。", "飞行模式十分钟。", "十分钟后你还爱它吗？", "不爱了。正好。", "还爱。那就吃饭。", "这根影线是刘海。", "洗剪吹再看。", "坐过站了。", "堵车时别换道。", "系统繁忙。", "没有就是没有。", "答案打瞌睡。", "梦到也不算数。", "硬刚今晚不营业。", "今晚不营业。", "挺好。去晒太阳。", "标签还在。先剪。", "Ctrl+Z 对行情无效。", "对方正在输入。永远。", "鞋带开了。", "盐少许。", "汤还烫。", "电梯音乐很难听。", "密码输错三次。", "这件不合适。", "镜子起雾了。", "伞借给别人了。", "片尾曲开始了。", "彩蛋没有。", "续集别看。", "主角不是你。"];
+    const DIGITS = "零一二三四五六七八九";
+    function toChineseNum(n) {
+      if (n < 10) return DIGITS[n];
+      if (n === 10) return "十";
+      if (n < 20) return "十" + DIGITS[n % 10];
+      if (n < 100) {
+        const t = Math.floor(n / 10), o = n % 10;
+        return DIGITS[t] + "十" + (o ? DIGITS[o] : "");
+      }
+      const h = Math.floor(n / 100), r = n % 100;
+      let s = h === 1 ? "一百" : DIGITS[h] + "百";
+      if (!r) return s;
+      if (r < 10) return s + "零" + DIGITS[r];
+      const t = Math.floor(r / 10), o = r % 10;
+      s += DIGITS[t] + "十";
+      if (o) s += DIGITS[o];
+      return s;
+    }
+
+    const views = {
+      cover: document.getElementById("view-cover"),
+      ritual: document.getElementById("view-ritual"),
+      ask: document.getElementById("view-ask"),
+      answer: document.getElementById("view-answer"),
+    };
+    const navs = {
+      cover: document.getElementById("nav-cover"),
+      ritual: document.getElementById("nav-ritual"),
+      ask: document.getElementById("nav-ask"),
+      answer: document.getElementById("nav-answer"),
+    };
+    const oracleEl = document.getElementById("oracle");
+    const pageEl = document.getElementById("page-no");
+    const askedEl = document.getElementById("asked");
+    const qEl = document.getElementById("question");
+    const sheet = document.getElementById("answer-sheet");
+    const breath = document.getElementById("breath");
+
+    let pageIndex = 0;
+    let lastRandom = -1;
+    let viewName = "cover";
+    let drawing = false;
+
+    function show(name) {
+      viewName = name;
+      Object.keys(views).forEach((k) => {
+        views[k].classList.toggle("active", k === name);
+        navs[k].hidden = k !== name;
+      });
+    }
+
+    function render(i, animate) {
+      pageIndex = (i + ANSWERS.length) % ANSWERS.length;
+      oracleEl.textContent = ANSWERS[pageIndex];
+      pageEl.textContent = "第" + toChineseNum(pageIndex + 1) + "页";
+      const q = (qEl.value || "").trim();
+      askedEl.textContent = q ? "所问  ·  " + q : "";
+      if (animate !== false) {
+        oracleEl.classList.remove("rise");
+        void oracleEl.offsetWidth;
+        oracleEl.classList.add("rise");
+      }
+    }
+
+    function randomIndex() {
+      if (ANSWERS.length < 2) return 0;
+      let i = lastRandom;
+      while (i === lastRandom) i = Math.floor(Math.random() * ANSWERS.length);
+      lastRandom = i;
+      return i;
+    }
+
+    function drawRandom() {
+      if (drawing) return;
+      drawing = true;
+      breath.classList.add("on");
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const wait = reduce ? 60 : 980;
+      window.setTimeout(() => {
+        render(randomIndex());
+        show("answer");
+        breath.classList.remove("on");
+        drawing = false;
+      }, wait);
+    }
+
+    document.getElementById("cover").addEventListener("click", () => show("ritual"));
+    document.getElementById("cover").addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show("ritual"); }
+    });
+
+    document.body.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-act]");
+      if (!btn) return;
+      const act = btn.getAttribute("data-act");
+      if (act === "open") show("ritual");
+      if (act === "back-cover") show("cover");
+      if (act === "to-ask") show("ask");
+      if (act === "back-ritual") show("ritual");
+      if (act === "draw" || act === "draw-again") drawRandom();
+      if (act === "prev") { render(pageIndex - 1); }
+      if (act === "next") { render(pageIndex + 1); }
+      if (act === "restart") show("cover");
+    });
+
+    let touchX = null;
+    sheet.addEventListener("touchstart", (e) => { touchX = e.changedTouches[0].screenX; }, { passive: true });
+    sheet.addEventListener("touchend", (e) => {
+      if (touchX == null || viewName !== "answer") return;
+      const dx = e.changedTouches[0].screenX - touchX;
+      touchX = null;
+      if (dx > 48) render(pageIndex - 1);
+      if (dx < -48) render(pageIndex + 1);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.target === qEl) {
+        if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); drawRandom(); }
+        return;
+      }
+      if (e.key === "Escape") show("cover");
+      if (viewName === "cover" && (e.key === "Enter" || e.key === " ")) show("ritual");
+      else if (viewName === "ritual" && (e.key === "Enter" || e.key === " ")) show("ask");
+      else if (viewName === "ask" && (e.key === "Enter" || e.key === " ")) drawRandom();
+      else if (viewName === "answer") {
+        if (e.key === "ArrowLeft") render(pageIndex - 1);
+        if (e.key === "ArrowRight") render(pageIndex + 1);
+        if (e.key === " " || e.key === "Enter") { e.preventDefault(); drawRandom(); }
+      }
+    });
+
+    (function bootFromQuery() {
+      const p = new URLSearchParams(location.search);
+      const v = p.get("view");
+      if (v === "ritual" || v === "ask" || v === "answer") show(v);
+      if (p.get("q")) qEl.value = p.get("q");
+      const page = Number(p.get("page"));
+      if (v === "answer") render(Number.isFinite(page) && page > 0 ? page - 1 : randomIndex(), false);
+    })();
+  </script>
+</body>
+</html>
