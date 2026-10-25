@@ -1,0 +1,45 @@
+# Criterion · SPIKE-S20-BTHETA-GRID-LIVE1430
+
+# SPIKE-S20-BTHETA-GRID-LIVE1430
+
+- 编号 / 日期 / 来源：SPIKE-S20-BTHETA-GRID-LIVE1430 / 2026-10-26 / Michael 语音·烧 Cursor（悟空）
+- 批次 ID：CLOUD-BTHETA-GRID
+- 性质：breadth θ **邻档机械网格**（延窗同跑）
+
+## 准则原文
+相对 B45+S20，**只改 breadth 门槛 θ**，网格 θ ∈ {**0.40, 0.45, 0.50, 0.55**}；其余冻结 spike_ft max5 + S20 + E0 + TV25。窗与 EXTEND-REBASE 对齐（≥2026-10-23）。
+
+## 改动点（唯一）
+`risk_on = (b ≥ θ)` 的 θ 扫描；每档单独一本书。
+
+## 假设
+弱宽度周少挨打 → **θ=0.50** 在网格内仍优于 0.45（延续 E01）；0.55 不塌、0.40 不优于 0.45。
+
+## 证伪
+θ=0.50 相对 0.45 盖不住 / 后段塌；或最优落在 0.40；或档间乱跳无平台 → 证伪「B50 邻域稳健」。
+
+## 邻档说明
+本刀即网格；**不做** 0.48/0.52 插值升格。勿重开已证伪宏观/RET 窗。
+
+## 主表
+四档 + 标明最优；产物 `.../SPIKE-S20-BTHETA-GRID-LIVE1430/`
+
+## 共用冻结
+- 成交：Fri ≥14:30 / 当日收盘；0.2%RT；**L≤1**
+- 面层默认：breadth≥45% + spike_ft max5 + E0 + TV25 + SHARPE20（各刀「唯一改动」另写）
+- 研究池 ≠ 实盘池；**不换冠**；不碰 strategy_exec / LIVE_OPS / 冠军主钉 / 固收+ / 红利袖
+- 探索尺子：Δret 须盖住 Δ|MDD|；报 2020–22 / 2023–26；强势段不踏空
+- **执行强制**：机械回测/扫参/延窗 **必须用 Cursor CloudAgent**（Cursor 自家模型跑批）；本机 Grok executor 仅可做准则核对与收件，勿替代云端批跑（烧 Cursor 池至约 11/1 周重置）
+- **并行**：勿打断/取消 `SPIKE-MOM121-W7525-LIVE1430`（hyp4 既定路径继续）
+
+
+## 交付
+四件套；云端一次扫完四档。
+
+
+## 本跑实现要点
+
+- 各书：`risk_on = (b ≥ θ)`，`b` 来自 `holdings_ro2_extended.csv`。
+- 冻结：spike_ft excl box_pending + SHARPE20 max5 + E0 + TV25 σ*=0.25 + Fri≥14:30/收盘 + 0.2%RT + L≤1。
+- 样本：2020-01-03→2026-10-23；kit `research_cache` + `cache_1430_snaps.json`。
+- 红线：只写 `research/cloud_batch/...`；不换冠。
