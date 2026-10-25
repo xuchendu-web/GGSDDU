@@ -1,0 +1,46 @@
+# ETF fundamental composite weights (must sum to 1.0).
+# See docs/SCORING.md for factor definitions and failure modes.
+
+version: "1.0"
+
+weights:
+  aum: 0.20
+  fee: 0.20
+  tracking_error: 0.20
+  concentration: 0.15
+  valuation: 0.15
+  flow: 0.10
+
+normalization:
+  # Scores are 0–100 per factor before weighting.
+  missing_factor_policy: "reweight" # reweight remaining factors; alternative: "zero"
+
+factor_params:
+  aum:
+    # log10(AUM USD); scores via cross-sectional percentile in universe
+    min_log_aum: 6.0   # ~$1M floor for numeric stability
+    max_log_aum: 11.5  # ~$300B cap for percentile mapping
+  fee:
+    # expense_ratio in decimal (0.0005 = 5 bps)
+    best_er: 0.0003
+    worst_er: 0.015
+  tracking_error:
+    # tracking_error_bps annualized vs stated benchmark
+    best_te_bps: 5
+    worst_te_bps: 150
+  concentration:
+    # top10_holdings_weight in [0,1]
+    best_top10: 0.25
+    worst_top10: 0.85
+  valuation:
+    # holdings_median_pe; stub uses ETF-level proxy field
+    best_pe: 12.0
+    worst_pe: 35.0
+  flow:
+    # net_flow_30d / aum_usd
+    best_flow_ratio: 0.05
+    worst_flow_ratio: -0.08
+
+output:
+  include_factor_columns: true
+  include_raw_columns: true
