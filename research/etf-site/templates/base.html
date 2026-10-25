@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}ETF 策略研究{% endblock %} · ETF 分析</title>
+<link rel="stylesheet" href="{{ base }}static/style.css">
+</head>
+<body>
+<div class="warn">回测与模拟跟踪仅供研究，不构成投资建议。历史表现不代表未来。</div>
+<header class="site-header">
+  <a class="logo" href="{{ base }}index.html">ETF 策略研究</a>
+  <nav class="primary" aria-label="主导航">
+    <a href="{{ base }}index.html"{% if nav_home %} aria-current="page"{% endif %}>首页</a>
+    <a href="{{ base }}projects/index.html"{% if nav_projects %} aria-current="page"{% endif %}>策略</a>
+    <a href="{{ base }}projects/compare.html"{% if nav_compare %} aria-current="page"{% endif %}>对比</a>
+    <a href="{{ base }}portfolios/index.html"{% if nav_portfolios %} aria-current="page"{% endif %}>模拟组合</a>
+    <a href="{{ base }}market/index.html"{% if nav_market %} aria-current="page"{% endif %}>市场</a>
+    <a href="{{ base }}about.html"{% if nav_about %} aria-current="page"{% endif %}>口径</a>
+  </nav>
+</header>
+<main>{% block body %}{% endblock %}</main>
+<footer class="site-footer">
+  <p class="note">构建 <span class="meta-built">{{ built }}</span> · 基准 {{ bench }}</p>
+  <p class="note">© 研究用途 · 非持牌投顾</p>
+</footer>
+<script src="{{ base }}static/site.js" defer></script>
+</body>
+</html>

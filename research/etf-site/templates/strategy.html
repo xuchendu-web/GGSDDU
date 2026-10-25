@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ st.name }}{% endblock %}
+{% block body %}
+<p class="crumb"><a href="{{ base }}projects/index.html">策略</a> / {{ st.name }}</p>
+<h1>{{ st.name }}</h1>
+<p class="lead">{{ st.oneliner }}</p>
+<p class="note">{{ st.status }}{% if st.note %} · {{ st.note }}{% endif %}</p>
+
+{% if signal %}
+<section class="signal" aria-label="最新信号">
+  <div>
+    <small>冠军策略 · 最新信号 {{ signal.asof }}</small>
+    <b class="{{ 'on' if signal.on else 'off' }}">{{ '开 · 持仓' if signal.on else '关 · 空仓（100% 现金）' }}</b>
+  </div>
+  <div>
+    <small>市场宽度（站上 20 日均线的 ETF 占比）</small>
+    <b class="tabular">{{ signal.breadth }}</b>
+    <small>{{ signal.n }} 只 · ≥45% 才开仓</small>
+  </div>
+</section>
+{% endif %}
+
+{% if m %}
+<div class="kpi">
+  <div>区间<b class="tabular">{{ m.start }}</b><span style="font-weight:400;text-transform:none;color:var(--ink-muted)">→ {{ m.end }}</span></div>
+  <div>累计<b class="tabular">{{ m.tot }}</b></div>
+  <div>CAGR<b class="tabular">{{ m.cagr }}</b></div>
+  <div>最大回撤<b class="tabular">{{ m.mdd }}</b></div>
+  <div>Calmar<b class="tabular">{{ m.calmar }}</b></div>
+  <div>波动<b class="tabular">{{ m.vol }}</b></div>
+  <div>Sharpe<b class="tabular">{{ m.sharpe }}</b></div>
+  <div>YTD<b class="tabular">{{ m.ytd }}</b></div>
+</div>
+{% else %}
+<div class="empty">该策略暂无可用净值序列。</div>
+{% endif %}
+
+{% if chart %}{{ chart|safe }}{% endif %}
+
+{% if yr %}
+<h2>分年收益</h2>
+<div class="scroll">
+<table>
+  <thead><tr><th>年份</th><th>策略</th><th>基准</th></tr></thead>
+  <tbody>
+  {% for row in yr %}
+  <tr><td>{{ row.y }}</td><td class="{{ 'pos' if row.neg else 'neg' }} tabular">{{ row.v }}</td><td class="tabular">{{ row.b }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+
+{% if st.rules %}
+<div class="rules">
+  <strong>规则摘要</strong>
+  <ul>{% for r in st.rules %}<li>{{ r }}</li>{% endfor %}</ul>
+</div>
+{% endif %}
+
+{% if body %}{{ body|safe }}{% endif %}
+{% endblock %}
