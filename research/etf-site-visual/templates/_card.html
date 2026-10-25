@@ -1,0 +1,12 @@
+<a class="card" href="{{ base }}{{ i.url }}">
+  <span class="ct">{{ i.name }}{% if sim|default(0) %}<span class="tag sim">模拟</span>{% endif %}{% if i.tag %}<span class="tag">{{ i.tag }}</span>{% endif %}</span>
+  {% if i.m %}
+  <div class="nums">
+    <span>年化<b class="pos">{{ i.m.cagr }}</b></span>
+    <span>回撤<b>{{ i.m.mdd }}</b></span>
+    <span>夏普<b>{{ i.m.sharpe }}</b></span>
+  </div>
+  {% endif %}
+  <p>{{ i.desc }}</p>
+  <small>截至 {{ i.m.end if i.m else '—' }}</small>
+</a>

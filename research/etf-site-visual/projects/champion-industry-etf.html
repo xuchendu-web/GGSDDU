@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>行业 ETF 动量冠军 · ETF 策略研究</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/style.css">
+  <script src="../static/charts.js" defer></script>
+</head>
+<body>
+<header>
+  <a class="logo" href="../index.html">ETF 策略研究</a>
+  <nav>
+    <a href="index.html">策略</a>
+    <a href="../market/index.html">市场</a>
+    <a href="../portfolios/index.html">模拟组合</a>
+    <a href="../about.html">说明</a>
+  </nav>
+</header>
+<div class="warn">本站内容均为历史回测或模拟组合，非真实资金业绩，不构成投资建议。</div>
+<main>
+<p class="crumb"><a href="index.html">策略</a> › 行业 ETF 动量冠军</p>
+<h1>行业 ETF 动量冠军</h1>
+<p class="lead">宽度过滤 + 行业动量轮动；周五 14:30 出信号，收盘调仓，含 0.2% 双边成本。</p>
+
+<section class="signal">
+  <div>
+    <small>最新信号 · 2025-10-24</small>
+    <b class="on">开 · 持仓</b>
+  </div>
+  <div>
+    <small>市场宽度</small>
+    <b>52.3%</b>
+    <small>38 只 ETF · 阈值 45%</small>
+  </div>
+</section>
+
+<section class="kpi" aria-label="关键指标">
+  <div>年化收益<b class="pos">18.6%</b></div>
+  <div>最大回撤<b>-12.4%</b></div>
+  <div>夏普比率<b>1.12</b></div>
+  <div>卡玛比率<b>1.50</b></div>
+</section>
+
+<section class="chart-section">
+  <h3>策略净值 vs CSI 偏股基金指数</h3>
+  <div class="chart-wrap" data-label-strategy="策略净值" data-label-benchmark="CSI偏股"
+    data-chart-dates='["2024-01","2024-04","2024-07","2024-10","2025-01","2025-04","2025-07","2025-10"]'
+    data-chart-values='{"strategy":["1.00","1.06","1.12","1.18","1.24","1.31","1.38","1.45"],"benchmark":["1.00","1.02","1.04","1.05","1.07","1.09","1.11","1.13"]}'>
+    <svg class="chart" viewBox="0 0 640 220" role="img" aria-label="净值对比图">
+      <defs>
+        <linearGradient id="dd-gradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f87171" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#f87171" stop-opacity="0.02"/>
+        </linearGradient>
+      </defs>
+      <line class="g" x1="48" y1="20" x2="620" y2="20"/>
+      <line class="g" x1="48" y1="70" x2="620" y2="70"/>
+      <line class="g" x1="48" y1="120" x2="620" y2="120"/>
+      <line class="g" x1="48" y1="170" x2="620" y2="170"/>
+      <text x="4" y="24">1.6</text>
+      <text x="4" y="124">1.0</text>
+      <text x="4" y="174">0.8</text>
+      <path class="sl" d="M 48 170 L 129 155 L 210 140 L 291 125 L 372 110 L 453 95 L 534 80 L 615 65"/>
+      <path class="bl" d="M 48 170 L 129 165 L 210 160 L 291 158 L 372 152 L 453 148 L 534 144 L 615 140"/>
+    </svg>
+  </div>
+  <p class="legend"><span class="lg s"></span>策略净值 <span class="lg b"></span>CSI偏股（基准）</p>
+</section>
+
+<section class="chart-section">
+  <h3>回撤曲线</h3>
+  <div class="chart-wrap" data-label-drawdown="回撤"
+    data-chart-dates='["2024-01","2024-04","2024-07","2024-10","2025-01","2025-04","2025-07","2025-10"]'
+    data-chart-values='{"drawdown":["0%","-2.1%","-4.5%","-3.2%","-8.6%","-6.0%","-5.2%","-4.0%"]}'>
+    <svg class="chart" viewBox="0 0 640 180" role="img" aria-label="回撤图">
+      <line class="g" x1="48" y1="30" x2="620" y2="30"/>
+      <line class="g" x1="48" y1="90" x2="620" y2="90"/>
+      <line class="g" x1="48" y1="150" x2="620" y2="150"/>
+      <text x="4" y="34">0%</text>
+      <text x="0" y="94">-15%</text>
+      <text x="0" y="154">-30%</text>
+      <path class="ddp" d="M 48 30 L 129 45 L 210 65 L 291 55 L 372 95 L 453 75 L 534 68 L 615 60 L 615 150 L 48 150 Z"/>
+      <path class="dd-line" d="M 48 30 L 129 45 L 210 65 L 291 55 L 372 95 L 453 75 L 534 68 L 615 60"/>
+    </svg>
+  </div>
+  <p class="legend"><span class="lg d"></span>相对前高回撤</p>
+</section>
+
+<h2>九策略同口径对照</h2>
+<p class="note">周五 14:30 信号、收盘成交、含 0.2% 双边成本；与冠军主策略同一回测窗口。</p>
+<div class="scroll">
+<table class="cmp">
+  <tr>
+    <th>策略</th><th>轨</th><th>年化</th><th>最大回撤</th><th>夏普</th><th>卡玛</th><th>胜率</th><th>截至</th>
+  </tr>
+  <tr class="row-champion"><td>行业 ETF 动量冠军<span class="badge">冠军</span></td><td>动量</td><td class="pos">18.6%</td><td>-12.4%</td><td>1.12</td><td>1.50</td><td>58%</td><td>2025-10-24</td></tr>
+  <tr><td>双周期动量</td><td>动量</td><td class="pos">14.2%</td><td>-18.1%</td><td>0.86</td><td>0.78</td><td>54%</td><td>2025-10-24</td></tr>
+  <tr><td>低波增强动量</td><td>动量</td><td class="pos">12.8%</td><td>-15.6%</td><td>0.79</td><td>0.82</td><td>55%</td><td>2025-10-24</td></tr>
+  <tr><td>趋势 MA 组合</td><td>趋势</td><td class="pos">9.8%</td><td>-22.5%</td><td>0.52</td><td>0.44</td><td>51%</td><td>2025-10-24</td></tr>
+  <tr><td>多频确认动量</td><td>多频</td><td class="pos">11.5%</td><td>-16.8%</td><td>0.71</td><td>0.68</td><td>53%</td><td>2025-10-24</td></tr>
+  <tr><td>红利低波袖</td><td>参照</td><td class="pos">8.2%</td><td>-19.2%</td><td>0.48</td><td>0.43</td><td>52%</td><td>2025-10-24</td></tr>
+  <tr><td>纯突破（证伪）</td><td>趋势</td><td class="pos">6.1%</td><td>-28.4%</td><td>0.31</td><td>0.21</td><td>48%</td><td>2025-10-24</td></tr>
+  <tr><td>日频独立（暂停）</td><td>多频</td><td class="pos">7.4%</td><td>-25.1%</td><td>0.38</td><td>0.29</td><td>49%</td><td>2025-10-24</td></tr>
+  <tr><td>等权行业基准</td><td>参照</td><td class="pos">5.5%</td><td>-24.8%</td><td>0.35</td><td>0.22</td><td>50%</td><td>2025-10-24</td></tr>
+</table>
+</div>
+
+<details class="rep">
+  <summary>完整回测报告（PDF/HTML）</summary>
+  <p class="note">展开后链至生成报告；视觉层仅保留折叠样式，不改变内容结构。</p>
+</details>
+</main>
+<footer>数据更新：2025-10-25 17:00（北京时间）· <a href="../about.html">口径与免责声明</a></footer>
+</body>
+</html>

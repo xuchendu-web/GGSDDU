@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}{{ proj.name }}{% endblock %}
+{% block head %}
+<script src="{{ base }}static/charts.js" defer></script>
+{% endblock %}
+{% block body %}
+<p class="crumb"><a href="index.html">策略</a> › {{ proj.name }}</p>
+<h1>{{ proj.name }}</h1>
+<p class="lead">{{ proj.desc }}</p>
+
+{% if signal %}
+<section class="signal">
+  <div>
+    <small>最新信号 · {{ signal.asof }}</small>
+    <b class="{{ 'on' if signal.on else 'off' }}">{{ '开 · 持仓' if signal.on else '关 · 空仓（100%现金）' }}</b>
+  </div>
+  <div>
+    <small>市场宽度</small>
+    <b>{{ signal.breadth }}</b>
+    <small>{{ signal.n }} 只 ETF · 阈值 45%</small>
+  </div>
+</section>
+{% endif %}
+
+<section class="kpi" aria-label="关键指标">
+  <div>年化收益<b class="pos">{{ metrics.cagr }}</b></div>
+  <div>最大回撤<b>{{ metrics.mdd }}</b></div>
+  <div>夏普比率<b>{{ metrics.sharpe }}</b></div>
+  <div>卡玛比率<b>{{ metrics.calmar }}</b></div>
+</section>
+
+<section class="chart-section">
+  <h3>策略净值 vs CSI 偏股基金指数</h3>
+  <div class="chart-wrap" data-label-strategy="策略净值" data-label-benchmark="CSI偏股" data-chart-dates='{{ chart.dates_json }}' data-chart-values='{{ chart.nav_values_json }}'>
+    <svg class="chart" viewBox="0 0 640 220" role="img" aria-label="净值对比图">
+      <defs>
+        <linearGradient id="dd-gradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f87171" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#f87171" stop-opacity="0.02"/>
+        </linearGradient>
+      </defs>
+      <line class="g" x1="48" y1="20" x2="620" y2="20"/>
+      <line class="g" x1="48" y1="70" x2="620" y2="70"/>
+      <line class="g" x1="48" y1="120" x2="620" y2="120"/>
+      <line class="g" x1="48" y1="170" x2="620" y2="170"/>
+      <text x="4" y="24">1.6</text>
+      <text x="4" y="124">1.0</text>
+      <text x="4" y="174">0.8</text>
+      <path class="sl" d="{{ chart.nav_strategy_path }}"/>
+      <path class="bl" d="{{ chart.nav_benchmark_path }}"/>
+    </svg>
+  </div>
+  <p class="legend"><span class="lg s"></span>策略净值 <span class="lg b"></span>CSI偏股（基准）</p>
+</section>
+
+<section class="chart-section">
+  <h3>回撤曲线</h3>
+  <div class="chart-wrap" data-label-drawdown="回撤" data-chart-dates='{{ chart.dates_json }}' data-chart-values='{{ chart.dd_values_json }}'>
+    <svg class="chart" viewBox="0 0 640 180" role="img" aria-label="回撤图">
+      <defs>
+        <linearGradient id="dd-gradient-2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f87171" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#f87171" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <line class="g" x1="48" y1="30" x2="620" y2="30"/>
+      <line class="g" x1="48" y1="90" x2="620" y2="90"/>
+      <line class="g" x1="48" y1="150" x2="620" y2="150"/>
+      <text x="4" y="34">0%</text>
+      <text x="0" y="94">-15%</text>
+      <text x="0" y="154">-30%</text>
+      <path class="ddp" d="{{ chart.dd_area_path }}"/>
+      <path class="dd-line" d="{{ chart.dd_line_path }}"/>
+    </svg>
+  </div>
+  <p class="legend"><span class="lg d"></span>相对前高回撤</p>
+</section>
+
+<h2>九策略同口径对照</h2>
+<p class="note">周五 14:30 信号、收盘成交、含 0.2% 双边成本；与冠军主策略同一回测窗口。</p>
+<div class="scroll">
+<table class="cmp">
+  <tr>
+    <th>策略</th><th>轨</th><th>年化</th><th>最大回撤</th><th>夏普</th><th>卡玛</th><th>胜率</th><th>截至</th>
+  </tr>
+  {% for row in nine_strategies %}
+  <tr class="{{ 'row-champion' if row.champion else '' }}">
+    <td>{{ row.name }}{% if row.champion %}<span class="badge">冠军</span>{% endif %}</td>
+    <td>{{ row.track }}</td>
+    <td class="pos">{{ row.cagr }}</td>
+    <td>{{ row.mdd }}</td>
+    <td>{{ row.sharpe }}</td>
+    <td>{{ row.calmar }}</td>
+    <td>{{ row.winrate }}</td>
+    <td>{{ row.end }}</td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+
+<details class="rep">
+  <summary>完整回测报告（PDF/HTML）</summary>
+  <p class="note">展开后链至生成报告；视觉层仅保留折叠样式，不改变内容结构。</p>
+</details>
+{% endblock %}
