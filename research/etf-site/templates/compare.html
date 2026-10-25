@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% set nav_compare = true %}
+{% block title %}策略对比{% endblock %}
+{% block body %}
+<h1>策略横向对比</h1>
+<p class="note section-intro">统一口径：周五 ≥14:30 信号、收盘成交、0.2% 双边成本、L≤1。含冠军、红利袖及进表的研究策略。</p>
+<div class="scroll">
+<table class="cmp">
+  <thead>
+    <tr>
+      <th>策略</th><th>累计</th><th>CAGR</th><th>最大回撤</th><th>Calmar</th><th>Sharpe</th><th>区间</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in projs %}
+  {% if i.m %}
+  <tr>
+    <td><a href="{{ base }}{{ i.url }}">{{ i.st.name }}</a></td>
+    <td class="tabular">{{ i.m.tot }}</td>
+    <td class="tabular">{{ i.m.cagr }}</td>
+    <td class="tabular">{{ i.m.mdd }}</td>
+    <td class="tabular">{{ i.m.calmar }}</td>
+    <td class="tabular">{{ i.m.sharpe }}</td>
+    <td class="tabular"><small>{{ i.m.start }}–{{ i.m.end }}</small></td>
+  </tr>
+  {% endif %}
+  {% endfor %}
+  {% for i in cmp_extra %}
+  <tr>
+    <td><a href="{{ base }}{{ i.url }}">{{ i.st.name }}</a>{% if i.tag %} <span class="tag">{{ i.tag }}</span>{% endif %}</td>
+    <td class="tabular">{{ i.m.tot }}</td>
+    <td class="tabular">{{ i.m.cagr }}</td>
+    <td class="tabular">{{ i.m.mdd }}</td>
+    <td class="tabular">{{ i.m.calmar }}</td>
+    <td class="tabular">{{ i.m.sharpe }}</td>
+    <td class="tabular"><small>{{ i.m.start }}–{{ i.m.end }}</small></td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% if not projs and not cmp_extra %}
+<div class="empty">暂无对比数据，请先运行构建脚本生成净值。</div>
+{% endif %}
+<p class="note">{{ tracks.footnote }}</p>
+{% endblock %}
