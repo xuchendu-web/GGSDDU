@@ -1,2 +1,0 @@
-[console_scripts]
-etf-score = etf_fundamental_score.cli:main
