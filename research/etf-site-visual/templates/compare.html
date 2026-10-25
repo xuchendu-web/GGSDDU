@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}三轨对照{% endblock %}
+{% block body %}
+<p class="crumb"><a href="index.html">策略</a> › 三轨对照</p>
+<h1>动量 / 趋势 / 多频 · 横向对照</h1>
+<p class="note">{{ tracks.footnote }}</p>
+
+<h2>能用积木 vs 已证伪</h2>
+<div class="scroll"><table class="cmp"><tr><th>轨</th><th>能用积木</th><th>已证伪 / 暂停</th><th>来源</th></tr>
+{% for t in tracks.tracks %}<tr><td><b>{{ t.name }}</b></td><td>{{ t.usable }}</td><td>{{ t.dead }}</td><td>{{ t.src }}</td></tr>{% endfor %}
+</table></div>
+
+<h2>同口径数值表</h2>
+<p class="note">现任冠军与红利袖用实盘/研究 equity；动量/趋势/多频有 nav 的从净值重算年化·回撤·卡玛（与 SUMMARY 同样本）；多频缺 nav 时标 SUMMARY 静态行。</p>
+<div class="scroll"><table class="cmp"><tr><th>策略</th><th>轨</th><th>年化</th><th>最大回撤</th><th>夏普</th><th>卡玛</th><th>截至</th></tr>
+{% for i in projs %}{% if i.m %}<tr><td><a href="{{ base }}{{ i.url }}">{{ i.name }}</a></td><td>现任/参照</td><td>{{ i.m.cagr }}</td><td>{{ i.m.mdd }}</td><td>{{ i.m.sharpe }}</td><td>{{ i.m.calmar }}</td><td>{{ i.m.end }}</td></tr>{% endif %}{% endfor %}
+{% for i in fut %}{% if i.m %}<tr><td><a href="{{ base }}{{ i.url }}">{{ i.name }}</a></td><td>动量</td><td>{{ i.m.cagr }}</td><td>{{ i.m.mdd }}</td><td>{{ i.m.sharpe }}</td><td>{{ i.m.calmar }}</td><td>{{ i.m.end }}</td></tr>{% endif %}{% endfor %}
+{% for i in cmp_extra %}{% if i.m %}<tr><td><a href="{{ base }}{{ i.url }}">{{ i.name }}</a></td><td>{{ i.track }}</td><td>{{ i.m.cagr }}</td><td>{{ i.m.mdd }}</td><td>{{ i.m.sharpe|default('—') }}</td><td>{{ i.m.calmar }}</td><td>{{ i.m.end }}</td></tr>{% endif %}{% endfor %}
+</table></div>
+
+<p class="note">总钉：不换冠军、不下单。趋势线收益 38–45% 不接近冠军同引擎。</p>
+{% endblock %}
