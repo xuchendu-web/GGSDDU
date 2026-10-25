@@ -10,7 +10,7 @@
 | 总暴露 | TV（仅扫 σ*） |
 | 信号 / 成交 | LIVE1430（Fri ≥14:30 → 当日收盘） |
 | 成本 / 杠杆 | 0.2% RT；**L≤1** |
-| 样本窗 | 2020-01-03 → 2026-10-23（与 uploads 同窗对照一致） |
+| 样本窗 | **2020-01-03 → 2026-09-24**（TV 邻档引擎窗；见 `data/tv22_summary.json`） |
 | 研究池 | ≠ 实盘池 |
 
 **唯一变动**：总暴露目标波动率系数 **σ\***，基线 **TV25（σ\*=0.25）**；邻档 **TV20 / TV22 / TV28 / TV30**（σ\*∈{0.20, 0.22, 0.28, 0.30}）。
@@ -23,7 +23,7 @@
 
 相对同窗 **B45+S20（TV25）**：
 
-1. 取 **Δret**（累计收益差，百分点或比例差，与 `run_tv_neighbor_scan.py` 一致）。
+1. 取 **Δret**（累计收益差，比例差，与 `run_tv_neighbor_scan.py` 一致）。
 2. 取 **Δ|MDD|**（最大回撤绝对值之差，邻档 \|MDD\| − 基线 \|MDD\|）。
 3. **2023–26 段**：邻档累计收益 **≥ 基线 2023–26 累计收益**（不踏空后段）。
 
@@ -36,7 +36,8 @@
 - NOBREADTH / RET12 纯填席 / Z121 / BCONF2（已证伪或同构重派）
 - 实盘池、`strategy_exec` / LIVE_OPS / 冠军主钉
 
-## 本仓数据状态
+## 本仓数据状态（已接引擎）
 
-- 基线 **LIVE1430-B45-S20（TV25）** 指标来自 uploads `table_bead.csv`（NOB 批同窗引擎口径引用）。
-- **TV 邻档四档**：仓库无净值/持仓缓存 → 见 `main_table.md` 中 **synthetic/placeholder** 行；真扫需接 `strategy-weekly` 引擎（见 `NOTES.md`）。
+- 真值：`data/tv_neighbor_engine_full.csv`、`data/tv_neighbor_engine.csv`（含 TV33 旁注）、`data/tv22_summary.json`
+- **TV30**：H1 四邻档之一，**本批引擎未跑**（`main_table` 标 `not_run`）
+- 主表 / 判定：`main_table.md`、`scan_result.json`（`python run_tv_neighbor_scan.py` 再生）

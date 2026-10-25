@@ -1,32 +1,36 @@
 # 实现缺口（TV 邻档机械扫）
 
-## 已有
+## 已闭合
 
-- `data/table_bead_baseline.csv`：自 uploads 复制的同窗主表（含 **LIVE1430-B45-S20** = TV25 基线）。
-- `data/summary_reference.json`：NOB 批 `summary_e47d.json`（引擎口径、样本窗、近似说明；**非 TV 扫结果**）。
-- `run_tv_neighbor_scan.py`：读基线 → 合并邻档结果 CSV（若存在）或输出 **placeholder** → 写 `main_table.md` + `scan_result.json`。
-- `HYPOTHESIS.md`：H1 + 证伪规则。
+| 项 | 路径 |
+|----|------|
+| TV20/22/25/28 引擎主表 | `data/tv_neighbor_engine_full.csv`（uploads `tv22_table.csv`） |
+| TV33 + 紧凑列 | `data/tv_neighbor_engine.csv` |
+| 引擎元数据 / pick_diffs | `data/tv22_summary.json` |
+| 机械 H1 判定 | `run_tv_neighbor_scan.py` → `scan_result.json` |
 
-## 缺失（真扫必补）
+引擎口径（摘自 summary）：持仓与 B45+S20 相同，TV 只缩放 L；σ* 唯一改动；样本 **2020-01-03→2026-09-24**（14:30 面板至 2026-09-25，**未延至 2026-10-23**）。
+
+## 仍缺
 
 | 缺口 | 说明 |
 |------|------|
-| SPIKE 研究引擎 | uploads 指向 `/workspace/strategy-weekly/...`；**本 GGSDDU 仓无 strategy 代码**。 |
-| 14:30 / qfq / face | `fri_1430_through_20261023.csv`、week-day panel、B45 breadth 链未挂载。 |
-| TV 暴露模块 | 需在引擎内仅改 σ\*∈{0.20,0.22,0.25,0.28,0.30}，冻结 E0 + S20 + max5。 |
-| 邻档净值 / 持仓 | 无 `nav_tv20.csv` 等；放入 `data/tv_neighbor_engine.csv` 后重跑脚本即得 **real** 主表。 |
-| 换手 | 基线 uploads 无周换手列；NOB summary 有 `n_trades=268`（B45-S20），邻档需引擎输出 `turnover` 或等价。 |
+| **TV30（σ*=0.30）** | H1 四邻档之一，当前引擎包无行；需补跑后写入 `tv_neighbor_engine*.csv` 再执行脚本。 |
+| 延窗至 2026-10-23 | 与 NOB 批同窗对齐需更新 14:30 面板后重算 TV 邻档。 |
+| `cash_week_pct` / `risk_on_week_pct` | 全表未在 TV 引擎 CSV 中输出；主表 turnover 用 `avg_turnover_1way`。 |
 
-## 接引擎后操作
+## 用法
 
 ```bash
-python3 research/spike_tv_neighbors/run_tv_neighbor_scan.py \
-  --engine-csv research/spike_tv_neighbors/data/tv_neighbor_engine.csv
+pip install -r requirements.txt
+python run_tv_neighbor_scan.py
+# 或显式：
+python run_tv_neighbor_scan.py \
+  --engine-csv data/tv_neighbor_engine.csv \
+  --engine-full-csv data/tv_neighbor_engine_full.csv
 ```
-
-`tv_neighbor_engine.csv` 列：`book,sigma,ret,maxDD,CAGR,Calmar,2020-22_ret,2020-22_DD,2020-22_Calmar,2023-26_ret,2023-26_DD,2023-26_Calmar,avgL,cash_week_pct,turnover,data_source`
 
 ## 红线（已遵守）
 
 - 未改生产 / 实盘配置；未提交密钥。
-- 本批 uploads 为 MOM121 准则 + NOB 对照表，**非 TV 邻档回测输出**。
+- 指标均来自 uploads 引擎 CSV/JSON，脚本不插值、不伪造。

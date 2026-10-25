@@ -16,8 +16,12 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 DEFAULT_BASELINE_CSV = DATA / "table_bead_baseline.csv"
+DEFAULT_ENGINE_CSV = DATA / "tv_neighbor_engine.csv"
+DEFAULT_ENGINE_FULL_CSV = DATA / "tv_neighbor_engine_full.csv"
+SAMPLE_WINDOW = "2020-01-03 → 2026-09-24"
 
 SIGMA_NEIGHBORS = (0.20, 0.22, 0.28, 0.30)
+SIGMA_ANNEX = (0.33,)  # H1 集外旁注（引擎有跑、不在 H1 四邻档）
 BASELINE_SIGMA = 0.25
 BASELINE_BOOK = "LIVE1430-B45-S20"
 BASELINE_BOOK_TV = "B45+S20-TV25"
@@ -85,17 +89,88 @@ def baseline_row(baseline: pd.Series) -> dict:
     return out
 
 
-def load_engine(path: Path) -> pd.DataFrame:
-    df = pd.read_csv(path)
+def normalize_engine_df(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    if "sigma_star" in df.columns:
+        df["sigma"] = df["sigma_star"]
+    if "turnover" not in df.columns:
+        if "avg_turnover" in df.columns:
+            df["turnover"] = df["avg_turnover"]
+        elif "avg_turnover_1way" in df.columns:
+            df["turnover"] = df["avg_turnover_1way"]
+    if "data_source" not in df.columns:
+        df["data_source"] = "real/engine_live1430_tv_neighbor"
+    for c in METRIC_COLS:
+        if c not in df.columns:
+            df[c] = float("nan")
+    return df
+
+
+def load_engine(path: Path, full_path: Path | None = None) -> pd.DataFrame:
+    if full_path and full_path.exists():
+        df = normalize_engine_df(pd.read_csv(full_path))
+    else:
+        df = normalize_engine_df(pd.read_csv(path))
+    compact = normalize_engine_df(pd.read_csv(path))
+    missing_books = set(compact["book"]) - set(df["book"])
+    if missing_books:
+        df = pd.concat([df, compact.loc[compact["book"].isin(missing_books)]], ignore_index=True)
     required = {"book", "sigma", "ret", "maxDD", "Calmar", "2023-26_ret"}
     missing = required - set(df.columns)
     if missing:
         raise SystemExit(f"engine csv missing columns: {sorted(missing)}")
-    if "data_source" not in df.columns:
-        df["data_source"] = "real/engine"
-    if "turnover" not in df.columns:
-        df["turnover"] = float("nan")
     return df
+
+
+def row_from_engine(rec: pd.Series, display_book: str | None = None, sigma: float | None = None) -> dict:
+    sig = sigma
+    if sig is None:
+        if "sigma" in rec.index and pd.notna(rec["sigma"]):
+            sig = float(rec["sigma"])
+        elif pd.notna(rec.name):
+            sig = float(rec.name)
+        else:
+            sig = float("nan")
+    out = {
+        "book": display_book or rec["book"],
+        "sigma": sig,
+        "data_source": rec.get("data_source", "real/engine_live1430_tv_neighbor"),
+    }
+    for c in METRIC_COLS:
+        out[c] = float(rec[c]) if c in rec.index and pd.notna(rec[c]) else float("nan")
+    out["turnover"] = float(rec["turnover"]) if "turnover" in rec.index and pd.notna(rec["turnover"]) else float("nan")
+    return out
+
+
+def neighbors_from_engine(eng: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    by_sigma = eng.set_index("sigma")
+    for sigma in SIGMA_NEIGHBORS:
+        label = f"B45+S20-TV{int(round(sigma * 100)):02d}"
+        if sigma in by_sigma.index:
+            rows.append(row_from_engine(by_sigma.loc[sigma], display_book=label, sigma=sigma))
+        else:
+            rows.append(
+                {
+                    "book": label,
+                    "sigma": sigma,
+                    "data_source": "not_run/missing_engine_row",
+                    **{c: float("nan") for c in METRIC_COLS},
+                    "turnover": float("nan"),
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def annex_from_engine(eng: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for sigma in SIGMA_ANNEX:
+        sub = eng.loc[eng["sigma"] == sigma]
+        if sub.empty:
+            continue
+        rec = sub.iloc[0]
+        rows.append(row_from_engine(rec, display_book=f"B45+S20-TV{int(round(sigma * 100)):02d}"))
+    return pd.DataFrame(rows)
 
 
 def evaluate_h1(base: dict, neighbors: pd.DataFrame) -> dict:
@@ -107,7 +182,8 @@ def evaluate_h1(base: dict, neighbors: pd.DataFrame) -> dict:
 
     falsified_by = []
     for _, r in neighbors.iterrows():
-        if r["data_source"].startswith("placeholder"):
+        src = str(r["data_source"])
+        if src.startswith("placeholder") or src.startswith("not_run"):
             continue
         if pd.isna(r["ret"]) or pd.isna(r["maxDD"]) or pd.isna(r["2023-26_ret"]):
             continue
@@ -127,12 +203,16 @@ def evaluate_h1(base: dict, neighbors: pd.DataFrame) -> dict:
             )
 
     if falsified_by:
+        names = ", ".join(f"{x['book']}(σ*={x['sigma']:.2f})" for x in falsified_by)
         return {
             "h1_holds": False,
-            "verdict": "H1 证伪：邻域不平坦（见 falsified_by）",
+            "verdict": f"H1 证伪：邻域不平坦 — {names}",
             "falsified_by": falsified_by,
         }
-    real_rows = neighbors[~neighbors["data_source"].str.startswith("placeholder")]
+    real_rows = neighbors[
+        ~neighbors["data_source"].str.startswith("placeholder")
+        & ~neighbors["data_source"].str.startswith("not_run")
+    ]
     if real_rows.empty:
         return {
             "h1_holds": None,
@@ -160,11 +240,17 @@ def fmt_pct(x: float, kind: str) -> str:
     return str(x)
 
 
-def write_main_table(path: Path, base: dict, neighbors: pd.DataFrame, eval_out: dict) -> None:
+def write_main_table(
+    path: Path,
+    base: dict,
+    neighbors: pd.DataFrame,
+    eval_out: dict,
+    annex: pd.DataFrame | None = None,
+) -> None:
     lines = [
         "# main_table — TV σ* 邻档 vs B45+S20-TV25",
         "",
-        f"样本窗：2020-01-03 → 2026-10-23（基线来自 uploads；邻档见 `data_source`）",
+        f"样本窗：{SAMPLE_WINDOW}（SPIKE-S20-TV22-LIVE1430 引擎；`data/tv_neighbor_engine_full.csv`）",
         "",
         f"**机械结论**：{eval_out['verdict']}",
         "",
@@ -199,7 +285,8 @@ def write_main_table(path: Path, base: dict, neighbors: pd.DataFrame, eval_out: 
     b_ret, b_abs = base["ret"], abs(base["maxDD"])
     b_c, b_2326 = base["Calmar"], base["2023-26_ret"]
     for _, r in neighbors.sort_values("sigma").iterrows():
-        if str(r["data_source"]).startswith("placeholder") or pd.isna(r["ret"]):
+        src = str(r["data_source"])
+        if src.startswith("placeholder") or src.startswith("not_run") or pd.isna(r["ret"]):
             lines.append(f"| {r['book']} | — | — | — | — | — |")
             continue
         d_ret_pp = 100 * (r["ret"] - b_ret)
@@ -211,37 +298,67 @@ def write_main_table(path: Path, base: dict, neighbors: pd.DataFrame, eval_out: 
             f"| {r['book']} | {d_ret_pp:+.1f} | {d_abs_pp:+.1f} | {d_cal:+.3f} | {covers} | {bull} |"
         )
 
+    if annex is not None and not annex.empty:
+        lines.extend(
+            [
+                "",
+                "## H1 集外旁注（引擎有跑，不参与 H1 四邻档判定）",
+                "",
+                "| book | σ* | ret | maxDD | Calmar | 2023–26 ret | turnover |",
+                "|------|-----|-----|-------|--------|-------------|----------|",
+            ]
+        )
+        for _, r in annex.sort_values("sigma").iterrows():
+            lines.append(
+                f"| {r['book']} | {r['sigma']:.2f} | {fmt_pct(r['ret'], 'ret')} | "
+                f"{fmt_pct(r['maxDD'], 'dd')} | {fmt_pct(r['Calmar'], 'ratio')} | "
+                f"{fmt_pct(r['2023-26_ret'], 'ret')} | {fmt_pct(r.get('turnover', float('nan')), 'turnover')} |"
+            )
+
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--baseline-csv", type=Path, default=DEFAULT_BASELINE_CSV)
-    ap.add_argument("--engine-csv", type=Path, default=None)
+    ap.add_argument("--engine-csv", type=Path, default=DEFAULT_ENGINE_CSV)
+    ap.add_argument("--engine-full-csv", type=Path, default=DEFAULT_ENGINE_FULL_CSV)
     ap.add_argument("--out-json", type=Path, default=ROOT / "scan_result.json")
     ap.add_argument("--out-md", type=Path, default=ROOT / "main_table.md")
     args = ap.parse_args()
 
-    baseline_s = load_baseline(args.baseline_csv)
-    base = baseline_row(baseline_s)
-
-    if args.engine_csv and args.engine_csv.exists():
-        eng = load_engine(args.engine_csv)
-        neighbors = eng[eng["sigma"].isin(SIGMA_NEIGHBORS)].copy()
-        if neighbors.empty:
-            neighbors = placeholder_neighbors(baseline_s)
+    annex = pd.DataFrame()
+    if args.engine_csv.exists():
+        eng = load_engine(args.engine_csv, args.engine_full_csv)
+        base_row = eng.loc[eng["sigma"] == BASELINE_SIGMA]
+        if base_row.empty:
+            base_row = eng.loc[eng["book"] == BASELINE_BOOK]
+        if base_row.empty:
+            raise SystemExit("engine missing TV25 baseline row")
+        base = row_from_engine(base_row.iloc[0], display_book=BASELINE_BOOK_TV)
+        neighbors = neighbors_from_engine(eng)
+        annex = annex_from_engine(eng)
     else:
+        baseline_s = load_baseline(args.baseline_csv)
+        base = baseline_row(baseline_s)
         neighbors = placeholder_neighbors(baseline_s)
 
     eval_out = evaluate_h1(base, neighbors)
-    write_main_table(args.out_md, base, neighbors, eval_out)
+    write_main_table(args.out_md, base, neighbors, eval_out, annex=annex)
 
     payload = {
+        "sample_window": SAMPLE_WINDOW,
         "baseline_book": BASELINE_BOOK_TV,
         "sigma_neighbors": list(SIGMA_NEIGHBORS),
         "baseline": base,
         "neighbors": neighbors.to_dict(orient="records"),
+        "annex": annex.to_dict(orient="records"),
         "evaluation": eval_out,
+        "engine_sources": {
+            "compact": str(args.engine_csv),
+            "full": str(args.engine_full_csv),
+            "summary": str(DATA / "tv22_summary.json"),
+        },
     }
     args.out_json.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
     print(json.dumps({"verdict": eval_out["verdict"], "out_md": str(args.out_md)}, ensure_ascii=False))
