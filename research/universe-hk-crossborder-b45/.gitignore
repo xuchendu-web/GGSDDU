@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+output/
+mcp_queue/
+mcp_pages/
+mcp_res/
+*.done
+join_nav_jobs.jsonl
+nav_jobs.jsonl
+quarter_nav_jobs.jsonl

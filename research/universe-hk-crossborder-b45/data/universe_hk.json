@@ -1,0 +1,259 @@
+{
+  "group": "hk_crossborder",
+  "secucodes": [
+    "159202",
+    "159303",
+    "159519",
+    "159557",
+    "159605",
+    "159607",
+    "159615",
+    "159688",
+    "159699",
+    "159740",
+    "159741",
+    "159742",
+    "159747",
+    "159750",
+    "159850",
+    "159892",
+    "159920",
+    "510900",
+    "513010",
+    "513050",
+    "513060",
+    "513120",
+    "513130",
+    "513140",
+    "513170",
+    "513180",
+    "513210",
+    "513260",
+    "513280",
+    "513330",
+    "513380",
+    "513530",
+    "513580",
+    "513810",
+    "513890",
+    "513950",
+    "513970",
+    "520500",
+    "520520",
+    "520570",
+    "520590",
+    "520920"
+  ],
+  "etfs": [
+    {
+      "SecuCode": "159202",
+      "SecuAbbr": "万家恒生互联网科技业ETF(QDII)",
+      "InnerCode": 676803
+    },
+    {
+      "SecuCode": "159303",
+      "SecuAbbr": "大成恒生医疗保健ETF(QDII)",
+      "InnerCode": 617599
+    },
+    {
+      "SecuCode": "159519",
+      "SecuAbbr": "国泰中证香港内地国有企业ETF(QDII)",
+      "InnerCode": 560648
+    },
+    {
+      "SecuCode": "159557",
+      "SecuAbbr": "嘉实恒生医疗保健ETF(QDII)",
+      "InnerCode": 595700
+    },
+    {
+      "SecuCode": "159605",
+      "SecuAbbr": "广发中证海外中国互联网30(QDII-ETF)",
+      "InnerCode": 409522
+    },
+    {
+      "SecuCode": "159607",
+      "SecuAbbr": "嘉实中证海外中国互联网30ETF(QDII)",
+      "InnerCode": 409206
+    },
+    {
+      "SecuCode": "159615",
+      "SecuAbbr": "南方恒生生物科技ETF(QDII)",
+      "InnerCode": 449596
+    },
+    {
+      "SecuCode": "159688",
+      "SecuAbbr": "华安恒生互联网科技业ETF(QDII)",
+      "InnerCode": 493029
+    },
+    {
+      "SecuCode": "159699",
+      "SecuAbbr": "广发恒生消费(QDII-ETF)",
+      "InnerCode": 555826
+    },
+    {
+      "SecuCode": "159740",
+      "SecuAbbr": "大成恒生科技ETF(QDII)",
+      "InnerCode": 366690
+    },
+    {
+      "SecuCode": "159741",
+      "SecuAbbr": "嘉实恒生科技ETF(QDII)",
+      "InnerCode": 367384
+    },
+    {
+      "SecuCode": "159742",
+      "SecuAbbr": "博时恒生科技ETF(QDII)",
+      "InnerCode": 366689
+    },
+    {
+      "SecuCode": "159747",
+      "SecuAbbr": "南方中证香港科技ETF(QDII)",
+      "InnerCode": 374945
+    },
+    {
+      "SecuCode": "159750",
+      "SecuAbbr": "招商中证香港科技ETF(QDII)",
+      "InnerCode": 407918
+    },
+    {
+      "SecuCode": "159850",
+      "SecuAbbr": "华夏恒生中国企业ETF(QDII)",
+      "InnerCode": 346201
+    },
+    {
+      "SecuCode": "159892",
+      "SecuAbbr": "华夏恒生生物科技ETF(QDII)",
+      "InnerCode": 392413
+    },
+    {
+      "SecuCode": "159920",
+      "SecuAbbr": "华夏恒生ETF",
+      "InnerCode": 18667
+    },
+    {
+      "SecuCode": "510900",
+      "SecuAbbr": "易方达恒生国企(QDII-ETF)",
+      "InnerCode": 18670
+    },
+    {
+      "SecuCode": "513010",
+      "SecuAbbr": "易方达恒生科技ETF(QDII)",
+      "InnerCode": 366688
+    },
+    {
+      "SecuCode": "513050",
+      "SecuAbbr": "易方达中证海外中国互联网50(QDII-ETF)",
+      "InnerCode": 105015
+    },
+    {
+      "SecuCode": "513060",
+      "SecuAbbr": "博时恒生医疗保健(QDII-ETF)",
+      "InnerCode": 352533
+    },
+    {
+      "SecuCode": "513120",
+      "SecuAbbr": "广发中证香港创新药(QDII-ETF)",
+      "InnerCode": 451093
+    },
+    {
+      "SecuCode": "513130",
+      "SecuAbbr": "华泰柏瑞南方东英恒生科技指数ETF(QDII)",
+      "InnerCode": 366691
+    },
+    {
+      "SecuCode": "513140",
+      "SecuAbbr": "华泰柏瑞中证港股通金融服务ETF(QDII)",
+      "InnerCode": 491796
+    },
+    {
+      "SecuCode": "513170",
+      "SecuAbbr": "鹏华恒生中国央企ETF(QDII)",
+      "InnerCode": 601245
+    },
+    {
+      "SecuCode": "513180",
+      "SecuAbbr": "华夏恒生科技ETF(QDII)",
+      "InnerCode": 366701
+    },
+    {
+      "SecuCode": "513210",
+      "SecuAbbr": "易方达恒生ETF(QDII)",
+      "InnerCode": 605883
+    },
+    {
+      "SecuCode": "513260",
+      "SecuAbbr": "汇添富恒生科技ETF",
+      "InnerCode": 448573
+    },
+    {
+      "SecuCode": "513280",
+      "SecuAbbr": "汇添富恒生生物科技ETF",
+      "InnerCode": 448566
+    },
+    {
+      "SecuCode": "513330",
+      "SecuAbbr": "华夏恒生互联网科技业ETF(QDII)",
+      "InnerCode": 341760
+    },
+    {
+      "SecuCode": "513380",
+      "SecuAbbr": "广发恒生科技(QDII-ETF)",
+      "InnerCode": 441030
+    },
+    {
+      "SecuCode": "513530",
+      "SecuAbbr": "华泰柏瑞中证港股通高股息投资ETF(QDII)",
+      "InnerCode": 431251
+    },
+    {
+      "SecuCode": "513580",
+      "SecuAbbr": "华安恒生科技ETF",
+      "InnerCode": 366693
+    },
+    {
+      "SecuCode": "513810",
+      "SecuAbbr": "华夏中证香港内地国有企业ETF(QDII)",
+      "InnerCode": 558882
+    },
+    {
+      "SecuCode": "513890",
+      "SecuAbbr": "摩根恒生科技ETF(QDII)",
+      "InnerCode": 408532
+    },
+    {
+      "SecuCode": "513950",
+      "SecuAbbr": "富国恒生港股通红利低波动ETF(QDII)",
+      "InnerCode": 533113
+    },
+    {
+      "SecuCode": "513970",
+      "SecuAbbr": "景顺长城恒生消费ETF(QDII)",
+      "InnerCode": 527510
+    },
+    {
+      "SecuCode": "520500",
+      "SecuAbbr": "华泰柏瑞恒生创新药ETF(QDII)",
+      "InnerCode": 638679
+    },
+    {
+      "SecuCode": "520520",
+      "SecuAbbr": "华泰柏瑞恒生消费ETF(QDII)",
+      "InnerCode": 627887
+    },
+    {
+      "SecuCode": "520570",
+      "SecuAbbr": "南方恒生科技ETF(QDII)",
+      "InnerCode": 735037
+    },
+    {
+      "SecuCode": "520590",
+      "SecuAbbr": "鹏华恒生科技ETF(QDII)",
+      "InnerCode": 737170
+    },
+    {
+      "SecuCode": "520920",
+      "SecuAbbr": "天弘恒生科技ETF",
+      "InnerCode": 729799
+    }
+  ]
+}
