@@ -1,0 +1,183 @@
+{
+  "title": "SPIKE-S20-XSDISP-GATE-RESEARCH1430",
+  "unique_change": "entry gate: 1w xs_sigma >= P40/P50/P60 of prior 52w; baseline B45+S20 unchanged",
+  "sample": "2020-01-03 → 2026-10-23",
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "calendar_end": "2026-10-23",
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 73793,
+    "n_skip_no_sina_or_qfq": 32,
+    "n_empty_status_rows": 12,
+    "approximation": [
+      "延窗研究缓存：week/day 合并 recon week_2026-10-23 / day_2026-10-23；缺日线用 sina 收益链拼接（研究目录）",
+      "14:30 新周（09-30/10-09/10-16/10-23）pytdx idx209 拉入 research_cache；旧周复用 fri_1430_through_20260925",
+      "B45/B50 breadth/risk_on：face holdings_ro2_extended 列 b / risk_on（B50: b≥0.50）",
+      "HYST-M3：滞回 M=3；TV33：σ*=0.33 同 B45 持仓；CASH-511010：空仓周 TV25 持 511010",
+      "qfq_1430 = price_1430 × (day/tema qfq 收 / sina 收)；Sharpe 窗截至信号日前一交易日",
+      "成交/净值：信号周末交易日收盘填仓 + TV25 + 0.2%RT；L≤1"
+    ]
+  },
+  "xs_sigma_weeks": 348,
+  "disp_gate_on_weeks": {
+    "P40": 181,
+    "P50": 157,
+    "P60": 128
+  },
+  "sim_stats": {
+    "RESEARCH1430-B45-S20": {
+      "n_fridays_queue_gt_seats": 88,
+      "n_fridays_with_cands": 191,
+      "n_entries": 267,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 267,
+      "max_pos": 5,
+      "n_cash_weeks": 150,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.43103448275862066,
+      "n_risk_on_weeks": 203,
+      "risk_on_week_pct": 0.5833333333333334,
+      "n_gate_block_weeks": 0,
+      "gate_week_pct": 0.0
+    },
+    "RESEARCH1430-B45-S20-XSDISP-P40": {
+      "n_fridays_queue_gt_seats": 53,
+      "n_fridays_with_cands": 99,
+      "n_entries": 197,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 197,
+      "max_pos": 5,
+      "n_cash_weeks": 213,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.6120689655172413,
+      "n_risk_on_weeks": 203,
+      "risk_on_week_pct": 0.5833333333333334,
+      "n_gate_block_weeks": 78,
+      "gate_week_pct": 0.22413793103448276
+    },
+    "RESEARCH1430-B45-S20-XSDISP-P50": {
+      "n_fridays_queue_gt_seats": 49,
+      "n_fridays_with_cands": 89,
+      "n_entries": 182,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 182,
+      "max_pos": 5,
+      "n_cash_weeks": 222,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.6379310344827587,
+      "n_risk_on_weeks": 203,
+      "risk_on_week_pct": 0.5833333333333334,
+      "n_gate_block_weeks": 86,
+      "gate_week_pct": 0.2471264367816092
+    },
+    "RESEARCH1430-B45-S20-XSDISP-P60": {
+      "n_fridays_queue_gt_seats": 41,
+      "n_fridays_with_cands": 71,
+      "n_entries": 157,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 157,
+      "max_pos": 5,
+      "n_cash_weeks": 230,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.6609195402298851,
+      "n_risk_on_weeks": 203,
+      "risk_on_week_pct": 0.5833333333333334,
+      "n_gate_block_weeks": 104,
+      "gate_week_pct": 0.2988505747126437
+    }
+  },
+  "table": [
+    {
+      "book": "RESEARCH1430-B45-S20",
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "2020-22_ret": 0.18888117892868528,
+      "2020-22_DD": -0.16005989858806302,
+      "2020-22_Calmar": 0.37221138893854394,
+      "2023-26_ret": 0.9483432111147798,
+      "2023-26_DD": -0.1380814670414744,
+      "2023-26_Calmar": 1.3883742587265562,
+      "avgL": 0.8413486853673591,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    {
+      "book": "RESEARCH1430-B45-S20-XSDISP-P40",
+      "ret": 0.4562303137154837,
+      "maxDD": -0.18668656861249155,
+      "CAGR": 0.0567977112082001,
+      "Calmar": 0.30424101546424615,
+      "2020-22_ret": 0.009683854658930846,
+      "2020-22_DD": -0.1419944481604114,
+      "2020-22_Calmar": 0.02273789466661683,
+      "2023-26_ret": 0.44226364222432246,
+      "2023-26_DD": -0.1356093096360167,
+      "2023-26_Calmar": 0.7454390656094915,
+      "avgL": 0.7922887484214,
+      "cash_week_pct": 0.6120689655172413,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    {
+      "book": "RESEARCH1430-B45-S20-XSDISP-P50",
+      "ret": 0.5252204996678582,
+      "maxDD": -0.1874350492524658,
+      "CAGR": 0.06401212560128866,
+      "Calmar": 0.3415163058167818,
+      "2020-22_ret": 0.009890454002703608,
+      "2020-22_DD": -0.1419944481604114,
+      "2020-22_Calmar": 0.023221409840634647,
+      "2023-26_ret": 0.5102831139978035,
+      "2023-26_DD": -0.14224621683182137,
+      "2023-26_Calmar": 0.8050312568764851,
+      "avgL": 0.7736018601023317,
+      "cash_week_pct": 0.6379310344827587,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    {
+      "book": "RESEARCH1430-B45-S20-XSDISP-P60",
+      "ret": 0.28993270480335753,
+      "maxDD": -0.21971980089745158,
+      "CAGR": 0.038129075386169387,
+      "Calmar": 0.17353499880497855,
+      "2020-22_ret": -0.06926792289184147,
+      "2020-22_DD": -0.1419944481604114,
+      "2020-22_Calmar": -0.16707809204538623,
+      "2023-26_ret": 0.3859334351205095,
+      "2023-26_DD": -0.13344195075954335,
+      "2023-26_Calmar": 0.6715532756709177,
+      "avgL": 0.7125535133767681,
+      "cash_week_pct": 0.6609195402298851,
+      "risk_on_week_pct": 0.5833333333333334
+    }
+  ],
+  "b45_vs_extend": {
+    "ret": 1.3163485737878418,
+    "maxDD": -0.18799993761556133,
+    "extend_ref_ret": 1.315567,
+    "aligned": "True"
+  },
+  "delta_legs_vs_b45": {
+    "RESEARCH1430-B45-S20-XSDISP-P40": {
+      "dret_pp": -86.0118260072358,
+      "d_absMDD_pp": -0.13133690030697753,
+      "covers": "False"
+    },
+    "RESEARCH1430-B45-S20-XSDISP-P50": {
+      "dret_pp": -79.11280741199835,
+      "d_absMDD_pp": -0.056488836309553925,
+      "covers": "False"
+    },
+    "RESEARCH1430-B45-S20-XSDISP-P60": {
+      "dret_pp": -102.64158689844842,
+      "d_absMDD_pp": 3.171986328189025,
+      "covers": "False"
+    }
+  },
+  "falsify": true,
+  "verdict": "**横截面σ门证伪（不换冠）**：RESEARCH1430-B45-S20-XSDISP-P40, RESEARCH1430-B45-S20-XSDISP-P50, RESEARCH1430-B45-S20-XSDISP-P60 相对同窗 RESEARCH1430-B45-S20 未满足探索尺子（Δret 盖住 Δ|MDD| 且 2023–26 不塌）；基线 ret=131.6% MDD=-18.8%。",
+  "elapsed_sec": 11.6
+}
