@@ -1,0 +1,96 @@
+{
+  "title": "VOL-TARGET-12-B45",
+  "anchor_inventory": "SPIKE-S20-EXTEND-REBASE LIVE1430-B45-S20 / RESEARCH-WF-OOS main_table TV25",
+  "anchor_expected": {
+    "ret": 1.3163485737878418,
+    "maxDD": -0.18799993761556133,
+    "Calmar": 0.6989834460989939
+  },
+  "anchor_actual": {
+    "ret": 1.3163485737878418,
+    "maxDD": -0.18799993761556133,
+    "CAGR": 0.13140884426092092,
+    "Calmar": 0.6989834460989939
+  },
+  "anchor_ok": true,
+  "sample": "2020-01-03 → 2026-10-23",
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "calendar_end": "2026-10-23",
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 73793,
+    "n_skip_no_sina_or_qfq": 32,
+    "n_empty_status_rows": 12,
+    "approximation": [
+      "延窗研究缓存：week/day 合并 recon week_2026-10-23 / day_2026-10-23；缺日线用 sina 收益链拼接（研究目录）",
+      "14:30 新周（09-30/10-09/10-16/10-23）pytdx idx209 拉入 research_cache；旧周复用 fri_1430_through_20260925",
+      "B45/B50 breadth/risk_on：face holdings_ro2_extended 列 b / risk_on（B50: b≥0.50）",
+      "HYST-M3：滞回 M=3；TV33：σ*=0.33 同 B45 持仓；CASH-511010：空仓周 TV25 持 511010",
+      "qfq_1430 = price_1430 × (day/tema qfq 收 / sina 收)；Sharpe 窗截至信号日前一交易日",
+      "成交/净值：信号周末交易日收盘填仓 + TV25 + 0.2%RT；L≤1",
+      "VT12：σ̂_w=std(近20个 Fri–Fri 未杠杆周收益)×√52；每周五调 L=min(1,0.12/σ̂_w)",
+      "FACE 锚：TV25 daily max(σ20,σ60) 与 SPIKE-S20-EXTEND-REBASE LIVE1430-B45-S20 一致",
+      "邻居 VT10/VT15 见 PR#73 research/vol-target-10-15-b45（不重跑网格）"
+    ]
+  },
+  "sim_stats": {
+    "n_fridays_queue_gt_seats": 88,
+    "n_fridays_with_cands": 191,
+    "n_entries": 267,
+    "n_entries_missing_sharpe": 0,
+    "n_trades": 267,
+    "max_pos": 5,
+    "n_cash_weeks": 150,
+    "n_calendar_weeks_ex_last": 348,
+    "cash_week_pct": 0.43103448275862066,
+    "n_risk_on_weeks": 203,
+    "risk_on_week_pct": 0.5833333333333334
+  },
+  "table": [
+    {
+      "book": "RESEARCH-B45-FACE",
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "vol": 0.17470305996212016,
+      "2020-22_ret": 0.18888117892868528,
+      "2020-22_DD": -0.16005989858806302,
+      "2020-22_Calmar": 0.37221138893854394,
+      "2023-26_ret": 0.9483432111147798,
+      "2023-26_DD": -0.1380814670414744,
+      "2023-26_Calmar": 1.3883742587265562,
+      "avgL": 0.8413486853673591,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    {
+      "book": "RESEARCH-B45-VT12",
+      "ret": 0.8535242121404452,
+      "maxDD": -0.18230474290637766,
+      "CAGR": 0.09494143728004278,
+      "Calmar": 0.5207842416299604,
+      "vol": 0.14690581843072795,
+      "2020-22_ret": 0.07295863781790901,
+      "2020-22_DD": -0.15416873842294465,
+      "2020-22_Calmar": 0.1545935852276873,
+      "2023-26_ret": 0.7274889700408091,
+      "2023-26_DD": -0.09940477872321463,
+      "2023-26_Calmar": 1.5552284324136543,
+      "avgL": 0.6757186238050965,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334
+    }
+  ],
+  "delta_vt12_vs_face": {
+    "dret_pp": -46.28243616473966,
+    "d_abs_mdd_pp": -0.5695194709183671,
+    "covers": false,
+    "rear_2023_26_ok": false
+  },
+  "falsify": true,
+  "verdict": "**证伪（不换冠）**：VT12 相对 FACE 未同时满足 Calmar/ret/|MDD| 探索尺子或 2023–26 踏空；Δret=-46.3pp Δ|MDD|=-0.6pp covers=False rear_ok=False。",
+  "elapsed_sec": 6.0
+}
