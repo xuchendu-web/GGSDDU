@@ -1,0 +1,85 @@
+# ETF fundamental composite weights (must sum to 1.0).
+# See docs/SCORING.md for factor definitions and failure modes.
+
+version: "2.0"
+research_pool_only: true  # must stay true — no LIVE升格 in this package
+
+weights:
+  aum: 0.15
+  fee: 0.15
+  tracking_error: 0.15
+  concentration: 0.12
+  valuation: 0.12
+  flow: 0.08
+  premium: 0.08
+  liquidity: 0.07
+  dividend_yield: 0.08
+
+normalization:
+  missing_factor_policy: "reweight" # reweight | zero | neutral
+  neutral_missing_score: 50.0
+  min_factor_coverage: 0.0          # fraction of weight with non-null scores (0–1)
+  required_factors: []              # e.g. [fee, aum] — missing any → composite 0
+
+ranking:
+  within_category: true
+
+sector_overlays:
+  enabled: true
+  category_field: category
+  by_category:
+    qdii_us:
+      weight_multipliers:
+        tracking_error: 1.35
+        premium: 1.25
+      factor_params:
+        tracking_error:
+          worst_te_bps: 200
+        premium:
+          worst_premium_bps: 120
+    fixed_income:
+      weight_multipliers:
+        dividend_yield: 1.5
+        valuation: 0.25
+      factor_params:
+        valuation:
+          best_pe: 0.0
+          worst_pe: 1.0
+    commodity:
+      weight_multipliers:
+        valuation: 0.0
+        dividend_yield: 0.0
+        premium: 1.4
+
+factor_params:
+  aum:
+    min_log_aum: 6.0
+    max_log_aum: 11.5
+  fee:
+    best_er: 0.0003
+    worst_er: 0.015
+  tracking_error:
+    best_te_bps: 5
+    worst_te_bps: 150
+  concentration:
+    best_top10: 0.25
+    worst_top10: 0.85
+  valuation:
+    best_pe: 12.0
+    worst_pe: 35.0
+  flow:
+    best_flow_ratio: 0.05
+    worst_flow_ratio: -0.08
+  premium:
+    best_premium_bps: -30
+    worst_premium_bps: 80
+  liquidity:
+    best_adv_ratio: 0.08
+    worst_adv_ratio: 0.002
+  dividend_yield:
+    best_yield: 0.045
+    worst_yield: 0.0
+
+output:
+  include_factor_columns: true
+  include_raw_columns: true

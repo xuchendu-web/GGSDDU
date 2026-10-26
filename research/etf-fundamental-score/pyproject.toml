@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "etf-fundamental-score"
+version = "0.2.0"
+description = "Transparent multi-factor ETF screening scores for research universes (not live trading)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "PyYAML>=6.0",
+  "pandas>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+etf-score = "etf_fundamental_score.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["etf_fundamental_score*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
