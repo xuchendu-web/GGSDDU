@@ -1,0 +1,6 @@
+_readonly_btheta/
+_readonly_kit/
+__pycache__/
+out/holdings_*.csv
+out/trades_*.csv
+out/entries_*.csv

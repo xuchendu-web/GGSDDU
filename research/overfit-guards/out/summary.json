@@ -1,0 +1,67 @@
+{
+  "batch": "overfit-guards",
+  "champion_swap": false,
+  "crown": "NO",
+  "source_sha": "05f0f8a4f778fde886f3e7b2976646ff4b7d777b",
+  "sample": [
+    "2020-01-03",
+    "2026-10-23"
+  ],
+  "anchor_pass": true,
+  "anchor": {
+    "ret": 1.316,
+    "maxDD": -0.188,
+    "Calmar": 0.7,
+    "n_weeks": 349,
+    "T": 348,
+    "n_codes": 324
+  },
+  "N": 13,
+  "N_assumption": "BTHETA 4 + TV 6 + MAXSEAT 5, face counted once",
+  "V_sr_week": 0.0001851129031140698,
+  "sigma_sr_week": 0.013605620276711746,
+  "sr_star": 0.023174909447103084,
+  "sr_week_face": 0.12180894880786504,
+  "sr_ann_face_display": 0.8783768214742511,
+  "gamma3": 1.3148781452221976,
+  "gamma4": 8.612729978903007,
+  "DSR": 0.9756967966491998,
+  "PSR0": 0.992561774015329,
+  "rho_bar": 0.9444845261126837,
+  "N_eff": 1.666185686647795,
+  "DSR_eff": null,
+  "DSR_max": 0.987125008308116,
+  "dsr_max_id": "B50",
+  "FLAG_DSR": false,
+  "cpcv": {
+    "G": 7,
+    "k": 2,
+    "splits": 21,
+    "paths": 6,
+    "purge_weeks": 1,
+    "embargo_weeks": 4
+  },
+  "group_sizes": [
+    50,
+    50,
+    50,
+    50,
+    50,
+    49,
+    49
+  ],
+  "path_calmars": [
+    0.9254210619474461,
+    0.7667651045281075,
+    0.5817066805276058,
+    0.8536467601751074,
+    0.7854620704878074,
+    0.9254210619474461
+  ],
+  "path_calmar_median": 0.8195544153314573,
+  "calmar_face": 0.6989834460989939,
+  "FLAG_CPCV": false,
+  "n_splits_face_selected": 3,
+  "family_verdict": "HOLD",
+  "positive_ids": []
+}
