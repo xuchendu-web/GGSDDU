@@ -16,3 +16,10 @@ Re-run 12% vol-target vs unscaled (B45+S20 face weekly):
 cd research/cloud_batch/SPIKE-S20-VOL-TARGET-12
 python3 run.py
 ```
+
+Re-run fractional-Kelly vol-target vs VT12 (B45+S20 face weekly):
+
+```bash
+cd research/cloud_batch/SPIKE-S20-VOL-TARGET-FKELLY
+python3 run.py
+```
