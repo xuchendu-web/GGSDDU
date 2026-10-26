@@ -1,0 +1,13 @@
+CAT A股宽基: 51
+CAT 行业主题: 304
+CAT 港股: 58
+CAT 跨境: 16
+CAT 商品: 5
+CAT 债券货币: 0
+build panel done; running books ...
+MIX 1.362 to=9.58
+B=6 ret=1.800 C=0.42 to=7.46
+B=7 ret=2.054 C=0.48 to=5.98
+B=8 ret=2.013 C=0.47 to=5.27
+B=9 ret=1.789 C=0.42 to=4.60
+DONE

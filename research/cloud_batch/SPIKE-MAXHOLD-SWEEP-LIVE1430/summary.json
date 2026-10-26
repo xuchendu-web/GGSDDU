@@ -1,0 +1,62 @@
+{
+  "id": "SPIKE-MAXHOLD-SWEEP-LIVE1430",
+  "pool": "/workspace/etf-correlation/data/research_pool_v2.csv",
+  "n_codes": 324,
+  "diffs": {
+    "MHLIVE1430-MH4_vs_base": {
+      "n": 198,
+      "n_diff": 88,
+      "pct_diff": 0.4444444444444444
+    },
+    "MHLIVE1430-MH6_vs_base": {
+      "n": 198,
+      "n_diff": 54,
+      "pct_diff": 0.2727272727272727
+    },
+    "MHLIVE1430-MH8_vs_base": {
+      "n": 198,
+      "n_diff": 31,
+      "pct_diff": 0.15656565656565657
+    }
+  },
+  "sim_stats": {
+    "LIVE1430-B45-S20": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "n_max_hold_exits": 0,
+      "max_hold_weeks": null
+    },
+    "LIVE1430-MH4": {
+      "n_fridays_queue_gt_seats": 98,
+      "n_fridays_with_cands": 189,
+      "n_entries": 321,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 321,
+      "n_max_hold_exits": 82,
+      "max_hold_weeks": 4
+    },
+    "LIVE1430-MH6": {
+      "n_fridays_queue_gt_seats": 90,
+      "n_fridays_with_cands": 190,
+      "n_entries": 286,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 286,
+      "n_max_hold_exits": 38,
+      "max_hold_weeks": 6
+    },
+    "LIVE1430-MH8": {
+      "n_fridays_queue_gt_seats": 86,
+      "n_fridays_with_cands": 189,
+      "n_entries": 275,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 275,
+      "n_max_hold_exits": 20,
+      "max_hold_weeks": 8
+    }
+  },
+  "verdict": "**未证伪（探索记账）**：无 MH 档同时盖住基准全样本+后段且 Calmar≥基准。",
+  "elapsed_sec": 8.3
+}

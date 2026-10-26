@@ -1,0 +1,200 @@
+{
+  "id": "SPIKE-S20-EXIT-CROSS-MH6-RANKDROP-LIVE1430",
+  "knife": "SPIKE-S20-EXIT-CROSS-MH6-RANKDROP-LIVE1430",
+  "pool": "/workspace/etf-correlation/data/research_pool_v2.csv",
+  "n_codes": 324,
+  "rank_drop_buffer_primary": 2,
+  "rank_drop_definition": "rank-drop：当日 spike_ft 且 SHARPE20 可算集合内按 Sharpe 降序排名；持仓若不在可填席集合或排名 > max5+buffer（主 buffer=2，即 rank>7 强平）；邻域 RD-only：buffer∈{1,3}。",
+  "two_by_two": {
+    "MH6_off_RD_off": "LIVE1430-B45-S20",
+    "MH6_off_RD_on": "LIVE1430-RD",
+    "MH6_on_RD_off": "LIVE1430-MH6",
+    "MH6_on_RD_on": "LIVE1430-MH6-RD"
+  },
+  "segment_checks": {
+    "full": {
+      "primary": {
+        "ret": 2.2336555639598785,
+        "maxDD": -0.18194787183908223,
+        "CAGR": 0.19069449081251366,
+        "Calmar": 1.0480721147492569
+      },
+      "face": {
+        "ret": 1.5828517647807212,
+        "maxDD": -0.1586573855560559,
+        "CAGR": 0.15155947883299037,
+        "Calmar": 0.9552626768795598
+      },
+      "calmar_ok": true
+    },
+    "2020-22": {
+      "primary": {
+        "ret": 0.17397213596011185,
+        "maxDD": -0.18194787183908223,
+        "CAGR": 0.055113062022895454,
+        "Calmar": 0.30290577991282236
+      },
+      "face": {
+        "ret": 0.2927807341680022,
+        "maxDD": -0.1489370492708164,
+        "CAGR": 0.08968912919411309,
+        "Calmar": 0.6021948845718625
+      },
+      "calmar_ok": false
+    },
+    "2023-26": {
+      "primary": {
+        "ret": 1.754456826452098,
+        "maxDD": -0.10335498435440282,
+        "CAGR": 0.3127401789402702,
+        "Calmar": 3.0258838593394626
+      },
+      "face": {
+        "ret": 0.9979039728210182,
+        "maxDD": -0.1431218413515114,
+        "CAGR": 0.20427084923179817,
+        "Calmar": 1.4272514055356724
+      },
+      "calmar_ok": true
+    }
+  },
+  "strong_regime_ok": false,
+  "primary_falsified": true,
+  "diffs_vs_face": {
+    "LIVE1430-MH6_vs_base": {
+      "n": 198,
+      "n_diff": 54,
+      "pct_diff": 0.2727272727272727
+    },
+    "LIVE1430-RD_vs_base": {
+      "n": 198,
+      "n_diff": 157,
+      "pct_diff": 0.7929292929292929
+    },
+    "LIVE1430-MH6-RD_vs_base": {
+      "n": 198,
+      "n_diff": 157,
+      "pct_diff": 0.7929292929292929
+    },
+    "LIVE1430-MH4_vs_base": {
+      "n": 198,
+      "n_diff": 88,
+      "pct_diff": 0.4444444444444444
+    },
+    "LIVE1430-MH8_vs_base": {
+      "n": 198,
+      "n_diff": 31,
+      "pct_diff": 0.15656565656565657
+    },
+    "LIVE1430-RD-B1_vs_base": {
+      "n": 198,
+      "n_diff": 158,
+      "pct_diff": 0.797979797979798
+    },
+    "LIVE1430-RD-B3_vs_base": {
+      "n": 198,
+      "n_diff": 158,
+      "pct_diff": 0.797979797979798
+    }
+  },
+  "sim_stats": {
+    "LIVE1430-B45-S20": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "n_max_hold_exits": 0,
+      "max_hold_weeks": null,
+      "n_rank_drop_exits": 0,
+      "rank_drop": false,
+      "rank_drop_buffer": null
+    },
+    "LIVE1430-MH6": {
+      "n_fridays_queue_gt_seats": 90,
+      "n_fridays_with_cands": 190,
+      "n_entries": 286,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 286,
+      "n_max_hold_exits": 38,
+      "max_hold_weeks": 6,
+      "n_rank_drop_exits": 0,
+      "rank_drop": false,
+      "rank_drop_buffer": null
+    },
+    "LIVE1430-RD": {
+      "n_fridays_queue_gt_seats": 135,
+      "n_fridays_with_cands": 186,
+      "n_entries": 527,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 527,
+      "n_max_hold_exits": 0,
+      "max_hold_weeks": null,
+      "n_rank_drop_exits": 446,
+      "rank_drop": true,
+      "rank_drop_buffer": 2
+    },
+    "LIVE1430-MH6-RD": {
+      "n_fridays_queue_gt_seats": 135,
+      "n_fridays_with_cands": 186,
+      "n_entries": 527,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 527,
+      "n_max_hold_exits": 0,
+      "max_hold_weeks": 6,
+      "n_rank_drop_exits": 446,
+      "rank_drop": true,
+      "rank_drop_buffer": 2
+    },
+    "LIVE1430-MH4": {
+      "n_fridays_queue_gt_seats": 98,
+      "n_fridays_with_cands": 189,
+      "n_entries": 321,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 321,
+      "n_max_hold_exits": 82,
+      "max_hold_weeks": 4,
+      "n_rank_drop_exits": 0,
+      "rank_drop": false,
+      "rank_drop_buffer": null
+    },
+    "LIVE1430-MH8": {
+      "n_fridays_queue_gt_seats": 86,
+      "n_fridays_with_cands": 189,
+      "n_entries": 275,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 275,
+      "n_max_hold_exits": 20,
+      "max_hold_weeks": 8,
+      "n_rank_drop_exits": 0,
+      "rank_drop": false,
+      "rank_drop_buffer": null
+    },
+    "LIVE1430-RD-B1": {
+      "n_fridays_queue_gt_seats": 134,
+      "n_fridays_with_cands": 186,
+      "n_entries": 554,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 554,
+      "n_max_hold_exits": 0,
+      "max_hold_weeks": null,
+      "n_rank_drop_exits": 473,
+      "rank_drop": true,
+      "rank_drop_buffer": 1
+    },
+    "LIVE1430-RD-B3": {
+      "n_fridays_queue_gt_seats": 135,
+      "n_fridays_with_cands": 186,
+      "n_entries": 509,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 509,
+      "n_max_hold_exits": 0,
+      "max_hold_weeks": null,
+      "n_rank_drop_exits": 428,
+      "rank_drop": true,
+      "rank_drop_buffer": 3
+    }
+  },
+  "verdict": "**主组合 MH6×rank-drop 证伪**：全样本/分段 Calmar 未过「≥face 或 Δret 盖住 Δ|MDD|」；强市周 Calmar 相对 face 折价>5%。",
+  "elapsed_sec": 21.4
+}

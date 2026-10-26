@@ -1,0 +1,50 @@
+load universe + 14:30 + week…
+universe research_pool_v2 ∩ aum≥2: n=324
+calendar 2020-01-03 → 2026-09-24 n=345
+face risk_on=203 / 345
+load daily qfq + sina (bfq-like) for 14:30 map…
+daily qfq series: 174/324
+sina daily: 324/324
+mapped qfq_1430=44573 skip_no_bfq=27956 empty_block_rows=12
+load cached 1430 snaps /workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/cache_1430_snaps.json
+  cached codes with snaps: 324
+simulate LIVE1430-B45-S20 mh=None rank_drop=False buf=2…
+  entries=265 trades=265 cands_weeks=190 tight=81
+simulate LIVE1430-MH6 mh=6 rank_drop=False buf=2…
+  entries=286 trades=286 cands_weeks=190 tight=90
+simulate LIVE1430-RD mh=None rank_drop=True buf=2…
+  entries=527 trades=527 cands_weeks=186 tight=135
+simulate LIVE1430-MH6-RD mh=6 rank_drop=True buf=2…
+  entries=527 trades=527 cands_weeks=186 tight=135
+simulate LIVE1430-MH4 mh=4 rank_drop=False buf=2…
+  entries=321 trades=321 cands_weeks=189 tight=98
+simulate LIVE1430-MH8 mh=8 rank_drop=False buf=2…
+  entries=275 trades=275 cands_weeks=189 tight=86
+simulate LIVE1430-RD-B1 mh=None rank_drop=True buf=1…
+  entries=554 trades=554 cands_weeks=186 tight=134
+simulate LIVE1430-RD-B3 mh=None rank_drop=True buf=3…
+  entries=509 trades=509 cands_weeks=186 tight=135
+hold diffs vs baseline {'LIVE1430-MH6_vs_base': {'n': 198, 'n_diff': 54, 'pct_diff': 0.2727272727272727}, 'LIVE1430-RD_vs_base': {'n': 198, 'n_diff': 157, 'pct_diff': 0.7929292929292929}, 'LIVE1430-MH6-RD_vs_base': {'n': 198, 'n_diff': 157, 'pct_diff': 0.7929292929292929}, 'LIVE1430-MH4_vs_base': {'n': 198, 'n_diff': 88, 'pct_diff': 0.4444444444444444}, 'LIVE1430-MH8_vs_base': {'n': 198, 'n_diff': 31, 'pct_diff': 0.15656565656565657}, 'LIVE1430-RD-B1_vs_base': {'n': 198, 'n_diff': 158, 'pct_diff': 0.797979797979798}, 'LIVE1430-RD-B3_vs_base': {'n': 198, 'n_diff': 158, 'pct_diff': 0.797979797979798}}
+live days 2020-01-03 → 2026-09-24 n=1632
+  LIVE1430-B45-S20: ret=158.3% dd=-15.9% CAGR=15.2% Calmar=0.96
+  LIVE1430-MH6: ret=160.1% dd=-17.8% CAGR=15.3% Calmar=0.86
+  LIVE1430-RD: ret=223.4% dd=-18.2% CAGR=19.1% Calmar=1.05
+  LIVE1430-MH6-RD: ret=223.4% dd=-18.2% CAGR=19.1% Calmar=1.05
+  LIVE1430-MH4: ret=143.3% dd=-16.9% CAGR=14.1% Calmar=0.83
+  LIVE1430-MH8: ret=137.5% dd=-16.0% CAGR=13.7% Calmar=0.86
+  LIVE1430-RD-B1: ret=203.9% dd=-18.2% CAGR=18.0% Calmar=0.99
+  LIVE1430-RD-B3: ret=228.9% dd=-18.1% CAGR=19.4% Calmar=1.07
+/workspace/research/SPIKE-S20-EXIT-CROSS-MH6-RANKDROP-LIVE1430/engine/run_exit_cross.py:845: UserWarning: Glyph 20928 (\N{CJK UNIFIED IDEOGRAPH-51C0}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/workspace/research/SPIKE-S20-EXIT-CROSS-MH6-RANKDROP-LIVE1430/engine/run_exit_cross.py:845: UserWarning: Glyph 20540 (\N{CJK UNIFIED IDEOGRAPH-503C}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/workspace/research/SPIKE-S20-EXIT-CROSS-MH6-RANKDROP-LIVE1430/engine/run_exit_cross.py:845: UserWarning: Glyph 65288 (\N{FULLWIDTH LEFT PARENTHESIS}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/workspace/research/SPIKE-S20-EXIT-CROSS-MH6-RANKDROP-LIVE1430/engine/run_exit_cross.py:845: UserWarning: Glyph 23545 (\N{CJK UNIFIED IDEOGRAPH-5BF9}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/workspace/research/SPIKE-S20-EXIT-CROSS-MH6-RANKDROP-LIVE1430/engine/run_exit_cross.py:845: UserWarning: Glyph 25968 (\N{CJK UNIFIED IDEOGRAPH-6570}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/workspace/research/SPIKE-S20-EXIT-CROSS-MH6-RANKDROP-LIVE1430/engine/run_exit_cross.py:845: UserWarning: Glyph 65289 (\N{FULLWIDTH RIGHT PARENTHESIS}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+done /workspace/research/SPIKE-S20-EXIT-CROSS-MH6-RANKDROP-LIVE1430
+**主组合 MH6×rank-drop 证伪**：全样本/分段 Calmar 未过「≥face 或 Δret 盖住 Δ|MDD|」；强市周 Calmar 相对 face 折价>5%。
