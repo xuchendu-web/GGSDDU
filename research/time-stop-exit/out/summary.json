@@ -1,0 +1,178 @@
+{
+  "batch": "TIME-STOP-EXIT",
+  "champion_swap": false,
+  "crown": "NO",
+  "source_sha": "05f0f8a4f778fde886f3e7b2976646ff4b7d777b",
+  "sample": [
+    "2020-01-03",
+    "2026-10-23"
+  ],
+  "anchor_pass": true,
+  "anchor": {
+    "ret": 1.316,
+    "maxDD": -0.188,
+    "Calmar": 0.7,
+    "n_weeks": 349,
+    "T": 348,
+    "n_codes": 324
+  },
+  "face_id": "F0",
+  "primary_n": 8,
+  "primary_k": 0,
+  "inventory": {
+    "engine_source": "btheta_05f0f8a4",
+    "kit_path": "C:\\Users\\Michael_YANG\\Documents\\GitHub\\GGSDDU\\research\\cloud_batch\\CLOUD-BATCH-2026-10-26",
+    "nav_anchor": "git:origin/cursor/spike-s20-extend-rebase-live1430-27f1:research\\cloud_batch\\SPIKE-S20-EXTEND-REBASE-LIVE1430\\nav_LIVE1430-B45-S20.csv",
+    "skipped": [
+      "research/exit-atr-chandelier"
+    ]
+  },
+  "h1": "主簿 `TS-MH8` 相对 **当次重放的 F0**，全样本满足 Δret ≥ Δ|MDD|，且 2023–26 累计收益不低于 F0 的 2023–26（强势段不踏空，且自身为正）。",
+  "family_verdict": "H1_HOLD",
+  "positive_ids": [],
+  "books": [
+    "F0",
+    "TS-MH8",
+    "TS-MH6",
+    "TS-MH12"
+  ],
+  "cells": [
+    {
+      "id": "F0",
+      "book": "LIVE1430-TSMH-off-B45-TV25",
+      "N": null,
+      "K": null,
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "Sharpe": 0.8230738819081987,
+      "avgL": 0.8413486853673591,
+      "avg_turnover_1way": 0.15589995523930913,
+      "n_cash_weeks": 150,
+      "n_timestop": 0,
+      "n_timestop_same_fri_reenter": 0,
+      "n_cool_block": 0,
+      "n_e0": 175,
+      "avg_hold_weeks": 2.5093632958801497,
+      "w2020_22": {
+        "ret": 0.18888117892868528,
+        "maxDD": -0.16005989858806302,
+        "Calmar": 0.37221138893854394
+      },
+      "w2023_26": {
+        "ret": 0.9483432111147796,
+        "maxDD": -0.1380814670414744,
+        "Calmar": 1.3883742587265562
+      },
+      "delta_ret": 0.0,
+      "delta_abs_mdd": 0.0,
+      "g1_covers": true,
+      "g2_2023_26": true,
+      "verdict": "ANCHOR"
+    },
+    {
+      "id": "TS-MH8",
+      "book": "LIVE1430-TSMH-N8-K0-B45-TV25",
+      "N": 8,
+      "K": 0,
+      "ret": 1.1337652810118675,
+      "maxDD": -0.1895489329288994,
+      "CAGR": 0.11783729808177434,
+      "Calmar": 0.6216721785818525,
+      "Sharpe": 0.7528453034513585,
+      "avgL": 0.8475656723490218,
+      "avg_turnover_1way": 0.16638328601215868,
+      "n_cash_weeks": 150,
+      "n_timestop": 20,
+      "n_timestop_same_fri_reenter": 0,
+      "n_cool_block": 0,
+      "n_e0": 179,
+      "avg_hold_weeks": 2.3131672597864767,
+      "w2020_22": {
+        "ret": 0.08454496225831276,
+        "maxDD": -0.16166219314546892,
+        "Calmar": 0.17022054887760424
+      },
+      "w2023_26": {
+        "ret": 0.9674290649682231,
+        "maxDD": -0.1380814670414744,
+        "Calmar": 1.41052595921846
+      },
+      "delta_ret": -0.1825832927759743,
+      "delta_abs_mdd": 0.0015489953133380752,
+      "g1_covers": false,
+      "g2_2023_26": true,
+      "verdict": "证伪"
+    },
+    {
+      "id": "TS-MH6",
+      "book": "LIVE1430-TSMH-N6-K0-B45-TV25",
+      "N": 6,
+      "K": 0,
+      "ret": 1.2603182820050938,
+      "maxDD": -0.19510699054578962,
+      "CAGR": 0.12734415464976934,
+      "Calmar": 0.6526888364867838,
+      "Sharpe": 0.8056773097042511,
+      "avgL": 0.8251114265574251,
+      "avg_turnover_1way": 0.16504718677795693,
+      "n_cash_weeks": 152,
+      "n_timestop": 35,
+      "n_timestop_same_fri_reenter": 0,
+      "n_cool_block": 0,
+      "n_e0": 165,
+      "avg_hold_weeks": 2.196551724137931,
+      "w2020_22": {
+        "ret": 0.16914076595477412,
+        "maxDD": -0.16741149748009587,
+        "Calmar": 0.32051975651202114
+      },
+      "w2023_26": {
+        "ret": 0.9333157715694063,
+        "maxDD": -0.14860151335607752,
+        "Calmar": 1.273774699956165
+      },
+      "delta_ret": -0.05603029178274799,
+      "delta_abs_mdd": 0.007107052930228286,
+      "g1_covers": false,
+      "g2_2023_26": false,
+      "verdict": "证伪"
+    },
+    {
+      "id": "TS-MH12",
+      "book": "LIVE1430-TSMH-N12-K0-B45-TV25",
+      "N": 12,
+      "K": 0,
+      "ret": 1.251291238014817,
+      "maxDD": -0.18799993761556122,
+      "CAGR": 0.12668127106636318,
+      "Calmar": 0.6738367718260214,
+      "Sharpe": 0.7988318613579491,
+      "avgL": 0.8406256059761819,
+      "avg_turnover_1way": 0.15823308450168766,
+      "n_cash_weeks": 152,
+      "n_timestop": 5,
+      "n_timestop_same_fri_reenter": 0,
+      "n_cool_block": 0,
+      "n_e0": 176,
+      "avg_hold_weeks": 2.4191176470588234,
+      "w2020_22": {
+        "ret": 0.15549007237112966,
+        "maxDD": -0.16005989858806313,
+        "Calmar": 0.30943251477880485
+      },
+      "w2023_26": {
+        "ret": 0.9483432111147796,
+        "maxDD": -0.1380814670414744,
+        "Calmar": 1.3883742587265562
+      },
+      "delta_ret": -0.06505733577302486,
+      "delta_abs_mdd": -1.1102230246251565e-16,
+      "g1_covers": false,
+      "g2_2023_26": true,
+      "verdict": "证伪"
+    }
+  ],
+  "elapsed_sec": 23.8
+}
