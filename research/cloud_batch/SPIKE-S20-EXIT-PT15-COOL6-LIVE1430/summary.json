@@ -1,0 +1,286 @@
+{
+  "knife_id": "SPIKE-S20-EXIT-PT15-COOL6-LIVE1430",
+  "title": "SPIKE-S20 EXIT PT15 × COOL−6",
+  "batch": "COMPOSER-EXIT-CROSS",
+  "convention": "B45+S20+TV25 max5 face; Fri≥14:30/close; 0.2%RT; research pool",
+  "unique_change": "profit_take +15% AND loss_cool −6% (cross); attribution PT-only / COOL-only / 2×2",
+  "sample": "2020-01-03 → 2026-10-23",
+  "falsify": true,
+  "passes_explore": false,
+  "n_calendar_weeks": 349,
+  "coverage": {
+    "px_1430_csv": "C:\\Users\\Michael_YANG\\Documents\\GitHub\\GGSDDU\\research\\cloud_batch\\CLOUD-BATCH-2026-10-26\\data\\research_cache\\fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 45269,
+    "snap_cache_used": "C:\\Users\\Michael_YANG\\Documents\\GitHub\\GGSDDU\\research\\cloud_batch\\CLOUD-BATCH-2026-10-26\\data\\cache_1430_snaps.json",
+    "sample_note": "CLOUD-BATCH 延窗：2020-01-03→2026-10-23",
+    "approximation": [
+      "研究池 research_cache；breadth≥45% face risk_on",
+      "Fri≥14:30 信号 / 收盘成交；TV25；0.2%RT；L≤1",
+      "止盈：周评未实现≥阈值相对 entry_px 强制退出（simulate 内）",
+      "冷静：上周组合周收益≤阈值则本周信号日强制空仓（overlay）；触发周收益取自同路径无冷静 NAV",
+      "不写 strategy_exec / LIVE_OPS / champion"
+    ]
+  },
+  "cool_meta": {
+    "LIVE1430-COOL6-only": {
+      "threshold": -0.06,
+      "n_cool_weeks": 1,
+      "triggers": [
+        {
+          "date": "2021-02-26",
+          "week_ret_pp": -8.140141706294624,
+          "threshold_pp": -6.0
+        }
+      ],
+      "profit_take_pct": null,
+      "role": "cool_only"
+    },
+    "LIVE1430-CROSS-PT15-COOL6": {
+      "threshold": -0.06,
+      "n_cool_weeks": 1,
+      "triggers": [
+        {
+          "date": "2021-02-26",
+          "week_ret_pp": -9.160307156414627,
+          "threshold_pp": -6.0
+        }
+      ],
+      "profit_take_pct": 0.15,
+      "role": "primary_cross"
+    }
+  },
+  "sim_stats": {
+    "LIVE1430-FACE": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "n_profit_take_exits": 0,
+      "profit_take_pct": null,
+      "max_pos": 5,
+      "cool_threshold": null,
+      "n_cool_weeks": 0,
+      "role": "face_baseline"
+    },
+    "LIVE1430-PT15-only": {
+      "n_fridays_queue_gt_seats": 100,
+      "n_fridays_with_cands": 188,
+      "n_entries": 306,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 306,
+      "n_profit_take_exits": 39,
+      "profit_take_pct": 0.15,
+      "max_pos": 5,
+      "cool_threshold": null,
+      "n_cool_weeks": 0,
+      "role": "pt_only"
+    },
+    "LIVE1430-COOL6-only": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "n_profit_take_exits": 0,
+      "profit_take_pct": null,
+      "max_pos": 5,
+      "n_cool_weeks": 1,
+      "cool_threshold": -0.06,
+      "role": "cool_only"
+    },
+    "LIVE1430-CROSS-PT15-COOL6": {
+      "n_fridays_queue_gt_seats": 100,
+      "n_fridays_with_cands": 188,
+      "n_entries": 306,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 306,
+      "n_profit_take_exits": 39,
+      "profit_take_pct": 0.15,
+      "max_pos": 5,
+      "n_cool_weeks": 1,
+      "cool_threshold": -0.06,
+      "role": "primary_cross"
+    }
+  },
+  "table": [
+    {
+      "book": "LIVE1430-FACE",
+      "pt_on": 0,
+      "cool_on": 0,
+      "profit_take_pct": 0.0,
+      "cool_threshold": 0.0,
+      "role": "face_baseline",
+      "n_pt_exits": 0,
+      "n_cool_weeks": 0,
+      "ret": 1.5828517647807212,
+      "maxDD": -0.1586573855560559,
+      "CAGR": 0.14966460612320387,
+      "Calmar": 0.9433195032091667,
+      "2020-22_ret": 0.29278073416800243,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6021948845718625,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642
+    },
+    {
+      "book": "LIVE1430-PT15-only",
+      "pt_on": 1,
+      "cool_on": 0,
+      "profit_take_pct": 0.15,
+      "cool_threshold": 0.0,
+      "role": "pt_only",
+      "n_pt_exits": 39,
+      "n_cool_weeks": 0,
+      "ret": 1.4116429994034134,
+      "maxDD": -0.16124329133565773,
+      "CAGR": 0.13813319588186035,
+      "Calmar": 0.8566756156962249,
+      "2020-22_ret": 0.2376356747449635,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.4962893868829676,
+      "2023-26_ret": 0.9485887879729815,
+      "2023-26_DD": -0.14465884905782223,
+      "2023-26_Calmar": 1.3255203695782776
+    },
+    {
+      "book": "LIVE1430-COOL6-only",
+      "pt_on": 0,
+      "cool_on": 1,
+      "profit_take_pct": 0.0,
+      "cool_threshold": -0.06,
+      "role": "cool_only",
+      "n_pt_exits": 0,
+      "n_cool_weeks": 1,
+      "ret": 1.5043230296154717,
+      "maxDD": -0.15865738555605624,
+      "CAGR": 0.14445905935222214,
+      "Calmar": 0.9105095161244946,
+      "2020-22_ret": 0.25347517382399554,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.527025101637876,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642
+    },
+    {
+      "book": "LIVE1430-CROSS-PT15-COOL6",
+      "pt_on": 1,
+      "cool_on": 1,
+      "profit_take_pct": 0.15,
+      "cool_threshold": -0.06,
+      "role": "primary_cross",
+      "n_pt_exits": 39,
+      "n_cool_weeks": 1,
+      "ret": 1.3337554997263275,
+      "maxDD": -0.16124329133565718,
+      "CAGR": 0.13265454524345288,
+      "Calmar": 0.8226980741003876,
+      "2020-22_ret": 0.19766444009667627,
+      "2020-22_DD": -0.1507375526235034,
+      "2020-22_Calmar": 0.4125580630177468,
+      "2023-26_ret": 0.9485887879729815,
+      "2023-26_DD": -0.14465884905782223,
+      "2023-26_Calmar": 1.3255203695782776
+    }
+  ],
+  "grid_2x2": {
+    "grid_PT0_COOL0": "LIVE1430-FACE",
+    "grid_PT1_COOL0": "LIVE1430-PT15-only",
+    "grid_PT0_COOL1": "LIVE1430-COOL6-only",
+    "grid_PT1_COOL1": "LIVE1430-CROSS-PT15-COOL6"
+  },
+  "grid_2x2_delta_vs_face": {
+    "grid_PT0_COOL0": {
+      "dret_pp": 0.0,
+      "d_abs_mdd_pp": 0.0,
+      "covers": true,
+      "calmar_beat": false,
+      "rear_ok": true
+    },
+    "grid_PT1_COOL0": {
+      "dret_pp": -17.12087653773078,
+      "d_abs_mdd_pp": 0.2585905779601827,
+      "covers": false,
+      "calmar_beat": false,
+      "rear_ok": true
+    },
+    "grid_PT0_COOL1": {
+      "dret_pp": -7.85287351652495,
+      "d_abs_mdd_pp": 3.3306690738754696e-14,
+      "covers": false,
+      "calmar_beat": false,
+      "rear_ok": true
+    },
+    "grid_PT1_COOL1": {
+      "dret_pp": -24.909626505439377,
+      "d_abs_mdd_pp": 0.2585905779601272,
+      "covers": false,
+      "calmar_beat": false,
+      "rear_ok": true
+    }
+  },
+  "delta_cross_vs_face": {
+    "dret_pp": -24.909626505439377,
+    "d_abs_mdd_pp": 0.2585905779601272,
+    "covers": false,
+    "calmar_beat": false,
+    "rear_ok": true
+  },
+  "neighbor_pt": [
+    {
+      "kind": "profit_take",
+      "label": "PT10",
+      "profit_take": 0.1,
+      "cool_threshold": null,
+      "ret": 1.3185355826623142,
+      "maxDD": -0.1592836397945201,
+      "CAGR": 0.13156579205312524,
+      "Calmar": 0.8259843397780741,
+      "n_pt_exits": 68
+    },
+    {
+      "kind": "profit_take",
+      "label": "PT20",
+      "profit_take": 0.2,
+      "cool_threshold": null,
+      "ret": 1.345706577772178,
+      "maxDD": -0.16124329133565718,
+      "CAGR": 0.13350522565298806,
+      "Calmar": 0.8279738310170852,
+      "n_pt_exits": 27
+    }
+  ],
+  "neighbor_cool": [
+    {
+      "kind": "loss_cool",
+      "label": "COOL4",
+      "profit_take": null,
+      "cool_threshold": -0.04,
+      "n_cool_weeks": 6,
+      "ret": 1.3992951301354317,
+      "maxDD": -0.20941008679218553,
+      "CAGR": 0.13727480262768332,
+      "Calmar": 0.655530995333153
+    },
+    {
+      "kind": "loss_cool",
+      "label": "COOL8",
+      "profit_take": null,
+      "cool_threshold": -0.08,
+      "n_cool_weeks": 1,
+      "ret": 1.5043230296154717,
+      "maxDD": -0.15865738555605624,
+      "CAGR": 0.14445905935222214,
+      "Calmar": 0.9105095161244946
+    }
+  ],
+  "neighbors_unstable": true,
+  "verdict": "**交叉退出证伪（不换冠）**：face Calmar=0.94； CROSS PT15×COOL6 Calmar=0.82 Δret=-24.9pp Δ|MDD|=+0.3pp 后段OK；邻档不稳。 单腿 PT15 / COOL6 此前已 falsify，交叉无新增升格。",
+  "isolation": "strategy_exec / LIVE_OPS / champion: NONE",
+  "elapsed_sec": 30.4
+}
