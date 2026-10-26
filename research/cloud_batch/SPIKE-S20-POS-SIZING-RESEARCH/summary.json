@@ -1,0 +1,162 @@
+{
+  "title": "SPIKE-S20-POS-SIZING-RESEARCH",
+  "convention": "Fri ≥14:30 signal / Friday close fill; TV25 L≤1; 0.2%RT; breadth≥0.45; research pool",
+  "unique_change": "position weights EQ5 vs INV20W vs CAP30; SHARPE20 entry ranks frozen; max5",
+  "batch": "CLOUD-POS-SIZING",
+  "sample": "2020-01-03 → 2026-10-23",
+  "n_calendar_weeks": 349,
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 45269,
+    "n_skip_no_sina_or_qfq": 28556,
+    "n_empty_status_rows": 12,
+    "weeks_with_mapped_1430_median_codes": 209.0,
+    "snap_cache_used": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/cache_1430_snaps.json",
+    "sample_note": "延窗研究：2020-01-03→2026-10-23（CLOUD-BATCH research_cache + cache_1430_snaps end=2026-10-23）。",
+    "approximation": [
+      "延窗：week/day/face/14:30 来自 CLOUD-BATCH data/research_cache；breadth risk_on 用 holdings_ro2_extended",
+      "qfq_1430 = price_1430 × (day qfq 收 / sina 收)；sina 作 bfq 代理",
+      "14:30 分类只读 cache_1430_snaps.json（end=2026-10-23）",
+      "Sharpe 窗截至信号日严格前一交易日（无周五收盘前视）",
+      "成交/净值：周五收盘填仓 + TV25 + 0.2%RT；L≤1",
+      "唯一改动：持仓权重 EQ5 / INV20W / CAP30；SHARPE20 填席与 max5 不变",
+      "不写 strategy_exec / LIVE_OPS / 冠军主钉"
+    ]
+  },
+  "hold_diffs_vs_eq5": {
+    "RESEARCH-S20-INV20W_vs_EQ5": {
+      "n": 198,
+      "n_diff": 0,
+      "pct_diff": 0.0
+    },
+    "RESEARCH-S20-CAP30_vs_EQ5": {
+      "n": 198,
+      "n_diff": 0,
+      "pct_diff": 0.0
+    }
+  },
+  "sim_stats": {
+    "RESEARCH-S20-EQ5": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "max_pos": 5,
+      "n_cash_weeks": 150
+    },
+    "RESEARCH-S20-INV20W": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "max_pos": 5,
+      "n_cash_weeks": 150
+    },
+    "RESEARCH-S20-CAP30": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "max_pos": 5,
+      "n_cash_weeks": 150
+    }
+  },
+  "table": [
+    {
+      "book": "RESEARCH-S20-EQ5",
+      "ret": 1.5828517647807212,
+      "maxDD": -0.1586573855560559,
+      "CAGR": 0.14966460612320387,
+      "Calmar": 0.9433195032091667,
+      "2020-22_ret": 0.2927807341680022,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6021948845718625,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.826620595788602,
+      "avg_turnover_1way": 0.15368021113651173,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "occ_winrate": 0.5303030303030303,
+      "occ_payoff": 1.464722039579623,
+      "occ_avg_win": 0.025353317376266254,
+      "occ_avg_loss": -0.01730930285144251,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "RESEARCH-S20-INV20W",
+      "ret": 1.1158589968202364,
+      "maxDD": -0.15480813474790966,
+      "CAGR": 0.11645353739203301,
+      "Calmar": 0.7522443028053178,
+      "2020-22_ret": 0.19523530742387107,
+      "2020-22_DD": -0.15422283724649566,
+      "2020-22_Calmar": 0.3985591383304314,
+      "2023-26_ret": 0.7702447239285568,
+      "2023-26_DD": -0.13814409301074793,
+      "2023-26_Calmar": 1.1730072619708822,
+      "avgL": 0.8639706676929503,
+      "avg_turnover_1way": 0.1684883551256519,
+      "avg_turnover": 0.1684883551256519,
+      "occ_n": 198,
+      "occ_winrate": 0.5353535353535354,
+      "occ_payoff": 1.314965892878036,
+      "occ_avg_win": 0.023422600233914504,
+      "occ_avg_loss": -0.017812325293586128,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "RESEARCH-S20-CAP30",
+      "ret": 1.4604712397180895,
+      "maxDD": -0.16648185258627213,
+      "CAGR": 0.14149130639964813,
+      "Calmar": 0.8498902685283748,
+      "2020-22_ret": 0.25459488994168566,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.5291880469618945,
+      "2023-26_ret": 0.9611679112071501,
+      "2023-26_DD": -0.1385328712882956,
+      "2023-26_Calmar": 1.398704047986164,
+      "avgL": 0.8325702499673705,
+      "avg_turnover_1way": 0.1416294139555391,
+      "avg_turnover": 0.1416294139555391,
+      "occ_n": 198,
+      "occ_winrate": 0.5303030303030303,
+      "occ_payoff": 1.4455596386152056,
+      "occ_avg_win": 0.02452558683318264,
+      "occ_avg_loss": -0.016966153576809376,
+      "n_cash_weeks": 150
+    }
+  ],
+  "delta_vs_eq5": {
+    "RESEARCH-S20-INV20W": {
+      "dret_pp": -46.69927679604848,
+      "d_abs_mdd_pp": -0.3849250808146243,
+      "covers": false,
+      "strong_2023_26_ok": false,
+      "better_calmar": false
+    },
+    "RESEARCH-S20-CAP30": {
+      "dret_pp": -12.238052506263175,
+      "d_abs_mdd_pp": 0.782446703021622,
+      "covers": false,
+      "strong_2023_26_ok": true,
+      "better_calmar": false
+    }
+  },
+  "baseline_eq5": {
+    "ret": 1.5828517647807212,
+    "maxDD": -0.1586573855560559,
+    "Calmar": 0.9433195032091667
+  },
+  "verdict": "**探索证伪/记账（不换冠）**：INV20W 与 CAP30 均未稳定优于 B45+S20 等权；与 2026-10-14 INVVOL 叙事一致，不换冠。",
+  "isolation": "strategy_exec / LIVE_OPS: NONE overwritten",
+  "elapsed_sec": 6.8
+}
