@@ -3,13 +3,15 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO="$(cd "${ROOT}/../.." && pwd)"
+ANCHOR="${REPO}/research"
 DB="${ROOT}/kb_index.sqlite"
 PY="${PYTHON:-python3}"
 STUB_DIR="${ROOT}/_corpus_stub"
 STUB_DB="${ROOT}/kb_index_stub.sqlite"
 
-echo "== ingest (sample notes) =="
-"${PY}" "${ROOT}/cli.py" ingest --root "${ROOT}" --db "${DB}" --rebuild-fts --force
+echo "== ingest (workspace anchor) =="
+"${PY}" "${ROOT}/cli.py" ingest --anchor "${ANCHOR}" --db "${DB}" --rebuild-fts --force
 
 TOTAL="$("${PY}" -c "import sqlite3; print(sqlite3.connect('${DB}').execute('SELECT COUNT(*) FROM documents').fetchone()[0])")"
 CHUNKS="$("${PY}" -c "import sqlite3; print(sqlite3.connect('${DB}').execute('SELECT COUNT(*) FROM chunks').fetchone()[0])")"
@@ -23,16 +25,26 @@ if [[ "${CHUNKS}" -lt "${TOTAL}" ]]; then
   exit 1
 fi
 
+PREFIXED="$("${PY}" -c "import sqlite3; print(sqlite3.connect('${DB}').execute(\"SELECT COUNT(*) FROM documents WHERE path LIKE 'research-kb/%'\").fetchone()[0])")"
+if [[ "${PREFIXED}" -lt 1 ]]; then
+  echo "FAIL: expected research-kb/*.md paths under anchor" >&2
+  exit 1
+fi
+
 echo "== search: volatility (chunk mode) =="
-OUT="$("${PY}" "${ROOT}/search.py" --root "${ROOT}" --db "${DB}" volatility --limit 3)"
+OUT="$("${PY}" "${ROOT}/search.py" --db "${DB}" volatility --limit 3)"
 echo "${OUT}"
-echo "${OUT}" | grep -q '\.md' || { echo "FAIL: no path in hits" >&2; exit 1; }
+echo "${OUT}" | grep -q 'research-kb/.*\.md' || { echo "FAIL: no path in hits" >&2; exit 1; }
 echo "${OUT}" | grep -q 'cite:' || { echo "FAIL: no citation path" >&2; exit 1; }
 
 echo "== search: HYPOTHESES (json) =="
-JSON="$("${PY}" "${ROOT}/search.py" --root "${ROOT}" --db "${DB}" HYPOTHESES --limit 1 --json)"
+JSON="$("${PY}" "${ROOT}/search.py" --db "${DB}" HYPOTHESES --limit 1 --json)"
 echo "${JSON}"
 echo "${JSON}" | grep -q '"path"' || { echo "FAIL: json missing path" >&2; exit 1; }
+echo "${JSON}" | grep -q '"cite"' || { echo "FAIL: json missing cite" >&2; exit 1; }
+
+echo "== ingest_workspace.sh =="
+bash "${ROOT}/ingest_workspace.sh" --force 2>&1 | grep -q 'ingest complete'
 
 echo "== optional PDF fixture =="
 if "${PY}" -c "
@@ -54,7 +66,7 @@ echo "== large corpus stub ingest =="
 rm -rf "${STUB_DIR}"
 "${PY}" "${ROOT}/fixtures/gen_corpus_stub.py" --out "${STUB_DIR}" --count 500 --nested 10
 STUB_START=$(date +%s)
-"${PY}" "${ROOT}/cli.py" ingest --root "${STUB_DIR}" --db "${STUB_DB}" --rebuild-fts
+"${PY}" "${ROOT}/ingest.py" --anchor "${STUB_DIR}" --db "${STUB_DB}" --rebuild-fts --force
 STUB_END=$(date +%s)
 STUB_DOCS="$("${PY}" -c "import sqlite3; print(sqlite3.connect('${STUB_DB}').execute('SELECT COUNT(*) FROM documents').fetchone()[0])")"
 STUB_CHUNKS="$("${PY}" -c "import sqlite3; print(sqlite3.connect('${STUB_DB}').execute('SELECT COUNT(*) FROM chunks').fetchone()[0])")"
@@ -67,4 +79,4 @@ echo "${STUB_HIT}" | grep -q 'stub-' || { echo "FAIL: stub search miss" >&2; exi
 echo "== embed stub =="
 "${PY}" -c "import sys; sys.path.insert(0, '${ROOT}'); from embed_stub import get_embedder; assert get_embedder().embed_text('x') == ()"
 
-echo "PASS smoke_test (indexed ${TOTAL} documents, stub ${STUB_DOCS})"
+echo "PASS smoke_test (indexed ${TOTAL} documents under ${ANCHOR}, stub ${STUB_DOCS})"

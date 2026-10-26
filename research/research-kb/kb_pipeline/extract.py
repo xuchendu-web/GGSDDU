@@ -117,8 +117,13 @@ def extract_pdf_text(path: Path) -> str | None:
     return None
 
 
-def extract_document_text(root: Path, path: Path) -> ExtractedDocument | None:
-    rel = path.relative_to(root).as_posix()
+def extract_document_text(
+    root: Path,
+    path: Path,
+    *,
+    logical: str | None = None,
+) -> ExtractedDocument | None:
+    rel = logical if logical is not None else path.relative_to(root).as_posix()
     suffix = path.suffix.lower()
 
     if suffix == ".md":

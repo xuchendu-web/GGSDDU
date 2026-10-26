@@ -1,0 +1,7 @@
+# Copy to ingest_roots.local.txt (gitignored) to index Markdown outside this repo.
+# One root per line. Optional label before | or before : on absolute paths.
+#
+# Examples:
+# ~/Documents/research-notes
+# kimi-notes|/Users/you/Kimi/notes
+# ext:/data/shared/research-md

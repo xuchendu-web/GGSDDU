@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 
 from .chunking import chunk_text
 from .extract import extract_document_text, iter_indexable_files
+from .roots import logical_path
 
 DEFAULT_DB_NAME = "kb_index.sqlite"
 SCHEMA_VERSION = "2"
@@ -27,7 +29,8 @@ CREATE TABLE IF NOT EXISTS documents (
     source_type TEXT NOT NULL DEFAULT 'md',
     mtime REAL NOT NULL,
     size INTEGER NOT NULL,
-    content_hash TEXT NOT NULL
+    content_hash TEXT NOT NULL,
+    source_root TEXT NOT NULL DEFAULT ''
 );
 
 CREATE VIRTUAL TABLE IF NOT EXISTS documents_fts USING fts5(
@@ -94,9 +97,15 @@ def content_hash(body: str) -> str:
 
 def _migrate_documents(conn: sqlite3.Connection) -> None:
     cols = {row[1] for row in conn.execute("PRAGMA table_info(documents)")}
-    if cols and "source_type" not in cols:
+    if not cols:
+        return
+    if "source_type" not in cols:
         conn.execute(
             "ALTER TABLE documents ADD COLUMN source_type TEXT NOT NULL DEFAULT 'md'"
+        )
+    if "source_root" not in cols:
+        conn.execute(
+            "ALTER TABLE documents ADD COLUMN source_root TEXT NOT NULL DEFAULT ''"
         )
 
 
@@ -112,7 +121,6 @@ def init_db(conn: sqlite3.Connection) -> None:
 
 
 def rebuild_fts(conn: sqlite3.Connection) -> None:
-    """Rebuild external-content FTS5 indexes from backing tables."""
     conn.execute("INSERT INTO documents_fts(documents_fts) VALUES('rebuild')")
     conn.execute("INSERT INTO chunks_fts(chunks_fts) VALUES('rebuild')")
     conn.commit()
@@ -144,23 +152,25 @@ def _replace_chunks(
 
 def ingest_file(
     conn: sqlite3.Connection,
-    root: Path,
+    source_root: Path,
+    logical: str,
     path: Path,
     *,
     force: bool,
     chunk_chars: int,
     chunk_overlap: int,
 ) -> str:
-    extracted = extract_document_text(root, path)
+    extracted = extract_document_text(source_root, path, logical=logical)
     if extracted is None:
         return "skipped"
 
     stat = path.stat()
     digest = content_hash(extracted.body)
+    root_s = str(source_root.resolve())
 
     row = conn.execute(
         "SELECT id, mtime, content_hash FROM documents WHERE path = ?",
-        (extracted.rel_path,),
+        (logical,),
     ).fetchone()
 
     if row and not force:
@@ -185,7 +195,8 @@ def ingest_file(
         conn.execute(
             """
             UPDATE documents
-            SET title = ?, body = ?, source_type = ?, mtime = ?, size = ?, content_hash = ?
+            SET title = ?, body = ?, source_type = ?, mtime = ?, size = ?,
+                content_hash = ?, source_root = ?
             WHERE id = ?
             """,
             (
@@ -195,6 +206,7 @@ def ingest_file(
                 stat.st_mtime,
                 stat.st_size,
                 digest,
+                root_s,
                 doc_id,
             ),
         )
@@ -209,17 +221,20 @@ def ingest_file(
 
     cur = conn.execute(
         """
-        INSERT INTO documents (path, title, body, source_type, mtime, size, content_hash)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO documents (
+            path, title, body, source_type, mtime, size, content_hash, source_root
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
-            extracted.rel_path,
+            logical,
             extracted.title,
             extracted.body,
             extracted.source_type,
             stat.st_mtime,
             stat.st_size,
             digest,
+            root_s,
         ),
     )
     doc_id = int(cur.lastrowid)
@@ -234,7 +249,7 @@ def ingest_file(
 
 
 def run_ingest(
-    root: Path,
+    targets: list[tuple[str, Path]],
     db_path: Path,
     *,
     force: bool = False,
@@ -242,7 +257,6 @@ def run_ingest(
     chunk_chars: int = 2400,
     chunk_overlap: int = 200,
 ) -> dict[str, int]:
-    root = root.resolve()
     db_path.parent.mkdir(parents=True, exist_ok=True)
 
     conn = sqlite3.connect(db_path)
@@ -253,22 +267,24 @@ def run_ingest(
             "updated": 0,
             "skipped": 0,
             "removed": 0,
-            "chunks": 0,
         }
 
         seen_paths: set[str] = set()
-        for file_path in iter_indexable_files(root):
-            rel = file_path.relative_to(root).as_posix()
-            seen_paths.add(rel)
-            status = ingest_file(
-                conn,
-                root,
-                file_path,
-                force=force,
-                chunk_chars=chunk_chars,
-                chunk_overlap=chunk_overlap,
-            )
-            counts[status] = counts.get(status, 0) + 1
+        for prefix, source_root in targets:
+            for file_path in iter_indexable_files(source_root):
+                rel = file_path.relative_to(source_root)
+                logical = logical_path(prefix, rel)
+                seen_paths.add(logical)
+                status = ingest_file(
+                    conn,
+                    source_root,
+                    logical,
+                    file_path,
+                    force=force,
+                    chunk_chars=chunk_chars,
+                    chunk_overlap=chunk_overlap,
+                )
+                counts[status] = counts.get(status, 0) + 1
 
         stale = conn.execute("SELECT path FROM documents").fetchall()
         for (rel_path,) in stale:
@@ -279,6 +295,7 @@ def run_ingest(
         if rebuild:
             rebuild_fts(conn)
 
+        roots_meta = [{"prefix": prefix, "root": str(root)} for prefix, root in targets]
         conn.execute(
             "INSERT INTO meta(key, value) VALUES(?, ?) "
             "ON CONFLICT(key) DO UPDATE SET value = excluded.value",
@@ -287,7 +304,7 @@ def run_ingest(
         conn.execute(
             "INSERT INTO meta(key, value) VALUES(?, ?) "
             "ON CONFLICT(key) DO UPDATE SET value = excluded.value",
-            ("root", str(root)),
+            ("ingest_roots", json.dumps(roots_meta, ensure_ascii=False)),
         )
         conn.commit()
 

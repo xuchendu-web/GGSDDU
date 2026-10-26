@@ -10,13 +10,13 @@ import sqlite3
 import sys
 from pathlib import Path
 
-from ingest import DEFAULT_DB_NAME
+from kb_pipeline.roots import default_db_location
+from kb_pipeline.store import DEFAULT_DB_NAME
 
 SNIPPET_MARKERS = ("<b>", "</b>", "...")
 
 
 def escape_fts_query(raw: str) -> str:
-    """Turn user input into a safe FTS5 AND query over tokens."""
     tokens = re.findall(r'"[^"]+"|\S+', raw.strip())
     if not tokens:
         return ""
@@ -32,12 +32,18 @@ def escape_fts_query(raw: str) -> str:
     return " AND ".join(parts)
 
 
+def cite_path(hit: dict, fallback_root: Path) -> Path:
+    source_root = hit.get("source_root") or ""
+    if source_root:
+        return (Path(source_root) / hit["path"]).resolve()
+    return (fallback_root / hit["path"]).resolve()
+
+
 def search(
     db_path: Path,
     query: str,
     *,
     limit: int = 10,
-    json_out: bool = False,
     mode: str = "chunks",
 ) -> list[dict]:
     fts_q = escape_fts_query(query)
@@ -52,6 +58,7 @@ def search(
             SELECT
                 d.path,
                 d.title,
+                d.source_root,
                 bm25(documents_fts) AS score,
                 snippet(documents_fts, 1, ?, ?, ?, 64) AS snippet,
                 NULL AS chunk_index
@@ -66,6 +73,7 @@ def search(
             SELECT
                 d.path,
                 d.title,
+                d.source_root,
                 bm25(chunks_fts) AS score,
                 snippet(chunks_fts, 0, ?, ?, ?, 64) AS snippet,
                 c.chunk_index AS chunk_index
@@ -76,31 +84,28 @@ def search(
             ORDER BY score
             LIMIT ?
             """
-        rows = conn.execute(
-            sql,
-            (*SNIPPET_MARKERS, fts_q, limit),
-        ).fetchall()
-        hits = [
+        rows = conn.execute(sql, (*SNIPPET_MARKERS, fts_q, limit)).fetchall()
+        return [
             {
                 "path": row["path"],
                 "title": row["title"],
+                "source_root": row["source_root"] or "",
                 "score": float(row["score"]),
                 "snippet": row["snippet"],
                 "chunk_index": row["chunk_index"],
             }
             for row in rows
         ]
-        return hits
     finally:
         conn.close()
 
 
-def format_text_hits(hits: list[dict], root: Path) -> str:
+def format_text_hits(hits: list[dict], fallback_root: Path) -> str:
     if not hits:
         return "No matches."
     lines: list[str] = []
     for i, hit in enumerate(hits, start=1):
-        abs_path = (root / hit["path"]).resolve()
+        abs_path = cite_path(hit, fallback_root)
         snippet = hit["snippet"].replace("<b>", "**").replace("</b>", "**")
         lines.append(f"{i}. {hit['path']}")
         lines.append(f"   title: {hit['title']}")
@@ -114,45 +119,41 @@ def format_text_hits(hits: list[dict], root: Path) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Search indexed Markdown notes.")
-    parser.add_argument("query", nargs="+", help="Search terms (AND by default; use quotes for phrases)")
+    script_dir = Path(__file__).resolve().parent
+    parser = argparse.ArgumentParser(description="Search indexed research notes.")
+    parser.add_argument("query", nargs="+", help="Search terms (AND by default)")
     parser.add_argument(
         "--root",
         type=Path,
-        default=Path(__file__).resolve().parent,
-        help="Notes root (for citation paths)",
-    )
-    parser.add_argument(
-        "--db",
-        type=Path,
         default=None,
-        help=f"SQLite database (default: <root>/{DEFAULT_DB_NAME})",
+        help="Fallback notes root when source_root is empty",
     )
-    parser.add_argument("--limit", type=int, default=10, help="Max hits (default: 10)")
+    parser.add_argument("--db", type=Path, default=None)
+    parser.add_argument("--limit", type=int, default=10)
     parser.add_argument(
         "--mode",
         choices=("chunks", "documents"),
         default="chunks",
-        help="Search chunked FTS (default) or whole-document FTS",
+        help="Chunk FTS (default) or whole-document FTS",
     )
-    parser.add_argument("--json", action="store_true", help="Emit JSON lines")
+    parser.add_argument("--json", action="store_true")
     args = parser.parse_args(argv)
 
-    root = args.root.resolve()
-    db_path = (args.db or root / DEFAULT_DB_NAME).resolve()
+    fallback_root = (args.root or script_dir).resolve()
+    db_path = (args.db or default_db_location(script_dir)).resolve()
     query = " ".join(args.query)
 
     if not db_path.is_file():
         print(f"error: index not found at {db_path}; run ingest.py first", file=sys.stderr)
         return 1
 
-    hits = search(db_path, query, limit=args.limit, json_out=args.json, mode=args.mode)
+    hits = search(db_path, query, limit=args.limit, mode=args.mode)
     if args.json:
         for hit in hits:
-            hit_out = {**hit, "cite": str((root / hit["path"]).resolve())}
+            hit_out = {**hit, "cite": str(cite_path(hit, fallback_root))}
             print(json.dumps(hit_out, ensure_ascii=False))
     else:
-        print(format_text_hits(hits, root))
+        print(format_text_hits(hits, fallback_root))
     return 0 if hits else 2
 
 
