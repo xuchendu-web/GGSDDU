@@ -1,0 +1,271 @@
+{
+  "title": "UNIV-THEME-BROAD-SPLIT-B45",
+  "batch": "UNIV-SPLIT-B45",
+  "convention": "Fri≥14:30 / close; L≤1; 0.2%RT; B45+S20 max5+E0+TV25",
+  "unique_change": "theme/broad split books + 50/50 ER 60/40 70/30 blends vs FACE mix",
+  "breadth": "mother_pool_face_risk_on",
+  "n_broad": 38,
+  "n_theme": 286,
+  "sample": "2020-01-03 → 2026-10-23",
+  "n_calendar_weeks": 349,
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 45269,
+    "n_skip_no_sina_or_qfq": 28556,
+    "n_empty_status_rows": 12,
+    "weeks_with_mapped_1430_median_codes": 209.0,
+    "snap_cache_used": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/cache_1430_snaps.json",
+    "sample_note": "CLOUD-BATCH 延窗研究：2020-01-03→2026-10-23（14:30 至 2026-10-23）",
+    "approximation": [
+      "延窗：research_cache week/day/face/14:30；≤2026-10-09 沿用 face；其后研究周线 MA20 宽度",
+      "qfq_1430 = price_1430 × (day qfq 收 / sina daily 收)；sina 作 bfq 代理",
+      "冲击分类：周线收盘替换为 qfq_1430 后因果 classify（Fri≥14:30 信号）",
+      "Sharpe 窗截至信号日严格前一交易日",
+      "成交：周五收盘填仓 + 0.2%RT；L=min(1, 0.25/max(σ20,σ60))；TV25 冻结",
+      "分账：主题/宽基子宇宙内 spike 排序；breadth **共用母池 face** risk_on",
+      "合成：主题+宽基腿日收益固定权或逆波等权；只读 cache_1430_snaps",
+      "只读 kit `data/cache_1430_snaps.json`；不写 strategy_exec / LIVE_OPS"
+    ]
+  },
+  "hold_diffs_vs_face": {
+    "LIVE1430-SPLIT-THEME-B45-S20_vs_FACE": {
+      "n": 198,
+      "n_diff": 61,
+      "pct_diff": 0.30808080808080807
+    },
+    "LIVE1430-SPLIT-BROAD-B45-S20_vs_FACE": {
+      "n": 198,
+      "n_diff": 198,
+      "pct_diff": 1.0
+    }
+  },
+  "sim_stats": {
+    "LIVE1430-FACE-B45-S20": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "max_pos": 5,
+      "n_cash_weeks": 150,
+      "role": "baseline",
+      "n_universe": 324
+    },
+    "LIVE1430-SPLIT-THEME-B45-S20": {
+      "n_fridays_queue_gt_seats": 85,
+      "n_fridays_with_cands": 190,
+      "n_entries": 263,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 263,
+      "max_pos": 5,
+      "n_cash_weeks": 150,
+      "role": "leg",
+      "n_universe": 286
+    },
+    "LIVE1430-SPLIT-BROAD-B45-S20": {
+      "n_fridays_queue_gt_seats": 18,
+      "n_fridays_with_cands": 83,
+      "n_entries": 116,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 116,
+      "max_pos": 5,
+      "n_cash_weeks": 212,
+      "role": "leg",
+      "n_universe": 38
+    },
+    "LIVE1430-BLEND-50-50": {
+      "role": "blend",
+      "n_cash_weeks": NaN,
+      "synthetic": true
+    },
+    "LIVE1430-BLEND-ER": {
+      "role": "blend",
+      "n_cash_weeks": NaN,
+      "synthetic": true
+    },
+    "LIVE1430-BLEND-60-40": {
+      "role": "blend",
+      "n_cash_weeks": NaN,
+      "synthetic": true
+    },
+    "LIVE1430-BLEND-70-30": {
+      "role": "blend",
+      "n_cash_weeks": NaN,
+      "synthetic": true
+    }
+  },
+  "table": [
+    {
+      "book": "LIVE1430-FACE-B45-S20",
+      "kind": "baseline",
+      "ret": 1.5828517647807212,
+      "maxDD": -0.1586573855560559,
+      "CAGR": 0.14966460612320387,
+      "Calmar": 0.9433195032091667,
+      "2020-22_ret": 0.2927807341680022,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6021948845718625,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.826620595788602,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-SPLIT-THEME-B45-S20",
+      "kind": "leg",
+      "ret": 1.5055672360083987,
+      "maxDD": -0.16102616232670708,
+      "CAGR": 0.144542614683546,
+      "Calmar": 0.8976343508099169,
+      "2020-22_ret": 0.2636596104952167,
+      "2020-22_DD": -0.1485272538794319,
+      "2020-22_Calmar": 0.5481594066751398,
+      "2023-26_ret": 0.9827865156080218,
+      "2023-26_DD": -0.14323479375173975,
+      "2023-26_Calmar": 1.3768503192177428,
+      "avgL": 0.8200587330919229,
+      "avg_turnover": 0.15237275987681886,
+      "occ_n": 198,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-SPLIT-BROAD-B45-S20",
+      "kind": "leg",
+      "ret": 0.12026122088788016,
+      "maxDD": -0.2709680639213389,
+      "CAGR": 0.016831623620675584,
+      "Calmar": 0.06211663240713765,
+      "2020-22_ret": 0.04296427139223935,
+      "2020-22_DD": -0.12415250051723747,
+      "2020-22_Calmar": 0.11413314195630717,
+      "2023-26_ret": 0.07411274922434297,
+      "2023-26_DD": -0.19639910438167174,
+      "2023-26_Calmar": 0.09663017999162965,
+      "avgL": 0.8545938329413252,
+      "avg_turnover": 0.11508783865557583,
+      "occ_n": 136,
+      "n_cash_weeks": 212
+    },
+    {
+      "book": "LIVE1430-BLEND-50-50",
+      "kind": "blend",
+      "ret": 0.6991175055357401,
+      "maxDD": -0.1499575313264473,
+      "CAGR": 0.0810323062332643,
+      "Calmar": 0.5403683664067696,
+      "2020-22_ret": 0.15330479880273473,
+      "2020-22_DD": -0.1308719451395961,
+      "2020-22_Calmar": 0.3733681885422596,
+      "2023-26_ret": 0.4732597205002733,
+      "2023-26_DD": -0.1499575313264463,
+      "2023-26_Calmar": 0.7152852106322126,
+      "avgL": 0.7050137701752313,
+      "avg_turnover": 0.13373029926619734,
+      "occ_n": 198,
+      "n_cash_weeks": NaN
+    },
+    {
+      "book": "LIVE1430-BLEND-ER",
+      "kind": "blend",
+      "ret": 0.6230111246289871,
+      "maxDD": -0.15356771589102014,
+      "CAGR": 0.07377540304663088,
+      "Calmar": 0.4804095875137314,
+      "2020-22_ret": 0.1174197131604029,
+      "2020-22_DD": -0.13201132353852607,
+      "2020-22_Calmar": 0.2865859094195674,
+      "2023-26_ret": 0.45246330050739636,
+      "2023-26_DD": -0.14271519040878144,
+      "2023-26_Calmar": 0.7226335930645521,
+      "avgL": 0.7050137701752313,
+      "avg_turnover": 0.13373029926619734,
+      "occ_n": 198,
+      "n_cash_weeks": NaN
+    },
+    {
+      "book": "LIVE1430-BLEND-60-40",
+      "kind": "blend",
+      "ret": 0.840496732110521,
+      "maxDD": -0.14303814232257372,
+      "CAGR": 0.09380689030295386,
+      "Calmar": 0.6558173140378489,
+      "2020-22_ret": 0.1754382395673162,
+      "2020-22_DD": -0.1331487375587045,
+      "2020-22_Calmar": 0.4172297152334843,
+      "2023-26_ret": 0.5657962027745669,
+      "2023-26_DD": -0.1430381423225735,
+      "2023-26_Calmar": 0.8748862304885789,
+      "avgL": 0.7050137701752313,
+      "avg_turnover": 0.13373029926619734,
+      "occ_n": 198,
+      "n_cash_weeks": NaN
+    },
+    {
+      "book": "LIVE1430-BLEND-70-30",
+      "kind": "blend",
+      "ret": 0.9914000894610457,
+      "maxDD": -0.13622837624940065,
+      "CAGR": 0.10654959973839695,
+      "Calmar": 0.7821395414956047,
+      "2020-22_ret": 0.19755684010370134,
+      "2020-22_DD": -0.13600780757313835,
+      "2020-22_Calmar": 0.4570037126946757,
+      "2023-26_ret": 0.6628856541695363,
+      "2023-26_DD": -0.13622837624939999,
+      "2023-26_Calmar": 1.0503167310319317,
+      "avgL": 0.7050137701752313,
+      "avg_turnover": 0.13373029926619734,
+      "occ_n": 198,
+      "n_cash_weeks": NaN
+    }
+  ],
+  "delta_vs_face": {
+    "LIVE1430-SPLIT-THEME-B45-S20": {
+      "dret_pp": -7.72845287723225,
+      "d_abs_mdd_pp": 0.2368776770651171,
+      "covers": false,
+      "rear_ok": true
+    },
+    "LIVE1430-SPLIT-BROAD-B45-S20": {
+      "dret_pp": -146.2590543892841,
+      "d_abs_mdd_pp": 11.231067836528297,
+      "covers": false,
+      "rear_ok": false
+    },
+    "LIVE1430-BLEND-50-50": {
+      "dret_pp": -88.37342592449811,
+      "d_abs_mdd_pp": -0.8699854229608617,
+      "covers": false,
+      "rear_ok": false
+    },
+    "LIVE1430-BLEND-ER": {
+      "dret_pp": -95.9840640151734,
+      "d_abs_mdd_pp": -0.5089669665035768,
+      "covers": false,
+      "rear_ok": false
+    },
+    "LIVE1430-BLEND-60-40": {
+      "dret_pp": -74.23550326702002,
+      "d_abs_mdd_pp": -1.5619243233482183,
+      "covers": false,
+      "rear_ok": false
+    },
+    "LIVE1430-BLEND-70-30": {
+      "dret_pp": -59.145167531967545,
+      "d_abs_mdd_pp": -2.2429009306655256,
+      "covers": false,
+      "rear_ok": false
+    }
+  },
+  "hypothesis_H1_holds": true,
+  "best_calmar_book": "LIVE1430-FACE-B45-S20",
+  "verdict": "**H1 成立（不换冠）**：无分账/合成档相对 FACE 同时满足「Δret 盖住 Δ|MDD|」且 2023–26 不踏空。 Calmar 最高：**FACE-B45-S20**（0.94）。 FACE ret=158.3% / DD=-15.9%。",
+  "isolation": "strategy_exec / LIVE_OPS: NONE",
+  "elapsed_sec": 6.3
+}

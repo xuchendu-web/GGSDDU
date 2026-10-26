@@ -1,0 +1,34 @@
+CAT A股宽基: 37
+CAT 行业主题: 210
+CAT 港股: 50
+CAT 跨境: 15
+CAT 商品: 5
+CAT 债券货币: 16
+extended W with 16 codes
+building 无缓冲混排 XS52取5 ...
+MIX {'ret': 1.3739, 'maxDD': -0.4331, 'CAGR': 0.1359, 'Calmar': 0.3138} to=9.76
+building 主版 B=8 ...
+B8 {'ret': 1.6942, 'maxDD': -0.4108, 'CAGR': 0.1573, 'Calmar': 0.3829} to=5.20 ex=1.00
+building 旁注 B=10（对齐 HOLD-BUF 主版）...
+B10 {'ret': 0.9136, 'maxDD': -0.4643, 'CAGR': 0.1004, 'Calmar': 0.2162} to=4.27
+building 邻档 B=6 ...
+B6 {'ret': 1.7675, 'maxDD': -0.3949, 'CAGR': 0.1619, 'Calmar': 0.4099} to=7.66
+building 邻档 连续确认×2 ...
+C2 {'ret': 0.9381, 'maxDD': -0.4798, 'CAGR': 0.1025, 'Calmar': 0.2135} to=6.37
+building 全池等权 ...
+POOL_EW {'ret': 0.488, 'maxDD': -0.3438, 'CAGR': 0.0603, 'Calmar': 0.1755} to=0.80
+computing buf contrib B=8 / B=10 ...
+avg_hold_weeks B8=10.84 B10=13.55 mix=5.51
+buf_contrib B8=+0.0359 B10=-0.1230 (narrowed=+0.1589)
+filled knife: /workspace/etf-multifreq/knives/MF-HOLD-B8.md
+filled knife: /workspace/strategy-weekly/knives/MF-HOLD-B8.md
+wrote Obsidian /workspace/obsidian-notes/ETF多频专题/MF-HOLD-B8.md
+DONE **未证伪** 换手 5.2x vs 无缓冲 9.8x（比 0.53×，闸 >×0.8）；Calmar 0.38 vs 0.31（Δ+0.07）；2023–26 24.1% vs 19.9%。未触发证伪闸。
+                        book    ret  maxDD  Calmar  turnover  avg_expo
+0  MF-HOLD-B8 B=8·XS52取5(主版)  1.694 -0.411   0.383     5.202     0.997
+1        旁注 B=10(对齐HOLD-BUF)  0.914 -0.464   0.216     4.272     0.997
+2                     邻档 B=6  1.768 -0.395   0.410     7.663     0.997
+3                  邻档 连续确认×2  0.938 -0.480   0.214     6.367     0.997
+4           无缓冲全池混排 XS52跳1取5  1.374 -0.433   0.314     9.759     0.997
+5                     全池等权周调  0.488 -0.344   0.175     0.804     0.997
+6                冠军同引擎(研究副本)  0.973 -0.205   0.513       NaN       NaN
