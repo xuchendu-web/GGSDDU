@@ -1,0 +1,189 @@
+{
+  "knife": "SPIKE-S20-UNIVERSE-COMMODITY-BOND-CASH-LIVE1430",
+  "sample": "2020-01-03 → 2026-10-23",
+  "n_commodity": 5,
+  "n_bond_cash": 2,
+  "breadth_min": 20,
+  "momentum_verdict": {
+    "commodity": "弱/不适配动量（Calmar 相对 face 过低）",
+    "bond_cash": "弱/不适配动量（Calmar 相对 face 过低）"
+  },
+  "barbell_note": "50/50 barbell; rebalance on face Fridays (calendar)",
+  "table": [
+    {
+      "book": "RES-B45-S20-COMMODITY",
+      "ret": 0.4605689672046076,
+      "maxDD": -0.2507531019697984,
+      "CAGR": 0.05725991061878366,
+      "Calmar": 0.2283517538526014,
+      "2020-22_ret": -0.09194144635392532,
+      "2020-22_DD": -0.2507531019697984,
+      "2020-22_Calmar": -0.12659635439392986,
+      "2023-26_ret": 0.6084524079863283,
+      "2023-26_DD": -0.1273799561600678,
+      "2023-26_Calmar": 1.0450825587510288,
+      "avgL": 0.9278518112201882,
+      "cash_week_pct": 0.5804597701149425,
+      "risk_on_week_pct": 1.0,
+      "avgTO": 0.07183908045977011,
+      "n_pool_codes": 5.0,
+      "breadth_mode": "NA_thin_slice",
+      "diversification": "RES-B45-S20-COMMODITY: 5 distinct ETFs ever held; avg concurrent slots ~0.69; top families by slot-weeks: 黄金现货(92), 期货·农产品(56), 期货·有色(53)",
+      "yearly": [
+        {
+          "year": 2020,
+          "ret": -0.060719053880743834,
+          "mdd": -0.1354924328317234,
+          "calmar": -0.4481361254776099
+        },
+        {
+          "year": 2021,
+          "ret": -0.17526812614965426,
+          "mdd": -0.24069856779889953,
+          "calmar": -0.7281643914727755
+        },
+        {
+          "year": 2022,
+          "ret": 0.17221037767184688,
+          "mdd": -0.06579556507657625,
+          "calmar": 2.6173554018636307
+        },
+        {
+          "year": 2023,
+          "ret": 0.05474593093150215,
+          "mdd": -0.10033840700054375,
+          "calmar": 0.5456129170079955
+        },
+        {
+          "year": 2024,
+          "ret": 0.05260009268340449,
+          "mdd": -0.09337798755913296,
+          "calmar": 0.5633029160121353
+        },
+        {
+          "year": 2025,
+          "ret": 0.2954469926775396,
+          "mdd": -0.09095909420683534,
+          "calmar": 3.248130329944925
+        },
+        {
+          "year": 2026,
+          "ret": 0.11834887586113618,
+          "mdd": -0.12737995616006825,
+          "calmar": 0.9291012450374576
+        }
+      ],
+      "note": NaN
+    },
+    {
+      "book": "RES-B45-S20-BOND-CASH",
+      "ret": 0.0013798219656624422,
+      "maxDD": -0.022875269499028295,
+      "CAGR": 0.00020326221717414938,
+      "Calmar": 0.008885675300253125,
+      "2020-22_ret": 0.0,
+      "2020-22_DD": 0.0,
+      "2020-22_Calmar": NaN,
+      "2023-26_ret": 0.0013798219656624422,
+      "2023-26_DD": -0.022875269499028295,
+      "2023-26_Calmar": 0.015922252459351516,
+      "avgL": 1.0,
+      "cash_week_pct": 0.7873563218390804,
+      "risk_on_week_pct": 1.0,
+      "avgTO": 0.03902439024390244,
+      "n_pool_codes": 2.0,
+      "breadth_mode": "NA_thin_slice",
+      "diversification": "RES-B45-S20-BOND-CASH: 2 distinct ETFs ever held; avg concurrent slots ~0.32; top families by slot-weeks: 国债·5年(67), 国债·10年(43)",
+      "yearly": [
+        {
+          "year": 2020,
+          "ret": 0.0,
+          "mdd": 0.0,
+          "calmar": NaN
+        },
+        {
+          "year": 2021,
+          "ret": 0.0,
+          "mdd": 0.0,
+          "calmar": NaN
+        },
+        {
+          "year": 2022,
+          "ret": 0.0,
+          "mdd": 0.0,
+          "calmar": NaN
+        },
+        {
+          "year": 2023,
+          "ret": 0.0,
+          "mdd": 0.0,
+          "calmar": NaN
+        },
+        {
+          "year": 2024,
+          "ret": -0.0002150341220262808,
+          "mdd": -0.012809061475886896,
+          "calmar": -0.016787656334625554
+        },
+        {
+          "year": 2025,
+          "ret": -0.01287724650478761,
+          "mdd": -0.01312744055484416,
+          "calmar": -0.980941140124666
+        },
+        {
+          "year": 2026,
+          "ret": 0.014661242042565137,
+          "mdd": -0.0036349040194136872,
+          "calmar": 4.0334605712450164
+        }
+      ],
+      "note": NaN
+    },
+    {
+      "book": "RES-B45-S20-BARBELL-50-50",
+      "ret": 0.22204389783080325,
+      "maxDD": -0.1320523667988166,
+      "CAGR": 0.02991215466743058,
+      "Calmar": 0.2265173687723607,
+      "2020-22_ret": -0.04298717689624065,
+      "2020-22_DD": -0.1320523667988166,
+      "2020-22_Calmar": -0.11047884392902192,
+      "2023-26_ret": 0.2769357612863499,
+      "2023-26_DD": -0.06251076688980062,
+      "2023-26_Calmar": 1.0613482154984382,
+      "avgL": 0.0,
+      "cash_week_pct": 0.0,
+      "risk_on_week_pct": NaN,
+      "avgTO": NaN,
+      "n_pool_codes": 7.0,
+      "breadth_mode": "synthetic",
+      "diversification": NaN,
+      "yearly": NaN,
+      "note": "50/50 barbell; rebalance on face Fridays (calendar)"
+    },
+    {
+      "book": "REF-FULL-POOL-B45-S20",
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "2020-22_ret": NaN,
+      "2020-22_DD": NaN,
+      "2020-22_Calmar": NaN,
+      "2023-26_ret": NaN,
+      "2023-26_DD": NaN,
+      "2023-26_Calmar": NaN,
+      "avgL": NaN,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": NaN,
+      "avgTO": NaN,
+      "n_pool_codes": NaN,
+      "breadth_mode": NaN,
+      "diversification": NaN,
+      "yearly": NaN,
+      "note": "Full research pool (extend batch); not re-run this slice job."
+    }
+  ],
+  "elapsed_sec": 5.0
+}
