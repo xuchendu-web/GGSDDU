@@ -839,8 +839,8 @@ def main() -> None:
                     "penalty_lambda": lam,
                 }
             )
-        pd.DataFrame(rows).to_csv(OUT / f"holdings_LAM{ltag}.csv", index=False)
-        pd.DataFrame(trades).to_csv(OUT / f"trades_LAM{ltag}.csv", index=False)
+        pd.DataFrame(rows).to_csv(OUT / f"holdings_{ltag}.csv", index=False)
+        pd.DataFrame(trades).to_csv(OUT / f"trades_{ltag}.csv", index=False)
         print(
             f"  λ={lam}: entries={st['n_entries']} trades={st['n_trades']} "
             f"tight={st['n_fridays_queue_gt_seats']} cash={n_cash}",
