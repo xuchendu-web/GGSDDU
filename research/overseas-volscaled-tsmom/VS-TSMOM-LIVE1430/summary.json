@@ -1,0 +1,17 @@
+{
+  "n_declared": 2,
+  "declared_sleeves": [
+    "OX",
+    "CMD"
+  ],
+  "rates_status": "SKIP",
+  "triple_sleeve_claim": "SKIP",
+  "gates": {
+    "G1": false,
+    "G2": true,
+    "G3": false,
+    "G4": true
+  },
+  "verdict": "证伪",
+  "erc_fallback_weeks": 60
+}
