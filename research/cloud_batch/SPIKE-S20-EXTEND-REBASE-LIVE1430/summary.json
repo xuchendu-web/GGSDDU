@@ -1,0 +1,243 @@
+{
+  "title": "SPIKE-S20-EXTEND-REBASE-LIVE1430",
+  "unique_change": "sample end extended to ≥2026-10-23 only; rules frozen",
+  "sample": "2020-01-03 → 2026-10-23",
+  "old_window_end": "2026-09-24",
+  "coverage": {
+    "px_1430_csv": "/workspace/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "calendar_end": "2026-10-23",
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 73793,
+    "n_skip_no_sina_or_qfq": 32,
+    "n_empty_status_rows": 12,
+    "approximation": [
+      "延窗研究缓存：week/day 合并 recon week_2026-10-23 / day_2026-10-23；缺日线用 sina 收益链拼接（研究目录）",
+      "14:30 新周（09-30/10-09/10-16/10-23）pytdx idx209 拉入 research_cache；旧周复用 fri_1430_through_20260925",
+      "B45/B50 breadth/risk_on：face holdings_ro2_extended 列 b / risk_on（B50: b≥0.50）",
+      "HYST-M3：滞回 M=3；TV33：σ*=0.33 同 B45 持仓；CASH-511010：空仓周 TV25 持 511010",
+      "qfq_1430 = price_1430 × (day/tema qfq 收 / sina 收)；Sharpe 窗截至信号日前一交易日",
+      "成交/净值：信号周末交易日收盘填仓 + TV25 + 0.2%RT；L≤1"
+    ]
+  },
+  "sim_stats": {
+    "LIVE1430-B45-S20": {
+      "n_fridays_queue_gt_seats": 88,
+      "n_fridays_with_cands": 191,
+      "n_entries": 267,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 267,
+      "max_pos": 5,
+      "n_cash_weeks": 150,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.43103448275862066,
+      "n_risk_on_weeks": 203,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    "LIVE1430-B50-S20": {
+      "n_fridays_queue_gt_seats": 82,
+      "n_fridays_with_cands": 174,
+      "n_entries": 257,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 257,
+      "max_pos": 5,
+      "n_cash_weeks": 167,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.47988505747126436,
+      "n_risk_on_weeks": 186,
+      "risk_on_week_pct": 0.5344827586206896
+    },
+    "LIVE1430-HYST-M3-S20": {
+      "n_fridays_queue_gt_seats": 151,
+      "n_fridays_with_cands": 192,
+      "n_entries": 384,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 384,
+      "n_forced_exits": 251,
+      "n_hyst_exits": 133,
+      "avgTO": 0.34909090909090906,
+      "hyst_m": 3,
+      "max_pos": 5,
+      "n_cash_weeks": 150,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.43103448275862066,
+      "n_risk_on_weeks": 203,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    "LIVE1430-TV33-S20": {
+      "n_fridays_queue_gt_seats": 88,
+      "n_fridays_with_cands": 191,
+      "n_entries": 267,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 267,
+      "max_pos": 5,
+      "n_cash_weeks": 150,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.43103448275862066,
+      "n_risk_on_weeks": 203,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    "LIVE1430-CASH-511010": {
+      "n_fridays_queue_gt_seats": 88,
+      "n_fridays_with_cands": 191,
+      "n_entries": 267,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 267,
+      "max_pos": 5,
+      "n_cash_weeks": 150,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.43103448275862066,
+      "n_risk_on_weeks": 203,
+      "risk_on_week_pct": 0.5833333333333334
+    }
+  },
+  "table": [
+    {
+      "book": "LIVE1430-B45-S20",
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "2020-22_ret": 0.18888117892868528,
+      "2020-22_DD": -0.16005989858806302,
+      "2020-22_Calmar": 0.37221138893854394,
+      "2023-26_ret": 0.9483432111147798,
+      "2023-26_DD": -0.1380814670414744,
+      "2023-26_Calmar": 1.3883742587265562,
+      "avgL": 0.8413486853673591,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    {
+      "book": "LIVE1430-B50-S20",
+      "ret": 1.491630458408057,
+      "maxDD": -0.15517763714972677,
+      "CAGR": 0.1436046537615958,
+      "Calmar": 0.9254210619474474,
+      "2020-22_ret": 0.1765241471524135,
+      "2020-22_DD": -0.15517763714972677,
+      "2020-22_Calmar": 0.3601013544902201,
+      "2023-26_ret": 1.1177894771124315,
+      "2023-26_DD": -0.13758559908880064,
+      "2023-26_Calmar": 1.5854162903754667,
+      "avgL": 0.8266740698427635,
+      "cash_week_pct": 0.47988505747126436,
+      "risk_on_week_pct": 0.5344827586206896
+    },
+    {
+      "book": "LIVE1430-TV33-S20",
+      "ret": 1.384747930012411,
+      "maxDD": -0.1942739733979033,
+      "CAGR": 0.13625866899317796,
+      "Calmar": 0.7013737692701586,
+      "2020-22_ret": 0.23146879769471318,
+      "2020-22_DD": -0.1942739733979033,
+      "2020-22_Calmar": 0.3712441544890452,
+      "2023-26_ret": 0.9365069861912969,
+      "2023-26_DD": -0.17261539820461813,
+      "2023-26_Calmar": 1.0995585976125257,
+      "avgL": 0.9489881762155848,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    {
+      "book": "LIVE1430-HYST-M3-S20",
+      "ret": 1.6508111239782073,
+      "maxDD": -0.18549135770956138,
+      "CAGR": 0.154061663364506,
+      "Calmar": 0.8305597913932606,
+      "2020-22_ret": 0.09647342326032882,
+      "2020-22_DD": -0.18549135770956138,
+      "2020-22_Calmar": 0.1686574292876329,
+      "2023-26_ret": 1.4175790016835141,
+      "2023-26_DD": -0.14808787979660476,
+      "2023-26_Calmar": 1.764394543698859,
+      "avgL": 0.8314189955516131,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    {
+      "book": "LIVE1430-CASH-511010",
+      "ret": 1.315214524646954,
+      "maxDD": -0.19603093245732262,
+      "CAGR": 0.1313274109553173,
+      "Calmar": 0.6699320832129809,
+      "2020-22_ret": 0.16941645375305203,
+      "2020-22_DD": -0.16753393186043208,
+      "2020-22_Calmar": 0.32078151927290216,
+      "2023-26_ret": 0.9798032747159013,
+      "2023-26_DD": -0.14258035845039885,
+      "2023-26_Calmar": 1.3798460412910387,
+      "avgL": 0.860786579314654,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334
+    }
+  ],
+  "old_window_metrics": {
+    "LIVE1430-B45-S20": {
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.1330594555772191,
+      "Calmar": 0.7077632964395482
+    },
+    "LIVE1430-B50-S20": {
+      "ret": 1.491630458408057,
+      "maxDD": -0.15517763714972677,
+      "CAGR": 0.1454180571920225,
+      "Calmar": 0.9371070462408994
+    },
+    "LIVE1430-TV33-S20": {
+      "ret": 1.384747930012411,
+      "maxDD": -0.1942739733979033,
+      "CAGR": 0.13797382929640545,
+      "Calmar": 0.7102023337619887
+    },
+    "LIVE1430-HYST-M3-S20": {
+      "ret": 1.6508111239782073,
+      "maxDD": -0.18549135770956138,
+      "CAGR": 0.1560158890089356,
+      "Calmar": 0.8410951913631584
+    },
+    "LIVE1430-CASH-511010": {
+      "ret": 1.3079649740055128,
+      "maxDD": -0.19603093245732262,
+      "CAGR": 0.1324486384447059,
+      "Calmar": 0.6756517289614022
+    }
+  },
+  "b45_vs_nob_ref": {
+    "ret": 1.3163485737878418,
+    "maxDD": -0.18799993761556133,
+    "Calmar": 0.6989834460989939,
+    "nob_ref_ret": 1.3399609137897461,
+    "nob_ref_mdd": -0.18879764614342198,
+    "nob_ref_calmar": 0.704970180111173,
+    "aligned": "True"
+  },
+  "delta_legs_vs_b45": {
+    "LIVE1430-B50-S20": {
+      "dret_pp": 17.528188462021532,
+      "d_absMDD_pp": -3.2822300465834564,
+      "covers": "True"
+    },
+    "LIVE1430-TV33-S20": {
+      "dret_pp": 6.839935622456927,
+      "d_absMDD_pp": 0.627403578234198,
+      "covers": "True"
+    },
+    "LIVE1430-HYST-M3-S20": {
+      "dret_pp": 33.446255019036556,
+      "d_absMDD_pp": -0.25085799059999525,
+      "covers": "True"
+    },
+    "LIVE1430-CASH-511010": {
+      "dret_pp": -0.11340491408877718,
+      "d_absMDD_pp": 0.8030994841761285,
+      "covers": "False"
+    }
+  },
+  "falsify": true,
+  "verdict": "**延窗翻脸（不换冠）**：记正腿 LIVE1430-CASH-511010 相对同窗 B45 未同时满足 Δret 盖住 Δ|MDD| 与 2023–26 不塌；基线延窗 B45 ret=131.6% （旧窗止 2026-09-24 ret=131.6%，Δ+0.0pp）。",
+  "elapsed_sec": 9.7
+}

@@ -1,0 +1,109 @@
+{
+  "title": "MAXDD20-GATE-B45",
+  "coverage": {
+    "calendar_end": "2026-10-23",
+    "n_weeks": 349,
+    "n_codes": 324
+  },
+  "sim_stats": {
+    "n_fridays_queue_gt_seats": 88,
+    "n_fridays_with_cands": 191,
+    "n_entries": 267,
+    "n_entries_missing_sharpe": 0,
+    "n_trades": 267,
+    "max_pos": 5,
+    "n_cash_weeks": 150,
+    "n_calendar_weeks_ex_last": 348,
+    "cash_week_pct": 0.43103448275862066,
+    "n_risk_on_weeks": 203,
+    "risk_on_week_pct": 0.5833333333333334
+  },
+  "table": [
+    {
+      "book": "FACE-B45-S20",
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "sharpe": 0.8230738819081985,
+      "2020-22_ret": 0.18888117892868528,
+      "2020-22_DD": -0.16005989858806302,
+      "2020-22_Calmar": 0.37221138893854394,
+      "2023-26_ret": 0.9483432111147798,
+      "2023-26_DD": -0.1380814670414744,
+      "2023-26_Calmar": 1.3883742587265562,
+      "avg_turnover": 0.24272727272727276,
+      "cash_week_pct": 0.43103448275862066
+    },
+    {
+      "book": "FACE-B45-S20-DD20-WK",
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "sharpe": 0.8230738819081985,
+      "2020-22_ret": 0.18888117892868528,
+      "2020-22_DD": -0.16005989858806302,
+      "2020-22_Calmar": 0.37221138893854394,
+      "2023-26_ret": 0.9483432111147798,
+      "2023-26_DD": -0.1380814670414744,
+      "2023-26_Calmar": 1.3883742587265562,
+      "avg_turnover": 0.24272727272727276,
+      "cash_week_pct": 0.43103448275862066,
+      "gate_trigger_dd": -0.2,
+      "gate_recover_dd": -0.18,
+      "gate_n_gate_weeks": 0,
+      "gate_n_trigger_events": 0,
+      "gate_n_recover_events": 0,
+      "gate_realized_maxDD": -0.18799993761556133,
+      "gate_gate_ok": true,
+      "gate_avg_exposure": 1.0
+    }
+  ],
+  "delta_dd20_vs_face": {
+    "d_ret_pp": 0.0,
+    "d_abs_mdd_pp": 0.0,
+    "d_calmar": 0.0,
+    "d_sharpe": 0.0,
+    "d_turnover": 0.0
+  },
+  "neighbor_triggers": [
+    {
+      "label": "NEIGH-TRIG22",
+      "trigger": -0.22,
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "sharpe": 0.8230738819081985,
+      "gate_trigger_dd": -0.22,
+      "gate_recover_dd": -0.18,
+      "gate_n_gate_weeks": 0,
+      "gate_n_trigger_events": 0,
+      "gate_n_recover_events": 0,
+      "gate_realized_maxDD": -0.18799993761556133,
+      "gate_gate_ok": true,
+      "gate_avg_exposure": 1.0
+    },
+    {
+      "label": "NEIGH-TRIG18",
+      "trigger": -0.18,
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "sharpe": 0.8230738819081985,
+      "gate_trigger_dd": -0.18,
+      "gate_recover_dd": -0.18,
+      "gate_n_gate_weeks": 0,
+      "gate_n_trigger_events": 0,
+      "gate_n_recover_events": 0,
+      "gate_realized_maxDD": -0.18799993761556133,
+      "gate_gate_ok": false,
+      "gate_avg_exposure": 1.0
+    }
+  ],
+  "h1_holds": true,
+  "verdict": "**闸惰性（不记正、不换冠）**：face |MDD|=18.8% 未触 −20%，周频硬闸 0 次触发，主表与 face 完全一致；无法在「压回撤↔保收益」上验收 DD20。旁证：DD15 **日频**压廓闸已证伪（ret 4.7% / Calmar 0.05 vs face 131.6% / 0.70，`research/cloud_batch/B45-MAXDD-GATE-SPIKE-S20/REPORT.md`）。",
+  "elapsed_sec": 6.3
+}
