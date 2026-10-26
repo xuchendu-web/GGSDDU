@@ -1,0 +1,208 @@
+{
+  "knife_id": "RESEARCH-WF-OOS-B45-FACE",
+  "face_book": "B45-FACE (breadth≥45% risk_on, spike_ft max5, SHARPE20, E0, Fri≥14:30/close, 0.2%RT, L≤1)",
+  "coverage": {
+    "knife_id": "RESEARCH-WF-OOS-B45-FACE",
+    "kit": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26",
+    "calendar": "2020-01-03 → 2026-10-23",
+    "n_weeks": 349,
+    "n_codes_aum2": 324,
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 73793,
+    "retune_axis": "TV_sigma",
+    "tv_grid": {
+      "TV22": 0.22,
+      "TV25": 0.25,
+      "TV28": 0.28,
+      "TV33": 0.33
+    },
+    "wf": {
+      "train_w": 104,
+      "test_w": 26,
+      "step_w": 26
+    }
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "train_start": "2020-01-03",
+      "train_end": "2021-12-31",
+      "test_start": "2022-01-07",
+      "test_end": "2022-07-08",
+      "chosen_tv": "TV25",
+      "sigma": 0.25,
+      "train_calmar_by_tv": {
+        "TV22": 0.8748840929038961,
+        "TV25": 0.9205242940424836,
+        "TV28": 0.8862660510151051,
+        "TV33": 0.8290646403511369
+      },
+      "train_calmar_chosen": 0.9205242940424836
+    },
+    {
+      "fold": 1,
+      "train_start": "2020-07-10",
+      "train_end": "2022-07-08",
+      "test_start": "2022-07-15",
+      "test_end": "2023-01-13",
+      "chosen_tv": "TV33",
+      "sigma": 0.33,
+      "train_calmar_by_tv": {
+        "TV22": 0.8362544513264693,
+        "TV25": 0.8457944119357148,
+        "TV28": 0.8805454872800981,
+        "TV33": 0.9072793844235771
+      },
+      "train_calmar_chosen": 0.9072793844235771
+    },
+    {
+      "fold": 2,
+      "train_start": "2021-01-08",
+      "train_end": "2023-01-13",
+      "test_start": "2023-01-20",
+      "test_end": "2023-07-21",
+      "chosen_tv": "TV33",
+      "sigma": 0.33,
+      "train_calmar_by_tv": {
+        "TV22": -0.28919451183010847,
+        "TV25": -0.28775874020597764,
+        "TV28": -0.2975228959779082,
+        "TV33": -0.2747932908233834
+      },
+      "train_calmar_chosen": -0.2747932908233834
+    },
+    {
+      "fold": 3,
+      "train_start": "2021-07-09",
+      "train_end": "2023-07-21",
+      "test_start": "2023-07-28",
+      "test_end": "2024-01-26",
+      "chosen_tv": "TV22",
+      "sigma": 0.22,
+      "train_calmar_by_tv": {
+        "TV22": -0.004970746042737733,
+        "TV25": -0.0365459317186323,
+        "TV28": -0.054908934633259306,
+        "TV33": -0.07169301517817177
+      },
+      "train_calmar_chosen": -0.004970746042737733
+    },
+    {
+      "fold": 4,
+      "train_start": "2022-01-07",
+      "train_end": "2024-01-26",
+      "test_start": "2024-02-02",
+      "test_end": "2024-08-02",
+      "chosen_tv": "TV22",
+      "sigma": 0.22,
+      "train_calmar_by_tv": {
+        "TV22": -0.017929236717577353,
+        "TV25": -0.06988173429829385,
+        "TV28": -0.1060794623162847,
+        "TV33": -0.1522159525931672
+      },
+      "train_calmar_chosen": -0.017929236717577353
+    },
+    {
+      "fold": 5,
+      "train_start": "2022-07-15",
+      "train_end": "2024-08-02",
+      "test_start": "2024-08-09",
+      "test_end": "2025-01-27",
+      "chosen_tv": "TV22",
+      "sigma": 0.22,
+      "train_calmar_by_tv": {
+        "TV22": 0.3983445609767488,
+        "TV25": 0.3836680454452723,
+        "TV28": 0.3370998774312461,
+        "TV33": 0.27435099697450777
+      },
+      "train_calmar_chosen": 0.3983445609767488
+    },
+    {
+      "fold": 6,
+      "train_start": "2023-01-20",
+      "train_end": "2025-01-27",
+      "test_start": "2025-02-07",
+      "test_end": "2025-08-01",
+      "chosen_tv": "TV22",
+      "sigma": 0.22,
+      "train_calmar_by_tv": {
+        "TV22": 0.5795402944487301,
+        "TV25": 0.5096954917614833,
+        "TV28": 0.427951407620067,
+        "TV33": 0.3147917696155009
+      },
+      "train_calmar_chosen": 0.5795402944487301
+    },
+    {
+      "fold": 7,
+      "train_start": "2023-07-28",
+      "train_end": "2025-08-01",
+      "test_start": "2025-08-08",
+      "test_end": "2026-01-30",
+      "chosen_tv": "TV22",
+      "sigma": 0.22,
+      "train_calmar_by_tv": {
+        "TV22": 0.6380398690313248,
+        "TV25": 0.5763036809559658,
+        "TV28": 0.5151425298183256,
+        "TV33": 0.4262817114984891
+      },
+      "train_calmar_chosen": 0.6380398690313248
+    },
+    {
+      "fold": 8,
+      "train_start": "2024-02-02",
+      "train_end": "2026-01-30",
+      "test_start": "2026-02-06",
+      "test_end": "2026-08-07",
+      "chosen_tv": "TV22",
+      "sigma": 0.22,
+      "train_calmar_by_tv": {
+        "TV22": 2.6087983159144694,
+        "TV25": 2.4052590223171118,
+        "TV28": 2.1769862240120523,
+        "TV33": 1.9084578503815501
+      },
+      "train_calmar_chosen": 2.6087983159144694
+    }
+  ],
+  "metrics": {
+    "oos_concat": {
+      "ret": 0.722823633172134,
+      "maxDD": -0.13332738480693895,
+      "CAGR": 0.12609799790157794,
+      "Calmar": 0.9457771791156834,
+      "sharpe": 0.8886376196399407,
+      "hit_rate_weekly": 0.46715328467153283
+    },
+    "is_concat_train_segments": {
+      "ret": 1.2692280488335768,
+      "maxDD": -0.16704614048884014,
+      "CAGR": 0.144609277250493,
+      "Calmar": 0.8656846355582452,
+      "sharpe": 0.8951956031205031,
+      "hit_rate_weekly": 0.5024630541871922
+    },
+    "full_sample_frozen_TV25": {
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "sharpe": 0.8230738819081985,
+      "hit_rate_weekly": 0.4863636363636364
+    }
+  },
+  "comparison": {
+    "full_sample_calmar": 0.6989834460989939,
+    "oos_calmar": 0.9457771791156834,
+    "oos_vs_full_calmar_ratio": 1.3530752185821253,
+    "overfit_flag": false,
+    "overfit_reasons": []
+  },
+  "series_paths": {
+    "oos_daily_csv": "data/oos_daily_returns.csv",
+    "full_daily_csv": "data/full_daily_returns.csv"
+  }
+}
