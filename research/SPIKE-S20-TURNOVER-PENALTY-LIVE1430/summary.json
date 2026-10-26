@@ -1,0 +1,187 @@
+{
+  "title": "SPIKE-S20-TURNOVER-PENALTY-LIVE1430",
+  "batch": "CLOUD-TURNOVER-PENALTY",
+  "convention": "Fri≥14:30 / close; L≤1; TV25; 0.2%RT; B45+S20 max5+E0",
+  "unique_change": "fill-rank penalty λ∈{0,0.15,0.25} on trailing_4w_turnover",
+  "turnover_definition": "trailing_4w raw rate + pool min-max to_norm for penalty",
+  "sample": "2020-01-03 → 2026-10-23",
+  "lambda_grid": [
+    0.0,
+    0.15,
+    0.25
+  ],
+  "n_calendar_weeks": 349,
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 45269,
+    "n_skip_no_sina_or_qfq": 28556,
+    "n_empty_status_rows": 12,
+    "weeks_with_mapped_1430_median_codes": 209.0,
+    "snap_cache_used": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/cache_1430_snaps.json",
+    "sample_note": "CLOUD-BATCH 延窗研究：2020-01-03→2026-10-23（14:30 至 2026-10-23）",
+    "approximation": [
+      "延窗：research_cache week/day/face/14:30；≤2026-10-09 沿用 face；其后研究周线 MA20 宽度",
+      "qfq_1430 = price_1430 × (day qfq 收 / sina daily 收)；sina 作 bfq 代理",
+      "冲击分类：周线收盘替换为 qfq_1430 后因果 classify（Fri≥14:30 信号）",
+      "Sharpe 窗截至信号日严格前一交易日",
+      "成交：周五收盘填仓 + TV25 + 0.2%RT；L≤1",
+      "填席：score=sharpe20−λ×to_norm；to_norm=池内min-max(trailing_4w_turnover)",
+      "trailing_4w_turnover=mean_Fri(vol_1430×px_1430)/(aum_亿×1e8) 信号日前4周五",
+      "冻结 B45+spike_ft max5+S20+E0+TV25；**唯一改动 λ∈{0,0.15,0.25}**",
+      "只读 kit `data/cache_1430_snaps.json`；不写 strategy_exec / LIVE_OPS"
+    ]
+  },
+  "hold_diffs_vs_lam0": {
+    "LIVE1430-B45-S20-LAM15_vs_LAM00": {
+      "n": 198,
+      "n_diff": 11,
+      "pct_diff": 0.05555555555555555
+    },
+    "LIVE1430-B45-S20-LAM25_vs_LAM00": {
+      "n": 198,
+      "n_diff": 32,
+      "pct_diff": 0.16161616161616163
+    }
+  },
+  "sim_stats": {
+    "LIVE1430-B45-S20-LAM00": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "max_pos": 5,
+      "n_cash_weeks": 150,
+      "penalty_lambda": 0.0,
+      "role": "baseline"
+    },
+    "LIVE1430-B45-S20-LAM15": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "max_pos": 5,
+      "n_cash_weeks": 150,
+      "penalty_lambda": 0.15,
+      "role": "grid"
+    },
+    "LIVE1430-B45-S20-LAM25": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 267,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 267,
+      "max_pos": 5,
+      "n_cash_weeks": 150,
+      "penalty_lambda": 0.25,
+      "role": "grid"
+    }
+  },
+  "table": [
+    {
+      "book": "LIVE1430-B45-S20-LAM00",
+      "penalty_lambda": 0.0,
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "ret": 1.5828517647807212,
+      "maxDD": -0.1586573855560559,
+      "CAGR": 0.14966460612320387,
+      "Calmar": 0.9433195032091667,
+      "2020-22_ret": 0.2927807341680022,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6021948845718625,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.826620595788602,
+      "avg_turnover_1way": 0.15368021113651173,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "occ_winrate": 0.5303030303030303,
+      "occ_payoff": 1.464722039579623,
+      "occ_avg_win": 0.025353317376266254,
+      "occ_avg_loss": -0.01730930285144251,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-B45-S20-LAM15",
+      "penalty_lambda": 0.15,
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "ret": 1.6277667326941083,
+      "maxDD": -0.15097018861522848,
+      "CAGR": 0.1525815490324074,
+      "Calmar": 1.0106733682454734,
+      "2020-22_ret": 0.31526177856473203,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6445068114648365,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.8266866719654463,
+      "avg_turnover_1way": 0.15337111116150093,
+      "avg_turnover": 0.15337111116150093,
+      "occ_n": 198,
+      "occ_winrate": 0.5252525252525253,
+      "occ_payoff": 1.5055886883735246,
+      "occ_avg_win": 0.025735700911922583,
+      "occ_avg_loss": -0.017093447307793375,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-B45-S20-LAM25",
+      "penalty_lambda": 0.25,
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "ret": 1.6182544096959481,
+      "maxDD": -0.15097018861522726,
+      "CAGR": 0.15196735332394362,
+      "Calmar": 1.0066050438027723,
+      "2020-22_ret": 0.30965184207597574,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6339936102813508,
+      "2023-26_ret": 0.9991988142021453,
+      "2023-26_DD": -0.1361594693141841,
+      "2023-26_Calmar": 1.4674765688415896,
+      "avgL": 0.8237733415007272,
+      "avg_turnover_1way": 0.1547818331079996,
+      "avg_turnover": 0.1547818331079996,
+      "occ_n": 198,
+      "occ_winrate": 0.5252525252525253,
+      "occ_payoff": 1.5028171917266009,
+      "occ_avg_win": 0.025737466825691977,
+      "occ_avg_loss": -0.01712614612567877,
+      "n_cash_weeks": 150
+    }
+  ],
+  "grid_delta_vs_lam0": {
+    "LIVE1430-B45-S20-LAM15": {
+      "dret_pp": 4.491496791338712,
+      "d_abs_mdd_pp": -0.7687196940827423,
+      "d_calmar": 0.06735386503630669,
+      "covers": true,
+      "wins_calmar": true,
+      "rear_ok": true,
+      "seg2020_covers": true,
+      "seg2023_covers": true
+    },
+    "LIVE1430-B45-S20-LAM25": {
+      "dret_pp": 3.5402644915226933,
+      "d_abs_mdd_pp": -0.7687196940828644,
+      "d_calmar": 0.06328554059360558,
+      "covers": true,
+      "wins_calmar": true,
+      "rear_ok": true,
+      "seg2020_covers": true,
+      "seg2023_covers": true
+    }
+  },
+  "falsified_lambdas": [],
+  "verdict": "**未证伪（记账）**：λ>0 相对 λ=0 Calmar 更优且探索尺子成立；组合 avgTO：λ=0 0.154 → 0.15 0.153 → 0.25 0.155。不换冠。",
+  "isolation": "strategy_exec / LIVE_OPS: NONE",
+  "elapsed_sec": 8.2
+}
