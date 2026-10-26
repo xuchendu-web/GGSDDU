@@ -1,0 +1,38 @@
+load universe + 14:30 + week…
+universe research_pool_v2 ∩ aum≥2: n=324
+calendar 2020-01-03 → 2026-09-24 n=345
+face risk_on=203 / 345
+load daily qfq + sina (bfq-like) for 14:30 map…
+daily qfq series: 174/324
+sina daily: 324/324
+mapped qfq_1430=44573 skip_no_bfq=27956 empty_block_rows=12
+load cached 1430 snaps /workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/cache_1430_snaps.json
+  cached codes with snaps: 324
+simulate LIVE1430-B45-S20 max_hold=None…
+  entries=265 trades=265 cands_weeks=190 tight=81
+simulate LIVE1430-MH4 max_hold=4…
+  entries=321 trades=321 cands_weeks=189 tight=98
+simulate LIVE1430-MH6 max_hold=6…
+  entries=286 trades=286 cands_weeks=190 tight=90
+simulate LIVE1430-MH8 max_hold=8…
+  entries=275 trades=275 cands_weeks=189 tight=86
+hold diffs vs baseline {'MHLIVE1430-MH4_vs_base': {'n': 198, 'n_diff': 88, 'pct_diff': 0.4444444444444444}, 'MHLIVE1430-MH6_vs_base': {'n': 198, 'n_diff': 54, 'pct_diff': 0.2727272727272727}, 'MHLIVE1430-MH8_vs_base': {'n': 198, 'n_diff': 31, 'pct_diff': 0.15656565656565657}}
+live days 2020-01-03 → 2026-09-24 n=1632
+  LIVE1430-B45-S20: ret=158.3% dd=-15.9% CAGR=15.2% Calmar=0.96
+  LIVE1430-MH4: ret=143.3% dd=-16.9% CAGR=14.1% Calmar=0.83
+  LIVE1430-MH6: ret=160.1% dd=-17.8% CAGR=15.3% Calmar=0.86
+  LIVE1430-MH8: ret=137.5% dd=-16.0% CAGR=13.7% Calmar=0.86
+/workspace/research/cloud_batch/SPIKE-MAXHOLD-SWEEP-LIVE1430/engine/run_maxhold_sweep.py:803: UserWarning: Glyph 20928 (\N{CJK UNIFIED IDEOGRAPH-51C0}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/workspace/research/cloud_batch/SPIKE-MAXHOLD-SWEEP-LIVE1430/engine/run_maxhold_sweep.py:803: UserWarning: Glyph 20540 (\N{CJK UNIFIED IDEOGRAPH-503C}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/workspace/research/cloud_batch/SPIKE-MAXHOLD-SWEEP-LIVE1430/engine/run_maxhold_sweep.py:803: UserWarning: Glyph 65288 (\N{FULLWIDTH LEFT PARENTHESIS}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/workspace/research/cloud_batch/SPIKE-MAXHOLD-SWEEP-LIVE1430/engine/run_maxhold_sweep.py:803: UserWarning: Glyph 23545 (\N{CJK UNIFIED IDEOGRAPH-5BF9}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/workspace/research/cloud_batch/SPIKE-MAXHOLD-SWEEP-LIVE1430/engine/run_maxhold_sweep.py:803: UserWarning: Glyph 25968 (\N{CJK UNIFIED IDEOGRAPH-6570}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/workspace/research/cloud_batch/SPIKE-MAXHOLD-SWEEP-LIVE1430/engine/run_maxhold_sweep.py:803: UserWarning: Glyph 65289 (\N{FULLWIDTH RIGHT PARENTHESIS}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+done /workspace/research/cloud_batch/SPIKE-MAXHOLD-SWEEP-LIVE1430
+**未证伪（探索记账）**：无 MH 档同时盖住基准全样本+后段且 Calmar≥基准。
