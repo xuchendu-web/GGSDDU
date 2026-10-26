@@ -1,0 +1,7 @@
+{
+  "knife_id": "UNIVERSE-HK-CROSSBORDER-B45",
+  "verdict": "incomplete_cache",
+  "note": "Run secu_fetch_runner until codes_ge_200>=220, then python3 run.py",
+  "face_layer": "spike_ft max5+E0+TV25+SHARPE20; Fri close proxy; 0.2%RT; L<=1",
+  "breadth_mother_pool": "full_pool_frozen"
+}
