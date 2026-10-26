@@ -1,4 +1,4 @@
-"""Frozen toy-rule parameters shared by all three engine styles."""
+"""Frozen toy-rule parameters shared by all engine styles."""
 
 from pathlib import Path
 

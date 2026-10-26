@@ -1,4 +1,4 @@
-"""Ensure panel exists and three styles agree on rankings."""
+"""Ensure panel exists and all engine styles agree on rankings."""
 
 from __future__ import annotations
 
@@ -11,10 +11,13 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from shared.config import PANEL_CSV  # noqa: E402
+from shared.engine_registry import engine_ids, load_runner  # noqa: E402
 from shared.generate_synthetic_panel import write_panel  # noqa: E402
-from scripts.style_a_vector import run_ranking as run_a  # noqa: E402
-from scripts.style_b_event import run_ranking as run_b  # noqa: E402
-from scripts.style_c_pandas import run_ranking as run_c  # noqa: E402
+from shared.rule_spec import (  # noqa: E402
+    compute_weekly_rankings,
+    load_panel,
+    panel_to_wide_close,
+)
 
 
 @pytest.fixture(scope="module")
@@ -22,6 +25,23 @@ def panel_path():
     if not PANEL_CSV.is_file():
         write_panel(PANEL_CSV)
     return PANEL_CSV
+
+
+@pytest.fixture(scope="module")
+def reference_rankings(panel_path):
+    wide = panel_to_wide_close(load_panel(panel_path))
+    return compute_weekly_rankings(wide)
+
+
+def _available_engines():
+    engines = []
+    for eid in engine_ids():
+        try:
+            load_runner(eid)
+            engines.append(eid)
+        except ImportError:
+            pass
+    return engines
 
 
 def _assert_same(a, b, label: str) -> None:
@@ -35,11 +55,17 @@ def _assert_same(a, b, label: str) -> None:
         assert row["top_k_a"] == row["top_k_b"]
 
 
-def test_three_styles_weekly_ranks_match(panel_path):
-    ra, rb, rc = run_a(panel_path), run_b(panel_path), run_c(panel_path)
-    _assert_same(ra, rb, "A vs B")
-    _assert_same(ra, rc, "A vs C")
-    _assert_same(rb, rc, "B vs C")
+@pytest.mark.parametrize("engine_id", _available_engines())
+def test_engine_matches_reference(panel_path, reference_rankings, engine_id):
+    run = load_runner(engine_id)
+    got = run(panel_path)
+    _assert_same(reference_rankings, got, f"ref vs {engine_id}")
+
+
+def test_at_least_eight_engines_when_polars_present():
+    """Core burn requires ≥8 styles; polars is optional."""
+    n = len(_available_engines())
+    assert n >= 8, f"expected >=8 runnable engines, got {n}"
 
 
 def test_deterministic_regeneration(panel_path):

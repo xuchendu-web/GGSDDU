@@ -2,13 +2,19 @@
 
 ## Hypothesis
 
-Three engine implementations of the **same frozen toy rule** on the **same fixed-seed synthetic panel** will produce **identical weekly cross-sectional rankings** (and therefore identical top-K selections):
+**Nine** engine implementations (eight required + optional Polars) of the **same frozen toy rule** on the **same fixed-seed synthetic panel** produce **identical weekly cross-sectional rankings** (and therefore identical top-K selections):
 
 | Style | Engine |
 |-------|--------|
 | A | Vectorized weekly on wide matrix |
 | B | Event-driven daily loop (rebalance only on `W-FRI` anchors) |
 | C | Long-format pandas `groupby` + `resample` |
+| D | Weekly bar table outer loop |
+| E | Wide daily features then explicit weekly resample |
+| F | Numba-ish numpy nested loops |
+| G | Pandas rolling + `rank` |
+| H | Polars rolling (optional dependency) |
+| I | numexpr on wide close matrix |
 
 ### Toy rule (not production `strategy_exec`)
 
@@ -35,7 +41,10 @@ Three engine implementations of the **same frozen toy rule** on the **same fixed
 
 ```bash
 cd research/burn-backtest-styles
+pip install -r requirements.txt
 python -m shared.generate_synthetic_panel
 python scripts/compare_rankings.py
 pytest tests/ -q
 ```
+
+See `README.md` for engine list and optional Polars install.
