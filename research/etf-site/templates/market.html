@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% set nav_market = true %}
+{% block title %}市场分析{% endblock %}
+{% block body %}
+<h1>市场分析</h1>
+<p class="note section-intro">每周日更新的一周盘面复盘（美股 / 港股 / A 股）。只写盘面，不荐股、不下单。</p>
+{% if arts %}
+{% for a in arts %}<a class="art" href="{{ a.slug }}.html"><b>{{ a.name }}</b><small>{{ a.summ }}…</small></a>{% endfor %}
+{% else %}
+<div class="empty empty--page" role="status">
+  <p class="empty__title">暂无盘面复盘</p>
+  <p class="empty__body">在 <code>data/weekly-tape-review/</code> 放入 Markdown 后运行 <code>build.py</code>，本页会自动列出文章。</p>
+</div>
+{% endif %}
+{% endblock %}

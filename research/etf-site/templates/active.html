@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% set nav_active = true %}
+{% block title %}主动ETF{% endblock %}
+{% block body %}
+<section class="hero">
+  <h1>{{ active.headline }}</h1>
+  <p>{{ active.lead }}</p>
+</section>
+
+<div class="kpi" role="list" aria-label="已核制度数字">
+  {% for k in active.kpis %}
+  <div class="kpi-item">{{ k.label }}<b class="tabular">{{ k.value }}</b><span class="kpi-range-end">{{ k.note }}</span></div>
+  {% endfor %}
+</div>
+<p class="note">口径日期 {{ active.asof }}。KPI 只放已核数字；跟踪指标见下方占位，不填假净值。</p>
+
+<div class="callout" role="note">
+  <strong>先读口径</strong>
+  <ul>
+    {% for c in active.callouts %}<li>{{ c }}</li>{% endfor %}
+  </ul>
+</div>
+
+<h2>制度三卡</h2>
+<p class="note section-intro">切自沪深交易所 2026-06-17 主动 ETF 业务指引。指引不规定统一管理费；1.00% 来自发售文件。</p>
+<div class="grid inst-grid">
+  <article class="card card--static">
+    <div class="card-head"><span class="ct">谁能发</span><span class="tag">资质</span></div>
+    <ul>
+      <li>自主选策略，<strong>不以跟踪特定指数为目标</strong>，用证券/现金/合同对价申赎，交易所上市。</li>
+      <li>名称须含「主动管理交易型开放式证券投资基金」；场内简称须含「主动」。</li>
+      <li>管理人：近 3 年无重大违法违规；<strong>5 年以上</strong>主动权益公募运作经验；近 3 年平均主动权益公募规模<strong>不少于 100 亿元</strong>。</li>
+      <li>首次开发须通过交易所专项检查验收。</li>
+    </ul>
+  </article>
+  <article class="card card--static">
+    <div class="card-head"><span class="ct">怎么管</span><span class="tag">组合</span></div>
+    <ul>
+      <li>持股<strong>不少于 30 只</strong>。</li>
+      <li>前十大合计<strong>不超过净值 60%</strong>。</li>
+      <li>所持股票近 1 年日均成交额须在该交易所上市股票<strong>前 80%</strong>。</li>
+      <li>控制换手，禁止短期频繁交易与集中大额调仓；设合理业绩基准。</li>
+      <li>因市场波动等被动偏离前两项：<strong>10 个交易日内</strong>调回。</li>
+    </ul>
+  </article>
+  <article class="card card--static">
+    <div class="card-head"><span class="ct">怎么披露</span><span class="tag">PCF / IOPV</span></div>
+    <ul>
+      <li>每个交易日开市前，按<strong>真实投资组合</strong>披露申购赎回清单（PCF）。</li>
+      <li>自行或委托认可机构计算 IOPV，交易时间内按频率发布。</li>
+      <li>合同须写明 PCF 与指数 ETF 的差异，并揭示抢先交易、策略被复制等特有风险。</li>
+      <li>PCF 是上一交易日日终组合，不是盘中实时持仓。</li>
+    </ul>
+  </article>
+</div>
+
+<h2>国内 18 只</h2>
+<p class="note section-intro">名单用财联社全称。代码只填已在发售说明或交易所系列稿出现的；空单元格写「待核」，不用 0 或假代码。AUM 与上市日全表不列——还在募集或刚结募，没有可引用的上市后规模。</p>
+<div class="scroll">
+<table class="cmp active-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>交易所</th>
+      <th>产品</th>
+      <th>管理人</th>
+      <th>风格</th>
+      <th>方法</th>
+      <th>交易代码</th>
+      <th>认购代码</th>
+      <th>发行窗</th>
+      <th>管理费</th>
+      <th>托管费</th>
+      <th>备注</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for f in active.funds %}
+  <tr>
+    <td class="tabular">{{ loop.index }}</td>
+    <td>{{ f.exch }}</td>
+    <td>{{ f.name }}</td>
+    <td>{{ f.manager }}</td>
+    <td>{{ f.style }}</td>
+    <td>{{ f.method }}</td>
+    <td class="tabular{% if f.trade == '待核' %} pending{% endif %}">{{ f.trade }}</td>
+    <td class="tabular{% if f.sub == '待核' %} pending{% endif %}">{{ f.sub }}</td>
+    <td class="tabular{% if f.window == '待核' %} pending{% endif %}">{{ f.window }}</td>
+    <td class="tabular">{{ f.mgmt }}</td>
+    <td class="tabular{% if f.cust == '待核' %} pending{% endif %}">{{ f.cust }}</td>
+    <td class="note">{{ f.note or "—" }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+<p class="note">风格箱：均衡 9 / 价值 4 / 红利 3 / 质量 1 / 大盘成长 1。方法：基本面为主，纯量化 2（富国、天弘），量化+基本面 3（汇添富、招商、大成）。经理姓名除平安、南方、国泰外未逐只对照发售公告，故不列表。</p>
+
+<h2>四象 + 海外迷你对照</h2>
+<p class="note section-intro">境内四象用中国基金报的价值 / 成长 / 均衡 / 红利箱；质量与大盘成长是箱外标签，不改数字去凑 4。海外用主动/被动 × 权益/债券，只引用已核费率。</p>
+<div class="quad" aria-label="境内风格四象">
+  {% for q in active.quad %}
+  <div class="quad-cell">
+    <small>{{ q.note }}</small>
+    <b class="tabular">{{ q.count }}</b>
+    <span class="ct">{{ q.name }}</span>
+  </div>
+  {% endfor %}
+</div>
+<div class="scroll">
+<table class="cmp">
+  <thead>
+    <tr><th>象限</th><th>代表</th><th>费率</th><th>备注</th></tr>
+  </thead>
+  <tbody>
+  {% for o in active.overseas %}
+  <tr>
+    <td>{{ o.quad }}</td>
+    <td>{{ o.name }}</td>
+    <td class="tabular">{{ o.fee }}</td>
+    <td class="note">{{ o.note }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+<p class="note">ARKK 是全透明主动 ETF，不是 ActiveShares / 半透明结构。全球主动 ETF 以全透明为主；沪深拟走全透明 + 日终 PCF。</p>
+
+<h2>跟踪</h2>
+<div class="empty empty--page" role="status">
+  <p class="empty__title">上市前不做跟踪填数</p>
+  <p class="empty__body">净值、折溢价、成交额、换手、相对基准超额都还没有可引用的上市后序列。本栏留空，等首批产品挂牌且官方净值可取后再接数据管道。不把募集上限、自购意向或结募触及上限写成 AUM。</p>
+</div>
+
+<h2>资料</h2>
+<ul class="src-list">
+  {% for s in active.sources %}
+  <li><a href="{{ s.url }}" rel="noreferrer" target="_blank">{{ s.title }}</a><span class="tabular"> {{ s.date }}</span></li>
+  {% endfor %}
+</ul>
+<p class="note">研究用途 · 非持牌投顾。页面数字若与最新发售公告冲突，以公告为准。</p>
+{% endblock %}

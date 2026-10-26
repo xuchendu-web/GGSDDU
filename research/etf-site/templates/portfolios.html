@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% set nav_portfolios = true %}
+{% block title %}模拟组合{% endblock %}
+{% block body %}
+<h1>模拟组合</h1>
+<p class="note section-intro">权重来自研究账本，不含个人账户信息。</p>
+<div class="grid">{% set sim = 1 %}{% for i in pfs %}{% include "_card.html" %}{% endfor %}</div>
+{% if not pfs %}<div class="empty">暂无启用的模拟组合。</div>{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% set nav_projects = true %}
+{% block title %}全部策略{% endblock %}
+{% block body %}
+<h1>策略库</h1>
+<p class="lead section-intro">冠军主钉、红利袖、动量/趋势/多频研究轨。页面仅展示回测与模拟，不含下单指令。</p>
+
+<h2>实盘口径 · 主策略</h2>
+<div class="grid">{% for i in projs %}{% include "_card.html" %}{% endfor %}</div>
+
+<details class="dev"><summary>ETF 动量专题 · {{ fut|length }} 个研究中策略</summary>
+<div class="grid">{% for i in fut %}{% include "_card.html" %}{% endfor %}</div>
+</details>
+
+<h2>趋势轨</h2>
+<div class="grid">{% for i in trend %}{% include "_card.html" %}{% endfor %}</div>
+
+<h2>多频积木</h2>
+<div class="grid">{% for i in mf %}{% include "_card.html" %}{% endfor %}</div>
+
+<h2>三轨对照（摘要）</h2>
+{% for tr in tracks.tracks %}
+<div class="rules">
+  <strong>{{ tr.name }}</strong>
+  <p class="note">可用：{{ tr.usable }}</p>
+  <p class="note">已证伪/暂停：{{ tr.dead }}</p>
+  <small>{{ tr.src }}</small>
+</div>
+{% endfor %}
+<p class="note"><a href="{{ base }}projects/compare.html">打开完整对比表 →</a></p>
+{% endblock %}
