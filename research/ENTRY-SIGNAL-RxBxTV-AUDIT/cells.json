@@ -1,0 +1,103 @@
+{
+  "batch": "ENTRY-SIGNAL-RxBxTV",
+  "date": "2026-10-26",
+  "face_id": "F0",
+  "sample": ["2020-01-03", "2026-10-23"],
+  "levels": {
+    "R": [null, 40, 80],
+    "B": [0.45, 0.5],
+    "TV": [0.25, 0.33]
+  },
+  "face": {"R": null, "B": 0.45, "TV": 0.25},
+  "min_axes_off_face": 2,
+  "cells": [
+    {
+      "id": "F0",
+      "book": "LIVE1430-X-Roff-B45-TV25",
+      "R": null,
+      "B": 0.45,
+      "TV": 0.25,
+      "role": "anchor",
+      "lean": "anchor",
+      "expect_calmar": "flat",
+      "expect_abs_mdd": "flat"
+    },
+    {
+      "id": "X1",
+      "book": "LIVE1430-X-R80-B50-TV25",
+      "R": 80,
+      "B": 0.5,
+      "TV": 0.25,
+      "role": "gate_stack",
+      "lean": "falsify",
+      "expect_calmar": "uncertain",
+      "expect_abs_mdd": "shallower"
+    },
+    {
+      "id": "X2",
+      "book": "LIVE1430-X-R80-B45-TV33",
+      "R": 80,
+      "B": 0.45,
+      "TV": 0.33,
+      "role": "mom_x_vol",
+      "lean": "falsify",
+      "expect_calmar": "down",
+      "expect_abs_mdd": "deeper"
+    },
+    {
+      "id": "X3",
+      "book": "LIVE1430-X-R40-B50-TV25",
+      "R": 40,
+      "B": 0.5,
+      "TV": 0.25,
+      "role": "short_mom_x_breadth",
+      "lean": "falsify",
+      "expect_calmar": "uncertain",
+      "expect_abs_mdd": "shallower"
+    },
+    {
+      "id": "X4",
+      "book": "LIVE1430-X-R40-B45-TV33",
+      "R": 40,
+      "B": 0.45,
+      "TV": 0.33,
+      "role": "short_mom_x_vol",
+      "lean": "falsify",
+      "expect_calmar": "down",
+      "expect_abs_mdd": "deeper"
+    },
+    {
+      "id": "X5",
+      "book": "LIVE1430-X-R80-B50-TV33",
+      "R": 80,
+      "B": 0.5,
+      "TV": 0.33,
+      "role": "triple_r80",
+      "lean": "falsify",
+      "expect_calmar": "down",
+      "expect_abs_mdd": "uncertain"
+    },
+    {
+      "id": "X6",
+      "book": "LIVE1430-X-R40-B50-TV33",
+      "R": 40,
+      "B": 0.5,
+      "TV": 0.33,
+      "role": "triple_r40",
+      "lean": "falsify",
+      "expect_calmar": "down",
+      "expect_abs_mdd": "uncertain"
+    },
+    {
+      "id": "X7",
+      "book": "LIVE1430-X-Roff-B50-TV33",
+      "R": null,
+      "B": 0.5,
+      "TV": 0.33,
+      "role": "breadth_x_vol",
+      "lean": "possible_positive",
+      "expect_calmar": "uncertain",
+      "expect_abs_mdd": "uncertain"
+    }
+  ]
+}
