@@ -1,0 +1,194 @@
+{
+  "batch": "residual-mom-fill",
+  "champion_swap": false,
+  "crown": "NO",
+  "source_sha": "05f0f8a4f778fde886f3e7b2976646ff4b7d777b",
+  "sample": [
+    "2020-01-03",
+    "2026-10-23"
+  ],
+  "anchor_pass": true,
+  "anchor": {
+    "ret": 1.316,
+    "maxDD": -0.188,
+    "Calmar": 0.7,
+    "n_weeks": 349,
+    "T": 348,
+    "n_codes": 324
+  },
+  "face_id": "F0",
+  "primary": "RES12-EW",
+  "residual": "R12w - EW(D_t)",
+  "h1": "RES12-EW/RES8-EW/RES12-MED all 证伪",
+  "family_verdict": "H1_HOLD",
+  "positive_ids": [],
+  "skipped_fills": [
+    "RET8",
+    "RET12",
+    "MOM121",
+    "SOFT",
+    "Z121",
+    "R4W"
+  ],
+  "cells": [
+    {
+      "id": "F0",
+      "book": "LIVE1430-B45-S20-max5",
+      "lookback": "S20",
+      "center": "off",
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "avgL": 0.8413486853673591,
+      "avg_turnover_1way": 0.15589995523930913,
+      "n_cash_weeks": 150,
+      "n_entries": 267,
+      "n_miss_residual": 0,
+      "mean_abs_D": 0.0,
+      "n_undef_weeks": 0,
+      "hit_rate": 0.6127819548872181,
+      "win_size": 1.3410122766435781,
+      "w2020_22": {
+        "ret": 0.18888117892868528,
+        "maxDD": -0.16005989858806302,
+        "Calmar": 0.37221138893854394
+      },
+      "w2023_26": {
+        "ret": 0.9483432111147796,
+        "maxDD": -0.1380814670414744,
+        "Calmar": 1.3883742587265562
+      },
+      "delta_ret": 0.0,
+      "delta_abs_mdd": 0.0,
+      "covers": true,
+      "window_2020_22": true,
+      "window_2023_26": true,
+      "verdict": "ANCHOR"
+    },
+    {
+      "id": "RES12-EW",
+      "book": "LIVE1430-B45-RES12EW-max5",
+      "lookback": "R12w",
+      "center": "EW",
+      "ret": 1.1236426728492397,
+      "maxDD": -0.21876573146502454,
+      "CAGR": 0.11705626642689015,
+      "Calmar": 0.5350758806829152,
+      "avgL": 0.7550729578043793,
+      "avg_turnover_1way": 0.13632272641982704,
+      "n_cash_weeks": 153,
+      "n_entries": 263,
+      "n_miss_residual": 244,
+      "mean_abs_D": 27.691891891891892,
+      "n_undef_weeks": 24,
+      "hit_rate": 0.6159695817490495,
+      "win_size": 1.1736905347405777,
+      "w2020_22": {
+        "ret": 0.3568863739268979,
+        "maxDD": -0.20793330611928706,
+        "Calmar": 0.5168595872659931
+      },
+      "w2023_26": {
+        "ret": 0.5650851196208193,
+        "maxDD": -0.15532946074836207,
+        "Calmar": 0.8047907641279637
+      },
+      "delta_ret": -0.19270590093860207,
+      "delta_abs_mdd": 0.030765793849463208,
+      "covers": false,
+      "window_2020_22": true,
+      "window_2023_26": false,
+      "verdict": "证伪"
+    },
+    {
+      "id": "RES8-EW",
+      "book": "LIVE1430-B45-RES8EW-max5",
+      "lookback": "R8w",
+      "center": "EW",
+      "ret": 1.3198469853014747,
+      "maxDD": -0.1905787901481969,
+      "CAGR": 0.13165984256940533,
+      "Calmar": 0.6908420526073478,
+      "avgL": 0.7414709737119014,
+      "avg_turnover_1way": 0.12928096917906592,
+      "n_cash_weeks": 154,
+      "n_entries": 253,
+      "n_miss_residual": 231,
+      "mean_abs_D": 27.762162162162163,
+      "n_undef_weeks": 24,
+      "hit_rate": 0.5691699604743083,
+      "win_size": 1.2702989428539453,
+      "w2020_22": {
+        "ret": 0.3411565408706301,
+        "maxDD": -0.18700262007509805,
+        "Calmar": 0.5516578416911889
+      },
+      "w2023_26": {
+        "ret": 0.7297361751637996,
+        "maxDD": -0.16449314374101076,
+        "Calmar": 0.9422392866833752
+      },
+      "delta_ret": 0.0034984115136329486,
+      "delta_abs_mdd": 0.002578852532635567,
+      "covers": true,
+      "window_2020_22": true,
+      "window_2023_26": false,
+      "verdict": "证伪"
+    },
+    {
+      "id": "RES12-MED",
+      "book": "LIVE1430-B45-RES12MED-max5",
+      "lookback": "R12w",
+      "center": "MED",
+      "ret": 1.1236426728492397,
+      "maxDD": -0.21876573146502454,
+      "CAGR": 0.11705626642689015,
+      "Calmar": 0.5350758806829152,
+      "avgL": 0.7550729578043793,
+      "avg_turnover_1way": 0.13632272641982704,
+      "n_cash_weeks": 153,
+      "n_entries": 263,
+      "n_miss_residual": 244,
+      "mean_abs_D": 27.691891891891892,
+      "n_undef_weeks": 24,
+      "hit_rate": 0.6159695817490495,
+      "win_size": 1.1736905347405777,
+      "w2020_22": {
+        "ret": 0.3568863739268979,
+        "maxDD": -0.20793330611928706,
+        "Calmar": 0.5168595872659931
+      },
+      "w2023_26": {
+        "ret": 0.5650851196208193,
+        "maxDD": -0.15532946074836207,
+        "Calmar": 0.8047907641279637
+      },
+      "delta_ret": -0.19270590093860207,
+      "delta_abs_mdd": 0.030765793849463208,
+      "covers": false,
+      "window_2020_22": true,
+      "window_2023_26": false,
+      "verdict": "证伪"
+    }
+  ],
+  "coverage": {
+    "px_1430_csv": "C:\\Users\\Michael_YANG\\Documents\\GitHub\\GGSDDU\\research\\cloud_batch\\CLOUD-BATCH-2026-10-26\\data\\research_cache\\fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "calendar_end": "2026-10-23",
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 73793,
+    "n_skip_no_sina_or_qfq": 32,
+    "n_empty_status_rows": 12,
+    "approximation": [
+      "延窗研究缓存：week/day 合并 recon week_2026-10-23 / day_2026-10-23；缺日线用 sina 收益链拼接（研究目录）",
+      "14:30 新周（09-30/10-09/10-16/10-23）pytdx idx209 拉入 research_cache；旧周复用 fri_1430_through_20260925",
+      "breadth b：extended face holdings_ro2_extended（≤2026-10-09 原 face + 其后研究周线 MA20 宽度假算 aum≥2）",
+      "risk_on=(b≥0.45) from holdings_ro2_extended `b`（不用 risk_on 列）",
+      "qfq_1430 = price_1430 × (day/tema qfq 收 / sina 收)；Sharpe 窗截至信号日前一交易日",
+      "成交/净值：信号周末交易日收盘填仓 + TV25 + 0.2%RT；L≤1"
+    ]
+  },
+  "elapsed_sec": 31.5
+}

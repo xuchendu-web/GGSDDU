@@ -1,0 +1,172 @@
+{
+  "batch": "corr-dedup-spike",
+  "champion_swap": false,
+  "crown": "NO",
+  "source_sha": "05f0f8a4f778fde886f3e7b2976646ff4b7d777b",
+  "sample": [
+    "2020-01-03",
+    "2026-10-23"
+  ],
+  "anchor_pass": true,
+  "anchor": {
+    "ret": 1.316,
+    "maxDD": -0.188,
+    "Calmar": 0.7,
+    "n_weeks": 349,
+    "T": 348,
+    "n_codes": 324
+  },
+  "face_id": "F0",
+  "lookback_weeks": 60,
+  "min_overlap": 40,
+  "primary_rho": 0.85,
+  "inventory": {
+    "corr_source": "computed_from_cache",
+    "corr_matrix_path": null,
+    "price_cache_path": "C:\\Users\\Michael_YANG\\Documents\\GitHub\\GGSDDU\\research\\cloud_batch\\CLOUD-BATCH-2026-10-26\\data\\research_cache\\day;C:\\Users\\Michael_YANG\\Documents\\GitHub\\GGSDDU\\research\\cloud_batch\\CLOUD-BATCH-2026-10-26\\data\\research_cache\\sina_daily",
+    "pool_label_path": "C:\\Users\\Michael_YANG\\Documents\\GitHub\\GGSDDU\\research\\cloud_batch\\CLOUD-BATCH-2026-10-26\\data\\universe_replace_only_436.csv",
+    "skipped": []
+  },
+  "h1": "DEDUP-R85 证伪",
+  "family_verdict": "H1_HOLD",
+  "positive_ids": [],
+  "cells": [
+    {
+      "id": "F0",
+      "book": "LIVE1430-DEDUP-off-B45-TV25",
+      "rho_star": null,
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "avgL": 0.8413486853673591,
+      "avg_turnover_1way": 0.15589995523930913,
+      "n_cash_weeks": 150,
+      "avg_selected": 2.6982758620689653,
+      "n_dedup_skip": 0,
+      "n_corr_na": 0,
+      "avg_max_pair_corr": 0.8854538884820516,
+      "avg_max_family": 2.1717171717171717,
+      "n_incumbent_over_rho": 0,
+      "w2020_22": {
+        "ret": 0.18888117892868528,
+        "maxDD": -0.16005989858806302,
+        "Calmar": 0.37221138893854394
+      },
+      "w2023_26": {
+        "ret": 0.9483432111147796,
+        "maxDD": -0.1380814670414744,
+        "Calmar": 1.3883742587265562
+      },
+      "delta_ret": 0.0,
+      "delta_abs_mdd": 0.0,
+      "g1_covers": true,
+      "g2_2023_26": true,
+      "g3_2020_22": true,
+      "verdict": "ANCHOR"
+    },
+    {
+      "id": "DEDUP-R85",
+      "book": "LIVE1430-DEDUP-R85-B45-TV25",
+      "rho_star": 0.85,
+      "ret": 1.2480102285273693,
+      "maxDD": -0.18383484857136156,
+      "CAGR": 0.12643977457572153,
+      "Calmar": 0.6877900221765612,
+      "avgL": 0.8299952177294961,
+      "avg_turnover_1way": 0.15703527060969624,
+      "n_cash_weeks": 150,
+      "avg_selected": 2.67816091954023,
+      "n_dedup_skip": 164,
+      "n_corr_na": 284,
+      "avg_max_pair_corr": 0.7264113287043411,
+      "avg_max_family": 1.6616161616161615,
+      "n_incumbent_over_rho": 3,
+      "w2020_22": {
+        "ret": 0.32830446056172735,
+        "maxDD": -0.15014370906787045,
+        "Calmar": 0.6634591715145423
+      },
+      "w2023_26": {
+        "ret": 0.6923907848481612,
+        "maxDD": -0.18383484857136068,
+        "Calmar": 0.8071471977678829
+      },
+      "delta_ret": -0.06833834526047244,
+      "delta_abs_mdd": -0.004165089044199766,
+      "g1_covers": false,
+      "g2_2023_26": false,
+      "g3_2020_22": true,
+      "verdict": "证伪"
+    },
+    {
+      "id": "DEDUP-R75",
+      "book": "LIVE1430-DEDUP-R75-B45-TV25",
+      "rho_star": 0.75,
+      "ret": 1.3636727645353792,
+      "maxDD": -0.17478577878807944,
+      "CAGR": 0.13477713231905208,
+      "Calmar": 0.771098960416361,
+      "avgL": 0.8512496569589334,
+      "avg_turnover_1way": 0.1642469886897499,
+      "n_cash_weeks": 150,
+      "avg_selected": 2.6551724137931036,
+      "n_dedup_skip": 288,
+      "n_corr_na": 335,
+      "avg_max_pair_corr": 0.6772555119670813,
+      "avg_max_family": 1.6868686868686869,
+      "n_incumbent_over_rho": 1,
+      "w2020_22": {
+        "ret": 0.30520611257295704,
+        "maxDD": -0.15014370906787045,
+        "Calmar": 0.6206127765092426
+      },
+      "w2023_26": {
+        "ret": 0.8109574738934262,
+        "maxDD": -0.17478577878807877,
+        "Calmar": 0.9669714283292771
+      },
+      "delta_ret": 0.047324190747537465,
+      "delta_abs_mdd": -0.013214158827481892,
+      "g1_covers": true,
+      "g2_2023_26": false,
+      "g3_2020_22": true,
+      "verdict": "证伪"
+    },
+    {
+      "id": "DEDUP-R90",
+      "book": "LIVE1430-DEDUP-R90-B45-TV25",
+      "rho_star": 0.9,
+      "ret": 1.2934198048500973,
+      "maxDD": -0.17555060953763169,
+      "CAGR": 0.1297557365829347,
+      "Calmar": 0.7391357792757751,
+      "avgL": 0.8441159682193278,
+      "avg_turnover_1way": 0.15745050457837845,
+      "n_cash_weeks": 150,
+      "avg_selected": 2.67816091954023,
+      "n_dedup_skip": 77,
+      "n_corr_na": 267,
+      "avg_max_pair_corr": 0.7675131588098589,
+      "avg_max_family": 1.792929292929293,
+      "n_incumbent_over_rho": 0,
+      "w2020_22": {
+        "ret": 0.3140158352271911,
+        "maxDD": -0.15014370906787045,
+        "Calmar": 0.6370134926115687
+      },
+      "w2023_26": {
+        "ret": 0.7453517251210018,
+        "maxDD": -0.17555060953763146,
+        "Calmar": 0.8984570456431359
+      },
+      "delta_ret": -0.022928768937744426,
+      "delta_abs_mdd": -0.012449328077929644,
+      "g1_covers": false,
+      "g2_2023_26": false,
+      "g3_2020_22": true,
+      "verdict": "证伪"
+    }
+  ],
+  "elapsed_sec": 43.1
+}
