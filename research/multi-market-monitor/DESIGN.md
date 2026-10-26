@@ -15,8 +15,11 @@ Prototype aesthetic aligned with the ETF research site burn (`style.css` lineage
 ```
 ┌─ Sticky header: title · market session chips · mock badge · WS status ─┐
 ├─ KPI strip: connected markets · tick rate · last update ───────────────┤
-├─ Three columns (stack on mobile) ──────────────────────────────────────┤
-│  Indices (grouped A / HK / US) │ Movers stub │ Alerts feed              │
+├─ Clock strip: global session clocks + mock phase badges ───────────────┤
+├─ KPI strip (5 tiles) ──────────────────────────────────────────────────┤
+├─ Mosaic grid (4-col desktop, stack mobile) ────────────────────────────┤
+│  Indices (2-col) │ FX │ Rates │ Commodities │ Crypto stub             │
+│  Breadth (2-col) │ Volume heat (2-col) │ Movers │ Alerts (tall)        │
 └─ Footer: disclaimer · no trading ──────────────────────────────────────┘
 ```
 
