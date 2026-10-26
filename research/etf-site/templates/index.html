@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% set nav_home = true %}
+{% block body %}
+<section class="hero">
+  <h1>A股行业 ETF 策略研究</h1>
+  <p>用统一的实盘口径（周五 14:30 信号、收盘成交、含交易成本）回测和跟踪 ETF 策略，并公开几个模拟组合。</p>
+</section>
+
+{% if signal %}
+<section class="signal" aria-label="最新信号">
+  <div>
+    <small>冠军策略 · 最新信号 <span class="tabular">{{ signal.asof }}</span></small>
+    <b class="{{ 'on' if signal.on else 'off' }}">{{ '开 · 持仓' if signal.on else '关 · 空仓（100% 现金）' }}</b>
+  </div>
+  <div>
+    <small>市场宽度（站上 20 日均线的 ETF 占比）</small>
+    <b class="tabular">{{ signal.breadth }}</b>
+    <small>{{ signal.n }} 只 · ≥45% 才开仓</small>
+  </div>
+</section>
+{% endif %}
+
+<h2>策略</h2>
+{% if projs %}
+<div class="grid">{% for i in projs %}{% include "_card.html" %}{% endfor %}</div>
+{% else %}
+<div class="empty">策略卡片将在构建后显示。</div>
+{% endif %}
+
+<details class="dev"><summary>ETF 动量专题 · {{ fut|length }} 个研究中的策略（展开）</summary>
+<div class="grid">{% for i in fut %}{% include "_card.html" %}{% endfor %}</div>
+</details>
+
+<h2>模拟组合</h2>
+{% if pfs %}
+<div class="grid">{% set sim = 1 %}{% for i in pfs %}{% include "_card.html" %}{% endfor %}</div>
+{% else %}
+<div class="empty">暂无模拟组合数据。</div>
+{% endif %}
+
+<h2>市场分析</h2>
+{% if arts %}
+{% for a in arts %}<a class="art" href="market/{{ a.slug }}.html"><b>{{ a.name }}</b><small>{{ a.summ }}…</small></a>{% endfor %}
+<p class="note"><a href="market/index.html">全部复盘 →</a></p>
+{% else %}
+<div class="empty empty--inline" role="status">
+  <p class="empty__title">暂无盘面复盘</p>
+  <p class="empty__body"><a href="market/index.html">市场分析</a> 将在收录周报后更新。</p>
+</div>
+{% endif %}
+{% endblock %}

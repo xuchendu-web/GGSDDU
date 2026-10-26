@@ -1,0 +1,22 @@
+{% set st = i.st if i.st is defined else i %}
+{% set title = st.name if st.name is defined else i.name %}
+{% set line = st.oneliner if st.oneliner is defined else (i.oneliner if i.oneliner is defined else '') %}
+{% set href = i.url if i.url is defined else '#' %}
+<a class="card{% if sim is defined and sim %} card--sim{% endif %}" href="{{ base }}{{ href }}">
+  <div class="card-head">
+    <span class="ct">{{ title }}</span>
+    {% if st.status is defined and st.status %}<span class="tag">{{ st.status }}</span>{% endif %}
+    {% if sim is defined and sim %}<span class="tag sim">模拟</span>{% endif %}
+  </div>
+  {% if line %}<p>{{ line }}</p>{% endif %}
+  {% if i.m %}
+  <div class="nums">
+    <span>累计<b class="tabular">{{ i.m.tot }}</b></span>
+    <span>CAGR<b class="tabular">{{ i.m.cagr }}</b></span>
+    <span>最大回撤<b class="tabular">{{ i.m.mdd }}</b></span>
+  </div>
+  <small class="tabular">{{ i.m.start }} → {{ i.m.end }}</small>
+  {% else %}
+  <div class="empty empty--inline">暂无净值序列</div>
+  {% endif %}
+</a>

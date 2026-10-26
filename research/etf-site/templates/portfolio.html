@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% set nav_portfolios = true %}
+{% block title %}{{ p.name }}{% endblock %}
+{% block body %}
+<p class="crumb"><a href="{{ base }}portfolios/index.html">模拟组合</a> / {{ p.name }}</p>
+<h1>{{ p.name }}</h1>
+<p class="lead">{{ p.oneliner }}</p>
+{% if asof %}<p class="note">最新权重 as of <span class="tabular">{{ asof }}</span></p>{% endif %}
+
+{% if m %}
+<div class="kpi" role="list" aria-label="组合绩效指标">
+  <div class="kpi-item">累计<b class="tabular">{{ m.tot }}</b></div>
+  <div class="kpi-item">CAGR<b class="tabular">{{ m.cagr }}</b></div>
+  <div class="kpi-item">最大回撤<b class="tabular">{{ m.mdd }}</b></div>
+  <div class="kpi-item">Sharpe<b class="tabular">{{ m.sharpe }}</b></div>
+</div>
+{% endif %}
+
+{% if chart %}{{ chart|safe }}{% endif %}
+
+{% if pos %}
+<h2>成分权重</h2>
+<div class="scroll">
+<table>
+  <thead><tr><th>标的</th><th>权重</th></tr></thead>
+  <tbody>
+  {% for x in pos %}
+  <tr><td>{{ x.name or x.symbol or '—' }}</td><td class="tabular">{{ '%.1f%%' % (x.weight * 100) if x.weight is number else x.weight }}</td></tr>
+  {% endfor %}
+  {% if cashw is not none %}
+  <tr><td>现金</td><td class="tabular">{{ '%.1f%%' % (cashw * 100) }}</td></tr>
+  {% endif %}
+  </tbody>
+</table>
+</div>
+{% elif not live %}
+<div class="empty">暂无持仓快照（仅净值曲线）。</div>
+{% endif %}
+{% endblock %}
