@@ -1,0 +1,33 @@
+{
+  "title": "DUAL-MOM-WEEKLY vs B45 face",
+  "live": false,
+  "sample": "2020-01-03 → 2026-10-23",
+  "universe": {
+    "n_cols": 324,
+    "n_weeks": 561
+  },
+  "main": "ABS-L52s1-N5",
+  "face": "LIVE1430-B45-S20",
+  "main_stats": {
+    "ret": 0.6242859039476787,
+    "maxDD": -0.47395089051914663,
+    "CAGR": 0.07389932417348355,
+    "Calmar": 0.1559219017239048
+  },
+  "b45_daily_stats": {
+    "ret": 1.3186672410288707,
+    "maxDD": -0.18799993761556133,
+    "CAGR": 0.1315752363106455,
+    "Calmar": 0.6998685104869663
+  },
+  "b45_weekly_asof_stats": {
+    "ret": 1.3186672410288707,
+    "maxDD": -0.1729041595563553,
+    "CAGR": 0.1315752363106455,
+    "Calmar": 0.7609720705866575
+  },
+  "covers_mdd_vs_b45": false,
+  "post_2023_miss": true,
+  "verdict": "探索证伪（不换冠）：主簿 ABS-L52s1-N5 相对 B45 face Δret 未盖住 Δ|MDD|；2023–26 -0.1% vs B45 94.8%，后段偏弱/踏空。",
+  "fourpack": "/workspace/research/dual_momentum_weekly/results/fourpack.png"
+}
