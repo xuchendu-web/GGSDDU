@@ -2,13 +2,15 @@
 
 ## Hypothesis
 
-Three engine implementations of the **same frozen toy rule** on the **same fixed-seed synthetic panel** will produce **identical weekly cross-sectional rankings** (and therefore identical top-K selections):
+Five engine implementations of the **same frozen toy rule** on the **same fixed-seed synthetic panel** will produce **identical weekly cross-sectional rankings** (and therefore identical top-K selections):
 
 | Style | Engine |
 |-------|--------|
 | A | Vectorized weekly on wide matrix |
 | B | Event-driven daily loop (rebalance only on `W-FRI` anchors) |
 | C | Long-format pandas `groupby` + `resample` |
+| D | Native **weekly-bar** calendar (`Period W-FRI` last close); signals at week-end from daily series |
+| E | Daily indicators then **explicit `Grouper(W-FRI)` resample** (not `index.resample`) |
 
 ### Toy rule (not production `strategy_exec`)
 

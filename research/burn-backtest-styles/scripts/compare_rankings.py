@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run all three styles and write compare_report.md."""
+"""Run all five styles and write compare_report.md."""
 
 from __future__ import annotations
 
@@ -19,16 +19,23 @@ from shared.rule_spec import rankings_to_compare_frame  # noqa: E402
 from scripts.style_a_vector import run_ranking as run_a  # noqa: E402
 from scripts.style_b_event import run_ranking as run_b  # noqa: E402
 from scripts.style_c_pandas import run_ranking as run_c  # noqa: E402
+from scripts.style_d_weekly_bars import run_ranking as run_d  # noqa: E402
+from scripts.style_e_daily_resample import run_ranking as run_e  # noqa: E402
+
+STYLE_RUNNERS = {
+    "A vector": run_a,
+    "B event": run_b,
+    "C pandas": run_c,
+    "D weekly bars": run_d,
+    "E daily resample": run_e,
+}
 
 
 def _top_k_agreement(a: pd.DataFrame, b: pd.DataFrame) -> tuple[float, int, int]:
     merged = a.merge(b, on="week_end", suffixes=("_a", "_b"))
     if merged.empty:
         return 0.0, 0, 0
-    matches = 0
-    for _, row in merged.iterrows():
-        if row["top_k_a"] == row["top_k_b"]:
-            matches += 1
+    matches = sum(1 for _, row in merged.iterrows() if row["top_k_a"] == row["top_k_b"])
     n = len(merged)
     return matches / n, matches, n
 
@@ -37,28 +44,25 @@ def _rank_list_agreement(a: pd.DataFrame, b: pd.DataFrame) -> tuple[float, int, 
     merged = a.merge(b, on="week_end", suffixes=("_a", "_b"))
     if merged.empty:
         return 0.0, 0, 0
-    matches = 0
-    for _, row in merged.iterrows():
-        if row["ranks_a"] == row["ranks_b"]:
-            matches += 1
+    matches = sum(1 for _, row in merged.iterrows() if row["ranks_a"] == row["ranks_b"])
     n = len(merged)
     return matches / n, matches, n
 
 
 def build_report(panel_path: Path = PANEL_CSV) -> str:
-    ra, rb, rc = run_a(panel_path), run_b(panel_path), run_c(panel_path)
+    results = {name: fn(panel_path) for name, fn in STYLE_RUNNERS.items()}
+    names = list(results.keys())
+    pairs: list[tuple[str, pd.DataFrame, pd.DataFrame]] = []
+    for i in range(len(names)):
+        for j in range(i + 1, len(names)):
+            pairs.append((f"{names[i]} vs {names[j]}", results[names[i]], results[names[j]]))
 
-    pairs = [
-        ("A vs B", ra, rb),
-        ("A vs C", ra, rc),
-        ("B vs C", rb, rc),
-    ]
     lines = [
         "# Burn backtest styles — ranking compare",
         "",
         f"Panel: `{panel_path}`",
         "",
-        "## Agreement scores",
+        "## Agreement scores (all pairs)",
         "",
         "| Pair | Top-K weekly match | Full rank list match |",
         "|------|-------------------:|---------------------:|",
@@ -85,29 +89,39 @@ def build_report(panel_path: Path = PANEL_CSV) -> str:
         ]
     )
 
+    ref = results["A vector"]
+    for label, other in [("D weekly bars", results["D weekly bars"]), ("E daily resample", results["E daily resample"])]:
+        top_s, top_m, top_n = _top_k_agreement(ref, other)
+        full_s, full_m, full_n = _rank_list_agreement(ref, other)
+        lines.append(
+            f"- **Reference A vs {label}:** top-K {top_s:.4f} ({top_m}/{top_n}), "
+            f"full rank {full_s:.4f} ({full_m}/{full_n})."
+        )
+    lines.append("")
+
     if min_top < 1.0 or min_full < 1.0:
         lines.append(
             "> Rankings diverged on at least one pair — templates only; "
             "not production parity (see HYPOTHESIS.md)."
         )
         lines.append("")
-        lines.append("## Deltas (weeks where A vs B top-K differs)")
+        lines.append("## Deltas (weeks where A vs D top-K differs)")
         lines.append("")
-        m = ra.merge(rb, on="week_end", suffixes=("_a", "_b"))
+        m = ref.merge(results["D weekly bars"], on="week_end", suffixes=("_a", "_b"))
         diff = m[m["top_k_a"] != m["top_k_b"]]
         if diff.empty:
-            lines.append("_No A vs B top-K diffs (check other pairs)._")
+            lines.append("_No A vs D top-K diffs._")
         else:
-            lines.append("| week_end | top_k A | top_k B |")
+            lines.append("| week_end | top_k A | top_k D |")
             lines.append("|----------|---------|---------|")
             for _, row in diff.iterrows():
                 lines.append(
                     f"| {row['week_end'].date()} | {row['top_k_a']} | {row['top_k_b']} |"
                 )
     else:
-        lines.append("All three engines agree on weekly top-K and full rank order.")
+        lines.append("All five engines agree on weekly top-K and full rank order.")
 
-    for label, rdf in [("A vector", ra), ("B event", rb), ("C pandas", rc)]:
+    for label, rdf in results.items():
         flat = rankings_to_compare_frame(rdf)
         lines.extend(["", f"## Rank table — {label}", ""])
         lines.append(flat.to_markdown(index=False))
