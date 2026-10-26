@@ -1,0 +1,232 @@
+{
+  "title": "SPIKE-S20-LOSS-COOL-WINDOW-SWEEP",
+  "convention": "Fri ≥14:30 signal / Friday close fill; TV25 L≤1; 0.2%RT; B45 face",
+  "unique_change": "prior-week baseline return ≤ {-4%,-6%,-10%} → force cash",
+  "batch": "CLOUD-LOSS-COOL",
+  "falsify": true,
+  "sensitive_threshold_note": false,
+  "sample": "2020-01-03 → 2026-10-23",
+  "n_calendar_weeks": 349,
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 45269,
+    "n_skip_no_sina_or_qfq": 28556,
+    "n_empty_status_rows": 12,
+    "weeks_with_mapped_1430_median_codes": 209.0,
+    "snap_cache_used": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/cache_1430_snaps.json",
+    "sample_note": "延窗研究：2020-01-03→2026-10-23（CLOUD-BATCH research_cache + cache_1430_snaps end=2026-10-23）。",
+    "approximation": [
+      "延窗：week/day/face/14:30 来自 CLOUD-BATCH data/research_cache；breadth risk_on 用 holdings_ro2_extended",
+      "qfq_1430 = price_1430 × (day qfq 收 / sina 收)；sina 作 bfq 代理",
+      "14:30 分类只读 cache_1430_snaps.json（end=2026-10-23）",
+      "Sharpe 窗截至信号日严格前一交易日（无周五收盘前视）",
+      "成交/净值：周五收盘填仓 + TV25 + 0.2%RT；L≤1",
+      "唯一改动：loss-cool 上周组合收益≤{-4%,-6%,-10%}则本周强制空仓；触发收益用基线周收益",
+      "不写 strategy_exec / LIVE_OPS / 冠军主钉"
+    ]
+  },
+  "cool_meta": {
+    "LIVE1430-LC-m4": {
+      "threshold": -0.04,
+      "n_cool_weeks": 6,
+      "triggers": [
+        {
+          "date": "2020-01-23",
+          "week_ret_pp": -4.666104217529865,
+          "threshold_pp": -4.0
+        },
+        {
+          "date": "2020-02-28",
+          "week_ret_pp": -4.330510173516444,
+          "threshold_pp": -4.0
+        },
+        {
+          "date": "2021-02-26",
+          "week_ret_pp": -8.140141706294624,
+          "threshold_pp": -4.0
+        },
+        {
+          "date": "2022-09-02",
+          "week_ret_pp": -4.108215858428932,
+          "threshold_pp": -4.0
+        },
+        {
+          "date": "2025-01-03",
+          "week_ret_pp": -4.745396015832581,
+          "threshold_pp": -4.0
+        },
+        {
+          "date": "2025-02-28",
+          "week_ret_pp": -4.480304202138563,
+          "threshold_pp": -4.0
+        }
+      ]
+    },
+    "LIVE1430-LC-m6": {
+      "threshold": -0.06,
+      "n_cool_weeks": 1,
+      "triggers": [
+        {
+          "date": "2021-02-26",
+          "week_ret_pp": -8.140141706294624,
+          "threshold_pp": -6.0
+        }
+      ]
+    },
+    "LIVE1430-LC-m10": {
+      "threshold": -0.1,
+      "n_cool_weeks": 0,
+      "triggers": []
+    }
+  },
+  "sim_stats": {
+    "LIVE1430-B45-S20-baseline": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "max_pos": 5,
+      "n_cash_weeks": 150
+    },
+    "LIVE1430-LC-m4": {
+      "n_cool_weeks": 6,
+      "n_triggers": 6
+    },
+    "LIVE1430-LC-m6": {
+      "n_cool_weeks": 1,
+      "n_triggers": 1
+    },
+    "LIVE1430-LC-m10": {
+      "n_cool_weeks": 0,
+      "n_triggers": 0
+    }
+  },
+  "table": [
+    {
+      "book": "LIVE1430-B45-S20-baseline",
+      "ret": 1.5828517647807212,
+      "maxDD": -0.1586573855560559,
+      "CAGR": 0.14966460612320387,
+      "Calmar": 0.9433195032091667,
+      "2020-22_ret": 0.2927807341680022,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6021948845718625,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.826620595788602,
+      "avg_turnover_1way": 0.15368021113651173,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "occ_winrate": 0.5303030303030303,
+      "occ_payoff": 1.464722039579623,
+      "occ_avg_win": 0.025353317376266254,
+      "occ_avg_loss": -0.01730930285144251,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-LC-m4",
+      "ret": 1.3992951301354317,
+      "maxDD": -0.20941008679218542,
+      "CAGR": 0.13727480262768332,
+      "Calmar": 0.6555309953331533,
+      "2020-22_ret": 0.25582295235813657,
+      "2020-22_DD": -0.20941008679218542,
+      "2020-22_Calmar": 0.37805628878821773,
+      "2023-26_ret": 0.910536135392439,
+      "2023-26_DD": -0.18026303219407092,
+      "2023-26_Calmar": 1.0295172686078822,
+      "avgL": 0.8376440036893559,
+      "avg_turnover_1way": 0.15383224145994873,
+      "avg_turnover": 0.15383224145994873,
+      "occ_n": 193,
+      "occ_winrate": 0.5181347150259067,
+      "occ_payoff": 1.4882572790002107,
+      "occ_avg_win": 0.026331331901405967,
+      "occ_avg_loss": -0.017692728450214582,
+      "n_cash_weeks": 6
+    },
+    {
+      "book": "LIVE1430-LC-m6",
+      "ret": 1.5043230296154713,
+      "maxDD": -0.15865738555605635,
+      "CAGR": 0.14445905935222214,
+      "Calmar": 0.9105095161244939,
+      "2020-22_ret": 0.2534751738239953,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.527025101637876,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.8284518907230011,
+      "avg_turnover_1way": 0.15385446412632267,
+      "avg_turnover": 0.15385446412632267,
+      "occ_n": 197,
+      "occ_winrate": 0.5279187817258884,
+      "occ_payoff": 1.461719149357795,
+      "occ_avg_win": 0.025311183404139258,
+      "occ_avg_loss": -0.017316037362758573,
+      "n_cash_weeks": 1
+    },
+    {
+      "book": "LIVE1430-LC-m10",
+      "ret": 1.5828517647807212,
+      "maxDD": -0.1586573855560559,
+      "CAGR": 0.14966460612320387,
+      "Calmar": 0.9433195032091667,
+      "2020-22_ret": 0.2927807341680022,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6021948845718625,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.826620595788602,
+      "avg_turnover_1way": 0.15368021113651173,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "occ_winrate": 0.5303030303030303,
+      "occ_payoff": 1.464722039579623,
+      "occ_avg_win": 0.025353317376266254,
+      "occ_avg_loss": -0.01730930285144251,
+      "n_cash_weeks": 0
+    }
+  ],
+  "delta_vs_baseline": {
+    "LIVE1430-LC-m4": {
+      "dret_pp": -18.35566346452895,
+      "d_abs_mdd_pp": 5.075270123612952,
+      "covers": false,
+      "strong_2023_26_ok": true,
+      "better_calmar": false,
+      "passes_explore": false
+    },
+    "LIVE1430-LC-m6": {
+      "dret_pp": -7.852873516524994,
+      "d_abs_mdd_pp": 4.440892098500626e-14,
+      "covers": false,
+      "strong_2023_26_ok": true,
+      "better_calmar": false,
+      "passes_explore": false
+    },
+    "LIVE1430-LC-m10": {
+      "dret_pp": 0.0,
+      "d_abs_mdd_pp": 0.0,
+      "covers": true,
+      "strong_2023_26_ok": true,
+      "better_calmar": true,
+      "passes_explore": true
+    }
+  },
+  "baseline": {
+    "ret": 1.5828517647807212,
+    "maxDD": -0.1586573855560559,
+    "Calmar": 0.9433195032091667
+  },
+  "verdict": "**loss-cool 方向证伪（不换冠）**：−4% / −6% / −10% 三档均未同时满足 Δret≥Δ|MDD|、2023–26 不低于基线 90%、Calmar 不劣于基线。",
+  "isolation": "strategy_exec / LIVE_OPS: NONE overwritten",
+  "elapsed_sec": 6.9
+}
