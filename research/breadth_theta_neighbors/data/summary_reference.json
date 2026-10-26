@@ -1,0 +1,26 @@
+{
+  "source": "SPIKE-S20-BTHETA-GRID-LIVE1430/summary.json (engine sim_stats)",
+  "sample": "2020-01-03 → 2026-10-23",
+  "sim_stats": {
+    "LIVE1430-B40-S20-max5": {
+      "n_trades": 279,
+      "n_calendar_weeks_ex_last": 348,
+      "turnover_per_week": 0.8017241379310345
+    },
+    "LIVE1430-B45-S20-max5": {
+      "n_trades": 267,
+      "n_calendar_weeks_ex_last": 348,
+      "turnover_per_week": 0.7663793103448276
+    },
+    "LIVE1430-B50-S20-max5": {
+      "n_trades": 257,
+      "n_calendar_weeks_ex_last": 348,
+      "turnover_per_week": 0.7385057471264368
+    },
+    "LIVE1430-B55-S20-max5": {
+      "n_trades": 248,
+      "n_calendar_weeks_ex_last": 348,
+      "turnover_per_week": 0.7126436781609195
+    }
+  }
+}
