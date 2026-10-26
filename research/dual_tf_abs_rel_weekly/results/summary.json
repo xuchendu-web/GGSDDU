@@ -1,0 +1,30 @@
+{
+  "title": "DUAL-TF-ABS-REL-WEEKLY vs B45 face",
+  "live": false,
+  "sample": "2020-01-03 → 2026-10-23",
+  "universe": {
+    "n_cols": 324,
+    "n_weeks": 561
+  },
+  "main": "DT-A52s1-R26s1-N5",
+  "face": "LIVE1430-B45-S20",
+  "main_stats": {
+    "ret": 0.3241807646655619,
+    "maxDD": -0.49045187730258766,
+    "CAGR": 0.04213514214391023,
+    "Calmar": 0.08591085913596098,
+    "Sharpe": 0.2866900704559349
+  },
+  "b45_daily_stats": {
+    "ret": 1.3186672410288707,
+    "maxDD": -0.18799993761556133,
+    "CAGR": 0.1315752363106455,
+    "Calmar": 0.6998685104869663,
+    "Sharpe": 0.374286727013184
+  },
+  "covers_mdd_vs_b45": false,
+  "post_2023_miss": true,
+  "verdict": "探索证伪（不换冠）：主簿 DT-A52s1-R26s1-N5 相对 B45 face Δret 未盖住 Δ|MDD|；2023–26 2.5% vs B45 94.8%，后段偏弱/踏空。",
+  "fourpack": "/workspace/research/dual_tf_abs_rel_weekly/results/fourpack.png",
+  "after_dual_mom_pr48": "Antonacci 同TF 双动量已证伪；本条测长TF绝对门+短TF相对排序"
+}
