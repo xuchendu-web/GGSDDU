@@ -1,0 +1,344 @@
+{
+  "batch": "walk-forward-oos",
+  "champion_swap": false,
+  "crown": "NO",
+  "source_sha": "05f0f8a4f778fde886f3e7b2976646ff4b7d777b",
+  "sample": [
+    "2020-01-03",
+    "2026-10-23"
+  ],
+  "anchor_pass": true,
+  "anchor": {
+    "ret": 1.316,
+    "maxDD": -0.188,
+    "Calmar": 0.7,
+    "n_weeks": 349,
+    "T": 348,
+    "n_codes": 324
+  },
+  "protocol_primary": {
+    "id": "WF-P10426",
+    "train_w": 104,
+    "test_w": 26,
+    "step_w": 26,
+    "n_folds": 9,
+    "leftover_weeks": 10
+  },
+  "selection_in_train": false,
+  "inventory": {
+    "engine": "btheta-05f0f8a4",
+    "skipped": []
+  },
+  "face": {
+    "ret": 1.3163485737878418,
+    "maxDD": -0.18799993761556133,
+    "CAGR": 0.13140884426092092,
+    "Calmar": 0.6989834460989939,
+    "Sharpe": 0.8230738819081987
+  },
+  "g1_threshold": 0.34949172304949694,
+  "g3_threshold": 0.281999906423342,
+  "FLAG_G1": false,
+  "FLAG_G2": false,
+  "FLAG_G3": false,
+  "family_verdict": "HOLD_CAVEAT",
+  "h1": "主档未塌 → H1 证伪（HOLD_CAVEAT，不换冠）",
+  "positive_ids": [],
+  "strong_period_note": true,
+  "cells": [
+    {
+      "id": "F0",
+      "train_w": null,
+      "test_w": null,
+      "step_w": null,
+      "n_folds": null,
+      "leftover_weeks": null,
+      "oos": {
+        "ret": 1.3163485737878418,
+        "maxDD": -0.18799993761556133,
+        "CAGR": 0.13140884426092092,
+        "Calmar": 0.6989834460989939,
+        "Sharpe": 0.8230738819081987,
+        "n_weeks": 348
+      },
+      "is_prefix": null,
+      "g1_collapse": false,
+      "g2_floor": false,
+      "g3_dd": false,
+      "verdict": "ANCHOR"
+    },
+    {
+      "id": "WF-P10426",
+      "train_w": 104,
+      "test_w": 26,
+      "step_w": 26,
+      "n_folds": 9,
+      "leftover_weeks": 10,
+      "oos": {
+        "ret": 0.8379031028688513,
+        "maxDD": -0.13808146704147428,
+        "CAGR": 0.14174566172378222,
+        "Calmar": 1.026536469816093,
+        "Sharpe": 0.9151413243090947,
+        "n_weeks": 234
+      },
+      "is_prefix": {
+        "ret": 0.2615829623496331,
+        "maxDD": -0.15014370906787033,
+        "CAGR": 0.1229347207091056,
+        "Calmar": 0.8187803636417075,
+        "Sharpe": 0.696354983730637
+      },
+      "g1_collapse": false,
+      "g2_floor": false,
+      "g3_dd": false,
+      "verdict": "HOLD_CAVEAT"
+    },
+    {
+      "id": "WF-N7826",
+      "train_w": 78,
+      "test_w": 26,
+      "step_w": 26,
+      "n_folds": 10,
+      "leftover_weeks": 10,
+      "oos": {
+        "ret": 0.7733437486175552,
+        "maxDD": -0.18799993761556155,
+        "CAGR": 0.11913373884418976,
+        "Calmar": 0.6336903105138507,
+        "Sharpe": 0.7787816826695004,
+        "n_weeks": 260
+      },
+      "is_prefix": {
+        "ret": 0.30751144149938625,
+        "maxDD": -0.15014370906787033,
+        "CAGR": 0.194896795838307,
+        "Calmar": 1.2980683443100947,
+        "Sharpe": 1.0034881235962576
+      },
+      "g1_collapse": false,
+      "g2_floor": false,
+      "g3_dd": false,
+      "verdict": "HOLD_CAVEAT"
+    },
+    {
+      "id": "WF-N10413",
+      "train_w": 104,
+      "test_w": 13,
+      "step_w": 13,
+      "n_folds": 18,
+      "leftover_weeks": 10,
+      "oos": {
+        "ret": 0.8379031028688513,
+        "maxDD": -0.13808146704147428,
+        "CAGR": 0.14174566172378222,
+        "Calmar": 1.026536469816093,
+        "Sharpe": 0.9151413243090947,
+        "n_weeks": 234
+      },
+      "is_prefix": {
+        "ret": 0.2615829623496331,
+        "maxDD": -0.15014370906787033,
+        "CAGR": 0.1229347207091056,
+        "Calmar": 0.8187803636417075,
+        "Sharpe": 0.696354983730637
+      },
+      "g1_collapse": false,
+      "g2_floor": false,
+      "g3_dd": false,
+      "verdict": "HOLD_CAVEAT"
+    },
+    {
+      "id": "WF-N13026",
+      "train_w": 130,
+      "test_w": 26,
+      "step_w": 26,
+      "n_folds": 8,
+      "leftover_weeks": 10,
+      "oos": {
+        "ret": 0.8153488011983487,
+        "maxDD": -0.13808146704147384,
+        "CAGR": 0.15761808393109034,
+        "Calmar": 1.1414861625401802,
+        "Sharpe": 0.9756362807926495,
+        "n_weeks": 208
+      },
+      "is_prefix": {
+        "ret": 0.27725715272914386,
+        "maxDD": -0.15014370906787033,
+        "CAGR": 0.10191436482434724,
+        "Calmar": 0.6787787877164956,
+        "Sharpe": 0.6313515544009078
+      },
+      "g1_collapse": false,
+      "g2_floor": false,
+      "g3_dd": false,
+      "verdict": "HOLD_CAVEAT"
+    }
+  ],
+  "folds_primary": [
+    {
+      "fold": 0,
+      "train": [
+        0,
+        104
+      ],
+      "test": [
+        104,
+        130
+      ],
+      "train_end": "2021-12-31",
+      "test_end": "2022-07-08",
+      "ret": 0.012424224840764664,
+      "maxDD": -0.06177502183286676,
+      "Calmar": 0.39730635810237264,
+      "Sharpe": 0.272106262377401,
+      "period_tag": "WEAK_2020_22"
+    },
+    {
+      "fold": 1,
+      "train": [
+        26,
+        130
+      ],
+      "test": [
+        130,
+        156
+      ],
+      "train_end": "2022-07-08",
+      "test_end": "2023-01-13",
+      "ret": -0.038211025697589274,
+      "maxDD": -0.09777485680785392,
+      "Calmar": -0.7532933791479667,
+      "Sharpe": -0.6589562900343076,
+      "period_tag": "MIX"
+    },
+    {
+      "fold": 2,
+      "train": [
+        52,
+        156
+      ],
+      "test": [
+        156,
+        182
+      ],
+      "train_end": "2023-01-13",
+      "test_end": "2023-07-21",
+      "ret": 0.020085156823169692,
+      "maxDD": -0.0873459038643527,
+      "Calmar": 0.47411711167460185,
+      "Sharpe": 0.3129434690121786,
+      "period_tag": "STRONG_2023_26"
+    },
+    {
+      "fold": 3,
+      "train": [
+        78,
+        182
+      ],
+      "test": [
+        182,
+        208
+      ],
+      "train_end": "2023-07-21",
+      "test_end": "2024-01-26",
+      "ret": -0.010287594730642557,
+      "maxDD": -0.011715827015452263,
+      "Calmar": -1.715772490389484,
+      "Sharpe": -1.0491591304352077,
+      "period_tag": "STRONG_2023_26"
+    },
+    {
+      "fold": 4,
+      "train": [
+        104,
+        208
+      ],
+      "test": [
+        208,
+        234
+      ],
+      "train_end": "2024-01-26",
+      "test_end": "2024-08-02",
+      "ret": 0.0464416838047883,
+      "maxDD": -0.05199065501381739,
+      "Calmar": 1.7933548456643809,
+      "Sharpe": 0.794852144617874,
+      "period_tag": "STRONG_2023_26"
+    },
+    {
+      "fold": 5,
+      "train": [
+        130,
+        234
+      ],
+      "test": [
+        234,
+        260
+      ],
+      "train_end": "2024-08-02",
+      "test_end": "2025-01-27",
+      "ret": 0.040916655378723465,
+      "maxDD": -0.13808146704147406,
+      "Calmar": 0.6175251656066046,
+      "Sharpe": 0.5111257767998455,
+      "period_tag": "STRONG_2023_26"
+    },
+    {
+      "fold": 6,
+      "train": [
+        156,
+        260
+      ],
+      "test": [
+        260,
+        286
+      ],
+      "train_end": "2025-01-27",
+      "test_end": "2025-08-01",
+      "ret": 0.07444237054390723,
+      "maxDD": -0.0868513919421483,
+      "Calmar": 1.8167649697585568,
+      "Sharpe": 0.9403385829848009,
+      "period_tag": "STRONG_2023_26"
+    },
+    {
+      "fold": 7,
+      "train": [
+        182,
+        286
+      ],
+      "test": [
+        286,
+        312
+      ],
+      "train_end": "2025-08-01",
+      "test_end": "2026-01-30",
+      "ret": 0.47214169509260673,
+      "maxDD": -0.08787182091561274,
+      "Calmar": 13.672342710259619,
+      "Sharpe": 2.9923860695720688,
+      "period_tag": "STRONG_2023_26"
+    },
+    {
+      "fold": 8,
+      "train": [
+        208,
+        312
+      ],
+      "test": [
+        312,
+        338
+      ],
+      "train_end": "2026-01-30",
+      "test_end": "2026-08-07",
+      "ret": 0.0851033852082741,
+      "maxDD": -0.05314242667600266,
+      "Calmar": 3.273552770523509,
+      "Sharpe": 1.209616323588864,
+      "period_tag": "STRONG_2023_26"
+    }
+  ],
+  "elapsed_sec": 1793030110.4
+}
