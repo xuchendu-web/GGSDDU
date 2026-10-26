@@ -1,0 +1,227 @@
+{
+  "batch": "turnover-softcap",
+  "champion_swap": false,
+  "crown": "NO",
+  "source_sha": "05f0f8a4f778fde886f3e7b2976646ff4b7d777b",
+  "sample": [
+    "2020-01-03",
+    "2026-10-23"
+  ],
+  "anchor_pass": true,
+  "anchor": {
+    "ret": 1.3163485737878422,
+    "maxDD": -0.18799993761556144,
+    "Calmar": 0.6989834460989934,
+    "n_weeks": 349,
+    "T": 348,
+    "n_codes": 324,
+    "n_cash_weeks": 150
+  },
+  "face_id": "F0",
+  "turnover_cap": {
+    "trail_weeks": 52,
+    "metric": "sum of weekly one-way turnover over trailing 52 rebalance Fridays",
+    "T_star_grid": [
+      6.0,
+      8.0,
+      10.0
+    ],
+    "primary_T_star": 8.0,
+    "live_cost_rt": 0.002
+  },
+  "h1": "TCAP6/TCAP8/TCAP10 all 证伪",
+  "family_verdict": "H1_HOLD",
+  "positive_ids": [],
+  "cells": [
+    {
+      "id": "F0",
+      "book": "LIVE1430-Tcap-off-B45-TV25",
+      "T_star": null,
+      "ret": 1.3163485737878422,
+      "maxDD": -0.18799993761556144,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989934,
+      "avgL": 0.8413486853673591,
+      "avg_turnover_1way": 0.1558999552393092,
+      "turnover_annual_1way": 8.10679767244408,
+      "trail52_end": 6.285573265008239,
+      "n_cap_bind": 0,
+      "n_cash_weeks": 150,
+      "n_ma_off": 0,
+      "n_breadth_off": 145,
+      "n_ma_off_breadth_on": 0,
+      "n_both_off": 0,
+      "n_entries": 267,
+      "hit_rate": 0.6127819548872181,
+      "win_size": 0.03373891756634023,
+      "w2020_22": {
+        "ret": 0.18888117892868594,
+        "maxDD": -0.1600598985880628,
+        "CAGR": 0.05957611716682565,
+        "Calmar": 0.37221138893854583
+      },
+      "w2023_26": {
+        "ret": 0.94834321111478,
+        "maxDD": -0.1380814670414744,
+        "CAGR": 0.19170875444758262,
+        "Calmar": 1.3883742587265577
+      },
+      "delta_ret": 0.0,
+      "delta_abs_mdd": 0.0,
+      "covers": true,
+      "window_2020_22": true,
+      "window_2023_26": true,
+      "inert": false,
+      "verdict": "ANCHOR"
+    },
+    {
+      "id": "TCAP6",
+      "book": "LIVE1430-Tcap6-B45-TV25",
+      "T_star": 6.0,
+      "ret": 0.7620255550065751,
+      "maxDD": -0.15014370906787022,
+      "CAGR": 0.086824296837817,
+      "Calmar": 0.5782746235379691,
+      "avgL": 0.8266070840809386,
+      "avg_turnover_1way": 0.0995680021714714,
+      "turnover_annual_1way": 5.1775361129165125,
+      "trail52_end": 2.9181986846021646,
+      "n_cap_bind": 100,
+      "n_cash_weeks": 150,
+      "n_ma_off": 0,
+      "n_breadth_off": 145,
+      "n_ma_off_breadth_on": 0,
+      "n_both_off": 0,
+      "n_entries": 267,
+      "hit_rate": 0.6127819548872181,
+      "win_size": 0.03373891756634023,
+      "w2020_22": {
+        "ret": 0.006983947163118787,
+        "maxDD": -0.15014370906787022,
+        "CAGR": 0.0023305690087738196,
+        "Calmar": 0.015522255466063653
+      },
+      "w2023_26": {
+        "ret": 0.7498050092760309,
+        "maxDD": -0.13824470703003722,
+        "CAGR": 0.15850071961608236,
+        "Calmar": 1.1465228797630858
+      },
+      "delta_ret": -0.5543230187812671,
+      "delta_abs_mdd": -0.03785622854769122,
+      "covers": false,
+      "window_2020_22": false,
+      "window_2023_26": false,
+      "inert": false,
+      "verdict": "证伪"
+    },
+    {
+      "id": "TCAP8",
+      "book": "LIVE1430-Tcap8-B45-TV25",
+      "T_star": 8.0,
+      "ret": 1.063058114559258,
+      "maxDD": -0.18006067599787856,
+      "CAGR": 0.11231422042635164,
+      "Calmar": 0.6237576294985969,
+      "avgL": 0.83804017483203,
+      "avg_turnover_1way": 0.12748128442406145,
+      "turnover_annual_1way": 6.629026790051196,
+      "trail52_end": 4.38376926541475,
+      "n_cap_bind": 68,
+      "n_cash_weeks": 150,
+      "n_ma_off": 0,
+      "n_breadth_off": 145,
+      "n_ma_off_breadth_on": 0,
+      "n_both_off": 0,
+      "n_entries": 267,
+      "hit_rate": 0.6127819548872181,
+      "win_size": 0.03373891756634023,
+      "w2020_22": {
+        "ret": 0.16871699985070387,
+        "maxDD": -0.15271289096211538,
+        "CAGR": 0.0535309369875816,
+        "Calmar": 0.35053319107724457
+      },
+      "w2023_26": {
+        "ret": 0.7652332556322865,
+        "maxDD": -0.15858735129855017,
+        "CAGR": 0.16117806829297376,
+        "Calmar": 1.0163362145417665
+      },
+      "delta_ret": -0.2532904592285843,
+      "delta_abs_mdd": -0.00793926161768288,
+      "covers": false,
+      "window_2020_22": false,
+      "window_2023_26": false,
+      "inert": false,
+      "verdict": "证伪"
+    },
+    {
+      "id": "TCAP10",
+      "book": "LIVE1430-Tcap10-B45-TV25",
+      "T_star": 10.0,
+      "ret": 1.2650941799955921,
+      "maxDD": -0.18799993761556144,
+      "CAGR": 0.12769395057634303,
+      "Calmar": 0.6792233667516565,
+      "avgL": 0.8262622362153558,
+      "avg_turnover_1way": 0.14907802085473565,
+      "turnover_annual_1way": 7.752057084446256,
+      "trail52_end": 6.117172445202518,
+      "n_cap_bind": 20,
+      "n_cash_weeks": 150,
+      "n_ma_off": 0,
+      "n_breadth_off": 145,
+      "n_ma_off_breadth_on": 0,
+      "n_both_off": 0,
+      "n_entries": 267,
+      "hit_rate": 0.6127819548872181,
+      "win_size": 0.03373891756634023,
+      "w2020_22": {
+        "ret": 0.18888117892868594,
+        "maxDD": -0.1600598985880628,
+        "CAGR": 0.05957611716682565,
+        "Calmar": 0.37221138893854583
+      },
+      "w2023_26": {
+        "ret": 0.905231759187823,
+        "maxDD": -0.13577138155401447,
+        "CAGR": 0.18471745320456345,
+        "Calmar": 1.360503598698939
+      },
+      "delta_ret": -0.05125439379225005,
+      "delta_abs_mdd": 0.0,
+      "covers": false,
+      "window_2020_22": true,
+      "window_2023_26": false,
+      "inert": false,
+      "verdict": "证伪"
+    }
+  ],
+  "tv_diag": {
+    "F0": {
+      "n_cap_bind": 0,
+      "trail52_end": 6.285573265008239,
+      "turnover_annual_1way": 8.10679767244408,
+      "mean_alpha": 1.0
+    },
+    "TCAP6": {
+      "n_cap_bind": 100,
+      "trail52_end": 2.9181986846021646,
+      "turnover_annual_1way": 5.1775361129165125,
+      "mean_alpha": 0.741880206052407
+    },
+    "TCAP8": {
+      "n_cap_bind": 68,
+      "trail52_end": 4.38376926541475,
+      "turnover_annual_1way": 6.629026790051196,
+      "mean_alpha": 0.8380863435937685
+    },
+    "TCAP10": {
+      "n_cap_bind": 20,
+      "trail52_end": 6.117172445202518,
+      "turnover_annual_1way": 7.752057084446256,
+      "mean_alpha": 0.9645235832798178
+    }
+  }
+}
