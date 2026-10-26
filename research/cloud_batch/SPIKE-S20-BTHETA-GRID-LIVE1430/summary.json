@@ -1,0 +1,164 @@
+{
+  "title": "SPIKE-S20-BTHETA-GRID-LIVE1430 breadth θ grid",
+  "unique_change": "risk_on=(b≥θ) for θ∈{0.40,0.45,0.50,0.55}; freeze spike max5+S20+E0+TV25",
+  "sample": "2020-01-03 → 2026-10-23",
+  "thetas": [
+    0.4,
+    0.45,
+    0.5,
+    0.55
+  ],
+  "baseline": "LIVE1430-B45-S20-max5",
+  "best_book": "LIVE1430-B50-S20-max5",
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "calendar_end": "2026-10-23",
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 73793,
+    "n_skip_no_sina_or_qfq": 32,
+    "n_empty_status_rows": 12,
+    "approximation": [
+      "延窗研究缓存：week/day 合并 recon week_2026-10-23 / day_2026-10-23；缺日线用 sina 收益链拼接（研究目录）",
+      "14:30 新周（09-30/10-09/10-16/10-23）pytdx idx209 拉入 research_cache；旧周复用 fri_1430_through_20260925",
+      "breadth b：extended face holdings_ro2_extended（≤2026-10-09 原 face + 其后研究周线 MA20 宽度假算 aum≥2）",
+      "各书 risk_on=(b≥θ)；θ 网格 {0.40,0.45,0.50,0.55}；B45=θ=0.45 基线",
+      "qfq_1430 = price_1430 × (day/tema qfq 收 / sina 收)；Sharpe 窗截至信号日前一交易日",
+      "成交/净值：信号周末交易日收盘填仓 + TV25 + 0.2%RT；L≤1"
+    ]
+  },
+  "sim_stats": {
+    "LIVE1430-B40-S20-max5": {
+      "n_fridays_queue_gt_seats": 95,
+      "n_fridays_with_cands": 208,
+      "n_entries": 279,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 279,
+      "max_pos": 5,
+      "n_cash_weeks": 133,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.382183908045977,
+      "n_risk_on_weeks": 220,
+      "risk_on_week_pct": 0.632183908045977
+    },
+    "LIVE1430-B45-S20-max5": {
+      "n_fridays_queue_gt_seats": 88,
+      "n_fridays_with_cands": 191,
+      "n_entries": 267,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 267,
+      "max_pos": 5,
+      "n_cash_weeks": 150,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.43103448275862066,
+      "n_risk_on_weeks": 203,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    "LIVE1430-B50-S20-max5": {
+      "n_fridays_queue_gt_seats": 82,
+      "n_fridays_with_cands": 174,
+      "n_entries": 257,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 257,
+      "max_pos": 5,
+      "n_cash_weeks": 167,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.47988505747126436,
+      "n_risk_on_weeks": 186,
+      "risk_on_week_pct": 0.5344827586206896
+    },
+    "LIVE1430-B55-S20-max5": {
+      "n_fridays_queue_gt_seats": 75,
+      "n_fridays_with_cands": 159,
+      "n_entries": 248,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 248,
+      "max_pos": 5,
+      "n_cash_weeks": 183,
+      "n_calendar_weeks_ex_last": 348,
+      "cash_week_pct": 0.5258620689655172,
+      "n_risk_on_weeks": 170,
+      "risk_on_week_pct": 0.4885057471264368
+    }
+  },
+  "table": [
+    {
+      "book": "LIVE1430-B40-S20-max5",
+      "ret": 0.6772858791694563,
+      "maxDD": -0.29177390832328365,
+      "CAGR": 0.07897945427106912,
+      "Calmar": 0.27068717256088703,
+      "2020-22_ret": 0.03581235018047768,
+      "2020-22_DD": -0.261702508935333,
+      "2020-22_Calmar": 0.045236362625685374,
+      "2023-26_ret": 0.6192951154494468,
+      "2023-26_DD": -0.13832885359063785,
+      "2023-26_Calmar": 0.9768475693859214,
+      "avgL": 0.8311472576290515,
+      "cash_week_pct": 0.382183908045977,
+      "risk_on_week_pct": 0.632183908045977
+    },
+    {
+      "book": "LIVE1430-B45-S20-max5",
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "2020-22_ret": 0.18888117892868528,
+      "2020-22_DD": -0.16005989858806302,
+      "2020-22_Calmar": 0.37221138893854394,
+      "2023-26_ret": 0.9483432111147798,
+      "2023-26_DD": -0.1380814670414744,
+      "2023-26_Calmar": 1.3883742587265562,
+      "avgL": 0.8413486853673591,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334
+    },
+    {
+      "book": "LIVE1430-B50-S20-max5",
+      "ret": 1.491630458408057,
+      "maxDD": -0.15517763714972677,
+      "CAGR": 0.1436046537615958,
+      "Calmar": 0.9254210619474474,
+      "2020-22_ret": 0.1765241471524135,
+      "2020-22_DD": -0.15517763714972677,
+      "2020-22_Calmar": 0.3601013544902201,
+      "2023-26_ret": 1.1177894771124315,
+      "2023-26_DD": -0.13758559908880064,
+      "2023-26_Calmar": 1.5854162903754667,
+      "avgL": 0.8266740698427635,
+      "cash_week_pct": 0.47988505747126436,
+      "risk_on_week_pct": 0.5344827586206896
+    },
+    {
+      "book": "LIVE1430-B55-S20-max5",
+      "ret": 1.2436585387569647,
+      "maxDD": -0.1416280252513218,
+      "CAGR": 0.12611900711781465,
+      "Calmar": 0.8904947088968721,
+      "2020-22_ret": 0.15164049837319316,
+      "2020-22_DD": -0.1416280252513218,
+      "2020-22_Calmar": 0.34143607577275453,
+      "2023-26_ret": 0.9482282378279987,
+      "2023-26_DD": -0.13758559908880086,
+      "2023-26_Calmar": 1.393243646659942,
+      "avgL": 0.8248544551384468,
+      "cash_week_pct": 0.5258620689655172,
+      "risk_on_week_pct": 0.4885057471264368
+    }
+  ],
+  "delta_b50_vs_b45": {
+    "dret_pp": 17.528188462021532,
+    "dMDD_algebraic_pp": 3.2822300465834564,
+    "d_absMDD_pp": -3.2822300465834564,
+    "dCalmar": 0.22643761584845357
+  },
+  "b45_align_nob_ref": {
+    "ret": 1.3399609137897461,
+    "Calmar": 0.704970180111173
+  },
+  "falsify": false,
+  "verdict": "**探索记正（B50 邻域稳健；不换冠）**：网格最优 **LIVE1430-B50-S20-max5**（Calmar 0.93）；B50 vs B45 Δret=+17.5pp 盖住 Δ|MDD|=-3.3pp，ΔCalmar=+0.23；2023–26 B50 111.8% vs B45 94.8%；θ↑ ret 单调不乱跳（平台 OK）。",
+  "elapsed_sec": 11.8
+}
