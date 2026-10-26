@@ -8,11 +8,11 @@
 {% if asof %}<p class="note">最新权重 as of <span class="tabular">{{ asof }}</span></p>{% endif %}
 
 {% if m %}
-<div class="kpi">
-  <div>累计<b class="tabular">{{ m.tot }}</b></div>
-  <div>CAGR<b class="tabular">{{ m.cagr }}</b></div>
-  <div>最大回撤<b class="tabular">{{ m.mdd }}</b></div>
-  <div>Sharpe<b class="tabular">{{ m.sharpe }}</b></div>
+<div class="kpi" role="list" aria-label="组合绩效指标">
+  <div class="kpi-item">累计<b class="tabular">{{ m.tot }}</b></div>
+  <div class="kpi-item">CAGR<b class="tabular">{{ m.cagr }}</b></div>
+  <div class="kpi-item">最大回撤<b class="tabular">{{ m.mdd }}</b></div>
+  <div class="kpi-item">Sharpe<b class="tabular">{{ m.sharpe }}</b></div>
 </div>
 {% endif %}
 

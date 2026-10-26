@@ -116,6 +116,13 @@ pages = {
     "about.html": env.get_template("about.html").render(
         base="", built="2026-10-25", bench="中证偏股基金指数 930950", nav_about=True
     ),
+    "market-empty.html": env.get_template("market.html").render(
+        base="",
+        built="2026-10-25",
+        bench="中证偏股基金指数 930950",
+        nav_market=True,
+        arts=[],
+    ),
 }
 
 for name, html in pages.items():

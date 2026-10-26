@@ -1,5 +1,14 @@
 # CHANGELOG · ETF 分析站视觉打磨
 
+## 2026-10-26 — 对比度 / 移动 KPI / 市场空态
+
+- `static/style.css`：冷色金融画布与 ink 层级加深，导航与页脚可读性提升；KPI 区间行全宽、≤720px 双列栅格；空态标题 + 说明结构
+- `templates/strategy.html` / `portfolio.html`：`kpi-item` 语义与移动端间距
+- `templates/market.html` / `index.html`：市场相关空态文案与结构
+- `preview/render_preview.py`：增加 `market-empty.html` 预览页
+
+未改动：`build.py`、`sources.py`、LIVE 参数与隧道部署配置。
+
 ## 2026-10-25 — 设计升级（仅视觉 / 交互，不改数据管道逻辑）
 
 ### 意图（Before → After）

@@ -43,6 +43,9 @@
 {% for a in arts %}<a class="art" href="market/{{ a.slug }}.html"><b>{{ a.name }}</b><small>{{ a.summ }}…</small></a>{% endfor %}
 <p class="note"><a href="market/index.html">全部复盘 →</a></p>
 {% else %}
-<div class="empty">暂无盘面复盘文章。</div>
+<div class="empty empty--inline" role="status">
+  <p class="empty__title">暂无盘面复盘</p>
+  <p class="empty__body"><a href="market/index.html">市场分析</a> 将在收录周报后更新。</p>
+</div>
 {% endif %}
 {% endblock %}

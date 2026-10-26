@@ -7,6 +7,9 @@
 {% if arts %}
 {% for a in arts %}<a class="art" href="{{ a.slug }}.html"><b>{{ a.name }}</b><small>{{ a.summ }}…</small></a>{% endfor %}
 {% else %}
-<div class="empty">暂无复盘文章。将 weekly-tape-review 目录下的 Markdown 纳入构建即可。</div>
+<div class="empty empty--page" role="status">
+  <p class="empty__title">暂无盘面复盘</p>
+  <p class="empty__body">在 <code>data/weekly-tape-review/</code> 放入 Markdown 后运行 <code>build.py</code>，本页会自动列出文章。</p>
+</div>
 {% endif %}
 {% endblock %}

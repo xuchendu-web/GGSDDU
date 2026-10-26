@@ -21,18 +21,21 @@
 {% endif %}
 
 {% if m %}
-<div class="kpi">
-  <div>区间<b class="tabular">{{ m.start }}</b><span style="font-weight:400;text-transform:none;color:var(--ink-muted)">→ {{ m.end }}</span></div>
-  <div>累计<b class="tabular">{{ m.tot }}</b></div>
-  <div>CAGR<b class="tabular">{{ m.cagr }}</b></div>
-  <div>最大回撤<b class="tabular">{{ m.mdd }}</b></div>
-  <div>Calmar<b class="tabular">{{ m.calmar }}</b></div>
-  <div>波动<b class="tabular">{{ m.vol }}</b></div>
-  <div>Sharpe<b class="tabular">{{ m.sharpe }}</b></div>
-  <div>YTD<b class="tabular">{{ m.ytd }}</b></div>
+<div class="kpi" role="list" aria-label="策略绩效指标">
+  <div class="kpi-item kpi-item--span">区间<b class="tabular">{{ m.start }}</b><span class="kpi-range-end">→ {{ m.end }}</span></div>
+  <div class="kpi-item">累计<b class="tabular">{{ m.tot }}</b></div>
+  <div class="kpi-item">CAGR<b class="tabular">{{ m.cagr }}</b></div>
+  <div class="kpi-item">最大回撤<b class="tabular">{{ m.mdd }}</b></div>
+  <div class="kpi-item">Calmar<b class="tabular">{{ m.calmar }}</b></div>
+  <div class="kpi-item">波动<b class="tabular">{{ m.vol }}</b></div>
+  <div class="kpi-item">Sharpe<b class="tabular">{{ m.sharpe }}</b></div>
+  <div class="kpi-item">YTD<b class="tabular">{{ m.ytd }}</b></div>
 </div>
 {% else %}
-<div class="empty">该策略暂无可用净值序列。</div>
+<div class="empty empty--page" role="status">
+  <p class="empty__title">该策略暂无可用净值序列</p>
+  <p class="empty__body">请先运行站点构建脚本生成净值序列；数据就绪后 KPI 与图表将自动显示。</p>
+</div>
 {% endif %}
 
 {% if chart %}{{ chart|safe }}{% endif %}
