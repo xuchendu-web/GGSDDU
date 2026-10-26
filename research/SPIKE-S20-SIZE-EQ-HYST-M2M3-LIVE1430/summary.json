@@ -1,0 +1,226 @@
+{
+  "title": "SPIKE-S20-SIZE-EQ-HYST-M2M3-LIVE1430",
+  "knife_id": "SPIKE-S20-SIZE-EQ-HYST-M2M3-LIVE1430",
+  "convention": "Fri ≥14:30 signal / Friday close fill; TV25 L≤1; 0.2%RT; breadth≥0.45; research pool",
+  "unique_change": "equal-weight sizing frozen; HYST-M2/M3 rank-kick band; INV×HYST-M3 attribution only",
+  "batch": "COMPOSER-S20-EQ-HYST",
+  "sample": "2020-01-03 → 2026-10-23",
+  "n_calendar_weeks": 349,
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 45269,
+    "n_skip_no_sina_or_qfq": 28556,
+    "n_empty_status_rows": 12,
+    "weeks_with_mapped_1430_median_codes": 209.0,
+    "snap_cache_used": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/cache_1430_snaps.json",
+    "sample_note": "延窗研究：2020-01-03→2026-10-23（CLOUD-BATCH research_cache + cache_1430_snaps end=2026-10-23）。",
+    "approximation": [
+      "延窗：week/day/face/14:30 来自 CLOUD-BATCH data/research_cache；breadth risk_on 用 holdings_ro2_extended",
+      "qfq_1430 = price_1430 × (day qfq 收 / sina 收)；sina 作 bfq 代理",
+      "14:30 分类只读 cache_1430_snaps.json（end=2026-10-23）",
+      "Sharpe 窗截至信号日严格前一交易日（无周五收盘前视）",
+      "成交/净值：周五收盘填仓 + TV25 + 0.2%RT；L≤1",
+      "唯一改动：等权持仓 + HYST-M2/M3 滞回踢出（rank>5+M）；SHARPE20 填席与 max5 不变",
+      "INV×HYST-M3 仅归因对照，不晋升",
+      "不写 strategy_exec / LIVE_OPS / 冠军主钉"
+    ]
+  },
+  "hold_diffs_vs_eq_face": {
+    "LIVE1430-EQ-HYST-M2-S20_vs_EQ": {
+      "n": 198,
+      "n_diff": 141,
+      "pct_diff": 0.7121212121212122
+    },
+    "LIVE1430-EQ-HYST-M3-S20_vs_EQ": {
+      "n": 198,
+      "n_diff": 141,
+      "pct_diff": 0.7121212121212122
+    },
+    "LIVE1430-INV-HYST-M3-S20_vs_EQ": {
+      "n": 198,
+      "n_diff": 141,
+      "pct_diff": 0.7121212121212122
+    }
+  },
+  "sim_stats": {
+    "LIVE1430-EQ-S20": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "n_hyst_exits": 0,
+      "max_pos": 5,
+      "hyst_m": null,
+      "sizing_mode": "eq",
+      "n_cash_weeks": 150
+    },
+    "LIVE1430-EQ-HYST-M2-S20": {
+      "n_fridays_queue_gt_seats": 143,
+      "n_fridays_with_cands": 192,
+      "n_entries": 376,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 376,
+      "n_hyst_exits": 130,
+      "max_pos": 5,
+      "hyst_m": 2,
+      "sizing_mode": "eq",
+      "n_cash_weeks": 150
+    },
+    "LIVE1430-EQ-HYST-M3-S20": {
+      "n_fridays_queue_gt_seats": 143,
+      "n_fridays_with_cands": 192,
+      "n_entries": 351,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 351,
+      "n_hyst_exits": 112,
+      "max_pos": 5,
+      "hyst_m": 3,
+      "sizing_mode": "eq",
+      "n_cash_weeks": 150
+    },
+    "LIVE1430-INV-HYST-M3-S20": {
+      "n_fridays_queue_gt_seats": 143,
+      "n_fridays_with_cands": 192,
+      "n_entries": 351,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 351,
+      "n_hyst_exits": 112,
+      "max_pos": 5,
+      "hyst_m": 3,
+      "sizing_mode": "inv20w",
+      "n_cash_weeks": 150
+    }
+  },
+  "table": [
+    {
+      "book": "LIVE1430-EQ-S20",
+      "ret": 1.5828517647807212,
+      "maxDD": -0.1586573855560559,
+      "CAGR": 0.14966460612320387,
+      "Calmar": 0.9433195032091667,
+      "2020-22_ret": 0.2927807341680022,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6021948845718625,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.826620595788602,
+      "avg_turnover_1way": 0.15368021113651173,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "occ_winrate": 0.5303030303030303,
+      "occ_payoff": 1.464722039579623,
+      "occ_avg_win": 0.025353317376266254,
+      "occ_avg_loss": -0.01730930285144251,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-EQ-HYST-M2-S20",
+      "ret": 1.6612970754783065,
+      "maxDD": -0.1846830463978053,
+      "CAGR": 0.15473153308886078,
+      "Calmar": 0.837822074667161,
+      "2020-22_ret": 0.004187173976892167,
+      "2020-22_DD": -0.18393801552086586,
+      "2020-22_Calmar": 0.007603489732073894,
+      "2023-26_ret": 1.6502002260582045,
+      "2023-26_DD": -0.12835460513224284,
+      "2023-26_Calmar": 2.275930621685203,
+      "avgL": 0.8153318049058129,
+      "avg_turnover_1way": 0.20638528626769848,
+      "avg_turnover": 0.20638528626769848,
+      "occ_n": 198,
+      "occ_winrate": 0.5252525252525253,
+      "occ_payoff": 1.5384199924519029,
+      "occ_avg_win": 0.02526623300327583,
+      "occ_avg_loss": -0.01642349496707139,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-EQ-HYST-M3-S20",
+      "ret": 1.9530645682175183,
+      "maxDD": -0.1533524041604616,
+      "CAGR": 0.1725236373640373,
+      "Calmar": 1.1250142331222648,
+      "2020-22_ret": 0.16231222270779866,
+      "2020-22_DD": -0.15257874356380663,
+      "2020-22_Calmar": 0.3381616745187808,
+      "2023-26_ret": 1.5406809896035236,
+      "2023-26_DD": -0.12835460513224195,
+      "2023-26_Calmar": 2.164829712114704,
+      "avgL": 0.8092044054488352,
+      "avg_turnover_1way": 0.19279284371933253,
+      "avg_turnover": 0.19279284371933253,
+      "occ_n": 198,
+      "occ_winrate": 0.5505050505050505,
+      "occ_payoff": 1.4618287388808129,
+      "occ_avg_win": 0.024653419603609405,
+      "occ_avg_loss": -0.016864779674864137,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-INV-HYST-M3-S20",
+      "ret": 1.7426476420394157,
+      "maxDD": -0.15630055129738962,
+      "CAGR": 0.15985328711522784,
+      "Calmar": 1.022730155385559,
+      "2020-22_ret": 0.1030814908407689,
+      "2020-22_DD": -0.15491634972503265,
+      "2020-22_Calmar": 0.21533677428847006,
+      "2023-26_ret": 1.4863508859612633,
+      "2023-26_DD": -0.11499766018724122,
+      "2023-26_Calmar": 2.3532906225846144,
+      "avgL": 0.8355284896741489,
+      "avg_turnover_1way": 0.2076160204908267,
+      "avg_turnover": 0.2076160204908267,
+      "occ_n": 198,
+      "occ_winrate": 0.5757575757575758,
+      "occ_payoff": 1.2919216512191436,
+      "occ_avg_win": 0.022620082222264977,
+      "occ_avg_loss": -0.017508865340958683,
+      "n_cash_weeks": 150
+    }
+  ],
+  "delta_vs_face_eq": {
+    "LIVE1430-EQ-HYST-M2-S20": {
+      "dret_pp": 7.844531069758531,
+      "d_abs_mdd_pp": 2.60256608417494,
+      "d_calmar": -0.10549742854200572,
+      "covers": true,
+      "strong_2023_26_ok": true,
+      "better_calmar": false
+    },
+    "LIVE1430-EQ-HYST-M3-S20": {
+      "dret_pp": 37.021280343679706,
+      "d_abs_mdd_pp": -0.5304981395594321,
+      "d_calmar": 0.1816947299130981,
+      "covers": true,
+      "strong_2023_26_ok": true,
+      "better_calmar": true
+    },
+    "LIVE1430-INV-HYST-M3-S20": {
+      "dret_pp": 15.979587725869449,
+      "d_abs_mdd_pp": -0.2356834258666285,
+      "d_calmar": 0.07941065217639232,
+      "covers": true,
+      "strong_2023_26_ok": true,
+      "better_calmar": true
+    }
+  },
+  "baseline_face_eq": {
+    "ret": 1.5828517647807212,
+    "maxDD": -0.1586573855560559,
+    "Calmar": 0.9433195032091667
+  },
+  "M3_vs_M2": {
+    "dret_pp": 29.176749273921175,
+    "d_calmar": 0.2871921584551038
+  },
+  "verdict": "**HYST-M3 探索记正（不换冠）**：Calmar 优于 Face 且 Δret 盖住 Δ|MDD|、后段不踏空。 **HYST-M2 探索偏弱**：盖住回撤但 Calmar 未优于 Face（segment/skip 风险）。 INV×HYST-M3 仅归因：Calmar=1.02，不晋升。",
+  "isolation": "strategy_exec / LIVE_OPS / champion: NONE overwritten",
+  "elapsed_sec": 8.1
+}

@@ -16,3 +16,10 @@ Re-run position-sizing research (EQ5 / INV20W / CAP30):
 cd research/cloud_batch/SPIKE-S20-POS-SIZING-RESEARCH
 python3 run.py
 ```
+
+Re-run EQ + HYST-M2/M3 (Composer lane):
+
+```bash
+cd research/SPIKE-S20-SIZE-EQ-HYST-M2M3-LIVE1430
+python3 run.py
+```
