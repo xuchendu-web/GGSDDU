@@ -1,0 +1,164 @@
+{
+  "title": "REBAND-neighbors-LIVE1430",
+  "sample": "2020-01-03 → 2026-10-23",
+  "parameter": "reband_tol on TV execution weights (E30 JUDGING_LOG)",
+  "grid_four_pack": [
+    {
+      "book": "LIVE1430-FACE-B45-S20",
+      "reband_tol": 0.0
+    },
+    {
+      "book": "LIVE1430-REBAND3",
+      "reband_tol": 0.03
+    },
+    {
+      "book": "LIVE1430-REBAND5",
+      "reband_tol": 0.05
+    },
+    {
+      "book": "LIVE1430-REBAND10",
+      "reband_tol": 0.1
+    }
+  ],
+  "annex": [
+    {
+      "book": "LIVE1430-REBAND7",
+      "reband_tol": 0.07
+    }
+  ],
+  "verdict_pack": "旁注（边际/不插值）",
+  "face_align_extend_b45": "Δret=0.00pp (FACE tol=0 vs EXTEND B45)",
+  "sim_stats_b45_hold": {
+    "n_fridays_queue_gt_seats": 88,
+    "n_fridays_with_cands": 191,
+    "n_entries": 267,
+    "n_entries_missing_sharpe": 0,
+    "n_trades": 267,
+    "max_pos": 5,
+    "n_cash_weeks": 150,
+    "n_calendar_weeks_ex_last": 348,
+    "cash_week_pct": 0.43103448275862066,
+    "n_risk_on_weeks": 203,
+    "risk_on_week_pct": 0.5833333333333334
+  },
+  "tv_meta": {
+    "LIVE1430-FACE-B45-S20": {
+      "reband_tol": 0.0,
+      "n_skip_reband_weeks": 0
+    },
+    "LIVE1430-REBAND3": {
+      "reband_tol": 0.03,
+      "n_skip_reband_weeks": 80
+    },
+    "LIVE1430-REBAND5": {
+      "reband_tol": 0.05,
+      "n_skip_reband_weeks": 82
+    },
+    "LIVE1430-REBAND10": {
+      "reband_tol": 0.1,
+      "n_skip_reband_weeks": 82
+    },
+    "LIVE1430-REBAND7": {
+      "reband_tol": 0.07,
+      "n_skip_reband_weeks": 82
+    }
+  },
+  "elapsed_s": 7.7,
+  "books": [
+    {
+      "book": "LIVE1430-FACE-B45-S20",
+      "ret": 1.3163485737878418,
+      "maxDD": -0.18799993761556133,
+      "CAGR": 0.13140884426092092,
+      "Calmar": 0.6989834460989939,
+      "2020-22_ret": 0.18888117892868528,
+      "2020-22_DD": -0.16005989858806302,
+      "2020-22_Calmar": 0.37221138893854394,
+      "2023-26_ret": 0.9483432111147798,
+      "2023-26_DD": -0.1380814670414744,
+      "2023-26_Calmar": 1.3883742587265562,
+      "avgL": 0.8413486853673591,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334,
+      "reband_tol": 0.0,
+      "n_skip_reband_weeks": 0,
+      "verdict": "FACE"
+    },
+    {
+      "book": "LIVE1430-REBAND3",
+      "ret": 1.3238959445213374,
+      "maxDD": -0.18837215939960883,
+      "CAGR": 0.1319499378968898,
+      "Calmar": 0.7004747321337115,
+      "2020-22_ret": 0.18903075628167398,
+      "2020-22_DD": -0.16027736743090604,
+      "2020-22_Calmar": 0.3719845490033031,
+      "2023-26_ret": 0.9544456123141796,
+      "2023-26_DD": -0.13812569087998527,
+      "2023-26_Calmar": 1.3950274520009516,
+      "avgL": 0.8386240821007831,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334,
+      "reband_tol": 0.03,
+      "n_skip_reband_weeks": 80,
+      "verdict": "旁注"
+    },
+    {
+      "book": "LIVE1430-REBAND5",
+      "ret": 1.3101536788374246,
+      "maxDD": -0.18837215939960805,
+      "CAGR": 0.13096358869810998,
+      "Calmar": 0.695238559219821,
+      "2020-22_ret": 0.18888137001286354,
+      "2020-22_DD": -0.16027736743090526,
+      "2020-22_Calmar": 0.37170671744786216,
+      "2023-26_ret": 0.9431322057073037,
+      "2023-26_DD": -0.13812569087998527,
+      "2023-26_Calmar": 1.3818558334723647,
+      "avgL": 0.8377740542443346,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334,
+      "reband_tol": 0.05,
+      "n_skip_reband_weeks": 82,
+      "verdict": "旁注"
+    },
+    {
+      "book": "LIVE1430-REBAND10",
+      "ret": 1.3101536788374246,
+      "maxDD": -0.18837215939960805,
+      "CAGR": 0.13096358869810998,
+      "Calmar": 0.695238559219821,
+      "2020-22_ret": 0.18888137001286354,
+      "2020-22_DD": -0.16027736743090526,
+      "2020-22_Calmar": 0.37170671744786216,
+      "2023-26_ret": 0.9431322057073037,
+      "2023-26_DD": -0.13812569087998527,
+      "2023-26_Calmar": 1.3818558334723647,
+      "avgL": 0.8377740542443346,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334,
+      "reband_tol": 0.1,
+      "n_skip_reband_weeks": 82,
+      "verdict": "旁注"
+    },
+    {
+      "book": "LIVE1430-REBAND7",
+      "ret": 1.3101536788374246,
+      "maxDD": -0.18837215939960805,
+      "CAGR": 0.13096358869810998,
+      "Calmar": 0.695238559219821,
+      "2020-22_ret": 0.18888137001286354,
+      "2020-22_DD": -0.16027736743090526,
+      "2020-22_Calmar": 0.37170671744786216,
+      "2023-26_ret": 0.9431322057073037,
+      "2023-26_DD": -0.13812569087998527,
+      "2023-26_Calmar": 1.3818558334723647,
+      "avgL": 0.8377740542443346,
+      "cash_week_pct": 0.43103448275862066,
+      "risk_on_week_pct": 0.5833333333333334,
+      "reband_tol": 0.07,
+      "n_skip_reband_weeks": 82,
+      "verdict": "旁注"
+    }
+  ]
+}
