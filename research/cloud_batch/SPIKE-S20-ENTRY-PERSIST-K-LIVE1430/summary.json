@@ -1,0 +1,169 @@
+{
+  "title": "SPIKE-S20-ENTRY-PERSIST-K-LIVE1430",
+  "convention": "Fri ≥14:30 signal / Friday close fill; TV25 L≤1; 0.2%RT; breadth≥0.45",
+  "unique_change": "entry top-seat persist K∈{1,2,3}; spike_ft max5 + SHARPE20 frozen",
+  "batch": "CLOUD-ENTRY-PERSIST-K",
+  "falsify_line": "H1 成立：K=2/3 入口 top-seat 持续性未同时满足 Δret 盖住 Δ|MDD| 与 2023–26 不踏空；B45+S20 即时填席仍优。",
+  "sample": "2020-01-03 → 2026-10-23",
+  "n_calendar_weeks": 349,
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 45269,
+    "n_skip_no_sina_or_qfq": 28556,
+    "n_empty_status_rows": 12,
+    "weeks_with_mapped_1430_median_codes": 209.0,
+    "snap_cache_used": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/cache_1430_snaps.json",
+    "sample_note": "延窗研究：2020-01-03→2026-10-23（CLOUD-BATCH research_cache + cache_1430_snaps end=2026-10-23）。",
+    "approximation": [
+      "延窗：week/day/face/14:30 来自 CLOUD-BATCH data/research_cache；breadth risk_on 用 holdings_ro2_extended",
+      "qfq_1430 = price_1430 × (day qfq 收 / sina 收)；sina 作 bfq 代理",
+      "14:30 分类只读 cache_1430_snaps.json（end=2026-10-23）",
+      "Sharpe 窗截至信号日严格前一交易日（无周五收盘前视）",
+      "成交/净值：周五收盘填仓 + TV25 + 0.2%RT；L≤1",
+      "唯一改动：新进填席须连续 K 周处于 S20 Top5 席位（top-seat）；K∈{1,2,3}",
+      "不写 strategy_exec / LIVE_OPS / 冠军主钉 / 实盘池"
+    ]
+  },
+  "pick_diffs": {
+    "K2_vs_K1": {
+      "n": 198,
+      "n_diff": 189,
+      "pct_diff": 0.9545454545454546
+    },
+    "K3_vs_K1": {
+      "n": 198,
+      "n_diff": 196,
+      "pct_diff": 0.98989898989899
+    }
+  },
+  "sim_stats": {
+    "LIVE1430-EP-K1": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "max_pos": 5,
+      "entry_persist_k": 1,
+      "n_blocked_persist": 862,
+      "n_cash_weeks": 150
+    },
+    "LIVE1430-EP-K2": {
+      "n_fridays_queue_gt_seats": 128,
+      "n_fridays_with_cands": 191,
+      "n_entries": 170,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 170,
+      "max_pos": 5,
+      "entry_persist_k": 2,
+      "n_blocked_persist": 2554,
+      "n_cash_weeks": 165
+    },
+    "LIVE1430-EP-K3": {
+      "n_fridays_queue_gt_seats": 142,
+      "n_fridays_with_cands": 192,
+      "n_entries": 77,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 77,
+      "max_pos": 5,
+      "entry_persist_k": 3,
+      "n_blocked_persist": 3186,
+      "n_cash_weeks": 216
+    }
+  },
+  "table": [
+    {
+      "book": "LIVE1430-EP-K1",
+      "ret": 1.5828517647807212,
+      "maxDD": -0.1586573855560559,
+      "CAGR": 0.14966460612320387,
+      "Calmar": 0.9433195032091667,
+      "2020-22_ret": 0.2927807341680022,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6021948845718625,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.826620595788602,
+      "avg_turnover_1way": 0.15368021113651173,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "occ_winrate": 0.5303030303030303,
+      "occ_payoff": 1.464722039579623,
+      "occ_avg_win": 0.025353317376266254,
+      "occ_avg_loss": -0.01730930285144251,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-EP-K2",
+      "ret": 1.4347130796181005,
+      "maxDD": -0.17086133620916588,
+      "CAGR": 0.13972697409692358,
+      "Calmar": 0.8177799448195344,
+      "2020-22_ret": 0.2264157670666047,
+      "2020-22_DD": -0.14164435589498803,
+      "2020-22_Calmar": 0.4987818186393655,
+      "2023-26_ret": 0.985226499037567,
+      "2023-26_DD": -0.11977672775785231,
+      "2023-26_Calmar": 1.6497370494674084,
+      "avgL": 0.7414529481843195,
+      "avg_turnover_1way": 0.16010884375579795,
+      "avg_turnover": 0.16010884375579795,
+      "occ_n": 183,
+      "occ_winrate": 0.5191256830601093,
+      "occ_payoff": 1.5243211255003426,
+      "occ_avg_win": 0.026669637597760403,
+      "occ_avg_loss": -0.017496075565446467,
+      "n_cash_weeks": 165
+    },
+    {
+      "book": "LIVE1430-EP-K3",
+      "ret": 0.7799914561703785,
+      "maxDD": -0.17149134492475238,
+      "CAGR": 0.08844602879358199,
+      "Calmar": 0.5157463126339739,
+      "2020-22_ret": 0.1708787387135955,
+      "2020-22_DD": -0.17149134492475238,
+      "2020-22_Calmar": 0.3159478854785247,
+      "2023-26_ret": 0.520218445614612,
+      "2023-26_DD": -0.1295510254434724,
+      "2023-26_Calmar": 0.8987651738567985,
+      "avgL": 0.6829600228970197,
+      "avg_turnover_1way": 0.0968483839140302,
+      "avg_turnover": 0.0968483839140302,
+      "occ_n": 132,
+      "occ_winrate": 0.5454545454545454,
+      "occ_payoff": 1.318696143503086,
+      "occ_avg_win": 0.024947639051750438,
+      "occ_avg_loss": -0.01891841359714423,
+      "n_cash_weeks": 216
+    }
+  ],
+  "delta_vs_B45": {
+    "2": {
+      "dret_pp": -14.813868516262074,
+      "d_abs_mdd_pp": 1.2203950653109974,
+      "covers": false,
+      "strong_2023_26_ok": false,
+      "better_calmar": false
+    },
+    "3": {
+      "dret_pp": -80.28603086103428,
+      "d_abs_mdd_pp": 1.2833959368696468,
+      "covers": false,
+      "strong_2023_26_ok": false,
+      "better_calmar": false
+    }
+  },
+  "baseline_B45_S20": {
+    "ret": 1.5828517647807212,
+    "maxDD": -0.1586573855560559,
+    "Calmar": 0.9433195032091667
+  },
+  "verdict": "**不换冠**：H1 成立：K=2/3 入口 top-seat 持续性未同时满足 Δret 盖住 Δ|MDD| 与 2023–26 不踏空；B45+S20 即时填席仍优。",
+  "isolation": "strategy_exec / LIVE_OPS: NONE overwritten",
+  "elapsed_sec": 10.5
+}
