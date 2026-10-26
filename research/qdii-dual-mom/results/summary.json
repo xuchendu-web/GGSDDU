@@ -1,0 +1,55 @@
+{
+  "title": "QDII-DUAL-MOM-SLEEVE",
+  "live": false,
+  "breadth_gate": false,
+  "sample": "2020-01-03 → 2026-10-23",
+  "universe": {
+    "n_universe": 16,
+    "min_required": 8,
+    "ok": true,
+    "codes": [
+      "159329",
+      "159509",
+      "159529",
+      "159561",
+      "159687",
+      "159941",
+      "513080",
+      "513290",
+      "513400",
+      "513500",
+      "513730",
+      "513800",
+      "513850",
+      "513880",
+      "520580",
+      "520870"
+    ],
+    "pool": "etf-correlation/data/research_pool_v2.csv"
+  },
+  "main": "QDII-DM-MA20-K3",
+  "benchmark": "OX-EW-BH",
+  "cost_rt": 0.002,
+  "main_stats": {
+    "ret": 1.3133577564895593,
+    "maxDD": -0.3020941217772688,
+    "CAGR": 0.13119400746792298,
+    "Calmar": 0.4342818943185234,
+    "Sharpe": 0.8034391844216909
+  },
+  "bench_stats": {
+    "ret": 1.1088559911633173,
+    "maxDD": -0.22107646905086764,
+    "CAGR": 0.11590964105637913,
+    "Calmar": 0.5242965999683549,
+    "Sharpe": 0.7831705140336777
+  },
+  "covers_mdd_vs_ew": true,
+  "post_2023_miss": false,
+  "verdict": "袖内记正：QDII-DM-MA20-K3 相对 OX-EW-BH Δret 盖住 Δ|MDD| 且 2023–26 未明显踏空。仍为研究袖，不升格、不混 B45。",
+  "fourpack": "/workspace/research/qdii-dual-mom/results/fourpack.png",
+  "skipped": [
+    "VS-TSMOM multi-sleeve PR#84",
+    "Dual-TF A-share face PR#63"
+  ]
+}
