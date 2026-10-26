@@ -1,0 +1,398 @@
+{
+  "title": "COST-TURNOVER-JOINT-B45",
+  "batch": "CLOUD-COST-TURNOVER-JOINT",
+  "convention": "Fri≥14:30 / close; L≤1; TV25; B45+S20 max5+E0",
+  "unique_change": "joint RT×λ grid; turnover penalty reused from SPIKE-S20-TURNOVER-PENALTY",
+  "control": {
+    "rt": 0.002,
+    "lambda": 0.0,
+    "book": "LIVE1430-B45-S20-RT20-LAM00"
+  },
+  "sample": "2020-01-03 → 2026-10-23",
+  "rt_grid": [
+    0.001,
+    0.0015,
+    0.002,
+    0.003
+  ],
+  "lambda_grid": [
+    0.0,
+    0.15
+  ],
+  "n_calendar_weeks": 349,
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 45269,
+    "n_skip_no_sina_or_qfq": 28556,
+    "n_empty_status_rows": 12,
+    "weeks_with_mapped_1430_median_codes": 209.0,
+    "snap_cache_used": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/cache_1430_snaps.json",
+    "sample_note": "CLOUD-BATCH 延窗研究：2020-01-03→2026-10-23（14:30 至 2026-10-23）",
+    "approximation": [
+      "延窗：research_cache week/day/face/14:30；≤2026-10-09 沿用 face；其后研究周线 MA20 宽度",
+      "qfq_1430 = price_1430 × (day qfq 收 / sina daily 收)；sina 作 bfq 代理",
+      "冲击分类：周线收盘替换为 qfq_1430 后因果 classify（Fri≥14:30 信号）",
+      "Sharpe 窗截至信号日严格前一交易日",
+      "成交：周五收盘填仓 + TV25；RT 网格缩放换手扣费；L≤1",
+      "填席：score=sharpe20−λ×to_norm；to_norm=池内min-max(trailing_4w_turnover)",
+      "trailing_4w_turnover=mean_Fri(vol_1430×px_1430)/(aum_亿×1e8) 信号日前4周五",
+      "冻结 B45+spike_ft max5+S20+E0+TV25；**联合 RT×λ**",
+      "只读 kit `data/cache_1430_snaps.json`；不写 strategy_exec / LIVE_OPS"
+    ]
+  },
+  "hold_diffs": {
+    "LAM15_vs_LAM00": {
+      "n": 198,
+      "n_diff": 11,
+      "pct_diff": 0.05555555555555555
+    }
+  },
+  "table": [
+    {
+      "book": "LIVE1430-B45-S20-RT10-LAM00",
+      "rt_cost": 0.001,
+      "penalty_lambda": 0.0,
+      "role": "grid",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "ret": 1.7255283961740884,
+      "maxDD": -0.14917265978654293,
+      "CAGR": 0.15878634559373817,
+      "Calmar": 1.0644467010305496,
+      "2020-22_ret": 0.32223746036636425,
+      "2020-22_DD": -0.14805777705867817,
+      "2020-22_Calmar": 0.6614428476388469,
+      "2023-26_ret": 1.0613002413491595,
+      "2023-26_DD": -0.1379130860380252,
+      "2023-26_Calmar": 1.5190804620759217,
+      "avgL": 0.826620595788602,
+      "avg_turnover_1way": 0.15368021113651173,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "occ_winrate": 0.5505050505050505,
+      "occ_payoff": 1.382294706921309,
+      "occ_avg_win": 0.024584135972920026,
+      "occ_avg_loss": -0.017785017803963528,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-B45-S20-RT10-LAM15",
+      "rt_cost": 0.001,
+      "penalty_lambda": 0.15,
+      "role": "grid",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "ret": 1.7726275392328068,
+      "maxDD": -0.14805777705867817,
+      "CAGR": 0.16170814717771287,
+      "Calmar": 1.092196238456456,
+      "2020-22_ret": 0.3450866999453075,
+      "2020-22_DD": -0.14805777705867817,
+      "2020-22_Calmar": 0.7040608678031778,
+      "2023-26_ret": 1.0613002413491595,
+      "2023-26_DD": -0.1379130860380252,
+      "2023-26_Calmar": 1.5190804620759217,
+      "avgL": 0.8266866719654463,
+      "avg_turnover_1way": 0.15337111116150093,
+      "avg_turnover": 0.15337111116150093,
+      "occ_n": 198,
+      "occ_winrate": 0.5454545454545454,
+      "occ_payoff": 1.4209766763483,
+      "occ_avg_win": 0.024944288881091417,
+      "occ_avg_loss": -0.017554326750242343,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-B45-S20-RT15-LAM00",
+      "rt_cost": 0.0015,
+      "penalty_lambda": 0.0,
+      "role": "grid",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "ret": 1.6532393057227575,
+      "maxDD": -0.15392764686529037,
+      "CAGR": 0.1542169827416393,
+      "Calmar": 1.0018796875170979,
+      "2020-22_ret": 0.3074277505599057,
+      "2020-22_DD": -0.1484974131647473,
+      "2020-22_Calmar": 0.6316819094280282,
+      "2023-26_ret": 1.0293582605895466,
+      "2023-26_DD": -0.14052115274435462,
+      "2023-26_Calmar": 1.4556112710039564,
+      "avgL": 0.826620595788602,
+      "avg_turnover_1way": 0.15368021113651173,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "occ_winrate": 0.5404040404040404,
+      "occ_payoff": 1.4230621423443348,
+      "occ_avg_win": 0.024958980025198356,
+      "occ_avg_loss": -0.017538924887764384,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-B45-S20-RT15-LAM15",
+      "rt_cost": 0.0015,
+      "penalty_lambda": 0.15,
+      "role": "grid",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "ret": 1.699233736239425,
+      "maxDD": -0.1484974131647473,
+      "CAGR": 0.1571363678726836,
+      "Calmar": 1.0581757925867166,
+      "2020-22_ret": 0.33009227037875144,
+      "2020-22_DD": -0.1484974131647473,
+      "2020-22_Calmar": 0.6741466215666616,
+      "2023-26_ret": 1.0293582605895466,
+      "2023-26_DD": -0.14052115274435462,
+      "2023-26_Calmar": 1.4556112710039564,
+      "avgL": 0.8266866719654463,
+      "avg_turnover_1way": 0.15337111116150093,
+      "avg_turnover": 0.15337111116150093,
+      "occ_n": 198,
+      "occ_winrate": 0.5353535353535354,
+      "occ_payoff": 1.462814125863814,
+      "occ_avg_win": 0.025329946574688823,
+      "occ_avg_loss": -0.017315902360274995,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-B45-S20-RT20-LAM00",
+      "rt_cost": 0.002,
+      "penalty_lambda": 0.0,
+      "role": "control",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "ret": 1.5828517647807212,
+      "maxDD": -0.1586573855560559,
+      "CAGR": 0.14966460612320387,
+      "Calmar": 0.9433195032091667,
+      "2020-22_ret": 0.2927807341680022,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6021948845718625,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.826620595788602,
+      "avg_turnover_1way": 0.15368021113651173,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "occ_winrate": 0.5303030303030303,
+      "occ_payoff": 1.464722039579623,
+      "occ_avg_win": 0.025353317376266254,
+      "occ_avg_loss": -0.01730930285144251,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-B45-S20-RT20-LAM15",
+      "rt_cost": 0.002,
+      "penalty_lambda": 0.15,
+      "role": "grid",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "ret": 1.6277667326941083,
+      "maxDD": -0.15097018861522848,
+      "CAGR": 0.1525815490324074,
+      "Calmar": 1.0106733682454734,
+      "2020-22_ret": 0.31526177856473203,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6445068114648365,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.8266866719654463,
+      "avg_turnover_1way": 0.15337111116150093,
+      "avg_turnover": 0.15337111116150093,
+      "occ_n": 198,
+      "occ_winrate": 0.5252525252525253,
+      "occ_payoff": 1.5055886883735246,
+      "occ_avg_win": 0.025735700911922583,
+      "occ_avg_loss": -0.017093447307793375,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-B45-S20-RT30-LAM00",
+      "rt_cost": 0.003,
+      "penalty_lambda": 0.0,
+      "role": "grid",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "ret": 1.44758418923014,
+      "maxDD": -0.16804162576714943,
+      "CAGR": 0.14061057413187483,
+      "Calmar": 0.8367603770194116,
+      "2020-22_ret": 0.26396778955583056,
+      "2020-22_DD": -0.14999867272378653,
+      "2020-22_Calmar": 0.5433702574673945,
+      "2023-26_ret": 0.9364292424653065,
+      "2023-26_DD": -0.14830116200502186,
+      "2023-26_Calmar": 1.2797484650761761,
+      "avgL": 0.826620595788602,
+      "avg_turnover_1way": 0.15368021113651173,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "occ_winrate": 0.5252525252525253,
+      "occ_payoff": 1.4601422068170078,
+      "occ_avg_win": 0.025436475999494987,
+      "occ_avg_loss": -0.017420547040376603,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-B45-S20-RT30-LAM15",
+      "rt_cost": 0.003,
+      "penalty_lambda": 0.15,
+      "role": "grid",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "ret": 1.4904137571477092,
+      "maxDD": -0.16043843413528003,
+      "CAGR": 0.1435225561465303,
+      "Calmar": 0.8945646778471645,
+      "2020-22_ret": 0.2860855963820892,
+      "2020-22_DD": -0.14981632148295465,
+      "2020-22_Calmar": 0.5860395467443811,
+      "2023-26_ret": 0.9364292424653065,
+      "2023-26_DD": -0.14830116200502186,
+      "2023-26_Calmar": 1.2797484650761761,
+      "avgL": 0.8266866719654463,
+      "avg_turnover_1way": 0.15337111116150093,
+      "avg_turnover": 0.15337111116150093,
+      "occ_n": 198,
+      "occ_winrate": 0.5252525252525253,
+      "occ_payoff": 1.470878691542485,
+      "occ_avg_win": 0.025574877465458893,
+      "occ_avg_loss": -0.01738748247052173,
+      "n_cash_weeks": 150
+    }
+  ],
+  "pivot_calmar": [
+    {
+      "rt_pct": 0.1,
+      "lam_0.0": 1.0644467010305496,
+      "lam_0.15": 1.092196238456456
+    },
+    {
+      "rt_pct": 0.15,
+      "lam_0.0": 1.0018796875170979,
+      "lam_0.15": 1.0581757925867166
+    },
+    {
+      "rt_pct": 0.2,
+      "lam_0.0": 0.9433195032091667,
+      "lam_0.15": 1.0106733682454734
+    },
+    {
+      "rt_pct": 0.3,
+      "lam_0.0": 0.8367603770194116,
+      "lam_0.15": 0.8945646778471645
+    }
+  ],
+  "pivot_ret": [
+    {
+      "rt_pct": 0.1,
+      "lam_0.0": 1.7255283961740884,
+      "lam_0.15": 1.7726275392328068
+    },
+    {
+      "rt_pct": 0.15,
+      "lam_0.0": 1.6532393057227575,
+      "lam_0.15": 1.699233736239425
+    },
+    {
+      "rt_pct": 0.2,
+      "lam_0.0": 1.5828517647807212,
+      "lam_0.15": 1.6277667326941083
+    },
+    {
+      "rt_pct": 0.3,
+      "lam_0.0": 1.44758418923014,
+      "lam_0.15": 1.4904137571477092
+    }
+  ],
+  "grid_delta_vs_control": {
+    "LIVE1430-B45-S20-RT10-LAM00": {
+      "dret_pp": 14.267663139336717,
+      "d_abs_mdd_pp": -0.948472576951298,
+      "d_calmar": 0.12112719782138293,
+      "covers": true,
+      "wins_calmar": true,
+      "upgrade_candidate": true
+    },
+    "LIVE1430-B45-S20-RT10-LAM15": {
+      "dret_pp": 18.97757744520856,
+      "d_abs_mdd_pp": -1.0599608497377733,
+      "d_calmar": 0.1488767352472894,
+      "covers": true,
+      "wins_calmar": true,
+      "upgrade_candidate": true
+    },
+    "LIVE1430-B45-S20-RT15-LAM00": {
+      "dret_pp": 7.038754094203625,
+      "d_abs_mdd_pp": -0.4729738690765539,
+      "d_calmar": 0.058560184307931196,
+      "covers": true,
+      "wins_calmar": true,
+      "upgrade_candidate": true
+    },
+    "LIVE1430-B45-S20-RT15-LAM15": {
+      "dret_pp": 11.638197145870377,
+      "d_abs_mdd_pp": -1.0159972391308614,
+      "d_calmar": 0.11485628937754988,
+      "covers": true,
+      "wins_calmar": true,
+      "upgrade_candidate": true
+    },
+    "LIVE1430-B45-S20-RT20-LAM15": {
+      "dret_pp": 4.491496791338712,
+      "d_abs_mdd_pp": -0.7687196940827423,
+      "d_calmar": 0.06735386503630669,
+      "covers": true,
+      "wins_calmar": true,
+      "upgrade_candidate": true
+    },
+    "LIVE1430-B45-S20-RT30-LAM00": {
+      "dret_pp": -13.526757555058122,
+      "d_abs_mdd_pp": 0.938424021109352,
+      "d_calmar": -0.10655912618975505,
+      "covers": false,
+      "wins_calmar": false,
+      "upgrade_candidate": false
+    },
+    "LIVE1430-B45-S20-RT30-LAM15": {
+      "dret_pp": -9.243800763301202,
+      "d_abs_mdd_pp": 0.17810485792241204,
+      "d_calmar": -0.04875482536200215,
+      "covers": false,
+      "wins_calmar": false,
+      "upgrade_candidate": false
+    }
+  },
+  "upgrade_candidates": [
+    "LIVE1430-B45-S20-RT10-LAM00",
+    "LIVE1430-B45-S20-RT10-LAM15",
+    "LIVE1430-B45-S20-RT15-LAM00",
+    "LIVE1430-B45-S20-RT15-LAM15",
+    "LIVE1430-B45-S20-RT20-LAM15"
+  ],
+  "h1_low_rt_light_lam_upgrade": [
+    "LIVE1430-B45-S20-RT10-LAM15",
+    "LIVE1430-B45-S20-RT15-LAM15"
+  ],
+  "lam15_calmar_wins_vs_lam0_by_rt": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "lam0_calmar_rt15_vs_rt20": {
+    "rt15": 1.0018796875170979,
+    "rt20": 0.9433195032091667
+  },
+  "verdict": "**H1 未成立（记账，不换冠）**：「低成本+轻惩罚」格 LIVE1430-B45-S20-RT10-LAM15, LIVE1430-B45-S20-RT15-LAM15 相对 RT20-λ0 同时 Calmar 更优且 Δret 盖住 Δ|MDD|；但属敏感面探索，**不记正升格、不换冠**。",
+  "hypothesis_h1": "no stable low-RT+light-lambda upgrade vs control",
+  "isolation": "strategy_exec / LIVE_OPS: NONE",
+  "elapsed_sec": 7.1
+}
