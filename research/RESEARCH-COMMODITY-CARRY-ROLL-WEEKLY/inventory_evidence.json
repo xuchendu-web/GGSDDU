@@ -1,0 +1,109 @@
+{
+  "generated_at_utc": "2026-10-26T14:13:19.111167+00:00",
+  "task": "RESEARCH-COMMODITY-CARRY-ROLL-WEEKLY",
+  "verdict": "SKIP",
+  "local_data_paths": [
+    {
+      "path": "/cj-data",
+      "exists": false
+    },
+    {
+      "path": "/pyas-data-discovery",
+      "exists": false
+    },
+    {
+      "path": "/data",
+      "exists": false
+    },
+    {
+      "path": "/mnt/cj-data",
+      "exists": false
+    }
+  ],
+  "git_content_search": {
+    "patterns": [
+      "roll_yield",
+      "carry_signal",
+      "term_structure",
+      "basis_",
+      "contango",
+      "backwardation",
+      "展期",
+      "基差",
+      "期限结构"
+    ],
+    "matching_paths_count": 0,
+    "matching_paths_sample": []
+  },
+  "cloud_batch_price_cache": {
+    "cloud_batch_present_on_branch": false,
+    "note": "CLOUD-BATCH lives on research branches (e.g. PR#56); main has no kit checkout.",
+    "known_day_bar_schema": [
+      "date",
+      "o",
+      "h",
+      "l",
+      "c"
+    ],
+    "carry_fields_present": false,
+    "remote_day_bar_sample": {
+      "git_ref": "origin/cursor/universe-commodity-bond-cash-live1430-1848",
+      "path": "research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/day/159980.json",
+      "bar_fields": [
+        "c",
+        "date",
+        "h",
+        "l",
+        "o"
+      ]
+    }
+  },
+  "commodity_universe_ref": {
+    "source_ref": "origin/cursor/universe-commodity-bond-cash-live1430-1848:etf-correlation/data/research_pool_v2.csv",
+    "l0_filter": "商品",
+    "codes_aum_ge_2": [
+      {
+        "code": "518880",
+        "name": "华安黄金ETF",
+        "family": "黄金现货",
+        "index": "Au9999.SGE"
+      },
+      {
+        "code": "518600",
+        "name": "广发上海金ETF",
+        "family": "黄金现货",
+        "index": "SHAU.SGE"
+      },
+      {
+        "code": "159980",
+        "name": "大成有色金属期货ETF",
+        "family": "期货·有色",
+        "index": "IMCI.SHF"
+      },
+      {
+        "code": "159985",
+        "name": "华夏饲料豆粕期货ETF",
+        "family": "期货·农产品",
+        "index": "DCESMFI.DCE"
+      },
+      {
+        "code": "159981",
+        "name": "建信易盛郑商所能源化工期货ETF",
+        "family": "期货·能化",
+        "index": "000201.CZC"
+      }
+    ],
+    "excluded_low_aum": [
+      {
+        "code": "510170",
+        "name": "国联安上证商品ETF",
+        "note": "l0=中国权益·周期资源，非商品袖主池"
+      }
+    ]
+  },
+  "pr56_context": {
+    "pr": 56,
+    "finding": "商品袖 SPIKE-S20 Calmar 0.23 vs face 0.70; 动量适配偏弱",
+    "branch": "cursor/universe-commodity-bond-cash-live1430-1848"
+  }
+}
