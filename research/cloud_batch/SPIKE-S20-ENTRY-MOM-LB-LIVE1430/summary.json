@@ -1,0 +1,178 @@
+{
+  "title": "SPIKE-S20-ENTRY-MOM-LB-LIVE1430",
+  "convention": "Fri ≥14:30 signal / Friday close fill; TV25 L≤1; 0.2%RT; breadth≥0.45",
+  "unique_change": "new spike_ft entry gate R{N}d>0 for N∈{40,60,80}; SHARPE20 max5 fill frozen",
+  "batch": "CLOUD-ENTRY-MOM-LB",
+  "sample": "2020-01-03 → 2026-10-23",
+  "n_calendar_weeks": 349,
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 45269,
+    "n_skip_no_sina_or_qfq": 28556,
+    "n_empty_status_rows": 12,
+    "weeks_with_mapped_1430_median_codes": 209.0,
+    "snap_cache_used": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/cache_1430_snaps.json",
+    "sample_note": "延窗研究：2020-01-03→2026-10-23（CLOUD-BATCH research_cache + cache_1430_snaps end=2026-10-23）。",
+    "approximation": [
+      "延窗：week/day/face/14:30 来自 CLOUD-BATCH data/research_cache；breadth risk_on 用 holdings_ro2_extended",
+      "qfq_1430 = price_1430 × (day qfq 收 / sina 收)；sina 作 bfq 代理",
+      "14:30 分类只读 cache_1430_snaps.json（end=2026-10-23）",
+      "Sharpe 窗截至信号日严格前一交易日（无周五收盘前视）",
+      "成交/净值：周五收盘填仓 + TV25 + 0.2%RT；L≤1",
+      "唯一改动：spike_ft 新入场叠加 R{N}d>0（N∈{40,60,80}）；SHARPE20 max5 填席不变",
+      "不写 strategy_exec / LIVE_OPS / 冠军主钉"
+    ]
+  },
+  "pick_diffs": {
+    "R40_vs_R60": {
+      "n": 198,
+      "n_diff": 56,
+      "pct_diff": 0.2828282828282828
+    },
+    "R80_vs_R60": {
+      "n": 196,
+      "n_diff": 63,
+      "pct_diff": 0.32142857142857145
+    }
+  },
+  "sim_stats": {
+    "LIVE1430-ENTRY-R40d-S20-max5": {
+      "n_fridays_queue_gt_seats": 76,
+      "n_fridays_with_cands": 189,
+      "n_entries": 255,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 255,
+      "max_pos": 5,
+      "entry_mom_lb": 40,
+      "n_spike_blocked_by_mom": 243,
+      "n_cash_weeks": 151
+    },
+    "LIVE1430-ENTRY-R60d-S20-max5": {
+      "n_fridays_queue_gt_seats": 74,
+      "n_fridays_with_cands": 184,
+      "n_entries": 254,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 254,
+      "max_pos": 5,
+      "entry_mom_lb": 60,
+      "n_spike_blocked_by_mom": 388,
+      "n_cash_weeks": 152
+    },
+    "LIVE1430-ENTRY-R80d-S20-max5": {
+      "n_fridays_queue_gt_seats": 76,
+      "n_fridays_with_cands": 182,
+      "n_entries": 248,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 248,
+      "max_pos": 5,
+      "entry_mom_lb": 80,
+      "n_spike_blocked_by_mom": 561,
+      "n_cash_weeks": 153
+    }
+  },
+  "table": [
+    {
+      "book": "LIVE1430-ENTRY-R40d-S20-max5",
+      "ret": 1.42032167784334,
+      "maxDD": -0.15681845500115232,
+      "CAGR": 0.1387342753416987,
+      "Calmar": 0.884680794366194,
+      "2020-22_ret": 0.29950557842246894,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6149028078237287,
+      "2023-26_ret": 0.8624942578403463,
+      "2023-26_DD": -0.15681845500115188,
+      "2023-26_Calmar": 1.132970881901758,
+      "avgL": 0.8314214502028332,
+      "avg_turnover_1way": 0.15560504694759927,
+      "avg_turnover": 0.15560504694759927,
+      "occ_n": 197,
+      "occ_winrate": 0.5228426395939086,
+      "occ_payoff": 1.4726372537372876,
+      "occ_avg_win": 0.025115135574330493,
+      "occ_avg_loss": -0.01705452955953193,
+      "n_cash_weeks": 151
+    },
+    {
+      "book": "LIVE1430-ENTRY-R60d-S20-max5",
+      "ret": 1.3403123076520562,
+      "maxDD": -0.20064096485681204,
+      "CAGR": 0.13312171915930127,
+      "Calmar": 0.6634822517640101,
+      "2020-22_ret": 0.22378468039303567,
+      "2020-22_DD": -0.16198086127514233,
+      "2020-22_Calmar": 0.43141401030148485,
+      "2023-26_ret": 0.9123562707946546,
+      "2023-26_DD": -0.15659144750484422,
+      "2023-26_Calmar": 1.1870431729688387,
+      "avgL": 0.8273245871403517,
+      "avg_turnover_1way": 0.15465176864279417,
+      "avg_turnover": 0.15465176864279417,
+      "occ_n": 196,
+      "occ_winrate": 0.5204081632653061,
+      "occ_payoff": 1.4563638147255982,
+      "occ_avg_win": 0.025454973065734843,
+      "occ_avg_loss": -0.017478443784687797,
+      "n_cash_weeks": 152
+    },
+    {
+      "book": "LIVE1430-ENTRY-R80d-S20-max5",
+      "ret": 1.5227204972354191,
+      "maxDD": -0.1806938205975417,
+      "CAGR": 0.1456909582372885,
+      "Calmar": 0.8062863342835899,
+      "2020-22_ret": 0.30234463538535117,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6202546294368447,
+      "2023-26_ret": 0.937060612599655,
+      "2023-26_DD": -0.15224712206086688,
+      "2023-26_Calmar": 1.2472497278253063,
+      "avgL": 0.8235208864196479,
+      "avg_turnover_1way": 0.15067374533805608,
+      "avg_turnover": 0.15067374533805608,
+      "occ_n": 195,
+      "occ_winrate": 0.517948717948718,
+      "occ_payoff": 1.5384214310704465,
+      "occ_avg_win": 0.02568370115631914,
+      "occ_avg_loss": -0.016694840982843177,
+      "n_cash_weeks": 153
+    }
+  ],
+  "delta_vs_r60": {
+    "40": {
+      "dret_pp": 8.000937019128385,
+      "d_abs_mdd_pp": -4.382250985565972,
+      "covers": true,
+      "strong_2023_26_ok": true,
+      "better_calmar": true
+    },
+    "80": {
+      "dret_pp": 18.24081895833629,
+      "d_abs_mdd_pp": -1.9947144259270355,
+      "covers": true,
+      "strong_2023_26_ok": true,
+      "better_calmar": true
+    }
+  },
+  "baseline_r60": {
+    "ret": 1.3403123076520562,
+    "maxDD": -0.20064096485681204,
+    "Calmar": 0.6634822517640101
+  },
+  "face_ref_no_mom_gate": {
+    "ret": 1.5828517647807212,
+    "Calmar": 0.9433195032091667,
+    "delta_r60_ret_pp": -24.253945712866496
+  },
+  "falsify_notes": [
+    "邻档优于 R60 且过探索尺子",
+    "R60 相对无门槛面后段踏空",
+    "两端 Calmar 同时优于 R60（无平台）"
+  ],
+  "verdict": "**入场窗邻档记正（不换冠）**：R40d, R80d 相对 R60d Δret 盖住 Δ|MDD| 且 2023–26 不踏空；仍不换冠。",
+  "isolation": "strategy_exec / LIVE_OPS: NONE overwritten",
+  "elapsed_sec": 6.9
+}
