@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+_corpus_stub/
+kb_index_stub.sqlite
+ingest_roots.local.txt
+# Regenerate with ingest.py; optional to commit for demos
+# kb_index.sqlite
