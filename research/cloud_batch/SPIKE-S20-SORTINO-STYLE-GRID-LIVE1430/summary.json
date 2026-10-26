@@ -1,0 +1,39 @@
+{
+  "knife_id": "SPIKE-S20-SORTINO-STYLE-GRID-LIVE1430",
+  "window": "2020-01-03 → 2026-10-23",
+  "cost_rt": 0.002,
+  "rf_sortino": 0.0,
+  "books_n": 6,
+  "missing_artifacts": [],
+  "face_book": "LIVE1430-B45-S20-max5",
+  "face": {
+    "axis": "face",
+    "label": "B45+S20",
+    "book": "LIVE1430-B45-S20-max5",
+    "nav_source": "SPIKE-S20-BTHETA-GRID-LIVE1430/nav_LIVE1430-B45-S20-max5.csv",
+    "ret": 1.3186672410288676,
+    "maxDD": -0.18799993761556155,
+    "CAGR": 0.13174431596030023,
+    "Calmar": 0.700767870623991,
+    "Sharpe": 0.8242048857064168,
+    "Sortino": 1.239774912464013,
+    "2020-22_ret": 0.19007125017886395,
+    "2020-22_DD": -0.16005989858806313,
+    "2020-22_Calmar": 0.37548894307867237,
+    "2020-22_Sharpe": 0.4295399514871366,
+    "2020-22_Sortino": 0.5976745190118355,
+    "2023-26_ret": 0.9483432111147805,
+    "2023-26_DD": -0.13808146704147428,
+    "2023-26_Calmar": 1.3883742587265588,
+    "2023-26_Sharpe": 1.1445332243029032,
+    "2023-26_Sortino": 1.857579517290253,
+    "nav_end": "2026-10-23",
+    "n_days": 1646
+  },
+  "rank_notes": [
+    "B50 同时在 Calmar/Sortino 上高于 face（ΔCalmar=+0.23 ΔSortino=+0.16）",
+    "TV22 同时在 Calmar/Sortino 上高于 face（ΔCalmar=+0.26 ΔSortino=+0.20）",
+    "TV28 同时在 Calmar/Sortino 上高于 face（ΔCalmar=+0.20 ΔSortino=+0.10）"
+  ],
+  "elapsed_s": 0.2
+}
