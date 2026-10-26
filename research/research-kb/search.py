@@ -38,6 +38,7 @@ def search(
     *,
     limit: int = 10,
     json_out: bool = False,
+    mode: str = "chunks",
 ) -> list[dict]:
     fts_q = escape_fts_query(query)
     if not fts_q:
@@ -46,18 +47,35 @@ def search(
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     try:
-        sql = """
-        SELECT
-            d.path,
-            d.title,
-            bm25(documents_fts) AS score,
-            snippet(documents_fts, 1, ?, ?, ?, 64) AS snippet
-        FROM documents_fts
-        JOIN documents d ON d.id = documents_fts.rowid
-        WHERE documents_fts MATCH ?
-        ORDER BY score
-        LIMIT ?
-        """
+        if mode == "documents":
+            sql = """
+            SELECT
+                d.path,
+                d.title,
+                bm25(documents_fts) AS score,
+                snippet(documents_fts, 1, ?, ?, ?, 64) AS snippet,
+                NULL AS chunk_index
+            FROM documents_fts
+            JOIN documents d ON d.id = documents_fts.rowid
+            WHERE documents_fts MATCH ?
+            ORDER BY score
+            LIMIT ?
+            """
+        else:
+            sql = """
+            SELECT
+                d.path,
+                d.title,
+                bm25(chunks_fts) AS score,
+                snippet(chunks_fts, 0, ?, ?, ?, 64) AS snippet,
+                c.chunk_index AS chunk_index
+            FROM chunks_fts
+            JOIN chunks c ON c.id = chunks_fts.rowid
+            JOIN documents d ON d.id = c.document_id
+            WHERE chunks_fts MATCH ?
+            ORDER BY score
+            LIMIT ?
+            """
         rows = conn.execute(
             sql,
             (*SNIPPET_MARKERS, fts_q, limit),
@@ -68,6 +86,7 @@ def search(
                 "title": row["title"],
                 "score": float(row["score"]),
                 "snippet": row["snippet"],
+                "chunk_index": row["chunk_index"],
             }
             for row in rows
         ]
@@ -86,6 +105,8 @@ def format_text_hits(hits: list[dict], root: Path) -> str:
         lines.append(f"{i}. {hit['path']}")
         lines.append(f"   title: {hit['title']}")
         lines.append(f"   score: {hit['score']:.4f}")
+        if hit.get("chunk_index") is not None:
+            lines.append(f"   chunk: {hit['chunk_index']}")
         lines.append(f"   snippet: {snippet}")
         lines.append(f"   cite: {abs_path}")
         lines.append("")
@@ -108,6 +129,12 @@ def main(argv: list[str] | None = None) -> int:
         help=f"SQLite database (default: <root>/{DEFAULT_DB_NAME})",
     )
     parser.add_argument("--limit", type=int, default=10, help="Max hits (default: 10)")
+    parser.add_argument(
+        "--mode",
+        choices=("chunks", "documents"),
+        default="chunks",
+        help="Search chunked FTS (default) or whole-document FTS",
+    )
     parser.add_argument("--json", action="store_true", help="Emit JSON lines")
     args = parser.parse_args(argv)
 
@@ -119,7 +146,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: index not found at {db_path}; run ingest.py first", file=sys.stderr)
         return 1
 
-    hits = search(db_path, query, limit=args.limit, json_out=args.json)
+    hits = search(db_path, query, limit=args.limit, json_out=args.json, mode=args.mode)
     if args.json:
         for hit in hits:
             hit_out = {**hit, "cite": str((root / hit["path"]).resolve())}
