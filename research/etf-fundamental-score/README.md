@@ -1,17 +1,20 @@
 # ETF Fundamental Score (research)
 
 Transparent multi-factor **screening** score for a research ETF universe.  
-**Not** a live trading system and **not** validated alpha — use for reproducible pool filtering only.
+**Not** a live trading system and **not** validated alpha — use for reproducible pool filtering only.  
+`research_pool_only` is hard-guarded in config loading (no LIVE升格).
 
 ## Layout
 
 ```
 research/etf-fundamental-score/
-├── config.yaml              # documented weights & factor bands
+├── config.yaml              # weights, overlays, missing policies (v2.0)
 ├── docs/SCORING.md          # definitions, formulas, failure modes
 ├── fixtures/universe_sample.csv
 ├── etf_fundamental_score/
-│   ├── score.py             # ScoreEngine, composite
+│   ├── score.py             # ScoreEngine, composite, ranking
+│   ├── batch.py             # multi-CSV batch scorer
+│   ├── sector_overlay.py    # per-category weights & params
 │   ├── cli.py
 │   ├── factors/             # one module per factor
 │   └── adapters/            # FixtureCsvAdapter + ETFDataAdapter ABC
@@ -24,14 +27,13 @@ research/etf-fundamental-score/
 cd research/etf-fundamental-score
 python -m pip install -e ".[dev]"
 etf-score
-# or
-python -m etf_fundamental_score.cli -i fixtures/universe_sample.csv -o scores.csv
+etf-score batch -m fixtures/batch_manifest.csv -o batch_scores/
 pytest -q
 ```
 
 Default paths: input `fixtures/universe_sample.csv`, config `config.yaml`, output `./scores.csv`.
 
-## Factors (v0.1)
+## Factors (v0.2)
 
 | Key | Input fields | Idea |
 |-----|--------------|------|
@@ -41,8 +43,13 @@ Default paths: input `fixtures/universe_sample.csv`, config `config.yaml`, outpu
 | concentration | `top10_holdings_weight` | Less single-name risk |
 | valuation | `holdings_median_pe` | Cheaper stub |
 | flow | `net_flow_30d_usd` / AUM | Recent inflows |
+| premium | `premium_bps` | Lower premium vs fair value |
+| liquidity | `avg_daily_volume_usd` / AUM | Higher ADV/AUM |
+| dividend_yield | `dividend_yield` | Higher income yield |
 
-See [docs/SCORING.md](docs/SCORING.md) for formulas and failure modes.
+**Sector overlays** adjust weights and factor bands per `category` (see `config.yaml` and [docs/SCORING.md](docs/SCORING.md)).
+
+**Missing data:** `reweight` | `zero` | `neutral`, plus `min_factor_coverage` and `required_factors`.
 
 ## Extending data
 

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "etf-fundamental-score"
-version = "0.1.0"
+version = "0.2.0"
 description = "Transparent multi-factor ETF screening scores for research universes (not live trading)."
 readme = "README.md"
 requires-python = ">=3.10"
