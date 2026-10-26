@@ -9,3 +9,10 @@ Re-run MAXSEAT grid:
 cd research/cloud_batch/SPIKE-S20-MAXSEAT-GRID-LIVE1430
 python3 run.py
 ```
+
+Re-run loss-cool window sweep:
+
+```bash
+cd research/cloud_batch/SPIKE-S20-LOSS-COOL-WINDOW-SWEEP
+python3 run.py
+```

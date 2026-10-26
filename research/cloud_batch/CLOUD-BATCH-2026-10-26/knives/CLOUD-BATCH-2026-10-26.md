@@ -9,6 +9,7 @@ Michael 语音（悟空）：约 11/1 周池重置前，机械批测走 **Cursor
 | 3 | SPIKE-S20-TV-GRID-LIVE1430 | TV σ* 邻档网格 | `knives/SPIKE-S20-TV-GRID-LIVE1430.md` |
 | 4 | SPIKE-S20-MAXSEAT-GRID-LIVE1430 | maxN 席位网格 | `knives/SPIKE-S20-MAXSEAT-GRID-LIVE1430.md` |
 | 5 | MF-HOLD-BGRID | 多频 HOLD B 网格 | `knives/MF-HOLD-BGRID.md` |
+| 6 | SPIKE-S20-LOSS-COOL-WINDOW-SWEEP | 上周亏损冷静窗扫 | `knives/SPIKE-S20-LOSS-COOL-WINDOW-SWEEP.md` |
 
 跳过（无希望/已证伪同构）：RET 窗扫、S12/S40、宏观 DXY/Brent/MOVE、NOBREADTH 变体、511260 重派、BCONF2。
 
