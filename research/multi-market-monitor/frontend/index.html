@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>多市场监控 · Mock Prototype</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="warn-bar">
+      研究原型 · 模拟行情（Mock WebSocket/SSE）· 非交易终端 · 无需任何券商密钥
+    </div>
+    <header class="app-header">
+      <div class="logo-block">
+        <strong>Multi-Market Monitor</strong>
+        <span>指数 · FX · 利率 · 商品 · Crypto stub · 广度 · 量能</span>
+      </div>
+      <div class="session-chips" id="session-chips">
+        <span class="chip" data-mkt="A">A股 · 模拟</span>
+        <span class="chip" data-mkt="HK">港股 · 模拟</span>
+        <span class="chip" data-mkt="US">美股 · 模拟</span>
+        <span class="chip chip-muted" data-mkt="FX">FX</span>
+        <span class="chip chip-muted" data-mkt="CMD">商品</span>
+      </div>
+      <div class="status-group">
+        <span class="mock-badge">MOCK FEED</span>
+        <div class="conn" id="conn-status">
+          <span class="dot"></span>
+          <span id="conn-label">连接中…</span>
+        </div>
+        <button type="button" class="transport-toggle" id="transport-toggle" title="切换传输">
+          使用 SSE
+        </button>
+      </div>
+    </header>
+
+    <section class="clock-strip" aria-label="全球交易时钟">
+      <div class="clock-strip-inner" id="clock-strip">
+        <div class="clock-placeholder">加载市场时钟…</div>
+      </div>
+      <div class="clock-utc">
+        UTC <b id="clock-utc">—</b>
+      </div>
+    </section>
+
+    <main>
+      <section class="kpi" aria-label="概览">
+        <div>
+          已订阅市场
+          <b id="kpi-markets">5</b>
+        </div>
+        <div>
+          指数面板
+          <b id="kpi-indices">—</b>
+        </div>
+        <div>
+          FX / 利率
+          <b id="kpi-fx-rates">—</b>
+        </div>
+        <div>
+          tick / 分钟（估）
+          <b id="kpi-rate">—</b>
+        </div>
+        <div>
+          最近更新 (UTC)
+          <b id="kpi-ts">—</b>
+        </div>
+        <div>
+          A股涨跌比（mock）
+          <b id="kpi-breadth">—</b>
+        </div>
+      </section>
+
+      <div class="dashboard dashboard-wide">
+        <section class="panel panel-span-2" aria-labelledby="panel-indices">
+          <h2 id="panel-indices">Indices · 指数</h2>
+          <div id="indices-root">
+            <div class="empty">等待 mock 推送…</div>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="panel-fx">
+          <h2 id="panel-fx">FX · 外汇</h2>
+          <div class="scroll scroll-short">
+            <table class="data compact" id="fx-table">
+              <thead>
+                <tr>
+                  <th>货币对</th>
+                  <th>报价</th>
+                  <th>涨跌%</th>
+                </tr>
+              </thead>
+              <tbody id="fx-body">
+                <tr><td colspan="3" class="empty-cell">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="panel-rates">
+          <h2 id="panel-rates">Rates · 利率 (yield stub)</h2>
+          <div id="rates-root" class="rates-grid">
+            <div class="empty">—</div>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="panel-commodities">
+          <h2 id="panel-commodities">Commodities · 商品</h2>
+          <div id="commodities-root" class="tile-grid">
+            <div class="empty">—</div>
+          </div>
+        </section>
+
+        <section class="panel panel-crypto" aria-labelledby="panel-crypto">
+          <h2 id="panel-crypto">Crypto · 示意 stub <span class="stub-tag">非实盘</span></h2>
+          <div id="crypto-root" class="crypto-list">
+            <div class="empty">—</div>
+          </div>
+        </section>
+
+        <section class="panel panel-span-2" aria-labelledby="panel-breadth">
+          <h2 id="panel-breadth">Breadth · 市场广度 (mock)</h2>
+          <div id="breadth-root" class="breadth-row">
+            <div class="empty">—</div>
+          </div>
+          <div class="spark-wrap" aria-hidden="true">
+            <svg class="sparkline" id="breadth-spark" viewBox="0 0 240 56" preserveAspectRatio="none"></svg>
+            <span class="spark-caption">A股涨跌比 sparkline · 示意</span>
+          </div>
+        </section>
+
+        <section class="panel panel-span-2" aria-labelledby="panel-heat">
+          <h2 id="panel-heat">Volume heat · 板块量能热度</h2>
+          <div id="heat-root" class="heat-grid">
+            <div class="empty">—</div>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="panel-movers">
+          <h2 id="panel-movers">Movers · 波动榜</h2>
+          <div class="scroll">
+            <table class="data" id="movers-table">
+              <thead>
+                <tr>
+                  <th>标的</th>
+                  <th>最新</th>
+                  <th>涨跌幅</th>
+                </tr>
+              </thead>
+              <tbody id="movers-body">
+                <tr>
+                  <td colspan="3" class="empty-cell">—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel panel-alerts" aria-labelledby="panel-alerts">
+          <h2 id="panel-alerts">Alerts · 提醒流</h2>
+          <ul class="alerts" id="alerts-list">
+            <li class="info">
+              <time id="alert-seed-ts">—</time>
+              <span class="mkt">SYS</span>
+              启动后将接入 <code>/ws/ticks</code> 或 <code>/sse/ticks</code>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      research/multi-market-monitor · 仅供研究脚手架 · 后续可替换为真实行情 wire
+    </footer>
+    <script src="/assets/app.js" type="module"></script>
+  </body>
+</html>
