@@ -145,7 +145,7 @@ main {
 
 .kpi {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   margin-bottom: 16px;
 }
@@ -170,9 +170,13 @@ main {
 
 .dashboard {
   display: grid;
-  grid-template-columns: 1.2fr 0.9fr 0.9fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;
   align-items: start;
+}
+
+.panel-breadth {
+  grid-column: span 1;
 }
 
 .panel {
@@ -190,6 +194,83 @@ main {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+.panel h2::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 8px;
+  border-radius: 50%;
+  background: #fcd34d;
+  vertical-align: middle;
+}
+
+.breadth-head {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.breadth-stat {
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.breadth-stat .lbl {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.breadth-stat b {
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.spark-wrap {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
+  padding: 8px 8px 4px;
+}
+
+.sparkline {
+  width: 100%;
+  height: 56px;
+  display: block;
+}
+
+.sparkline path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.75;
+  vector-effect: non-scaling-stroke;
+}
+
+.sparkline path.fill {
+  fill: rgba(37, 99, 235, 0.08);
+  stroke: none;
+}
+
+.spark-caption {
+  display: block;
+  font-size: 10px;
+  color: #9ca3af;
+  text-align: right;
+  margin-top: 2px;
+}
+
+table.data.compact th,
+table.data.compact td {
+  padding: 7px 4px;
 }
 
 .market-group {
@@ -397,6 +478,12 @@ footer {
   background: none;
   padding: 0;
   text-decoration: underline;
+}
+
+@media (max-width: 1100px) {
+  .kpi {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 960px) {

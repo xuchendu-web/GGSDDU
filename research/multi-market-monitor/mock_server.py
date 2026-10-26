@@ -43,6 +43,28 @@ for inst in INSTRUMENTS:
         "volume": random.randint(1_000_000, 50_000_000),
     }
 
+FX_STUBS: list[dict[str, Any]] = [
+    {"id": "usdcnh", "pair": "USD/CNH", "price": 7.2456, "prev_close": 7.2380},
+    {"id": "eurusd", "pair": "EUR/USD", "price": 1.0842, "prev_close": 1.0825},
+    {"id": "usdjpy", "pair": "USD/JPY", "price": 149.85, "prev_close": 149.42},
+    {"id": "dxy", "pair": "DXY", "price": 103.42, "prev_close": 103.18},
+]
+
+COMMODITY_STUBS: list[dict[str, Any]] = [
+    {"id": "xau", "name": "黄金", "symbol": "XAU", "unit": "USD/oz", "price": 2648.5, "prev_close": 2635.0},
+    {"id": "wti", "name": "WTI原油", "symbol": "CL", "unit": "USD/bbl", "price": 71.24, "prev_close": 70.85},
+    {"id": "brent", "name": "布伦特", "symbol": "BZ", "unit": "USD/bbl", "price": 75.10, "prev_close": 74.62},
+    {"id": "hg", "name": "铜", "symbol": "HG", "unit": "USD/lb", "price": 4.128, "prev_close": 4.095},
+]
+
+fx_state = {r["id"]: {**r} for r in FX_STUBS}
+commodity_state = {r["id"]: {**r} for r in COMMODITY_STUBS}
+
+BREADTH_HISTORY_LEN = 48
+breadth_history: list[float] = [
+    random.uniform(0.42, 0.58) for _ in range(BREADTH_HISTORY_LEN)
+]
+
 ALERT_TEMPLATES = [
     "{name} 1分钟波动超过 {pct:.2f}%",
     "{name} 触及日内模拟阈值",
@@ -62,6 +84,73 @@ def _pct_change(cur: float, prev: float) -> float:
     if prev == 0:
         return 0.0
     return (cur - prev) / prev * 100
+
+
+def _step_fx(price: float) -> float:
+    return round(price * (1 + random.gauss(0, 0.00035)), 4 if price < 10 else 2)
+
+
+def _step_commodity(price: float) -> float:
+    shock = random.gauss(0, 0.0015)
+    new_p = price * (1 + shock)
+    return round(new_p, 3 if new_p < 100 else 2)
+
+
+def _mock_breadth() -> dict[str, Any]:
+    global breadth_history
+    adv = random.randint(1800, 3200)
+    dec = random.randint(1200, 2800)
+    unch = max(0, 5200 - adv - dec)
+    ratio = adv / max(adv + dec, 1)
+    breadth_history.append(ratio)
+    if len(breadth_history) > BREADTH_HISTORY_LEN:
+        breadth_history = breadth_history[-BREADTH_HISTORY_LEN:]
+    return {
+        "market": "A",
+        "advancers": adv,
+        "decliners": dec,
+        "unchanged": unch,
+        "advance_ratio": round(ratio, 4),
+        "sparkline": [round(x, 4) for x in breadth_history],
+    }
+
+
+def _mock_fx() -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for fid, row in fx_state.items():
+        prev = row["price"]
+        new_p = _step_fx(prev)
+        row["price"] = new_p
+        chg_pct = _pct_change(new_p, row["prev_close"])
+        rows.append(
+            {
+                "id": fid,
+                "pair": row["pair"],
+                "price": new_p,
+                "change_pct": round(chg_pct, 3),
+            }
+        )
+    return rows
+
+
+def _mock_commodities() -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for cid, row in commodity_state.items():
+        prev = row["price"]
+        new_p = _step_commodity(prev)
+        row["price"] = new_p
+        chg_pct = _pct_change(new_p, row["prev_close"])
+        rows.append(
+            {
+                "id": cid,
+                "name": row["name"],
+                "symbol": row["symbol"],
+                "unit": row["unit"],
+                "price": new_p,
+                "change_pct": round(chg_pct, 2),
+            }
+        )
+    return rows
 
 
 def _step_price(price: float, market: str, kind: str) -> float:
@@ -125,6 +214,9 @@ def _build_payload() -> dict[str, Any]:
         "mock": True,
         "indices": indices,
         "movers": movers,
+        "breadth": _mock_breadth(),
+        "fx": _mock_fx(),
+        "commodities": _mock_commodities(),
         "alert": alert,
     }
 

@@ -94,6 +94,66 @@ function renderIndices(indices) {
   document.getElementById("kpi-indices").textContent = String(indices.length);
 }
 
+function renderBreadth(breadth) {
+  if (!breadth) return;
+  document.getElementById("breadth-adv").textContent = String(breadth.advancers ?? "—");
+  document.getElementById("breadth-dec").textContent = String(breadth.decliners ?? "—");
+  document.getElementById("breadth-unch").textContent = String(breadth.unchanged ?? "—");
+  const ratio = breadth.advance_ratio;
+  if (ratio != null) {
+    document.getElementById("kpi-breadth").textContent = `${(ratio * 100).toFixed(1)}%`;
+  }
+  const series = breadth.sparkline;
+  if (!series?.length) return;
+  const svg = document.getElementById("breadth-spark");
+  const w = 240;
+  const h = 56;
+  const pad = 4;
+  const min = Math.min(...series);
+  const max = Math.max(...series);
+  const span = max - min || 0.01;
+  const pts = series.map((v, i) => {
+    const x = pad + (i / (series.length - 1 || 1)) * (w - pad * 2);
+    const y = h - pad - ((v - min) / span) * (h - pad * 2);
+    return `${x},${y}`;
+  });
+  const linePath = `M ${pts.join(" L ")}`;
+  const area = `M ${pad},${h - pad} L ${pts.join(" L ")} L ${w - pad},${h - pad} Z`;
+  svg.innerHTML = `
+    <path class="fill" d="${area}"></path>
+    <path d="${linePath}"></path>`;
+}
+
+function renderFx(fxRows) {
+  if (!fxRows?.length) return;
+  const body = document.getElementById("fx-body");
+  body.innerHTML = "";
+  for (const r of fxRows) {
+    const tr = document.createElement("tr");
+    const cls = chgClass("US", r.change_pct);
+    tr.innerHTML = `
+      <td><strong>${r.pair}</strong></td>
+      <td>${r.price}</td>
+      <td class="${cls}">${formatPct(r.change_pct)}</td>`;
+    body.appendChild(tr);
+  }
+}
+
+function renderCommodities(rows) {
+  if (!rows?.length) return;
+  const body = document.getElementById("commodity-body");
+  body.innerHTML = "";
+  for (const r of rows) {
+    const tr = document.createElement("tr");
+    const cls = chgClass("US", r.change_pct);
+    tr.innerHTML = `
+      <td>${r.name}<br><small style="color:#9ca3af">${r.symbol} · ${r.unit}</small></td>
+      <td>${r.price}</td>
+      <td class="${cls}">${formatPct(r.change_pct)}</td>`;
+    body.appendChild(tr);
+  }
+}
+
 function renderMovers(movers) {
   const body = document.getElementById("movers-body");
   body.innerHTML = "";
@@ -134,6 +194,9 @@ function onTick(payload) {
 
   if (payload.indices) renderIndices(payload.indices);
   if (payload.movers) renderMovers(payload.movers);
+  if (payload.breadth) renderBreadth(payload.breadth);
+  if (payload.fx) renderFx(payload.fx);
+  if (payload.commodities) renderCommodities(payload.commodities);
   if (payload.alert) pushAlert(payload.alert);
 
   document.querySelectorAll(".session-chips .chip").forEach((chip) => {

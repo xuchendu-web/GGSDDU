@@ -10,7 +10,7 @@ A static UI + local mock feed is enough as a **reusable scaffold** before wiring
 
 | Path | Role |
 |------|------|
-| `frontend/` | HTML/CSS/JS panels: indices, movers stub, alerts |
+| `frontend/` | HTML/CSS/JS panels: indices, movers, breadth sparkline, FX/commodity stubs, alerts |
 | `mock_server.py` | FastAPI app: static assets, `/ws/ticks`, `/sse/ticks` |
 | `DESIGN.md` | Visual language (premium finance, site burn aligned) |
 
@@ -53,6 +53,9 @@ Use the header control to switch between WebSocket and SSE.
   "mock": true,
   "indices": [{ "id", "market", "name", "symbol", "price", "change_pct", ... }],
   "movers": [ "... top 8 by |change_pct| ..." ],
+  "breadth": { "advancers", "decliners", "unchanged", "advance_ratio", "sparkline": [0.0-1.0, ...] },
+  "fx": [{ "pair", "price", "change_pct" }],
+  "commodities": [{ "name", "symbol", "unit", "price", "change_pct" }],
   "alert": { "id", "ts", "market", "severity", "message" } | null
 }
 ```
@@ -61,7 +64,7 @@ Use the header control to switch between WebSocket and SSE.
 
 - Replace `mock_server._build_payload` with adapter to cjpy / zsmcp / vendor WS
 - Persist alerts; auth gateway for internal deploy
-- Sparklines from ring buffer of ticks
+- Wire breadth/FX/commodity stubs to real feeds
 
 ## Skip list
 

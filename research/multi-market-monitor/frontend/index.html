@@ -50,6 +50,10 @@
           最近更新 (UTC)
           <b id="kpi-ts">—</b>
         </div>
+        <div>
+          A股涨跌比（mock）
+          <b id="kpi-breadth">—</b>
+        </div>
       </section>
 
       <div class="dashboard">
@@ -89,6 +93,64 @@
               启动后将接入 <code>/ws/ticks</code> 或 <code>/sse/ticks</code>
             </li>
           </ul>
+        </section>
+
+        <section class="panel panel-breadth" aria-labelledby="panel-breadth">
+          <h2 id="panel-breadth">Breadth · 市场宽度（mock）</h2>
+          <div class="breadth-head">
+            <div class="breadth-stat up-cn">
+              <span class="lbl">上涨</span>
+              <b id="breadth-adv">—</b>
+            </div>
+            <div class="breadth-stat down-cn">
+              <span class="lbl">下跌</span>
+              <b id="breadth-dec">—</b>
+            </div>
+            <div class="breadth-stat">
+              <span class="lbl">平盘</span>
+              <b id="breadth-unch">—</b>
+            </div>
+          </div>
+          <div class="spark-wrap" aria-hidden="true">
+            <svg class="sparkline" id="breadth-spark" viewBox="0 0 240 56" preserveAspectRatio="none"></svg>
+            <span class="spark-caption">涨跌比 sparkline · 示意</span>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="panel-fx">
+          <h2 id="panel-fx">FX · 外汇 stub</h2>
+          <table class="data compact" id="fx-table">
+            <thead>
+              <tr>
+                <th>货币对</th>
+                <th>报价</th>
+                <th>涨跌幅</th>
+              </tr>
+            </thead>
+            <tbody id="fx-body">
+              <tr>
+                <td colspan="3" class="empty">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="panel" aria-labelledby="panel-commodities">
+          <h2 id="panel-commodities">Commodities · 大宗 stub</h2>
+          <table class="data compact" id="commodity-table">
+            <thead>
+              <tr>
+                <th>品种</th>
+                <th>最新</th>
+                <th>涨跌幅</th>
+              </tr>
+            </thead>
+            <tbody id="commodity-body">
+              <tr>
+                <td colspan="3" class="empty">—</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
       </div>
     </main>
