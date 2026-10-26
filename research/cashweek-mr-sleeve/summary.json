@@ -1,0 +1,128 @@
+{
+  "title": "CASHWEEK-MR-SLEEVE",
+  "status": "OK",
+  "unique_change": "breadth-forced cash weeks only: 4w min-return MR on 511010/511260",
+  "baseline_face": "LIVE1430-B45-S20-max5",
+  "inventory": {
+    "bond_daily": {
+      "511010": {
+        "path": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/bond_daily/511010.csv",
+        "rows": 1893
+      },
+      "511260": {
+        "path": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/bond_daily/511260.csv",
+        "rows": 1893
+      }
+    },
+    "week": {},
+    "day": {},
+    "sina": {},
+    "money_market_in_cache": []
+  },
+  "bond_materialize": {
+    "inventory": {
+      "bond_daily": {
+        "511010": {
+          "path": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/bond_daily/511010.csv",
+          "rows": 1893
+        },
+        "511260": {
+          "path": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/bond_daily/511260.csv",
+          "rows": 1893
+        }
+      },
+      "week": {},
+      "day": {},
+      "sina": {},
+      "money_market_in_cache": []
+    },
+    "actions": [],
+    "ok": true,
+    "blocked": []
+  },
+  "sleeve_set": [
+    "511010",
+    "511260"
+  ],
+  "forced_cash_weeks": 144,
+  "sleeve_active_weeks": 42,
+  "sleeve_hit_rate": 0.6190476190476191,
+  "table": [
+    {
+      "book": "LIVE1430-B45-S20-max5",
+      "ret": 1.3186672410288676,
+      "maxDD": -0.18799993761556155,
+      "CAGR": 0.13157523631064527,
+      "Calmar": 0.6998685104869643,
+      "2020-22_ret": 0.19007125017886395,
+      "2020-22_DD": -0.16005989858806313,
+      "2020-22_Calmar": 0.37442706934251324,
+      "2023-26_ret": 0.9483432111147805,
+      "2023-26_DD": -0.13808146704147428,
+      "2023-26_Calmar": 1.3883742587265588,
+      "forced_cash_weeks": 144,
+      "sleeve_active_weeks": 0,
+      "sleeve_hit_rate": NaN
+    },
+    {
+      "book": "LIVE1430-B45-CASHWEEK-MR",
+      "ret": 1.2899390329616143,
+      "maxDD": -0.1973899563628584,
+      "CAGR": 0.1295035501655144,
+      "Calmar": 0.6560797345101509,
+      "2020-22_ret": 0.17574275201324685,
+      "2020-22_DD": -0.17284045377047297,
+      "2020-22_Calmar": 0.32194469161290035,
+      "2023-26_ret": 0.9476531146294633,
+      "2023-26_DD": -0.13742049325534644,
+      "2023-26_Calmar": 1.394244342031324,
+      "forced_cash_weeks": 144,
+      "sleeve_active_weeks": 42,
+      "sleeve_hit_rate": 0.6190476190476191,
+      "sleeve_blocked_weeks": 0
+    },
+    {
+      "book": "LIVE1430-B45-CASHWEEK-511010",
+      "ret": 1.4654407274056802,
+      "maxDD": -0.17889635544804483,
+      "CAGR": 0.14182988223239779,
+      "Calmar": 0.792804760483721,
+      "2020-22_ret": 0.23702864753687347,
+      "2020-22_DD": -0.15390630558465668,
+      "2020-22_Calmar": 0.4791205221341786,
+      "2023-26_ret": 0.9930344639267517,
+      "2023-26_DD": -0.1374338136714427,
+      "2023-26_Calmar": 1.4467829936498418,
+      "forced_cash_weeks": 144,
+      "sleeve_active_weeks": 144,
+      "sleeve_hit_rate": 0.6041666666666666,
+      "sleeve_blocked_weeks": 0
+    },
+    {
+      "book": "LIVE1430-B45-CASHWEEK-511260",
+      "ret": 1.4495942241868267,
+      "maxDD": -0.18317436854836222,
+      "CAGR": 0.140748204771882,
+      "Calmar": 0.768383731235417,
+      "2020-22_ret": 0.22939387546572854,
+      "2020-22_DD": -0.15786629175392064,
+      "2020-22_Calmar": 0.45303226744970554,
+      "2023-26_ret": 0.9925219029246029,
+      "2023-26_DD": -0.13746605134008716,
+      "2023-26_Calmar": 1.4458538764032636,
+      "forced_cash_weeks": 144,
+      "sleeve_active_weeks": 144,
+      "sleeve_hit_rate": 0.6041666666666666,
+      "sleeve_blocked_weeks": 0
+    }
+  ],
+  "delta_vs_face_mr": {
+    "dret_pp": -2.872820806725329,
+    "dMDD_pp": -0.9390018747296835,
+    "d_absMDD_pp": 0.9390018747296835,
+    "dCalmar": -0.04378877597681341
+  },
+  "falsify": true,
+  "verdict": "**证伪（研究记负；不换冠）**：主袖未达 Calmar≥FACE 且 Δret 未盖住 Δ|MDD|。",
+  "elapsed_sec": 0.3
+}
