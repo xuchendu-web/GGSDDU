@@ -9,3 +9,10 @@ Re-run MAXSEAT grid:
 cd research/cloud_batch/SPIKE-S20-MAXSEAT-GRID-LIVE1430
 python3 run.py
 ```
+
+Re-run position-sizing research (EQ5 / INV20W / CAP30):
+
+```bash
+cd research/cloud_batch/SPIKE-S20-POS-SIZING-RESEARCH
+python3 run.py
+```
