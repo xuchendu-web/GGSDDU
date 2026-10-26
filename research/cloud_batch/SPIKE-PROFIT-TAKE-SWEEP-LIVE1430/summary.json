@@ -1,0 +1,283 @@
+{
+  "title": "SPIKE-PROFIT-TAKE-SWEEP-LIVE1430 weekly profit-take grid",
+  "batch": "CLOUD-PT-SWEEP",
+  "convention": "Fri≥14:30 / close; L≤1; 0.2%RT; B45+S20+TV25 max5 frozen",
+  "unique_change": "profit_take grid {off, 0.10, 0.15, 0.25}",
+  "sample": "2020-01-03 → 2026-10-23",
+  "profit_take_grid": [
+    null,
+    0.1,
+    0.15,
+    0.25
+  ],
+  "neighbor_stability": [
+    {
+      "label": "PT08",
+      "profit_take": 0.08,
+      "ret": 1.5639903846413605,
+      "maxDD": -0.1612863966937912,
+      "Calmar": 0.9202683297494527,
+      "n_pt_exits": 91
+    },
+    {
+      "label": "PT12",
+      "profit_take": 0.12,
+      "ret": 1.467661388615364,
+      "maxDD": -0.15928363979452131,
+      "Calmar": 0.8913720830152851,
+      "n_pt_exits": 54
+    },
+    {
+      "label": "PT18",
+      "profit_take": 0.18,
+      "ret": 1.2839085682993345,
+      "maxDD": -0.16124329133565685,
+      "Calmar": 0.8004417369203344,
+      "n_pt_exits": 30
+    },
+    {
+      "label": "PT20",
+      "profit_take": 0.2,
+      "ret": 1.4262678392902992,
+      "maxDD": -0.16124329133565707,
+      "Calmar": 0.8629508916313896,
+      "n_pt_exits": 27
+    }
+  ],
+  "neighbor_stability_note": "PT10% Calmar=0.85；邻 PT08=0.92 / PT12=0.89；邻档尖点/倒挂；PT15% Calmar=0.86；邻 PT12=0.89 / PT18=0.80；单调包络内；PT25% Calmar=0.88；邻 PT18=0.80 / PT20=0.86；邻档尖点/倒挂",
+  "n_calendar_weeks": 349,
+  "coverage": {
+    "px_1430_csv": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/research_cache/fri_1430_through_20261023.csv",
+    "n_codes_aum2": 324,
+    "n_calendar_weeks": 349,
+    "listed_1430_nonnull_rate": 0.9998374798542736,
+    "n_qfq_1430_mapped": 45269,
+    "n_skip_no_sina_or_qfq": 28556,
+    "n_empty_status_rows": 12,
+    "weeks_with_mapped_1430_median_codes": 209.0,
+    "snap_cache_used": "/workspace/research/cloud_batch/CLOUD-BATCH-2026-10-26/data/cache_1430_snaps.json",
+    "sample_note": "CLOUD-BATCH 延窗研究：2020-01-03→2026-10-23（14:30 至 2026-10-23）",
+    "approximation": [
+      "延窗：research_cache week/day/face/14:30；≤2026-10-09 沿用 face；其后研究周线 MA20 宽度",
+      "qfq_1430 = price_1430 × (day qfq 收 / sina daily 收)；sina 作 bfq 代理",
+      "冲击分类：周线收盘替换为 qfq_1430 后因果 classify（Fri≥14:30 信号）",
+      "Sharpe 窗截至信号日严格前一交易日",
+      "成交：周五收盘填仓 + 0.2%RT；L=min(1, 0.25/max(σ20,σ60))；TV25 冻结",
+      "冻结 B45+spike_ft max5+S20+E0；**唯一改动周频 profit_take 阈值**",
+      "只读 kit `data/cache_1430_snaps.json`；不写 strategy_exec / LIVE_OPS"
+    ]
+  },
+  "holdings_diffs_vs_ptoff": {
+    "LIVE1430-PT10-S20_vs_PTOFF": {
+      "n": 198,
+      "n_diff": 84,
+      "pct_diff": 0.42424242424242425
+    },
+    "LIVE1430-PT15-S20_vs_PTOFF": {
+      "n": 198,
+      "n_diff": 72,
+      "pct_diff": 0.36363636363636365
+    },
+    "LIVE1430-PT25-S20_vs_PTOFF": {
+      "n": 198,
+      "n_diff": 44,
+      "pct_diff": 0.2222222222222222
+    }
+  },
+  "sim_stats": {
+    "LIVE1430-PTOFF-S20": {
+      "n_fridays_queue_gt_seats": 81,
+      "n_fridays_with_cands": 190,
+      "n_entries": 265,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 265,
+      "n_profit_take_exits": 0,
+      "profit_take_pct": null,
+      "max_pos": 5,
+      "sigma_star": 0.25,
+      "tv_label": "TV25",
+      "profit_take": null,
+      "role": "baseline",
+      "n_cash_weeks": 150
+    },
+    "LIVE1430-PT10-S20": {
+      "n_fridays_queue_gt_seats": 109,
+      "n_fridays_with_cands": 189,
+      "n_entries": 332,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 332,
+      "n_profit_take_exits": 68,
+      "profit_take_pct": 0.1,
+      "max_pos": 5,
+      "sigma_star": 0.25,
+      "tv_label": "TV25",
+      "profit_take": 0.1,
+      "role": "grid",
+      "n_cash_weeks": 152
+    },
+    "LIVE1430-PT15-S20": {
+      "n_fridays_queue_gt_seats": 100,
+      "n_fridays_with_cands": 188,
+      "n_entries": 306,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 306,
+      "n_profit_take_exits": 39,
+      "profit_take_pct": 0.15,
+      "max_pos": 5,
+      "sigma_star": 0.25,
+      "tv_label": "TV25",
+      "profit_take": 0.15,
+      "role": "grid",
+      "n_cash_weeks": 152
+    },
+    "LIVE1430-PT25-S20": {
+      "n_fridays_queue_gt_seats": 90,
+      "n_fridays_with_cands": 189,
+      "n_entries": 279,
+      "n_entries_missing_sharpe": 0,
+      "n_trades": 279,
+      "n_profit_take_exits": 16,
+      "profit_take_pct": 0.25,
+      "max_pos": 5,
+      "sigma_star": 0.25,
+      "tv_label": "TV25",
+      "profit_take": 0.25,
+      "role": "grid",
+      "n_cash_weeks": 150
+    }
+  },
+  "table": [
+    {
+      "book": "LIVE1430-PTOFF-S20",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "profit_take": 0.0,
+      "profit_take_label": "off",
+      "n_pt_exits": 0,
+      "ret": 1.5828517647807212,
+      "maxDD": -0.1586573855560559,
+      "CAGR": 0.14966460612320387,
+      "Calmar": 0.9433195032091667,
+      "2020-22_ret": 0.2927807341680022,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.6021948845718625,
+      "2023-26_ret": 0.9979039728210182,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.3946609156642642,
+      "avgL": 0.826620595788602,
+      "avg_turnover_1way": 0.15368021113651173,
+      "avg_turnover": 0.15368021113651173,
+      "occ_n": 198,
+      "occ_winrate": 0.5303030303030303,
+      "occ_payoff": 1.464722039579623,
+      "occ_avg_win": 0.025353317376266254,
+      "occ_avg_loss": -0.01730930285144251,
+      "n_cash_weeks": 150
+    },
+    {
+      "book": "LIVE1430-PT10-S20",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "profit_take": 0.1,
+      "profit_take_label": "PT10",
+      "n_pt_exits": 68,
+      "ret": 1.3676114231795835,
+      "maxDD": -0.15928363979452032,
+      "CAGR": 0.1350548649776957,
+      "Calmar": 0.8478891187564503,
+      "2020-22_ret": 0.23219262050764033,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.4856670123383719,
+      "2023-26_ret": 0.9214621024139629,
+      "2023-26_DD": -0.1466575784959543,
+      "2023-26_Calmar": 1.2775545107804178,
+      "avgL": 0.8417832139700167,
+      "avg_turnover_1way": 0.1749895776273751,
+      "avg_turnover": 0.1749895776273751,
+      "occ_n": 196,
+      "occ_winrate": 0.5561224489795918,
+      "occ_payoff": 1.297628739849854,
+      "occ_avg_win": 0.02279119813012119,
+      "occ_avg_loss": -0.017563727921715355,
+      "n_cash_weeks": 152
+    },
+    {
+      "book": "LIVE1430-PT15-S20",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "profit_take": 0.15,
+      "profit_take_label": "PT15",
+      "n_pt_exits": 39,
+      "ret": 1.411642999403413,
+      "maxDD": -0.16124329133565762,
+      "CAGR": 0.13813319588186035,
+      "Calmar": 0.8566756156962254,
+      "2020-22_ret": 0.23763567474496372,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.4962893868829676,
+      "2023-26_ret": 0.9485887879729815,
+      "2023-26_DD": -0.14465884905782223,
+      "2023-26_Calmar": 1.3255203695782776,
+      "avgL": 0.8387660115242261,
+      "avg_turnover_1way": 0.17089128975379086,
+      "avg_turnover": 0.17089128975379086,
+      "occ_n": 196,
+      "occ_winrate": 0.5357142857142857,
+      "occ_payoff": 1.412495631123537,
+      "occ_avg_win": 0.024088427197743564,
+      "occ_avg_loss": -0.017053806515906163,
+      "n_cash_weeks": 152
+    },
+    {
+      "book": "LIVE1430-PT25-S20",
+      "sigma_star": 0.25,
+      "tv": "TV25",
+      "profit_take": 0.25,
+      "profit_take_label": "PT25",
+      "n_pt_exits": 16,
+      "ret": 1.5078169440945737,
+      "maxDD": -0.16525737183290468,
+      "CAGR": 0.14469360519344088,
+      "Calmar": 0.8755652083087933,
+      "2020-22_ret": 0.24949241961250035,
+      "2020-22_DD": -0.1489370492708164,
+      "2020-22_Calmar": 0.519321214405826,
+      "2023-26_ret": 1.0070685541832392,
+      "2023-26_DD": -0.1431218413515114,
+      "2023-26_Calmar": 1.404754049909562,
+      "avgL": 0.8350290515978769,
+      "avg_turnover_1way": 0.15970227681924104,
+      "avg_turnover": 0.15970227681924104,
+      "occ_n": 198,
+      "occ_winrate": 0.5404040404040404,
+      "occ_payoff": 1.3892961102991213,
+      "occ_avg_win": 0.024667234818534597,
+      "occ_avg_loss": -0.01775520325413107,
+      "n_cash_weeks": 150
+    }
+  ],
+  "grid_delta_vs_ptoff": {
+    "LIVE1430-PT10-S20": {
+      "dret_pp": -21.52403416011377,
+      "d_abs_mdd_pp": 0.06262542384644076,
+      "covers": false,
+      "rear_ok": true
+    },
+    "LIVE1430-PT15-S20": {
+      "dret_pp": -17.120876537730823,
+      "d_abs_mdd_pp": 0.2585905779601716,
+      "covers": false,
+      "rear_ok": true
+    },
+    "LIVE1430-PT25-S20": {
+      "dret_pp": -7.503482068614753,
+      "d_abs_mdd_pp": 0.6599986276848768,
+      "covers": false,
+      "rear_ok": true
+    }
+  },
+  "best_calmar_book": "LIVE1430-PTOFF-S20",
+  "verdict": "**止盈扫参记账（不换冠）**：无止盈基线 Calmar=0.94； PT10 Δret=-21.5pp Δ|MDD|=+0.1pp； PT15 Δret=-17.1pp； PT25 Δret=-7.5pp。 无档同时满足探索尺子。Calmar 最高：**PTOFF-S20**。",
+  "isolation": "strategy_exec / LIVE_OPS / champion: NONE",
+  "elapsed_sec": 12.5
+}
