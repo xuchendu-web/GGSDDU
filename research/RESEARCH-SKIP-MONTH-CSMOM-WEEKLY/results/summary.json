@@ -1,0 +1,38 @@
+{
+  "knife_id": "RESEARCH-SKIP-MONTH-CSMOM-WEEKLY",
+  "live": false,
+  "sample": "2020-01-03 → 2026-10-23",
+  "universe": {
+    "n_cols": 324,
+    "n_weeks": 561
+  },
+  "main": "CSMOM-M12s1-N5",
+  "face": "LIVE1430-B45-S20",
+  "skip_vs_noskip": {
+    "skip_ret": 0.14813360091237815,
+    "noskip_ret": 0.3634667123759021,
+    "skip_calmar": 0.03632633248946139,
+    "noskip_calmar": 0.0827653721080819,
+    "skip_beats_noskip": false
+  },
+  "main_stats": {
+    "ret": 0.14813360091237815,
+    "maxDD": -0.5646388527802049,
+    "CAGR": 0.020511258702561763,
+    "Calmar": 0.03632633248946139,
+    "Sharpe": 0.21062975375614318,
+    "Sortino": 0.3347845814001554
+  },
+  "b45_daily_stats": {
+    "ret": 1.3186672410288707,
+    "maxDD": -0.18799993761556133,
+    "CAGR": 0.1315752363106455,
+    "Calmar": 0.6998685104869663,
+    "Sharpe": 0.374286727013184,
+    "Sortino": 0.41527699011006863
+  },
+  "covers_mdd_vs_b45": false,
+  "post_2023_miss": true,
+  "verdict": "探索证伪（不换冠）：跳月未稳赢无跳月（ret 14.8% vs 36.3%，Calmar 0.04 vs 0.08）；相对 B45 Δret 未盖住 Δ|MDD|；2023–26 -19.9% vs B45 94.8%。",
+  "fourpack": "/workspace/research/RESEARCH-SKIP-MONTH-CSMOM-WEEKLY/results/fourpack.png"
+}
