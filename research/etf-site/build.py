@@ -188,6 +188,11 @@ for p in [p for p in PORTFOLIOS if p.get("enabled",True)]:
          pos=pos,cashw=cashw,asof=bk.get("last_signal",{}).get("asof"),live=bool(bk))
 page("portfolios.html","portfolios/index.html",pfs=pfs)
 page("index.html","index.html",projs=projs,fut=fut,arts=arts[:3],pfs=pfs,signal=SIGNAL,base="")
+def _json(rel):
+    p=os.path.join(ROOT,rel)
+    return json.load(open(p,encoding="utf-8")) if os.path.exists(p) else {}
+page("active.html","active/index.html",active=_json("data/active-etf.json"),nav_active=True)
+page("method.html","method/index.html",nav_method=True)
 page("about.html","about.html")
 print("built ->",OUT)
 if missing:

@@ -1,0 +1,60 @@
+{
+  "asof": "2026-10-26",
+  "headline": "境内主动 ETF 启航",
+  "lead": "公开口径是首批 18 只（2026-10-19 获批，沪 9 / 深 9，一家公司一只）。产品多在发行期，尚未上市交易。本页只写已核对的制度与代码，规模、净值、上市日留空，不拿募集上限冒充 AUM。",
+  "kpis": [
+    {"label": "首批只数", "value": "18", "note": "沪 9 + 深 9 · 不是 22"},
+    {"label": "单只募集上限", "value": "20 亿", "note": "上限，不是已募规模"},
+    {"label": "合计上限", "value": "360 亿", "note": "18 × 20 亿"},
+    {"label": "年管理费", "value": "1.00%", "note": "指引不规定统一费率；来自发售文件"}
+  ],
+  "callouts": [
+    "公开结果是 18 只，不是 22 只。不要补 4 只假产品。",
+    "多数尚未上市：成立规模、二级市场 AUM、上市日一律标「—」，不把 20 亿上限写成规模。",
+    "每日开市前披露的是基于上一交易日日终真实组合的 PCF，并发布 IOPV；PCF ≠ 盘中实时持仓。"
+  ],
+  "quad": [
+    {"name": "均衡", "count": 9, "note": "容量最大的箱"},
+    {"name": "价值", "count": 4, "note": "含 1 只纯量化"},
+    {"name": "红利", "count": 3, "note": "基准多为中证红利"},
+    {"name": "成长 / 质量", "count": "1 + 1", "note": "大盘成长 1、质量 1；不改数字去凑 4"}
+  ],
+  "overseas": [
+    {"quad": "主动 × 权益", "name": "ARKK", "fee": "0.75%", "note": "全透明主动 ETF，每日官方持仓。AUM 口径冲突（Fact Sheet / Robinhood / ETFAtlas），本表不单列一个规模。"},
+    {"quad": "主动 × 债券", "name": "JAAA", "fee": "0.21%", "note": "海外主动债券 ETF 代表之一；规模随日期变化，本表不填。"},
+    {"quad": "被动 × 权益", "name": "SPY", "fee": "0.0945%", "note": "UIT 结构，不走 Rule 6c-11。成立 1993-01-22。"},
+    {"quad": "被动 × 债券", "name": "AGG", "fee": "0.03%", "note": "招股摘要 2026-06-29。"}
+  ],
+  "funds": [
+    {"exch": "上交所", "name": "易方达品质均衡主动管理ETF", "manager": "易方达", "style": "均衡", "method": "基本面", "trade": "581050", "sub": "581053", "window": "10/23–10/29", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": "认购/交易代码见新浪发售说明"},
+    {"exch": "上交所", "name": "华夏质量甄选主动管理ETF", "manager": "华夏", "style": "质量", "method": "基本面", "trade": "581030", "sub": "581033", "window": "10/23–10/29", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": ""},
+    {"exch": "上交所", "name": "永赢景气均衡主动管理ETF", "manager": "永赢", "style": "均衡", "method": "基本面", "trade": "581060", "sub": "581063", "window": "待核", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": "认购代码见上交所 ETF 之家"},
+    {"exch": "上交所", "name": "摩根大盘成长主动管理ETF", "manager": "摩根", "style": "大盘成长", "method": "基本面", "trade": "581000", "sub": "581003", "window": "待核", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": "股东拟上市后跟投约 5 亿元，不是已成立规模"},
+    {"exch": "上交所", "name": "华泰柏瑞价值精选主动管理ETF", "manager": "华泰柏瑞", "style": "价值", "method": "基本面", "trade": "581090", "sub": "581093", "window": "10/23–10/29", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": ""},
+    {"exch": "上交所", "name": "汇添富均衡策略智选主动管理ETF", "manager": "汇添富", "style": "均衡", "method": "量化+基本面", "trade": "581010", "sub": "581013", "window": "10/23–10/30", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": ""},
+    {"exch": "上交所", "name": "华安均衡慧选主动管理ETF", "manager": "华安", "style": "均衡", "method": "基本面", "trade": "581020", "sub": "581023", "window": "10/23–10/29", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": ""},
+    {"exch": "上交所", "name": "招商价值智选主动管理ETF", "manager": "招商", "style": "价值", "method": "量化+基本面", "trade": "581080", "sub": "581083", "window": "10/23–10/29", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": ""},
+    {"exch": "上交所", "name": "平安红利景气主动管理ETF", "manager": "平安", "style": "红利", "method": "基本面", "trade": "581070", "sub": "581073", "window": "10/23–11/9", "mgmt": "1.00%", "cust": "0.15%", "pm": "刘榕俊、钱晶", "note": "面值 1.000 元；基准中证红利"},
+    {"exch": "深交所", "name": "南方均衡配置主动管理ETF", "manager": "南方", "style": "均衡", "method": "基本面", "trade": "158900", "sub": "158900", "window": "10/23–10/26", "mgmt": "1.00%", "cust": "0.15%", "pm": "许公磊、何典鸿", "note": "2026-10-26 触及 20 亿上限、提前结束募集；上限不是上市后 AUM"},
+    {"exch": "深交所", "name": "富国价值优选量化选股主动管理ETF", "manager": "富国", "style": "价值", "method": "纯量化", "trade": "待核", "sub": "待核", "window": "10/23–10/30", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": ""},
+    {"exch": "深交所", "name": "大成红利智选主动管理ETF", "manager": "大成", "style": "红利", "method": "量化+基本面", "trade": "待核", "sub": "待核", "window": "待核", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": ""},
+    {"exch": "深交所", "name": "鹏华价值臻选主动管理ETF", "manager": "鹏华", "style": "价值", "method": "基本面", "trade": "待核", "sub": "待核", "window": "待核", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": "21 经济网曾写「价值甄选」，本表用财联社「价值臻选」"},
+    {"exch": "深交所", "name": "工银瑞信红利主动管理ETF", "manager": "工银瑞信", "style": "红利", "method": "基本面", "trade": "待核", "sub": "待核", "window": "待核", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": ""},
+    {"exch": "深交所", "name": "华宝均衡精选主动管理ETF", "manager": "华宝", "style": "均衡", "method": "基本面", "trade": "待核", "sub": "待核", "window": "待核", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": ""},
+    {"exch": "深交所", "name": "国泰鑫汇均衡收益主动管理ETF", "manager": "国泰", "style": "均衡", "method": "基本面", "trade": "158907", "sub": "待核", "window": "10/23–11/5", "mgmt": "1.00%", "cust": "待核", "pm": "程洲、朱碧莹", "note": "每经网写交易代码 158907；认购代码未逐只打开公告"},
+    {"exch": "深交所", "name": "天弘均衡量化选股主动管理ETF", "manager": "天弘", "style": "均衡", "method": "纯量化", "trade": "待核", "sub": "待核", "window": "待核", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": ""},
+    {"exch": "深交所", "name": "建信均衡优选主动管理ETF", "manager": "建信", "style": "均衡", "method": "基本面", "trade": "待核", "sub": "待核", "window": "待核", "mgmt": "1.00%", "cust": "待核", "pm": "待核", "note": ""}
+  ],
+  "sources": [
+    {"title": "上交所：发布主动 ETF 业务指引", "url": "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260617_10822587.shtml", "date": "2026-06-17"},
+    {"title": "深交所：证券投资基金业务指引第5号——主动管理交易型开放式基金", "url": "https://www.szse.cn/www/lawrules/rule/fund/list/t20260617_621085.html", "date": "2026-06-17"},
+    {"title": "新华社：首批主动 ETF 获批", "url": "https://www.news.cn/money/20261021/0d4fb2f8dc074a45ae6c47351828650e/c.html", "date": "2026-10-21"},
+    {"title": "财联社：首批 18 只主动 ETF 全名", "url": "https://m.cls.cn/detail/2508677", "date": "2026-10-19"},
+    {"title": "新浪：18 只名单与部分认购/交易代码", "url": "https://finance.sina.com.cn/jjxw/2026-10-20/doc-inivwcmp5824928.shtml", "date": "2026-10-20"},
+    {"title": "界面 / 新浪：平安红利景气 581070 / 581073", "url": "https://finance.sina.com.cn/jjxw/2026-10-23/doc-iniweqhu4826299.shtml", "date": "2026-10-23"},
+    {"title": "南方均衡配置发售公告（代码 158900）", "url": "https://finance.sina.com.cn/jjxw/2026-10-20/doc-inivvnpx6568676.shtml", "date": "2026-10-20"},
+    {"title": "南方 158900 触及上限提前结募", "url": "https://finance.sina.com.cn/jjxw/2026-10-26/doc-iniwprzv5544972.shtml", "date": "2026-10-26"},
+    {"title": "每经网：国泰鑫汇均衡收益 158907", "url": "https://www.nbd.com.cn/articles/2026-10-26/4617116.html", "date": "2026-10-26"},
+    {"title": "SEC Rule 6c-11", "url": "https://www.sec.gov/newsroom/press-releases/2019-190", "date": "2019-09-26"}
+  ]
+}

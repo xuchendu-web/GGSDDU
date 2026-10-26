@@ -125,7 +125,27 @@ pages = {
     ),
 }
 
+active_path = os.path.join(ROOT, "data", "active-etf.json")
+with open(active_path, encoding="utf-8") as fh:
+    active_data = json.load(fh)
+
+pages["active/index.html"] = env.get_template("active.html").render(
+    base="../",
+    built="2026-10-26",
+    bench="中证偏股基金指数 930950",
+    nav_active=True,
+    active=active_data,
+)
+pages["method/index.html"] = env.get_template("method.html").render(
+    base="../",
+    built="2026-10-26",
+    bench="中证偏股基金指数 930950",
+    nav_method=True,
+)
+
 for name, html in pages.items():
-    open(os.path.join(OUT, name), "w").write(html)
+    dest = os.path.join(OUT, name)
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    open(dest, "w").write(html)
 
 print("preview ->", OUT)

@@ -1,5 +1,14 @@
 # CHANGELOG · ETF 分析站视觉打磨
 
+## 2026-10-26 — 主动ETF 栏目
+
+- 新增 `/active/index.html`：Hero、制度三卡、国内 18 表、四象+海外迷你对照、跟踪占位、资料
+- 导航在「编制」与「市场」之间插入「主动ETF」；编制页为占位，不编造规则表
+- 数据在 `data/active-etf.json`；未核代码/托管费写「待核」，跟踪区不填净值或 AUM
+- `build.py` / `preview/render_preview.py` 发出 `active/` 与 `method/`
+
+未改动：`sources.py`、LIVE 参数、隧道 / rtun / 安全组 / 部署端口。
+
 ## 2026-10-26 — 对比度 / 移动 KPI / 市场空态
 
 - `static/style.css`：冷色金融画布与 ink 层级加深，导航与页脚可读性提升；KPI 区间行全宽、≤720px 双列栅格；空态标题 + 说明结构
