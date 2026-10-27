@@ -1,0 +1,193 @@
+{
+  "knife_id": "CLENOW-S20-SECONDARY",
+  "family": "slope",
+  "knife_index": 5,
+  "status": "design",
+  "champion_swap": false,
+  "crown": "NO",
+  "run_backtest_in_this_pr": false,
+  "hypothesis": "在 SHARPE20 短名单内按 Clenow 年化斜率×R² 次级排序、不砍席，相对 F0 能盖住回撤且 2020–22 与 2023–26 两窗都不踏空。",
+  "books_locked": "F0/CS90S/CS60S/CS90R",
+  "source_sha": "05f0f8a4f778fde886f3e7b2976646ff4b7d777b",
+  "needle_id": "LIVE1430-B45-S20-max5",
+  "needle_path": "research/cloud_batch/SPIKE-S20-BTHETA-GRID-LIVE1430/run.py",
+  "data_kit": "research/cloud_batch/CLOUD-BATCH-2026-10-26/",
+  "sample": ["2020-01-03", "2026-10-23"],
+  "signal": "Friday >= 14:30, fill at same-day close",
+  "cost": {
+    "rt": 0.002,
+    "side": 0.001,
+    "fields": ["COST_SIDE=0.001", "LIVE_COST_RT=0.002"]
+  },
+  "leverage": {
+    "cap": 1,
+    "formula": "L = min(1, 0.25 / max(sigma20, sigma60))",
+    "sigma_source": "this book's own past daily returns"
+  },
+  "face": {
+    "breadth": "risk_on = (b >= 0.45)",
+    "spike": "spike_ft",
+    "fill_key": "SHARPE20",
+    "exit": "E0",
+    "vol_target": 0.25,
+    "max_pos": 5,
+    "weighting": "equal weight inside the book",
+    "universe": "AUM>=2e8, 324 names",
+    "pool": "research"
+  },
+  "anchor": {
+    "ret": 1.316,
+    "maxDD": -0.188,
+    "Calmar": 0.70,
+    "CAGR": 0.131,
+    "w2020_22": {"ret": 0.189, "maxDD": -0.160, "Calmar": 0.37},
+    "w2023_26": {"ret": 0.948, "maxDD": -0.138, "Calmar": 1.39},
+    "avgL": 0.84,
+    "n_weeks": 349,
+    "T": 348,
+    "n_codes": 324,
+    "end": "2026-10-23"
+  },
+  "anchor_tol": {
+    "ret": 0.005,
+    "maxDD": 0.002,
+    "Calmar": 0.02,
+    "n_weeks": 0,
+    "T": 0,
+    "n_codes": 0
+  },
+  "windows": {
+    "w2020_22": ["2020-01-01", "2022-12-31"],
+    "w2023_26": ["2023-01-01", "2026-10-23"]
+  },
+  "mechanism": "s20_band_secondary_sort",
+  "sort_key_family": "clenow",
+  "band_k": "max(2*slots, slots+2)",
+  "band_examples": {"slots_5": 10, "slots_4": 8, "slots_1": 3},
+  "missing_policy": "sort_last_within_band_do_not_drop",
+  "all_missing_policy": "fallback_to_sharpe_order_same_band",
+  "held_exit_on_key_worse": false,
+  "hard_gate": false,
+  "theta": null,
+  "theta_sweep": false,
+  "n_sweep": false,
+  "k_sweep": false,
+  "replace_sharpe20": false,
+  "annualization_days": 252,
+  "third_book": {
+    "chosen": "CS90R",
+    "rejected": ["CS90K2", "CS90xACCEL", "CS90S-top"],
+    "cs90k2_exists_on_knife_1": true,
+    "cs90k2_formula_not_used": "slope_ann * (R^2)^2",
+    "reason": "#1 有 SR90K2（替席，k=2），本刀不把它挪成次级键。k=2 是同一条乘法的幂次插值，本族禁 θ/N/k 插值，且 #1 已证伪。CS90×accel 近分断同分要另冻 ε。CS90S-top 把带收成 slots，与主簿同键，整本惰性。第三本冻结为 CS90R：带内只按 (exp(beta*252)-1) 降序，不乘 R²，用来看 R² 权重是否多余。"
+  },
+  "keys": {
+    "score": {
+      "name": "Clenow annualized log-price slope times R^2",
+      "formula": "(exp(beta*252)-1) * R^2",
+      "k": 1,
+      "end": "last daily qfq close on or before the trading day before signal Friday",
+      "stale_days": 5,
+      "time_index": "trading-bar order 0..n-1, not calendar days",
+      "same_as": "CLENOW-SLOPE-R2-FILL SR90 / SR60 algebra, used only as a secondary key",
+      "negative_slope": "stays in the band and ranks after every positive score; not a gate"
+    },
+    "slope_ann": {
+      "name": "annualized slope only",
+      "formula": "exp(beta*252)-1",
+      "uses_r2": false,
+      "book": "CS90R",
+      "n": 90
+    },
+    "r2": "disclosure on every mechanism book; in the sort key only for CS90S and CS60S",
+    "accel": "not a key in this knife",
+    "er": "not a key in this knife"
+  },
+  "sort_tuple": ["missing_flag_asc", "negative_key_asc", "s20_index_asc", "code_asc"],
+  "books": [
+    {
+      "id": "F0",
+      "role": "anchor",
+      "book": "LIVE1430-B45-S20-max5",
+      "mode": "off",
+      "n": 0,
+      "formula": null,
+      "sort_key": null
+    },
+    {
+      "id": "CS90S",
+      "role": "primary",
+      "book": "LIVE1430-B45-S20-CS90S-max5",
+      "mode": "clenow_sort",
+      "n": 90,
+      "formula": "(exp(beta*252)-1)*R^2",
+      "sort_key": "clenow_score_desc_missing_last",
+      "controls": "knife #1 SR90 algebra, secondary sort not a fill replacement"
+    },
+    {
+      "id": "CS60S",
+      "role": "neighbor",
+      "book": "LIVE1430-B45-S20-CS60S-max5",
+      "mode": "clenow_sort",
+      "n": 60,
+      "formula": "(exp(beta*252)-1)*R^2",
+      "sort_key": "clenow_score_desc_missing_last",
+      "controls": "knife #1 SR60 algebra, secondary sort not a fill replacement"
+    },
+    {
+      "id": "CS90R",
+      "role": "neighbor",
+      "book": "LIVE1430-B45-S20-CS90R-max5",
+      "mode": "slope_ann_sort",
+      "n": 90,
+      "formula": "exp(beta*252)-1",
+      "sort_key": "slope_ann_desc_missing_last",
+      "controls": "same window as CS90S with the R^2 multiplier removed"
+    }
+  ],
+  "ruler": {
+    "rhs": "this run's F0 only",
+    "delta_ret": "ret - ret_F0",
+    "delta_abs_mdd": "abs(maxDD) - abs(maxDD_F0)",
+    "covers": "delta_ret >= delta_abs_mdd",
+    "window_pass": "window ret >= F0 same-window ret",
+    "positive": "covers AND w2020_22 pass AND w2023_26 pass AND not inert",
+    "equal_counts_as_pass": true,
+    "calmar_in_ruler": false,
+    "no_0_9x": true,
+    "no_minus_2pp": true,
+    "inert": "id != F0 AND weekly holding sets {(Friday, frozenset(codes))} equal F0",
+    "inert_verdict": "证伪·惰性",
+    "nan_verdict": "证伪"
+  },
+  "gates_before_family": ["anchor_pass", "impl_pass", "attrib_pass"],
+  "impl_pass": "every book n_short_fills == 0; ids, modes, n match this file; CS90S and CS90R n_miss_clenow are equal; no theta, no k, no hard gate",
+  "attribution_blocks": ["a_mechanism", "b_jaccard", "c_window_delta", "d_turnover_cash", "e_names_and_big_segments"],
+  "seat_module": "research/clenow-s20-secondary/band.py",
+  "fixture": "research/clenow-s20-secondary/test_band.py",
+  "fixture_minimum": "same band input, CS90S seat order changes when the Clenow score changes",
+  "side_note_not_a_cell": {
+    "AG40S": {
+      "ret": 2.356,
+      "maxDD": -0.148,
+      "Calmar": 1.32,
+      "w2020_22_ret": 0.446,
+      "w2023_26_ret": 1.321,
+      "jaccard_vs_f0": 0.389,
+      "role": "mechanism template from knife #2; not F0; not a cell; not the ruler RHS; do not promote"
+    },
+    "SR90": {"ret": 0.728, "maxDD": -0.215, "Calmar": 0.39, "w2023_26_ret": 0.335, "role": "knife #1 fill replacement N=90, H1_HOLD; do not rerun"},
+    "SR60": {"ret": 1.220, "maxDD": -0.194, "Calmar": 0.64, "w2023_26_ret": 0.591, "role": "knife #1 fill replacement N=60, H1_HOLD; do not rerun"},
+    "SR90K2": {"ret": 0.739, "maxDD": -0.217, "Calmar": 0.39, "w2023_26_ret": 0.298, "role": "knife #1 fill replacement k=2, H1_HOLD; not this knife's third book"},
+    "R290S": {"ret": 1.321, "maxDD": -0.156, "Calmar": 0.84, "w2023_26_ret": 0.775, "jaccard_vs_f0": 0.399, "role": "knife #4 secondary R^2, falsified on 2023-26; do not rerun"},
+    "ER20S": {"ret": 1.271, "maxDD": -0.184, "Calmar": 0.70, "w2023_26_ret": 0.719, "jaccard_vs_f0": 0.741, "role": "knife #4 secondary ER, falsified; do not rerun"},
+    "COMBOS": {"ret": 1.310, "maxDD": -0.151, "Calmar": 0.87, "w2023_26_ret": 0.720, "jaccard_vs_f0": 0.487, "role": "knife #4 secondary combo, falsified on 2023-26; do not rerun"}
+  },
+  "forbidden_ids": ["CS90K2", "CS90xACCEL", "CS90S-top", "SR90", "SR60", "SR90K2", "R290S", "ER20S", "COMBOS", "R290A", "RF50", "ER20", "AND50", "AG40", "AG20", "AG40S"],
+  "outputs": {
+    "dir": "research/clenow-s20-secondary/out/",
+    "four_pack": ["REPORT.md", "summary.json", "table.csv", "equity.csv+equity_curve.png"],
+    "attribution_support": ["entries_diff_by_year.csv", "segment_attribution.csv"],
+    "written_by": "execution branch, not this design PR"
+  }
+}
