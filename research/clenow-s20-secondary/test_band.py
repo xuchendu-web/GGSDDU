@@ -271,18 +271,11 @@ class SpecLockTest(unittest.TestCase):
         design = (HERE / "DESIGN.md").read_text(encoding="utf-8")
         self.assertIn("F0/CS90S/CS60S/CS90R", design)
 
-    def test_stub_exits_and_does_not_write_out(self):
-        out = HERE / "out"
-        self.assertFalse(out.exists())
-        done = subprocess.run(
-            [sys.executable, str(HERE / "run.py")],
-            cwd=HERE.parents[1],
-            capture_output=True,
-            text=True,
-        )
-        self.assertNotEqual(done.returncode, 0)
-        self.assertIn("refuse to backtest", done.stderr)
-        self.assertFalse(out.exists())
+    def test_run_is_execution_module(self):
+        src = (HERE / "run.py").read_text(encoding="utf-8")
+        self.assertNotIn("refuse to backtest", src)
+        self.assertIn("CLENOW-S20-SECONDARY", src)
+        self.assertIn("def main", src)
 
 
 if __name__ == "__main__":
