@@ -1,0 +1,186 @@
+{
+  "knife_id": "R2-ER-SECONDARY",
+  "family": "slope",
+  "knife_index": 4,
+  "status": "design",
+  "champion_swap": false,
+  "crown": "NO",
+  "run_backtest_in_this_pr": false,
+  "hypothesis": "在 SHARPE20 短名单内按路径直度次级排序、不砍席，相对 F0 能盖住回撤且 2020–22 与 2023–26 两窗都不踏空。",
+  "source_sha": "05f0f8a4f778fde886f3e7b2976646ff4b7d777b",
+  "needle_id": "LIVE1430-B45-S20-max5",
+  "needle_path": "research/cloud_batch/SPIKE-S20-BTHETA-GRID-LIVE1430/run.py",
+  "data_kit": "research/cloud_batch/CLOUD-BATCH-2026-10-26/",
+  "sample": ["2020-01-03", "2026-10-23"],
+  "signal": "Friday >= 14:30, fill at same-day close",
+  "cost": {
+    "rt": 0.002,
+    "side": 0.001,
+    "fields": ["COST_SIDE=0.001", "LIVE_COST_RT=0.002"]
+  },
+  "leverage": {
+    "cap": 1,
+    "formula": "L = min(1, 0.25 / max(sigma20, sigma60))",
+    "sigma_source": "this book's own past daily returns"
+  },
+  "face": {
+    "breadth": "risk_on = (b >= 0.45)",
+    "spike": "spike_ft",
+    "fill_key": "SHARPE20",
+    "exit": "E0",
+    "vol_target": 0.25,
+    "max_pos": 5,
+    "weighting": "equal weight inside the book",
+    "universe": "AUM>=2e8, 324 names",
+    "pool": "research"
+  },
+  "anchor": {
+    "ret": 1.316,
+    "maxDD": -0.188,
+    "Calmar": 0.70,
+    "CAGR": 0.131,
+    "w2020_22": {"ret": 0.189, "maxDD": -0.160, "Calmar": 0.37},
+    "w2023_26": {"ret": 0.948, "maxDD": -0.138, "Calmar": 1.39},
+    "avgL": 0.84,
+    "n_weeks": 349,
+    "T": 348,
+    "n_codes": 324,
+    "end": "2026-10-23"
+  },
+  "anchor_tol": {
+    "ret": 0.005,
+    "maxDD": 0.002,
+    "Calmar": 0.02,
+    "n_weeks": 0,
+    "T": 0,
+    "n_codes": 0
+  },
+  "windows": {
+    "w2020_22": ["2020-01-01", "2022-12-31"],
+    "w2023_26": ["2023-01-01", "2026-10-23"]
+  },
+  "mechanism": "s20_band_secondary_sort",
+  "band_k": "max(2*slots, slots+2)",
+  "band_examples": {"slots_5": 10, "slots_1": 3, "slots_4": 8},
+  "missing_policy": "sort_last_within_band_do_not_drop",
+  "all_missing_policy": "fallback_to_sharpe_order_same_band",
+  "held_exit_on_key_worse": false,
+  "hard_gate": false,
+  "theta": null,
+  "theta_sweep": false,
+  "replace_sharpe20": false,
+  "third_book": {
+    "chosen": "COMBOS",
+    "rejected": "R290A",
+    "rejected_shape": "R290S near-tie broken by accel(40+40)",
+    "reason": "近分必须另冻 ε，ε 是未点名的 θ，且禁扫网格；只断精确同分则 R² 连续、第三本相对 R290S 惰性。accel 硬闸是 #2 已证伪的主簿。第三本改为短名单内 0.5*z(R2)+0.5*z(ER)，无阈值、无硬闸。"
+  },
+  "keys": {
+    "r2": {
+      "name": "OLS R^2 of ln(P) on trading-day index",
+      "n": 90,
+      "min_bars": 90,
+      "end": "last daily qfq close on or before the trading day before signal Friday",
+      "stale_days": 5,
+      "same_as": "ER-R2-FLOOR RF50 window, without the 0.50 floor",
+      "direction": "unsigned; beta sign is not a key"
+    },
+    "er": {
+      "name": "Kaufman ER = abs(C_t - C_{t-n}) / sum(abs(diff))",
+      "n": 20,
+      "min_bars": 21,
+      "end": "same cutoff as r2",
+      "stale_days": 5,
+      "same_as": "ER-R2-FLOOR ER20 definition, without the 0.40 floor",
+      "direction": "unsigned"
+    },
+    "combo": {
+      "weights": {"r2": 0.5, "er": 0.5},
+      "z_scope": "names inside this week's band with both r2 and er finite",
+      "z_ddof": 0,
+      "z_refit": "every signal week, this band only",
+      "leg_std_zero": "that leg z = 0 for every finite name",
+      "both_legs_uninformative_or_n_finite_lt_2": "fallback whole band to SHARPE20 order",
+      "missing_either_leg": "combo null, sort after every finite combo, still eligible to fill"
+    },
+    "accel": "not a key in this knife"
+  },
+  "sort_tuple": ["missing_flag_asc", "negative_key_asc", "s20_index_asc", "code_asc"],
+  "books": [
+    {
+      "id": "F0",
+      "role": "anchor",
+      "book": "LIVE1430-B45-S20-max5",
+      "mode": "off",
+      "r2_n": 0,
+      "er_n": 0,
+      "sort_key": null
+    },
+    {
+      "id": "R290S",
+      "role": "primary",
+      "book": "LIVE1430-B45-S20-R290S-max5",
+      "mode": "r2_sort",
+      "r2_n": 90,
+      "er_n": 0,
+      "sort_key": "r2_desc_missing_last"
+    },
+    {
+      "id": "ER20S",
+      "role": "neighbor",
+      "book": "LIVE1430-B45-S20-ER20S-max5",
+      "mode": "er_sort",
+      "r2_n": 0,
+      "er_n": 20,
+      "sort_key": "er_desc_missing_last"
+    },
+    {
+      "id": "COMBOS",
+      "role": "neighbor",
+      "book": "LIVE1430-B45-S20-COMBOS-max5",
+      "mode": "combo_sort",
+      "r2_n": 90,
+      "er_n": 20,
+      "sort_key": "0.5*z(r2)+0.5*z(er)_desc_missing_last"
+    }
+  ],
+  "ruler": {
+    "rhs": "this run's F0 only",
+    "delta_ret": "ret - ret_F0",
+    "delta_abs_mdd": "abs(maxDD) - abs(maxDD_F0)",
+    "covers": "delta_ret >= delta_abs_mdd",
+    "window_pass": "window ret >= F0 same-window ret",
+    "positive": "covers AND w2020_22 pass AND w2023_26 pass AND not inert",
+    "equal_counts_as_pass": true,
+    "calmar_in_ruler": false,
+    "no_0_9x": true,
+    "no_minus_2pp": true,
+    "inert": "id != F0 AND weekly holding sets {(Friday, frozenset(codes))} equal F0",
+    "inert_verdict": "证伪·惰性",
+    "nan_verdict": "证伪"
+  },
+  "gates_before_family": ["anchor_pass", "impl_pass", "attrib_pass"],
+  "impl_pass": "every book n_short_fills == 0; ids, modes, r2_n, er_n match this file; no theta applied",
+  "attribution_blocks": ["a_mechanism", "b_jaccard", "c_window_delta", "d_turnover_cash", "e_names_and_big_segments"],
+  "side_note_not_a_cell": {
+    "AG40S": {
+      "ret": 2.356,
+      "maxDD": -0.148,
+      "Calmar": 1.32,
+      "w2020_22_ret": 0.446,
+      "w2023_26_ret": 1.321,
+      "jaccard_vs_f0": 0.389,
+      "role": "mechanism template from knife #2; not F0; not a cell; not the ruler RHS"
+    },
+    "RF50": {"ret": 1.029, "maxDD": -0.191, "Calmar": 0.57, "role": "knife #3 hard floor, falsified; do not rerun"},
+    "ER20": {"ret": 0.905, "maxDD": -0.170, "Calmar": 0.59, "role": "knife #3 hard floor, falsified; do not rerun"},
+    "AND50": {"ret": 0.562, "maxDD": -0.210, "Calmar": 0.32, "role": "knife #3 conjunction floor, falsified; do not rerun"}
+  },
+  "forbidden_ids": ["R290A", "RF50", "ER20", "AND50", "AG40", "AG20", "AG40S", "SR90", "SR60", "SR90K2", "ER10-T30", "ER10-T40", "ER10-T50"],
+  "outputs": {
+    "dir": "research/r2-er-secondary/out/",
+    "four_pack": ["REPORT.md", "summary.json", "table.csv", "equity.csv+equity_curve.png"],
+    "attribution_support": ["entries_diff_by_year.csv", "segment_attribution.csv"],
+    "written_by": "execution branch, not this design PR"
+  }
+}
