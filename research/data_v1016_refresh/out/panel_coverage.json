@@ -1,0 +1,16 @@
+{
+  "universe": 436,
+  "source": "zsmcp.qt_dailyquote JOIN secumain",
+  "filters": ["secumain.secucategory=8", "qt_dailyquote.turnovervolume>0"],
+  "note": "563xxx SecuCode collisions exist; SecuCategory=8 + volume>0 required. Do not count close=100/vol=0 junk rows.",
+  "sessions": {
+    "2026-10-23": 436,
+    "2026-10-26": 436,
+    "2026-10-27": 436,
+    "2026-10-28": 436,
+    "2026-10-29": 436,
+    "2026-10-30": 436
+  },
+  "extension_sessions": ["2026-10-26", "2026-10-27", "2026-10-28", "2026-10-29", "2026-10-30"],
+  "committed_bars": "panel_core_tail.csv (8 names × 5 extension days). Full 2180-row dump not committed."
+}

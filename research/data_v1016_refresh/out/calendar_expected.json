@@ -1,0 +1,15 @@
+{
+  "asof_run": "2026-11-02T01:40Z",
+  "market_session_at_run": "2026-11-02 Asia/Shanghai open in progress (~09:43), not a completed bar",
+  "target_complete_session": "2026-10-30",
+  "target_friday": "2026-10-30",
+  "prior_committed_cache_end": "2026-10-23",
+  "extension_sessions": ["2026-10-26", "2026-10-27", "2026-10-28", "2026-10-29", "2026-10-30"],
+  "oct_2026_complete_sessions_from_000985": [
+    "2026-10-08", "2026-10-09", "2026-10-12", "2026-10-13", "2026-10-14",
+    "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-20", "2026-10-21",
+    "2026-10-22", "2026-10-23", "2026-10-26", "2026-10-27", "2026-10-28",
+    "2026-10-29", "2026-10-30"
+  ],
+  "note": "10-01..10-07 National Day holiday observed in CSI 000985 (no bars). Do not invent missing index days."
+}
