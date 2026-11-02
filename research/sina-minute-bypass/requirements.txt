@@ -1,0 +1,5 @@
+# 研究轨旁路：默认只用标准库。下列均为可选。
+# akshare 仅用于 stock_zh_a_minute 对照，不是东财 *_em 主力。
+# pytest 用于本机加跑；仓库测试走 unittest，无硬依赖。
+akshare>=1.14.0
+pytest>=8.0.0

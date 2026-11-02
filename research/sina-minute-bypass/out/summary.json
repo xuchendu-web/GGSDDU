@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-11-02 01:49:53",
+  "session": {
+    "clock": "2026-11-02 09:49:53",
+    "today": "2026-11-02",
+    "weekday": true,
+    "holiday_hint": false,
+    "clock_state": "open",
+    "clock_label": "沪深连续竞价",
+    "inferred_trade_date": "2026-11-02",
+    "trading_day": "2026-11-02",
+    "session": "open",
+    "note": "行情日=今日，按时钟标会话",
+    "is_trading_day": true
+  },
+  "n_etf": 28,
+  "scales": [
+    1,
+    5
+  ],
+  "flags": {
+    "GREEN": 54,
+    "YELLOW": 2,
+    "RED": 0
+  },
+  "money_finance": [
+    "510300 1m → ok=False note=money.finance scale=1 可能 null err=null n=0",
+    "510300 5m → ok=True note=money.finance getKLineData err=- n=8",
+    "510050 1m → ok=False note=money.finance scale=1 可能 null err=null n=0",
+    "510050 5m → ok=True note=money.finance getKLineData err=- n=8"
+  ],
+  "research_only": true,
+  "live_forbidden": true
+}
