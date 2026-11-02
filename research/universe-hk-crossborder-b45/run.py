@@ -130,6 +130,7 @@ def main() -> None:
     close = load_nav(args.cache)
     if close.empty:
         summary = {"verdict": "fail_no_cache", "cache": str(args.cache)}
+        args.out.mkdir(parents=True, exist_ok=True)
         (args.out / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
         print(json.dumps(summary, indent=2))
         sys.exit(1)
@@ -149,6 +150,7 @@ def main() -> None:
             "full_ok": len(full_ok),
             "full_total": len(full),
         }
+        args.out.mkdir(parents=True, exist_ok=True)
         (args.out / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
         print(json.dumps(summary, indent=2))
         sys.exit(2)
@@ -159,6 +161,7 @@ def main() -> None:
             "full_ratio": full_ratio,
             "note": "partial run needs hk>=50% and full>=35%",
         }
+        args.out.mkdir(parents=True, exist_ok=True)
         (args.out / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
         print(json.dumps(summary, indent=2))
         sys.exit(2)
