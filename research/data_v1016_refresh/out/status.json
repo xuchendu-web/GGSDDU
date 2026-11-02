@@ -1,0 +1,52 @@
+{
+  "asof_run": "2026-11-02T01:40Z",
+  "market_session_at_run": "2026-11-02 Asia/Shanghai open in progress, not a completed bar",
+  "target_complete_session": "2026-10-30",
+  "prior_committed_cache_end": "2026-10-23",
+  "forbidden_sources_used": false,
+  "forbidden_sources": ["comein", "cicc", "alphapai", "进门", "中金", "Alpha派"],
+  "empty_local_clients": ["pytdx", "cjpy"],
+  "bypass": ["zsmcp.qt_dailyquote", "zsmcp.qt_csiindexquote", "tencent.mkline.m30"],
+  "live_strategy_exec_touched": false,
+  "invented_days": [],
+  "panel": {
+    "color": "GREEN",
+    "last": "2026-10-30",
+    "universe": 436,
+    "coverage": "436/436 each session 2026-10-23..2026-10-30",
+    "artifact": "out/panel_core_tail.csv + out/panel_coverage.json",
+    "source": "zsmcp.qt_dailyquote"
+  },
+  "000985": {
+    "color": "GREEN",
+    "last": "2026-10-30",
+    "close": 4952.4953,
+    "changepct": -2.3267,
+    "source": "zsmcp.qt_csiindexquote indexcode=14110 (中证全指, not 大庆华科)"
+  },
+  "bm_930950": {
+    "color": "YELLOW",
+    "last": "2026-10-29",
+    "close": 1578.8144,
+    "changepct": -2.6036,
+    "gap": "2026-10-30 absent in qt_csiindexquote (indexcode=121882). Tencent sh930950 empty. Do not invent.",
+    "source": "zsmcp.qt_csiindexquote"
+  },
+  "champ_equity": {
+    "color": "YELLOW",
+    "last": "2026-10-23",
+    "gap": "published LIVE1430 champion NAV ends 2026-10-23; cannot extend without LIVE/strategy_exec",
+    "artifact": "out/champ_equity_asof_20261023.csv",
+    "source": "published champ snapshot only"
+  },
+  "fri_1430": {
+    "color": "GREEN",
+    "last": "2026-10-30",
+    "ok": 436,
+    "n": 436,
+    "spot_510300_1430": 4.075,
+    "spot_510300_daily_close": 4.065,
+    "note": "pytdx empty; filled via Tencent m30 bypass. 436/436 stamp=202610301430.",
+    "source": "tencent.mkline.m30"
+  }
+}
