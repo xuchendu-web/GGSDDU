@@ -7,7 +7,9 @@ from pathlib import Path
 
 DATA = Path(__file__).resolve().parent
 
-# Merged from zsmcp secumain queries (MAX InnerCode, MIN ListedDate per SecuCode)
+# Deprecated hardcoded dump. Prefer rebuild_listings_from_cat8.py
+# (SecuCategory=8 InnerCode + ListedDate from zsmcp). Kept only as a
+# historical snapshot; do not use MAX(InnerCode)/MIN(ListedDate).
 ROWS = """
 159101	724336	2019-05-24 00:00:00
 159201	668721	2019-06-12 00:00:00

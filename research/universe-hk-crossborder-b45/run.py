@@ -52,10 +52,11 @@ def load_listings() -> dict[str, pd.Timestamp]:
         return {}
     obj = json.loads(p.read_text(encoding="utf-8"))
     out = {}
+    listed = obj.get("listed_by_code") or obj.get("listed_date") or {}
     for code, inner in obj.get("inner_by_code", {}).items():
-        ld = obj.get("listed_by_code", {}).get(code)
+        ld = listed.get(code)
         if ld:
-            out[code] = pd.Timestamp(ld)
+            out[code] = pd.Timestamp(str(ld)[:10])
     return out
 
 
