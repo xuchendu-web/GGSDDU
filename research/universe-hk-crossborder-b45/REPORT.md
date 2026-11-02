@@ -4,9 +4,15 @@
 
 ## 状态
 
-**本 PR 引擎与准则已齐；全样本回测待 `data/nav_long.csv` 覆盖 ≥85% HK 且 ≥70% 全池后重跑 `python3 run.py`。**
+**`incomplete_cache`。引擎、准则、PIT listing、`SecuCategory=8` InnerCode 已齐；权威复权净值可查但覆盖未过门槛，未出 H1 数字。**
 
-当前缓存：`secu_fetch_status.py` 见 `data/secu_fetch_progress.json`。构建步骤见 `data/FETCH.md`。
+| 覆盖 | 当前 | 门槛 |
+|---|---:|---:|
+| HK ≥200 日 | 4 / 42（9.5%） | 85% |
+| 全池 ≥200 日 | 13 / 280（4.6%） | 70% |
+| `nav_long.csv` | 9008 行 / 16 码 | — |
+
+缺口与复现见 `data/CACHE_GAP.md`。`python3 data/coverage_status.py` 可复核。未臆造 NAV，未跑 `--allow-partial` 充数。
 
 ## 面层（冻结）
 
@@ -22,14 +28,15 @@ B45 + spike_ft max5 + E0 + TV25 + SHARPE20；周五信号→收盘成交（云�
 
 港股跨境切片相对全池 face **不能**同时改善 Calmar 且 2023–26 不踏空。
 
-证伪/记账结论在 `summary.json` 的 `h1.h1_verdict`（需完整缓存后生成）。
+证伪/记账结论在 `summary.json` 的 `h1.h1_verdict`（需完整缓存后生成）。本轮不给 H1。
 
 ## 复现
 
 ```bash
 cd research/universe-hk-crossborder-b45
-# 先按 data/FETCH.md 补全 nav_long.csv
+# 先按 data/FETCH.md / data/CACHE_GAP.md 补全 nav_long.csv
+python3 data/coverage_status.py
 python3 run.py --cache data/nav_long.csv
 ```
 
-数据源：**zsmcp**（未用进门/中金/Alpha派）。
+数据源：**zsmcp** `mf_fundnetvaluere.UnitNVRestored`（未用进门/中金/Alpha派）。
