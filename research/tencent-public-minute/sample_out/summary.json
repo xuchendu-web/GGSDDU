@@ -1,0 +1,408 @@
+{
+  "generated_at_cst": "2026-11-02 09:52:45 +0800",
+  "n": 24,
+  "flags": {
+    "红": 0,
+    "黄": 2,
+    "绿": 22
+  },
+  "session_kinds": {
+    "live": 24
+  },
+  "cutoff_1430": true,
+  "near_n": 30,
+  "yellow_pct": 0.003,
+  "repo_ref_n": 0,
+  "hard_gates": [
+    "tencent_is_live_bypass_not_backtest_authority",
+    "not_a_cjpy_aum_replacement",
+    "do_not_touch_LIVE_or_strategy_exec",
+    "no_comein_cicc_alphapai_eastmoney_unreviewed_qmt"
+  ],
+  "rows": [
+    {
+      "code": "510300",
+      "name": "华泰柏瑞沪深300ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 4.082,
+      "diffs": {
+        "qt_vs_m1": 0.0,
+        "qt_vs_timeline": 0.0,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "510500",
+      "name": "南方中证500ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 6.33,
+      "diffs": {
+        "qt_vs_m1": 0.00047415836889522895,
+        "qt_vs_timeline": 0.0007905138339920779,
+        "m1_vs_timeline": 0.0003162055335968031,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "512100",
+      "name": "南方中证1000ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 2.515,
+      "diffs": {
+        "qt_vs_m1": 0.0007958615200955925,
+        "qt_vs_timeline": 0.0007958615200955925,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "510050",
+      "name": "华夏上证50ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 2.875,
+      "diffs": {
+        "qt_vs_m1": 0.00034770514603612305,
+        "qt_vs_timeline": 0.00034770514603612305,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "563300",
+      "name": "华泰柏瑞中证2000ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 1.201,
+      "diffs": {
+        "qt_vs_m1": 0.0008333333333334266,
+        "qt_vs_timeline": 0.0008333333333334266,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "588000",
+      "name": "华夏上证科创板50ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 1.234,
+      "diffs": {
+        "qt_vs_m1": 0.0008110300081102107,
+        "qt_vs_timeline": 0.0016233766233766248,
+        "m1_vs_timeline": 0.0008116883116884025,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "159915",
+      "name": "易方达创业板ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 2.439,
+      "diffs": {
+        "qt_vs_m1": 0.00041017227235434366,
+        "qt_vs_timeline": 0.00041017227235434366,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "159949",
+      "name": "华安创业板50ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 1.104,
+      "diffs": {
+        "qt_vs_m1": 0.001814882032667878,
+        "qt_vs_timeline": 0.001814882032667878,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "510180",
+      "name": "华安上证180ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 3.613,
+      "diffs": {
+        "qt_vs_m1": 0.00027670171555060593,
+        "qt_vs_timeline": 0.00027670171555060593,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "512890",
+      "name": "华泰柏瑞红利低波动ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 1.25,
+      "diffs": {
+        "qt_vs_m1": 0.0007993605115906395,
+        "qt_vs_timeline": 0.0007993605115906395,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "512880",
+      "name": "国泰中证全指证券公司ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 0.994,
+      "diffs": {
+        "qt_vs_m1": 0.0010050251256281417,
+        "qt_vs_timeline": 0.0010050251256281417,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "588200",
+      "name": "嘉实上证科创板芯片ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 0.782,
+      "diffs": {
+        "qt_vs_m1": 0.0012804097311139575,
+        "qt_vs_timeline": 0.0025641025641025663,
+        "m1_vs_timeline": 0.0012820512820512831,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "512170",
+      "name": "华宝中证医疗ETF",
+      "flag": "黄",
+      "session_kind": "live",
+      "qt_price": 0.331,
+      "diffs": {
+        "qt_vs_m1": 0.0030120481927710867,
+        "qt_vs_timeline": 0.0030120481927710867,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "159755",
+      "name": "广发国证新能源车电池ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 0.728,
+      "diffs": {
+        "qt_vs_m1": 0.0,
+        "qt_vs_timeline": 0.0,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "515880",
+      "name": "国泰中证全指通信设备ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 0.43,
+      "diffs": {
+        "qt_vs_m1": 0.0,
+        "qt_vs_timeline": 0.0,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "159928",
+      "name": "汇添富中证主要消费ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 0.688,
+      "diffs": {
+        "qt_vs_m1": 0.0014513788098693772,
+        "qt_vs_timeline": 0.0014513788098693772,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "512400",
+      "name": "南方中证申万有色金属ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 1.371,
+      "diffs": {
+        "qt_vs_m1": 0.0014609203798393,
+        "qt_vs_timeline": 0.0014609203798393,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "159819",
+      "name": "易方达中证人工智能ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 1.34,
+      "diffs": {
+        "qt_vs_m1": 0.0014947683109118098,
+        "qt_vs_timeline": 0.0007468259895445198,
+        "m1_vs_timeline": 0.0007468259895443539,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "513180",
+      "name": "华夏恒生科技ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 0.472,
+      "diffs": {
+        "qt_vs_m1": 0.0021231422505307877,
+        "qt_vs_timeline": 0.0021231422505307877,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "159920",
+      "name": "华夏恒生ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 1.37,
+      "diffs": {
+        "qt_vs_m1": 0.0,
+        "qt_vs_timeline": 0.0,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "513500",
+      "name": "博时标普500ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 2.633,
+      "diffs": {
+        "qt_vs_m1": 0.0,
+        "qt_vs_timeline": 0.0,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "159941",
+      "name": "广发纳斯达克100ETF",
+      "flag": "黄",
+      "session_kind": "live",
+      "qt_price": 1.649,
+      "diffs": {
+        "qt_vs_m1": null,
+        "qt_vs_timeline": 0.0,
+        "m1_vs_timeline": null,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "518880",
+      "name": "华安黄金ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 7.953,
+      "diffs": {
+        "qt_vs_m1": 0.0005032079506856772,
+        "qt_vs_timeline": 0.0005032079506856772,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    },
+    {
+      "code": "562500",
+      "name": "华夏中证机器人ETF",
+      "flag": "绿",
+      "session_kind": "live",
+      "qt_price": 0.813,
+      "diffs": {
+        "qt_vs_m1": 0.0012315270935959234,
+        "qt_vs_timeline": 0.0012315270935959234,
+        "m1_vs_timeline": 0.0,
+        "qt_prev_vs_tencent_day": 0.0,
+        "qt_vs_repo": null,
+        "repo_date": null
+      },
+      "errors": []
+    }
+  ]
+}
