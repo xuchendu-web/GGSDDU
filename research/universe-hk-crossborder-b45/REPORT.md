@@ -4,13 +4,13 @@
 
 ## 状态
 
-**`incomplete_cache`。引擎、准则、PIT listing、`SecuCategory=8` InnerCode 已齐；权威复权净值可查但覆盖未过门槛，未出 H1 数字。**
+**`incomplete_cache`。引擎、准则、PIT listing、`SecuCategory=8` InnerCode 已齐；HK 切片 NAV 已过门槛，全池覆盖未过 70%，未出 H1 数字。**
 
 | 覆盖 | 当前 | 门槛 |
 |---|---:|---:|
-| HK ≥200 日 | 4 / 42（9.5%） | 85% |
-| 全池 ≥200 日 | 13 / 280（4.6%） | 70% |
-| `nav_long.csv` | 9008 行 / 16 码 | — |
+| HK ≥200 日 | 42 / 42（100%） | 85% |
+| 全池 ≥200 日 | 168 / 280（60.0%） | 70% |
+| `nav_long.csv` | 139861 行 / 183 码 | — |
 
 缺口与复现见 `data/CACHE_GAP.md`。`python3 data/coverage_status.py` 可复核。未臆造 NAV，未跑 `--allow-partial` 充数。
 
