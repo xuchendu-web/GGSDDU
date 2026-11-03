@@ -1,11 +1,11 @@
 {
   "knife_id": "UNIVERSE-HK-CROSSBORDER-B45",
   "verdict": "incomplete_cache",
-  "note": "zsmcp UnitNVRestored reachable; nav_long.csv 139861 rows / 183 codes (HK 42/42, full 168/280). Need full>=70% (>=196 codes) with >=200 days. See data/CACHE_GAP.md. Do not invent NAV.",
+  "note": "zsmcp UnitNVRestored reachable; nav_long.csv 151925 rows / 183 codes (HK 42/42, full 168/280). 17 full-pool DESC pages merged to 2026-10-23. Need full>=70% (>=196 codes) with >=200 days. See data/CACHE_GAP.md. Do not invent NAV.",
   "face_layer": "spike_ft max5+E0+TV25+SHARPE20; Fri close proxy; 0.2%RT; L<=1",
   "breadth_mother_pool": "full_pool_frozen",
   "coverage": {
-    "nav_rows": 139861,
+    "nav_rows": 151925,
     "nav_codes": 183,
     "hk_ok": 42,
     "hk_total": 42,

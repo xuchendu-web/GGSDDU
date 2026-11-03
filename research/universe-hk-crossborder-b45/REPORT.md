@@ -10,7 +10,7 @@
 |---|---:|---:|
 | HK ≥200 日 | 42 / 42（100%） | 85% |
 | 全池 ≥200 日 | 168 / 280（60.0%） | 70% |
-| `nav_long.csv` | 139861 行 / 183 码 | — |
+| `nav_long.csv` | 151925 行 / 183 码 | — |
 
 缺口与复现见 `data/CACHE_GAP.md`。`python3 data/coverage_status.py` 可复核。未臆造 NAV，未跑 `--allow-partial` 充数。
 
