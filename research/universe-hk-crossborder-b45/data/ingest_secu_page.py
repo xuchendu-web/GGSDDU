@@ -7,7 +7,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from secu_fetch_lib import MIN_ROWS_TARGET, PAGE, count_rows_in_csv, load_progress, save_progress
+from secu_fetch_lib import PAGE, load_progress, save_progress
 
 DATA = Path(__file__).resolve().parent
 
@@ -39,11 +39,13 @@ def main() -> None:
     code = job["secucode"]
     prog = load_progress()
     st = prog["codes"].setdefault(code, {"offset": 0, "done": False, "source": job.get("source", "nav")})
-    total_after = count_rows_in_csv().get(code, 0)
-    if total_after >= MIN_ROWS_TARGET or len(rows) < PAGE:
+    # A 1000-row page is not complete — older ETFs need OFFSET 1000.
+    # Do not mark done at MIN_ROWS_TARGET (that truncated 159202/159557).
+    if len(rows) < PAGE:
         st["done"] = True
     else:
         st["offset"] = int(job.get("offset", 0)) + PAGE
+        st["done"] = False
     st["source"] = job.get("source", st.get("source", "nav"))
     save_progress(prog)
     print(json.dumps({"secucode": code, "appended": len(rows), "done": st["done"]}))

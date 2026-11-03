@@ -1,1176 +1,1469 @@
 {
   "by_code": {
-    "159202": {
-      "inner": 676803,
-      "source": "nav"
-    },
-    "159303": {
-      "inner": 617599,
-      "source": "nav"
-    },
-    "159519": {
-      "inner": 560648,
-      "source": "nav"
-    },
-    "159557": {
-      "inner": 595700,
-      "source": "nav"
-    },
-    "159605": {
-      "inner": 409522,
-      "source": "nav"
-    },
-    "159607": {
-      "inner": 409206,
-      "source": "nav"
-    },
-    "159615": {
-      "inner": 449596,
-      "source": "nav"
-    },
-    "159688": {
-      "inner": 493029,
-      "source": "nav"
-    },
-    "159699": {
-      "inner": 555826,
-      "source": "nav"
-    },
-    "159740": {
-      "inner": 366690,
-      "source": "nav"
-    },
-    "159741": {
-      "inner": 367384,
-      "source": "nav"
-    },
-    "159742": {
-      "inner": 366689,
-      "source": "nav"
-    },
-    "159747": {
-      "inner": 374945,
-      "source": "nav"
-    },
-    "159750": {
-      "inner": 407918,
-      "source": "nav"
-    },
-    "159850": {
-      "inner": 346201,
-      "source": "nav"
-    },
-    "159892": {
-      "inner": 392413,
-      "source": "nav"
-    },
-    "159920": {
-      "inner": 18667,
-      "source": "nav"
-    },
-    "510900": {
-      "inner": 18670,
-      "source": "nav"
-    },
-    "513010": {
-      "inner": 366688,
-      "source": "nav"
-    },
-    "513050": {
-      "inner": 105015,
-      "source": "nav"
-    },
-    "513060": {
-      "inner": 352533,
-      "source": "nav"
-    },
-    "513120": {
-      "inner": 451093,
-      "source": "nav"
-    },
-    "513130": {
-      "inner": 366691,
-      "source": "nav"
-    },
-    "513140": {
-      "inner": 491796,
-      "source": "nav"
-    },
-    "513170": {
-      "inner": 601245,
-      "source": "nav"
-    },
-    "513180": {
-      "inner": 366701,
-      "source": "nav"
-    },
-    "513210": {
-      "inner": 605883,
-      "source": "nav"
-    },
-    "513260": {
-      "inner": 448573,
-      "source": "nav"
-    },
-    "513280": {
-      "inner": 448566,
-      "source": "nav"
-    },
-    "513330": {
-      "inner": 341760,
-      "source": "nav"
-    },
-    "159338": {
-      "inner": 638644,
-      "source": "nav"
-    },
-    "159351": {
-      "inner": 638647,
-      "source": "nav"
-    },
-    "159352": {
-      "inner": 638645,
-      "source": "nav"
-    },
-    "159361": {
-      "inner": 649786,
-      "source": "nav"
-    },
-    "159567": {
-      "inner": 586585,
-      "source": "nav"
-    },
-    "159570": {
-      "inner": 586077,
-      "source": "nav"
-    },
-    "159792": {
-      "inner": 392409,
-      "source": "nav"
-    },
-    "159915": {
-      "inner": 14471,
-      "source": "nav"
-    },
-    "159949": {
-      "inner": 82281,
-      "source": "nav"
-    },
-    "510050": {
-      "inner": 2997,
-      "source": "nav"
-    },
-    "510300": {
-      "inner": 16930,
-      "source": "nav"
-    },
-    "512050": {
-      "inner": 649779,
-      "source": "nav"
-    },
-    "512880": {
-      "inner": 83395,
-      "source": "nav"
-    },
-    "513090": {
-      "inner": 274646,
-      "source": "nav"
-    },
-    "513310": {
-      "inner": 478938,
-      "source": "nav"
-    },
-    "513380": {
-      "inner": 441030,
-      "source": "nav"
-    },
-    "513530": {
-      "inner": 431251,
-      "source": "nav"
-    },
-    "513580": {
-      "inner": 366693,
-      "source": "nav"
-    },
-    "513810": {
-      "inner": 558882,
-      "source": "nav"
-    },
-    "513890": {
-      "inner": 408532,
-      "source": "nav"
-    },
-    "513950": {
-      "inner": 533113,
-      "source": "nav"
-    },
-    "513970": {
-      "inner": 527510,
-      "source": "nav"
-    },
-    "520500": {
-      "inner": 638679,
-      "source": "nav"
-    },
-    "520520": {
-      "inner": 627887,
-      "source": "nav"
-    },
-    "520570": {
-      "inner": 735037,
-      "source": "nav"
-    },
-    "520590": {
-      "inner": 737170,
-      "source": "nav"
-    },
-    "520920": {
-      "inner": 729799,
-      "source": "nav"
-    },
-    "563360": {
-      "inner": 638652,
-      "source": "nav"
-    },
-    "588000": {
-      "inner": 320240,
-      "source": "nav"
-    },
-    "588200": {
-      "inner": 475000,
-      "source": "nav"
-    },
-    "159217": {
-      "inner": 677702,
-      "source": "nav"
-    },
-    "159363": {
-      "inner": 655547,
-      "source": "nav"
-    },
-    "159506": {
-      "inner": 545038,
-      "source": "nav"
-    },
-    "159509": {
-      "inner": 547667,
-      "source": "nav"
-    },
-    "159636": {
-      "inner": 452932,
-      "source": "nav"
-    },
-    "159819": {
-      "inner": 307749,
-      "source": "nav"
-    },
-    "159851": {
-      "inner": 349065,
-      "source": "nav"
-    },
-    "159869": {
-      "inner": 350202,
-      "source": "nav"
-    },
-    "159919": {
-      "inner": 16916,
-      "source": "nav"
-    },
-    "159941": {
-      "inner": 48431,
-      "source": "nav"
-    },
-    "159995": {
-      "inner": 270123,
-      "source": "nav"
-    },
-    "510310": {
-      "inner": 22142,
-      "source": "nav"
-    },
-    "510500": {
-      "inner": 21671,
-      "source": "nav"
-    },
-    "512000": {
-      "inner": 87496,
-      "source": "nav"
-    },
-    "512010": {
-      "inner": 29813,
-      "source": "nav"
-    },
-    "512100": {
-      "inner": 91154,
-      "source": "nav"
-    },
-    "512170": {
-      "inner": 225686,
-      "source": "nav"
-    },
-    "512480": {
-      "inner": 225715,
-      "source": "nav"
-    },
-    "512660": {
-      "inner": 83396,
-      "source": "nav"
-    },
-    "512690": {
-      "inner": 219039,
-      "source": "nav"
-    },
-    "512710": {
-      "inner": 230969,
-      "source": "nav"
-    },
-    "512800": {
-      "inner": 128992,
-      "source": "nav"
-    },
-    "513750": {
-      "inner": 577815,
-      "source": "nav"
-    },
-    "513980": {
-      "inner": 372515,
-      "source": "nav"
-    },
-    "515790": {
-      "inner": 333579,
-      "source": "nav"
-    },
-    "515880": {
-      "inner": 241132,
-      "source": "nav"
-    },
-    "562500": {
-      "inner": 408875,
-      "source": "nav"
-    },
-    "563220": {
-      "inner": 638649,
-      "source": "nav"
-    },
-    "563800": {
-      "inner": 649776,
-      "source": "nav"
-    },
-    "588080": {
-      "inner": 320241,
-      "source": "nav"
-    },
-    "159316": {
-      "inner": 675212,
-      "source": "nav"
-    },
-    "159353": {
-      "inner": 638651,
-      "source": "nav"
-    },
-    "159529": {
-      "inner": 588828,
-      "source": "nav"
-    },
-    "159530": {
-      "inner": 588145,
-      "source": "nav"
-    },
-    "159755": {
-      "inner": 372963,
-      "source": "nav"
-    },
-    "159770": {
-      "inner": 401547,
-      "source": "nav"
-    },
-    "159841": {
-      "inner": 343240,
-      "source": "nav"
-    },
-    "159852": {
-      "inner": 345004,
-      "source": "nav"
-    },
-    "159870": {
-      "inner": 349932,
-      "source": "nav"
-    },
-    "159928": {
-      "inner": 24736,
-      "source": "nav"
-    },
-    "510330": {
-      "inner": 21283,
-      "source": "nav"
-    },
-    "510880": {
-      "inner": 4787,
-      "source": "nav"
-    },
-    "512070": {
-      "inner": 35764,
-      "source": "nav"
-    },
-    "512760": {
-      "inner": 225768,
-      "source": "nav"
-    },
-    "512890": {
-      "inner": 201577,
-      "source": "nav"
-    },
-    "513100": {
-      "inner": 23186,
-      "source": "nav"
-    },
-    "513200": {
-      "inner": 404376,
-      "source": "nav"
-    },
-    "513300": {
-      "inner": 323430,
-      "source": "nav"
-    },
-    "513770": {
-      "inner": 422863,
-      "source": "nav"
-    },
-    "513780": {
-      "inner": 626293,
-      "source": "nav"
-    },
-    "515220": {
-      "inner": 271581,
-      "source": "nav"
-    },
-    "515980": {
-      "inner": 266666,
-      "source": "nav"
-    },
-    "516150": {
-      "inner": 351877,
-      "source": "nav"
-    },
-    "520700": {
-      "inner": 636492,
-      "source": "nav"
-    },
-    "520880": {
-      "inner": 693883,
-      "source": "nav"
-    },
-    "520980": {
-      "inner": 691816,
-      "source": "nav"
-    },
-    "588030": {
-      "inner": 565562,
-      "source": "nav"
-    },
-    "588050": {
-      "inner": 320244,
-      "source": "nav"
-    },
-    "588220": {
-      "inner": 565603,
-      "source": "nav"
-    },
-    "588790": {
-      "inner": 661703,
-      "source": "nav"
-    },
     "159101": {
       "inner": 724336,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2025-09-03"
     },
     "159201": {
       "inner": 668721,
-      "source": "nav"
-    },
-    "159262": {
-      "inner": 694382,
-      "source": "nav"
-    },
-    "159329": {
-      "inner": 622671,
-      "source": "nav"
-    },
-    "159516": {
-      "inner": 552476,
-      "source": "nav"
-    },
-    "159682": {
-      "inner": 489415,
-      "source": "nav"
-    },
-    "159732": {
-      "inner": 388155,
-      "source": "nav"
-    },
-    "159781": {
-      "inner": 379101,
-      "source": "nav"
-    },
-    "159842": {
-      "inner": 350364,
-      "source": "nav"
-    },
-    "159845": {
-      "inner": 352546,
-      "source": "nav"
-    },
-    "159922": {
-      "inner": 21592,
-      "source": "nav"
-    },
-    "159952": {
-      "inner": 119695,
-      "source": "nav"
-    },
-    "510100": {
-      "inner": 233079,
-      "source": "nav"
-    },
-    "510210": {
-      "inner": 12411,
-      "source": "nav"
-    },
-    "512200": {
-      "inner": 128355,
-      "source": "nav"
-    },
-    "512670": {
-      "inner": 233066,
-      "source": "nav"
-    },
-    "513190": {
-      "inner": 565196,
-      "source": "nav"
-    },
-    "513500": {
-      "inner": 30798,
-      "source": "nav"
-    },
-    "513630": {
-      "inner": 576510,
-      "source": "nav"
-    },
-    "515050": {
-      "inner": 248264,
-      "source": "nav"
-    },
-    "515070": {
-      "inner": 263254,
-      "source": "nav"
-    },
-    "515120": {
-      "inner": 331281,
-      "source": "nav"
-    },
-    "516780": {
-      "inner": 350185,
-      "source": "nav"
-    },
-    "520600": {
-      "inner": 645479,
-      "source": "nav"
-    },
-    "560530": {
-      "inner": 638648,
-      "source": "nav"
-    },
-    "560610": {
-      "inner": 638650,
-      "source": "nav"
-    },
-    "563300": {
-      "inner": 566969,
-      "source": "nav"
-    },
-    "563880": {
-      "inner": 649781,
-      "source": "nav"
-    },
-    "588060": {
-      "inner": 382163,
-      "source": "nav"
-    },
-    "588760": {
-      "inner": 663437,
-      "source": "nav"
-    },
-    "159339": {
-      "inner": 638643,
-      "source": "nav"
-    },
-    "159366": {
-      "inner": 677460,
-      "source": "nav"
-    },
-    "159399": {
-      "inner": 669373,
-      "source": "nav"
-    },
-    "159593": {
-      "inner": 597831,
-      "source": "nav"
-    },
-    "159595": {
-      "inner": 597827,
-      "source": "nav"
-    },
-    "159611": {
-      "inner": 417210,
-      "source": "nav"
-    },
-    "159612": {
-      "inner": 441277,
-      "source": "nav"
-    },
-    "159691": {
-      "inner": 509236,
-      "source": "nav"
-    },
-    "159766": {
-      "inner": 381853,
-      "source": "nav"
-    },
-    "159796": {
-      "inner": 424696,
-      "source": "nav"
-    },
-    "159857": {
-      "inner": 345033,
-      "source": "nav"
-    },
-    "159883": {
-      "inner": 359459,
-      "source": "nav"
-    },
-    "159887": {
-      "inner": 360205,
-      "source": "nav"
-    },
-    "512680": {
-      "inner": 87178,
-      "source": "nav"
-    },
-    "512930": {
-      "inner": 228499,
-      "source": "nav"
-    },
-    "513020": {
-      "inner": 407956,
-      "source": "nav"
-    },
-    "513040": {
-      "inner": 539916,
-      "source": "nav"
-    },
-    "513600": {
-      "inner": 41938,
-      "source": "nav"
-    },
-    "513660": {
-      "inner": 41932,
-      "source": "nav"
-    },
-    "513690": {
-      "inner": 356900,
-      "source": "nav"
-    },
-    "513860": {
-      "inner": 373766,
-      "source": "nav"
-    },
-    "515080": {
-      "inner": 256578,
-      "source": "nav"
-    },
-    "515210": {
-      "inner": 271573,
-      "source": "nav"
-    },
-    "516160": {
-      "inner": 342939,
-      "source": "nav"
-    },
-    "516510": {
-      "inner": 356600,
-      "source": "nav"
-    },
-    "516860": {
-      "inner": 382164,
-      "source": "nav"
-    },
-    "561910": {
-      "inner": 385354,
-      "source": "nav"
-    },
-    "588090": {
-      "inner": 320245,
-      "source": "nav"
-    },
-    "588290": {
-      "inner": 475003,
-      "source": "nav"
-    },
-    "588800": {
-      "inner": 577805,
-      "source": "nav"
-    },
-    "159272": {
-      "inner": 724602,
-      "source": "nav"
-    },
-    "159381": {
-      "inner": 675202,
-      "source": "nav"
-    },
-    "159501": {
-      "inner": 542188,
-      "source": "nav"
-    },
-    "159518": {
-      "inner": 572630,
-      "source": "nav"
-    },
-    "159545": {
-      "inner": 597825,
-      "source": "nav"
-    },
-    "159559": {
-      "inner": 580758,
-      "source": "nav"
-    },
-    "159568": {
-      "inner": 590633,
-      "source": "nav"
-    },
-    "159629": {
-      "inner": 460031,
-      "source": "nav"
-    },
-    "159659": {
-      "inner": 503532,
-      "source": "nav"
-    },
-    "159681": {
-      "inner": 489416,
-      "source": "nav"
-    },
-    "159801": {
-      "inner": 272228,
-      "source": "nav"
-    },
-    "159865": {
-      "inner": 350499,
-      "source": "nav"
-    },
-    "159901": {
-      "inner": 4082,
-      "source": "nav"
-    },
-    "159967": {
-      "inner": 227472,
-      "source": "nav"
-    },
-    "512500": {
-      "inner": 46145,
-      "source": "nav"
-    },
-    "512700": {
-      "inner": 128366,
-      "source": "nav"
-    },
-    "513910": {
-      "inner": 593408,
-      "source": "nav"
-    },
-    "513920": {
-      "inner": 584813,
-      "source": "nav"
-    },
-    "515170": {
-      "inner": 337133,
-      "source": "nav"
-    },
-    "515230": {
-      "inner": 345855,
-      "source": "nav"
-    },
-    "515400": {
-      "inner": 334884,
-      "source": "nav"
-    },
-    "515450": {
-      "inner": 268777,
-      "source": "nav"
-    },
-    "516010": {
-      "inner": 350206,
-      "source": "nav"
-    },
-    "520840": {
-      "inner": 713535,
-      "source": "nav"
-    },
-    "560010": {
-      "inner": 459803,
-      "source": "nav"
-    },
-    "588730": {
-      "inner": 663434,
-      "source": "nav"
-    },
-    "588750": {
-      "inner": 656055,
-      "source": "nav"
-    },
-    "589000": {
-      "inner": 671973,
-      "source": "nav"
-    },
-    "589680": {
-      "inner": 671594,
-      "source": "nav"
-    },
-    "589800": {
-      "inner": 670919,
-      "source": "nav"
-    },
-    "159227": {
-      "inner": 682183,
-      "source": "nav"
-    },
-    "159259": {
-      "inner": 721314,
-      "source": "nav"
-    },
-    "159286": {
-      "inner": 721153,
-      "source": "nav"
-    },
-    "159358": {
-      "inner": 649783,
-      "source": "nav"
-    },
-    "159531": {
-      "inner": 566964,
-      "source": "nav"
-    },
-    "159632": {
-      "inner": 449150,
-      "source": "nav"
-    },
-    "159713": {
-      "inner": 386028,
-      "source": "nav"
-    },
-    "159745": {
-      "inner": 371870,
-      "source": "nav"
-    },
-    "159751": {
-      "inner": 407814,
-      "source": "nav"
-    },
-    "159780": {
-      "inner": 379161,
-      "source": "nav"
-    },
-    "159859": {
-      "inner": 372764,
-      "source": "nav"
-    },
-    "159977": {
-      "inner": 247904,
-      "source": "nav"
-    },
-    "159998": {
-      "inner": 281225,
-      "source": "nav"
-    },
-    "510760": {
-      "inner": 311640,
-      "source": "nav"
-    },
-    "512820": {
-      "inner": 183295,
-      "source": "nav"
-    },
-    "513360": {
-      "inner": 364404,
-      "source": "nav"
-    },
-    "513520": {
-      "inner": 231894,
-      "source": "nav"
-    },
-    "513560": {
-      "inner": 479215,
-      "source": "nav"
-    },
-    "515000": {
-      "inner": 238238,
-      "source": "nav"
-    },
-    "515030": {
-      "inner": 276422,
-      "source": "nav"
-    },
-    "515300": {
-      "inner": 237421,
-      "source": "nav"
-    },
-    "516970": {
-      "inner": 375286,
-      "source": "nav"
-    },
-    "520830": {
-      "inner": 622672,
-      "source": "nav"
-    },
-    "520970": {
-      "inner": 703682,
-      "source": "nav"
-    },
-    "520990": {
-      "inner": 619531,
-      "source": "nav"
-    },
-    "560090": {
-      "inner": 503810,
-      "source": "nav"
-    },
-    "561980": {
-      "inner": 559444,
-      "source": "nav"
-    },
-    "562800": {
-      "inner": 395809,
-      "source": "nav"
-    },
-    "588170": {
-      "inner": 677993,
-      "source": "nav"
-    },
-    "588780": {
-      "inner": 656468,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2025-02-27"
+    },
+    "159202": {
+      "inner": 676803,
+      "source": "nav",
+      "listed": "2025-04-16"
+    },
+    "159217": {
+      "inner": 677702,
+      "source": "nav",
+      "listed": "2025-04-03"
     },
     "159222": {
       "inner": 679697,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2025-04-17"
     },
-    "159269": {
-      "inner": 697933,
-      "source": "nav"
-    },
-    "159300": {
-      "inner": 612881,
-      "source": "nav"
-    },
-    "159356": {
-      "inner": 649785,
-      "source": "nav"
-    },
-    "159502": {
-      "inner": 572345,
-      "source": "nav"
-    },
-    "159561": {
-      "inner": 597365,
-      "source": "nav"
-    },
-    "159583": {
-      "inner": 619440,
-      "source": "nav"
-    },
-    "159718": {
-      "inner": 400604,
-      "source": "nav"
-    },
-    "159783": {
-      "inner": 379177,
-      "source": "nav"
-    },
-    "159825": {
-      "inner": 332453,
-      "source": "nav"
-    },
-    "159840": {
-      "inner": 384581,
-      "source": "nav"
-    },
-    "159925": {
-      "inner": 22298,
-      "source": "nav"
-    },
-    "159994": {
-      "inner": 270456,
-      "source": "nav"
-    },
-    "510360": {
-      "inner": 51807,
-      "source": "nav"
-    },
-    "510720": {
-      "inner": 610632,
-      "source": "nav"
-    },
-    "512290": {
-      "inner": 221315,
-      "source": "nav"
-    },
-    "512810": {
-      "inner": 85662,
-      "source": "nav"
-    },
-    "512980": {
-      "inner": 154188,
-      "source": "nav"
-    },
-    "513030": {
-      "inner": 37005,
-      "source": "nav"
-    },
-    "513390": {
-      "inner": 533951,
-      "source": "nav"
-    },
-    "513550": {
-      "inner": 337741,
-      "source": "nav"
-    },
-    "513820": {
-      "inner": 596749,
-      "source": "nav"
-    },
-    "515100": {
-      "inner": 292662,
-      "source": "nav"
-    },
-    "515180": {
-      "inner": 257972,
-      "source": "nav"
-    },
-    "515800": {
-      "inner": 240156,
-      "source": "nav"
-    },
-    "516100": {
-      "inner": 380664,
-      "source": "nav"
-    },
-    "520690": {
-      "inner": 707141,
-      "source": "nav"
-    },
-    "520720": {
-      "inner": 727024,
-      "source": "nav"
-    },
-    "588830": {
-      "inner": 627284,
-      "source": "nav"
-    },
-    "588890": {
-      "inner": 604066,
-      "source": "nav"
+    "159227": {
+      "inner": 682183,
+      "source": "nav",
+      "listed": "2025-05-16"
     },
     "159242": {
       "inner": 701622,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2025-07-24"
+    },
+    "159259": {
+      "inner": 721314,
+      "source": "nav",
+      "listed": "2025-08-28"
+    },
+    "159262": {
+      "inner": 694382,
+      "source": "nav",
+      "listed": "2025-07-07"
+    },
+    "159269": {
+      "inner": 697933,
+      "source": "nav",
+      "listed": "2025-07-10"
+    },
+    "159272": {
+      "inner": 724602,
+      "source": "nav",
+      "listed": "2025-09-19"
+    },
+    "159286": {
+      "inner": 721153,
+      "source": "nav",
+      "listed": "2025-09-02"
+    },
+    "159300": {
+      "inner": 612881,
+      "source": "nav",
+      "listed": "2024-06-05"
+    },
+    "159303": {
+      "inner": 617599,
+      "source": "nav",
+      "listed": "2024-06-27"
+    },
+    "159316": {
+      "inner": 675212,
+      "source": "nav",
+      "listed": "2025-03-26"
+    },
+    "159329": {
+      "inner": 622671,
+      "source": "nav",
+      "listed": "2024-07-16"
+    },
+    "159338": {
+      "inner": 638644,
+      "source": "nav",
+      "listed": "2024-10-15"
+    },
+    "159339": {
+      "inner": 638643,
+      "source": "nav",
+      "listed": "2024-10-15"
+    },
+    "159351": {
+      "inner": 638647,
+      "source": "nav",
+      "listed": "2024-10-15"
+    },
+    "159352": {
+      "inner": 638645,
+      "source": "nav",
+      "listed": "2024-10-15"
+    },
+    "159353": {
+      "inner": 638651,
+      "source": "nav",
+      "listed": "2024-10-15"
+    },
+    "159356": {
+      "inner": 649785,
+      "source": "nav",
+      "listed": "2024-12-06"
+    },
+    "159358": {
+      "inner": 649783,
+      "source": "nav",
+      "listed": "2024-11-29"
     },
     "159359": {
       "inner": 649790,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2024-12-02"
+    },
+    "159361": {
+      "inner": 649786,
+      "source": "nav",
+      "listed": "2024-11-19"
+    },
+    "159363": {
+      "inner": 655547,
+      "source": "nav",
+      "listed": "2024-12-16"
+    },
+    "159366": {
+      "inner": 677460,
+      "source": "nav",
+      "listed": "2025-04-14"
+    },
+    "159381": {
+      "inner": 675202,
+      "source": "nav",
+      "listed": "2025-03-24"
+    },
+    "159399": {
+      "inner": 669373,
+      "source": "nav",
+      "listed": "2025-02-27"
+    },
+    "159501": {
+      "inner": 542188,
+      "source": "nav",
+      "listed": "2023-06-14"
+    },
+    "159502": {
+      "inner": 572345,
+      "source": "nav",
+      "listed": "2024-01-10"
+    },
+    "159506": {
+      "inner": 545038,
+      "source": "nav",
+      "listed": "2023-07-03"
+    },
+    "159509": {
+      "inner": 547667,
+      "source": "nav",
+      "listed": "2023-08-08"
+    },
+    "159516": {
+      "inner": 552476,
+      "source": "nav",
+      "listed": "2023-07-27"
+    },
+    "159518": {
+      "inner": 572630,
+      "source": "nav",
+      "listed": "2023-11-15"
+    },
+    "159519": {
+      "inner": 560648,
+      "source": "nav",
+      "listed": "2023-08-31"
+    },
+    "159529": {
+      "inner": 588828,
+      "source": "nav",
+      "listed": "2024-02-02"
+    },
+    "159530": {
+      "inner": 588145,
+      "source": "nav",
+      "listed": "2024-01-18"
+    },
+    "159531": {
+      "inner": 566964,
+      "source": "nav",
+      "listed": "2023-09-18"
+    },
+    "159545": {
+      "inner": 597825,
+      "source": "nav",
+      "listed": "2024-04-15"
     },
     "159552": {
       "inner": 603053,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2024-06-28"
+    },
+    "159557": {
+      "inner": 595700,
+      "source": "nav",
+      "listed": "2024-05-22"
+    },
+    "159559": {
+      "inner": 580758,
+      "source": "nav",
+      "listed": "2023-12-12"
+    },
+    "159561": {
+      "inner": 597365,
+      "source": "nav",
+      "listed": "2024-04-30"
+    },
+    "159567": {
+      "inner": 586585,
+      "source": "nav",
+      "listed": "2024-01-11"
+    },
+    "159568": {
+      "inner": 590633,
+      "source": "nav",
+      "listed": "2024-02-27"
+    },
+    "159570": {
+      "inner": 586077,
+      "source": "nav",
+      "listed": "2024-01-22"
+    },
+    "159583": {
+      "inner": 619440,
+      "source": "nav",
+      "listed": "2024-07-08"
+    },
+    "159593": {
+      "inner": 597831,
+      "source": "nav",
+      "listed": "2024-03-12"
+    },
+    "159595": {
+      "inner": 597827,
+      "source": "nav",
+      "listed": "2024-03-18"
+    },
+    "159605": {
+      "inner": 409522,
+      "source": "nav",
+      "listed": "2021-12-02"
+    },
+    "159607": {
+      "inner": 409206,
+      "source": "nav",
+      "listed": "2021-12-02"
+    },
+    "159611": {
+      "inner": 417210,
+      "source": "nav",
+      "listed": "2022-01-07"
+    },
+    "159612": {
+      "inner": 441277,
+      "source": "nav",
+      "listed": "2022-05-20"
+    },
+    "159615": {
+      "inner": 449596,
+      "source": "nav",
+      "listed": "2022-06-28"
+    },
+    "159629": {
+      "inner": 460031,
+      "source": "nav",
+      "listed": "2022-08-03"
+    },
+    "159632": {
+      "inner": 449150,
+      "source": "nav",
+      "listed": "2022-08-03"
+    },
+    "159636": {
+      "inner": 452932,
+      "source": "nav",
+      "listed": "2022-07-20"
+    },
+    "159659": {
+      "inner": 503532,
+      "source": "nav",
+      "listed": "2023-04-25"
+    },
+    "159681": {
+      "inner": 489416,
+      "source": "nav",
+      "listed": "2023-01-03"
+    },
+    "159682": {
+      "inner": 489415,
+      "source": "nav",
+      "listed": "2023-01-03"
+    },
+    "159688": {
+      "inner": 493029,
+      "source": "nav",
+      "listed": "2023-02-15"
+    },
+    "159691": {
+      "inner": 509236,
+      "source": "nav",
+      "listed": "2023-04-21"
+    },
+    "159699": {
+      "inner": 555826,
+      "source": "nav",
+      "listed": "2023-08-23"
+    },
+    "159713": {
+      "inner": 386028,
+      "source": "nav",
+      "listed": "2021-08-16"
+    },
+    "159718": {
+      "inner": 400604,
+      "source": "nav",
+      "listed": "2021-12-28"
+    },
+    "159732": {
+      "inner": 388155,
+      "source": "nav",
+      "listed": "2021-08-23"
+    },
+    "159740": {
+      "inner": 366690,
+      "source": "nav",
+      "listed": "2021-05-27"
+    },
+    "159741": {
+      "inner": 367384,
+      "source": "nav",
+      "listed": "2021-06-03"
+    },
+    "159742": {
+      "inner": 366689,
+      "source": "nav",
+      "listed": "2021-05-25"
+    },
+    "159745": {
+      "inner": 371870,
+      "source": "nav",
+      "listed": "2021-06-18"
+    },
+    "159747": {
+      "inner": 374945,
+      "source": "nav",
+      "listed": "2021-07-14"
+    },
+    "159750": {
+      "inner": 407918,
+      "source": "nav",
+      "listed": "2022-02-14"
+    },
+    "159751": {
+      "inner": 407814,
+      "source": "nav",
+      "listed": "2021-12-28"
+    },
+    "159755": {
+      "inner": 372963,
+      "source": "nav",
+      "listed": "2021-06-24"
+    },
+    "159766": {
+      "inner": 381853,
+      "source": "nav",
+      "listed": "2021-07-23"
+    },
+    "159770": {
+      "inner": 401547,
+      "source": "nav",
+      "listed": "2021-11-08"
     },
     "159776": {
       "inner": 414974,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2022-03-25"
+    },
+    "159780": {
+      "inner": 379161,
+      "source": "nav",
+      "listed": "2021-07-05"
+    },
+    "159781": {
+      "inner": 379101,
+      "source": "nav",
+      "listed": "2021-07-05"
+    },
+    "159783": {
+      "inner": 379177,
+      "source": "nav",
+      "listed": "2021-07-05"
+    },
+    "159792": {
+      "inner": 392409,
+      "source": "nav",
+      "listed": "2021-09-28"
+    },
+    "159796": {
+      "inner": 424696,
+      "source": "nav",
+      "listed": "2022-03-14"
+    },
+    "159801": {
+      "inner": 272228,
+      "source": "nav",
+      "listed": "2020-02-18"
+    },
+    "159819": {
+      "inner": 307749,
+      "source": "nav",
+      "listed": "2020-09-23"
+    },
+    "159825": {
+      "inner": 332453,
+      "source": "nav",
+      "listed": "2020-12-29"
+    },
+    "159840": {
+      "inner": 384581,
+      "source": "nav",
+      "listed": "2021-08-20"
+    },
+    "159841": {
+      "inner": 343240,
+      "source": "nav",
+      "listed": "2021-02-09"
+    },
+    "159842": {
+      "inner": 350364,
+      "source": "nav",
+      "listed": "2021-03-19"
+    },
+    "159845": {
+      "inner": 352546,
+      "source": "nav",
+      "listed": "2021-03-31"
+    },
+    "159850": {
+      "inner": 346201,
+      "source": "nav",
+      "listed": "2021-02-19"
+    },
+    "159851": {
+      "inner": 349065,
+      "source": "nav",
+      "listed": "2021-03-19"
+    },
+    "159852": {
+      "inner": 345004,
+      "source": "nav",
+      "listed": "2021-02-09"
+    },
+    "159857": {
+      "inner": 345033,
+      "source": "nav",
+      "listed": "2021-02-24"
+    },
+    "159859": {
+      "inner": 372764,
+      "source": "nav",
+      "listed": "2021-07-07"
+    },
+    "159865": {
+      "inner": 350499,
+      "source": "nav",
+      "listed": "2021-03-08"
+    },
+    "159869": {
+      "inner": 350202,
+      "source": "nav",
+      "listed": "2021-03-05"
+    },
+    "159870": {
+      "inner": 349932,
+      "source": "nav",
+      "listed": "2021-03-03"
+    },
+    "159883": {
+      "inner": 359459,
+      "source": "nav",
+      "listed": "2021-04-30"
+    },
+    "159887": {
+      "inner": 360205,
+      "source": "nav",
+      "listed": "2021-05-20"
+    },
+    "159892": {
+      "inner": 392413,
+      "source": "nav",
+      "listed": "2021-10-19"
+    },
+    "159901": {
+      "inner": 4082,
+      "source": "nav",
+      "listed": "2006-04-24"
+    },
+    "159915": {
+      "inner": 14471,
+      "source": "nav",
+      "listed": "2011-12-09"
+    },
+    "159919": {
+      "inner": 16916,
+      "source": "nav",
+      "listed": "2012-05-28"
+    },
+    "159920": {
+      "inner": 18667,
+      "source": "nav",
+      "listed": "2012-10-22"
+    },
+    "159922": {
+      "inner": 21592,
+      "source": "nav",
+      "listed": "2013-03-15"
+    },
+    "159925": {
+      "inner": 22298,
+      "source": "nav",
+      "listed": "2013-04-11"
+    },
+    "159928": {
+      "inner": 24736,
+      "source": "nav",
+      "listed": "2013-09-16"
     },
     "159929": {
       "inner": 24735,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2013-09-16"
+    },
+    "159941": {
+      "inner": 48431,
+      "source": "nav",
+      "listed": "2015-07-13"
+    },
+    "159949": {
+      "inner": 82281,
+      "source": "nav",
+      "listed": "2016-07-22"
+    },
+    "159952": {
+      "inner": 119695,
+      "source": "nav",
+      "listed": "2017-05-19"
+    },
+    "159967": {
+      "inner": 227472,
+      "source": "nav",
+      "listed": "2019-07-15"
+    },
+    "159977": {
+      "inner": 247904,
+      "source": "nav",
+      "listed": "2019-09-27"
+    },
+    "159994": {
+      "inner": 270456,
+      "source": "nav",
+      "listed": "2020-02-28"
+    },
+    "159995": {
+      "inner": 270123,
+      "source": "nav",
+      "listed": "2020-02-10"
+    },
+    "159998": {
+      "inner": 281225,
+      "source": "nav",
+      "listed": "2020-04-13"
+    },
+    "510050": {
+      "inner": 2997,
+      "source": "nav",
+      "listed": "2005-02-23"
+    },
+    "510100": {
+      "inner": 233079,
+      "source": "nav",
+      "listed": "2019-10-09"
     },
     "510180": {
       "inner": 4116,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2006-05-18"
+    },
+    "510210": {
+      "inner": 12411,
+      "source": "nav",
+      "listed": "2011-03-25"
+    },
+    "510300": {
+      "inner": 16930,
+      "source": "nav",
+      "listed": "2012-05-28"
+    },
+    "510310": {
+      "inner": 22142,
+      "source": "nav",
+      "listed": "2013-03-25"
+    },
+    "510330": {
+      "inner": 21283,
+      "source": "nav",
+      "listed": "2013-01-16"
+    },
+    "510360": {
+      "inner": 51807,
+      "source": "nav",
+      "listed": "2015-09-09"
+    },
+    "510500": {
+      "inner": 21671,
+      "source": "nav",
+      "listed": "2013-03-15"
+    },
+    "510720": {
+      "inner": 610632,
+      "source": "nav",
+      "listed": "2024-05-15"
+    },
+    "510760": {
+      "inner": 311640,
+      "source": "nav",
+      "listed": "2020-09-09"
+    },
+    "510880": {
+      "inner": 4787,
+      "source": "nav",
+      "listed": "2007-01-18"
+    },
+    "510900": {
+      "inner": 18670,
+      "source": "nav",
+      "listed": "2012-10-22"
+    },
+    "512000": {
+      "inner": 87496,
+      "source": "nav",
+      "listed": "2016-09-14"
+    },
+    "512010": {
+      "inner": 29813,
+      "source": "nav",
+      "listed": "2013-10-28"
     },
     "512020": {
       "inner": 649782,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2024-12-02"
+    },
+    "512050": {
+      "inner": 649779,
+      "source": "nav",
+      "listed": "2024-11-15"
+    },
+    "512070": {
+      "inner": 35764,
+      "source": "nav",
+      "listed": "2014-07-18"
     },
     "512080": {
       "inner": 660573,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2025-01-21"
+    },
+    "512100": {
+      "inner": 91154,
+      "source": "nav",
+      "listed": "2016-11-04"
+    },
+    "512170": {
+      "inner": 225686,
+      "source": "nav",
+      "listed": "2019-06-17"
+    },
+    "512200": {
+      "inner": 128355,
+      "source": "nav",
+      "listed": "2017-09-25"
+    },
+    "512290": {
+      "inner": 221315,
+      "source": "nav",
+      "listed": "2019-05-20"
+    },
+    "512480": {
+      "inner": 225715,
+      "source": "nav",
+      "listed": "2019-06-12"
+    },
+    "512500": {
+      "inner": 46145,
+      "source": "nav",
+      "listed": "2015-05-29"
+    },
+    "512660": {
+      "inner": 83396,
+      "source": "nav",
+      "listed": "2016-08-08"
+    },
+    "512670": {
+      "inner": 233066,
+      "source": "nav",
+      "listed": "2019-08-01"
+    },
+    "512680": {
+      "inner": 87178,
+      "source": "nav",
+      "listed": "2016-10-14"
+    },
+    "512690": {
+      "inner": 219039,
+      "source": "nav",
+      "listed": "2019-05-06"
+    },
+    "512700": {
+      "inner": 128366,
+      "source": "nav",
+      "listed": "2017-07-26"
+    },
+    "512710": {
+      "inner": 230969,
+      "source": "nav",
+      "listed": "2019-08-26"
+    },
+    "512760": {
+      "inner": 225768,
+      "source": "nav",
+      "listed": "2019-06-12"
+    },
+    "512800": {
+      "inner": 128992,
+      "source": "nav",
+      "listed": "2017-08-03"
+    },
+    "512810": {
+      "inner": 85662,
+      "source": "nav",
+      "listed": "2016-08-22"
+    },
+    "512820": {
+      "inner": 183295,
+      "source": "nav",
+      "listed": "2018-11-23"
+    },
+    "512880": {
+      "inner": 83395,
+      "source": "nav",
+      "listed": "2016-08-08"
+    },
+    "512890": {
+      "inner": 201577,
+      "source": "nav",
+      "listed": "2019-01-18"
     },
     "512900": {
       "inner": 110653,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2017-03-31"
+    },
+    "512930": {
+      "inner": 228499,
+      "source": "nav",
+      "listed": "2019-08-23"
+    },
+    "512980": {
+      "inner": 154188,
+      "source": "nav",
+      "listed": "2018-01-19"
+    },
+    "513010": {
+      "inner": 366688,
+      "source": "nav",
+      "listed": "2021-05-25"
+    },
+    "513020": {
+      "inner": 407956,
+      "source": "nav",
+      "listed": "2022-02-08"
+    },
+    "513030": {
+      "inner": 37005,
+      "source": "nav",
+      "listed": "2014-09-05"
+    },
+    "513040": {
+      "inner": 539916,
+      "source": "nav",
+      "listed": "2023-06-12"
+    },
+    "513050": {
+      "inner": 105015,
+      "source": "nav",
+      "listed": "2017-01-18"
+    },
+    "513060": {
+      "inner": 352533,
+      "source": "nav",
+      "listed": "2021-03-29"
+    },
+    "513090": {
+      "inner": 274646,
+      "source": "nav",
+      "listed": "2020-03-26"
+    },
+    "513100": {
+      "inner": 23186,
+      "source": "nav",
+      "listed": "2013-05-15"
     },
     "513110": {
       "inner": 504638,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2023-03-20"
+    },
+    "513120": {
+      "inner": 451093,
+      "source": "nav",
+      "listed": "2022-07-12"
+    },
+    "513130": {
+      "inner": 366691,
+      "source": "nav",
+      "listed": "2021-06-01"
+    },
+    "513140": {
+      "inner": 491796,
+      "source": "nav",
+      "listed": "2023-01-12"
     },
     "513150": {
       "inner": 407950,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2022-02-11"
+    },
+    "513170": {
+      "inner": 601245,
+      "source": "nav",
+      "listed": "2024-04-19"
+    },
+    "513180": {
+      "inner": 366701,
+      "source": "nav",
+      "listed": "2021-05-25"
+    },
+    "513190": {
+      "inner": 565196,
+      "source": "nav",
+      "listed": "2023-10-11"
+    },
+    "513200": {
+      "inner": 404376,
+      "source": "nav",
+      "listed": "2022-02-11"
+    },
+    "513210": {
+      "inner": 605883,
+      "source": "nav",
+      "listed": "2024-04-22"
+    },
+    "513260": {
+      "inner": 448573,
+      "source": "nav",
+      "listed": "2022-09-13"
+    },
+    "513280": {
+      "inner": 448566,
+      "source": "nav",
+      "listed": "2022-07-18"
+    },
+    "513300": {
+      "inner": 323430,
+      "source": "nav",
+      "listed": "2020-11-05"
+    },
+    "513310": {
+      "inner": 478938,
+      "source": "nav",
+      "listed": "2022-12-22"
+    },
+    "513330": {
+      "inner": 341760,
+      "source": "nav",
+      "listed": "2021-02-08"
+    },
+    "513360": {
+      "inner": 364404,
+      "source": "nav",
+      "listed": "2021-06-17"
+    },
+    "513380": {
+      "inner": 441030,
+      "source": "nav",
+      "listed": "2022-05-12"
+    },
+    "513390": {
+      "inner": 533951,
+      "source": "nav",
+      "listed": "2023-05-08"
+    },
+    "513500": {
+      "inner": 30798,
+      "source": "nav",
+      "listed": "2014-01-15"
+    },
+    "513520": {
+      "inner": 231894,
+      "source": "nav",
+      "listed": "2019-06-25"
+    },
+    "513530": {
+      "inner": 431251,
+      "source": "nav",
+      "listed": "2022-04-25"
+    },
+    "513550": {
+      "inner": 337741,
+      "source": "nav",
+      "listed": "2021-01-13"
+    },
+    "513560": {
+      "inner": 479215,
+      "source": "nav",
+      "listed": "2023-02-13"
+    },
+    "513580": {
+      "inner": 366693,
+      "source": "nav",
+      "listed": "2021-05-27"
+    },
+    "513600": {
+      "inner": 41938,
+      "source": "nav",
+      "listed": "2015-01-26"
+    },
+    "513630": {
+      "inner": 576510,
+      "source": "nav",
+      "listed": "2023-12-08"
+    },
+    "513660": {
+      "inner": 41932,
+      "source": "nav",
+      "listed": "2015-01-26"
+    },
+    "513690": {
+      "inner": 356900,
+      "source": "nav",
+      "listed": "2021-05-20"
+    },
+    "513750": {
+      "inner": 577815,
+      "source": "nav",
+      "listed": "2023-11-27"
+    },
+    "513770": {
+      "inner": 422863,
+      "source": "nav",
+      "listed": "2022-02-18"
+    },
+    "513780": {
+      "inner": 626293,
+      "source": "nav",
+      "listed": "2024-10-25"
+    },
+    "513810": {
+      "inner": 558882,
+      "source": "nav",
+      "listed": "2023-09-01"
+    },
+    "513820": {
+      "inner": 596749,
+      "source": "nav",
+      "listed": "2024-05-16"
+    },
+    "513860": {
+      "inner": 373766,
+      "source": "nav",
+      "listed": "2021-07-02"
+    },
+    "513890": {
+      "inner": 408532,
+      "source": "nav",
+      "listed": "2022-01-21"
+    },
+    "513910": {
+      "inner": 593408,
+      "source": "nav",
+      "listed": "2024-03-04"
+    },
+    "513920": {
+      "inner": 584813,
+      "source": "nav",
+      "listed": "2024-01-05"
+    },
+    "513950": {
+      "inner": 533113,
+      "source": "nav",
+      "listed": "2023-04-28"
+    },
+    "513970": {
+      "inner": 527510,
+      "source": "nav",
+      "listed": "2023-04-21"
+    },
+    "513980": {
+      "inner": 372515,
+      "source": "nav",
+      "listed": "2021-07-02"
+    },
+    "515000": {
+      "inner": 238238,
+      "source": "nav",
+      "listed": "2019-08-16"
+    },
+    "515030": {
+      "inner": 276422,
+      "source": "nav",
+      "listed": "2020-03-04"
+    },
+    "515050": {
+      "inner": 248264,
+      "source": "nav",
+      "listed": "2019-10-16"
+    },
+    "515070": {
+      "inner": 263254,
+      "source": "nav",
+      "listed": "2019-12-24"
+    },
+    "515080": {
+      "inner": 256578,
+      "source": "nav",
+      "listed": "2019-12-27"
+    },
+    "515100": {
+      "inner": 292662,
+      "source": "nav",
+      "listed": "2020-07-03"
+    },
+    "515120": {
+      "inner": 331281,
+      "source": "nav",
+      "listed": "2021-01-04"
+    },
+    "515170": {
+      "inner": 337133,
+      "source": "nav",
+      "listed": "2021-01-13"
+    },
+    "515180": {
+      "inner": 257972,
+      "source": "nav",
+      "listed": "2019-12-20"
+    },
+    "515210": {
+      "inner": 271573,
+      "source": "nav",
+      "listed": "2020-03-02"
+    },
+    "515220": {
+      "inner": 271581,
+      "source": "nav",
+      "listed": "2020-03-02"
+    },
+    "515230": {
+      "inner": 345855,
+      "source": "nav",
+      "listed": "2021-03-02"
     },
     "515290": {
       "inner": 334336,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2020-12-28"
+    },
+    "515300": {
+      "inner": 237421,
+      "source": "nav",
+      "listed": "2019-09-19"
+    },
+    "515400": {
+      "inner": 334884,
+      "source": "nav",
+      "listed": "2021-01-20"
+    },
+    "515450": {
+      "inner": 268777,
+      "source": "nav",
+      "listed": "2020-02-26"
+    },
+    "515790": {
+      "inner": 333579,
+      "source": "nav",
+      "listed": "2020-12-18"
+    },
+    "515800": {
+      "inner": 240156,
+      "source": "nav",
+      "listed": "2019-12-16"
+    },
+    "515880": {
+      "inner": 241132,
+      "source": "nav",
+      "listed": "2019-09-06"
+    },
+    "515980": {
+      "inner": 266666,
+      "source": "nav",
+      "listed": "2020-02-10"
+    },
+    "516010": {
+      "inner": 350206,
+      "source": "nav",
+      "listed": "2021-03-05"
     },
     "516020": {
       "inner": 350199,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2021-03-08"
+    },
+    "516100": {
+      "inner": 380664,
+      "source": "nav",
+      "listed": "2021-07-23"
+    },
+    "516150": {
+      "inner": 351877,
+      "source": "nav",
+      "listed": "2021-03-17"
+    },
+    "516160": {
+      "inner": 342939,
+      "source": "nav",
+      "listed": "2021-02-04"
+    },
+    "516510": {
+      "inner": 356600,
+      "source": "nav",
+      "listed": "2021-04-07"
+    },
+    "516780": {
+      "inner": 350185,
+      "source": "nav",
+      "listed": "2021-03-08"
+    },
+    "516860": {
+      "inner": 382164,
+      "source": "nav",
+      "listed": "2021-10-11"
+    },
+    "516970": {
+      "inner": 375286,
+      "source": "nav",
+      "listed": "2021-07-05"
     },
     "518680": {
       "inner": 301236,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2020-07-28"
+    },
+    "520500": {
+      "inner": 638679,
+      "source": "nav",
+      "listed": "2024-12-27"
     },
     "520510": {
       "inner": 701357,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2025-08-07"
+    },
+    "520520": {
+      "inner": 627887,
+      "source": "nav",
+      "listed": "2024-11-01"
+    },
+    "520570": {
+      "inner": 735037,
+      "source": "nav",
+      "listed": "2025-11-17"
+    },
+    "520590": {
+      "inner": 737170,
+      "source": "nav",
+      "listed": "2025-12-01"
+    },
+    "520600": {
+      "inner": 645479,
+      "source": "nav",
+      "listed": "2024-12-30"
+    },
+    "520690": {
+      "inner": 707141,
+      "source": "nav",
+      "listed": "2025-08-01"
+    },
+    "520700": {
+      "inner": 636492,
+      "source": "nav",
+      "listed": "2024-10-14"
+    },
+    "520720": {
+      "inner": 727024,
+      "source": "nav",
+      "listed": "2025-09-25"
+    },
+    "520830": {
+      "inner": 622672,
+      "source": "nav",
+      "listed": "2024-07-16"
+    },
+    "520840": {
+      "inner": 713535,
+      "source": "nav",
+      "listed": "2025-08-25"
+    },
+    "520880": {
+      "inner": 693883,
+      "source": "nav",
+      "listed": "2025-07-07"
+    },
+    "520920": {
+      "inner": 729799,
+      "source": "nav",
+      "listed": "2025-09-30"
+    },
+    "520970": {
+      "inner": 703682,
+      "source": "nav",
+      "listed": "2025-08-07"
+    },
+    "520980": {
+      "inner": 691816,
+      "source": "nav",
+      "listed": "2025-07-02"
+    },
+    "520990": {
+      "inner": 619531,
+      "source": "nav",
+      "listed": "2024-07-10"
+    },
+    "560010": {
+      "inner": 459803,
+      "source": "nav",
+      "listed": "2022-08-04"
+    },
+    "560090": {
+      "inner": 503810,
+      "source": "nav",
+      "listed": "2023-03-15"
     },
     "560350": {
       "inner": 597582,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2024-03-12"
+    },
+    "560530": {
+      "inner": 638648,
+      "source": "nav",
+      "listed": "2024-10-15"
+    },
+    "560610": {
+      "inner": 638650,
+      "source": "nav",
+      "listed": "2024-10-15"
     },
     "560770": {
       "inner": 722419,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2025-09-01"
+    },
+    "561910": {
+      "inner": 385354,
+      "source": "nav",
+      "listed": "2021-08-12"
+    },
+    "561980": {
+      "inner": 559444,
+      "source": "nav",
+      "listed": "2023-09-01"
+    },
+    "562500": {
+      "inner": 408875,
+      "source": "nav",
+      "listed": "2021-12-29"
+    },
+    "562800": {
+      "inner": 395809,
+      "source": "nav",
+      "listed": "2021-09-27"
+    },
+    "563220": {
+      "inner": 638649,
+      "source": "nav",
+      "listed": "2024-10-15"
+    },
+    "563300": {
+      "inner": 566969,
+      "source": "nav",
+      "listed": "2023-09-14"
+    },
+    "563360": {
+      "inner": 638652,
+      "source": "nav",
+      "listed": "2024-10-15"
+    },
+    "563800": {
+      "inner": 649776,
+      "source": "nav",
+      "listed": "2024-11-18"
+    },
+    "563880": {
+      "inner": 649781,
+      "source": "nav",
+      "listed": "2024-11-25"
+    },
+    "588000": {
+      "inner": 320240,
+      "source": "nav",
+      "listed": "2020-11-16"
+    },
+    "588030": {
+      "inner": 565562,
+      "source": "nav",
+      "listed": "2023-09-15"
+    },
+    "588050": {
+      "inner": 320244,
+      "source": "nav",
+      "listed": "2020-11-16"
+    },
+    "588060": {
+      "inner": 382163,
+      "source": "nav",
+      "listed": "2021-07-29"
+    },
+    "588080": {
+      "inner": 320241,
+      "source": "nav",
+      "listed": "2020-11-16"
+    },
+    "588090": {
+      "inner": 320245,
+      "source": "nav",
+      "listed": "2020-11-16"
     },
     "588120": {
       "inner": 565597,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2023-09-15"
+    },
+    "588170": {
+      "inner": 677993,
+      "source": "nav",
+      "listed": "2025-04-08"
+    },
+    "588200": {
+      "inner": 475000,
+      "source": "nav",
+      "listed": "2022-10-26"
+    },
+    "588220": {
+      "inner": 565603,
+      "source": "nav",
+      "listed": "2023-09-15"
     },
     "588230": {
       "inner": 650107,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2024-12-24"
+    },
+    "588290": {
+      "inner": 475003,
+      "source": "nav",
+      "listed": "2022-10-26"
     },
     "588380": {
       "inner": 379303,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2021-07-06"
+    },
+    "588730": {
+      "inner": 663434,
+      "source": "nav",
+      "listed": "2025-01-24"
+    },
+    "588750": {
+      "inner": 656055,
+      "source": "nav",
+      "listed": "2024-12-26"
+    },
+    "588760": {
+      "inner": 663437,
+      "source": "nav",
+      "listed": "2025-01-23"
+    },
+    "588780": {
+      "inner": 656468,
+      "source": "nav",
+      "listed": "2024-12-26"
+    },
+    "588790": {
+      "inner": 661703,
+      "source": "nav",
+      "listed": "2025-01-09"
+    },
+    "588800": {
+      "inner": 577805,
+      "source": "nav",
+      "listed": "2023-11-16"
+    },
+    "588830": {
+      "inner": 627284,
+      "source": "nav",
+      "listed": "2024-08-09"
+    },
+    "588890": {
+      "inner": 604066,
+      "source": "nav",
+      "listed": "2024-04-23"
     },
     "588920": {
       "inner": 702957,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2025-07-28"
     },
     "588990": {
       "inner": 613023,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2024-08-16"
+    },
+    "589000": {
+      "inner": 671973,
+      "source": "nav",
+      "listed": "2025-03-05"
     },
     "589560": {
       "inner": 722815,
-      "source": "nav"
+      "source": "nav",
+      "listed": "2025-09-05"
+    },
+    "589680": {
+      "inner": 671594,
+      "source": "nav",
+      "listed": "2025-03-05"
+    },
+    "589800": {
+      "inner": 670919,
+      "source": "nav",
+      "listed": "2025-03-04"
     }
   }
 }
