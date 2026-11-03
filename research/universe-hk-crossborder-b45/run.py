@@ -180,7 +180,8 @@ def main() -> None:
         one_close = close[[wb]].dropna(how="all")
         fridays = one_close.index[one_close.index.dayofweek == 4]
         sched = {f: [wb] for f in fridays}
-        nav, st = run_face_backtest(one_close, sched, breadth_full, start=DATE_START, end=DATE_END)
+        # Breadth stays on the frozen full pool; only the seat is the single wide-base code.
+        _nav, _weekly, st = run_face_backtest(close, sched, breadth_full, start=DATE_START, end=DATE_END)
         st["book"] = f"WIDE-{wb}"
         wide_rows.append(st)
 
@@ -247,7 +248,7 @@ def main() -> None:
         "breadth_mother_pool": "full_pool_frozen",
         "breadth_side_note": "slice_internal_ma20_width_not_primary",
         "face_layer": "spike_ft max5+E0+TV25+SHARPE20; Fri close (14:30 proxy); 0.2%RT; L≤1",
-        "data_source": "zsmcp mf_fundnetvaluere / qt_dailyquote close",
+        "data_source": "zsmcp mf_fundnetvaluere.UnitNVRestored (SecuCategory=8 InnerCode)",
         "verdict": verdict,
         "h1": h1,
         "face_full": face_full,
@@ -255,7 +256,9 @@ def main() -> None:
         "wide_base_side": wide_rows,
         "coverage": {
             "hk_ok": len(hk_ok),
+            "hk_total": len(hk),
             "full_ok": len(full_ok),
+            "full_total": len(full),
             "nav_codes": len(codes_ok),
         },
         "elapsed_s": round(time.time() - t0, 2),
@@ -272,6 +275,9 @@ def build_report(summary: dict, table: list) -> str:
     ff = summary["face_full"]
     sl = summary["slice_hk_xb"]
     h1 = summary["h1"]
+    cov = summary.get("coverage") or {}
+    hk_total = cov.get("hk_total", 42)
+    full_total = cov.get("full_total", 280)
     lines = [
         "# REPORT · UNIVERSE-HK-CROSSBORDER-B45",
         "",
@@ -286,6 +292,12 @@ def build_report(summary: dict, table: list) -> str:
         "- **切片**：`data/universe_hk.json`（港股/跨境权益 ETF，聚源标签+名称规则，见 `universe.sql`）。",
         "- **全池 face 对照**：`data/universe_full.json`（~280 流动性筛 equity ETF）。",
         "- **breadth 母池（写死）**：全池 `full_ok` 的 MA20 宽度 ≥45% 才 risk-on；**旁注**：切片内 MA20 宽度未作主口径。",
+        "",
+        "## 覆盖",
+        "",
+        f"- HK ≥200 日：{cov.get('hk_ok')}/{hk_total}（门槛 85%）",
+        f"- 全池 ≥200 日：{cov.get('full_ok')}/{full_total}（门槛 70%）",
+        f"- 权威源：zsmcp `mf_fundnetvaluere.UnitNVRestored`（`SecuCategory=8` InnerCode）。未臆造 NAV，未碰 LIVE / 冠军主钉。",
         "",
         "## 主表",
         "",
@@ -314,8 +326,8 @@ def build_report(summary: dict, table: list) -> str:
         "",
         "## 数据与复现",
         "",
-        "数据源：**zsmcp**（未用进门/中金/Alpha派）。`python3 run.py --cache data/nav_long.csv`。",
-        "缓存不足时先按 `data/build_nav_cache.py` 说明补全 `nav_long.csv`。",
+        "数据源：**zsmcp** `mf_fundnetvaluere.UnitNVRestored`（未用进门/中金/Alpha派，未抄 sibling close）。`python3 run.py --cache data/nav_long.csv`。",
+        "剩余未达 200 日的全池码见 `data/_need_full.json` / `data/CACHE_GAP.md`（可选补齐，不影响本轮门槛）。",
         "",
         f"耗时约 {summary.get('elapsed_s')}s。产物：`run.py` / `criterion.md` / `REPORT.md` / `summary.json` / `output/table.csv` / `output/equity_curve.png`。",
     ]

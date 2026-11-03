@@ -1,16 +1,165 @@
 {
   "knife_id": "UNIVERSE-HK-CROSSBORDER-B45",
-  "verdict": "incomplete_cache",
-  "note": "zsmcp UnitNVRestored reachable; nav_long.csv 139861 rows / 183 codes (HK 42/42, full 168/280). Need full>=70% (>=196 codes) with >=200 days. See data/CACHE_GAP.md. Do not invent NAV.",
-  "face_layer": "spike_ft max5+E0+TV25+SHARPE20; Fri close proxy; 0.2%RT; L<=1",
+  "window": "2020-01-03 → 2026-10-23",
+  "cost_rt": 0.002,
+  "leverage_cap": 1.0,
   "breadth_mother_pool": "full_pool_frozen",
+  "breadth_side_note": "slice_internal_ma20_width_not_primary",
+  "face_layer": "spike_ft max5+E0+TV25+SHARPE20; Fri close (14:30 proxy); 0.2%RT; L≤1",
+  "data_source": "zsmcp mf_fundnetvaluere.UnitNVRestored (SecuCategory=8 InnerCode)",
+  "verdict": "NOT_FALSIFIED",
+  "h1": {
+    "delta_calmar": 0.02079013864876958,
+    "slice_calmar_better": true,
+    "slice_2023_26_miss_vs_full": true,
+    "h1_falsified": false,
+    "h1_verdict": "NOT_FALSIFIED"
+  },
+  "face_full": {
+    "ret": 0.183680750851541,
+    "maxDD": -0.15579536621630996,
+    "CAGR": 0.02509510060688025,
+    "Calmar": 0.16107732351960724,
+    "vol_weekly": 0.08817458091448795,
+    "n_weeks": 326,
+    "2020-22": {
+      "ret": 0.07654514632818143,
+      "maxDD": -0.05544438651343153,
+      "Calmar": 0.4504858509826255
+    },
+    "2023-26": {
+      "ret": 0.10757724686420134,
+      "maxDD": -0.15579536621630996,
+      "Calmar": 0.17517696413614975
+    },
+    "book": "FACE-FULL-B45-S20-LIVE1430",
+    "avgL": 0.49079754601226994,
+    "cash_week_pct": 0.50920245398773
+  },
+  "slice_hk_xb": {
+    "ret": 0.23748419831903567,
+    "maxDD": -0.17493270008003292,
+    "CAGR": 0.0318145662138174,
+    "Calmar": 0.18186746216837682,
+    "vol_weekly": 0.08089478975596515,
+    "n_weeks": 326,
+    "2020-22": {
+      "ret": 0.14866607174165303,
+      "maxDD": -0.09818933391115914,
+      "Calmar": 0.483254954251872
+    },
+    "2023-26": {
+      "ret": 0.08412652719037839,
+      "maxDD": -0.17493270008003292,
+      "Calmar": 0.12298761805771898
+    },
+    "book": "SLICE-HK-XB-B45-S20-LIVE1430",
+    "avgL": 0.41348134583541535,
+    "cash_week_pct": 0.50920245398773
+  },
+  "wide_base_side": [
+    {
+      "ret": 0.01968730652178885,
+      "maxDD": -0.10866755218767954,
+      "CAGR": 0.0028696712548419434,
+      "Calmar": 0.026407802486300043,
+      "vol_weekly": 0.048951246439043986,
+      "n_weeks": 326,
+      "2020-22": {
+        "ret": 0.05745965142514464,
+        "maxDD": -0.06802817707378883,
+        "Calmar": 0.27727935104037915
+      },
+      "2023-26": {
+        "ret": -0.0367250924547462,
+        "maxDD": -0.10866755218767954,
+        "Calmar": -0.0902921878563725
+      },
+      "book": "WIDE-510300"
+    },
+    {
+      "ret": 0.1204736572846632,
+      "maxDD": -0.07571391003047734,
+      "CAGR": 0.016859962807029838,
+      "Calmar": 0.22267985896175682,
+      "vol_weekly": 0.050117646923045586,
+      "n_weeks": 326,
+      "2020-22": {
+        "ret": -0.014787127735402028,
+        "maxDD": -0.07571391003047734,
+        "Calmar": -0.0656485453033694
+      },
+      "2023-26": {
+        "ret": 0.13911661839507117,
+        "maxDD": -0.05734616467238185,
+        "Calmar": 0.6089554848057307
+      },
+      "book": "WIDE-510500"
+    },
+    {
+      "ret": 0.1539061891287834,
+      "maxDD": -0.06555887753025225,
+      "CAGR": 0.021263800054122095,
+      "Calmar": 0.324346615670927,
+      "vol_weekly": 0.060164208048782135,
+      "n_weeks": 326,
+      "2020-22": {
+        "ret": 0.08057489079421387,
+        "maxDD": -0.03373607584581961,
+        "Calmar": 0.7783540938751139
+      },
+      "2023-26": {
+        "ret": 0.06196719609120138,
+        "maxDD": -0.06555887753025225,
+        "Calmar": 0.24360231874411026
+      },
+      "book": "WIDE-159915"
+    },
+    {
+      "ret": 0.022395311493545345,
+      "maxDD": -0.10876406710283937,
+      "CAGR": 0.003260691623045764,
+      "Calmar": 0.029979493318898157,
+      "vol_weekly": 0.04906660235449745,
+      "n_weeks": 326,
+      "2020-22": {
+        "ret": 0.05955359781486025,
+        "maxDD": -0.0677515602809966,
+        "Calmar": 0.2883650213652479
+      },
+      "2023-26": {
+        "ret": -0.036095056108067625,
+        "maxDD": -0.10876406710283937,
+        "Calmar": -0.08864325548776501
+      },
+      "book": "WIDE-159919"
+    },
+    {
+      "ret": 0.13132438479621356,
+      "maxDD": -0.06774051215906463,
+      "CAGR": 0.018301398889993825,
+      "Calmar": 0.2701691839444536,
+      "vol_weekly": 0.050054124244554805,
+      "n_weeks": 326,
+      "2020-22": {
+        "ret": -0.006811609057024159,
+        "maxDD": -0.06774051215906463,
+        "Calmar": -0.03370977316113599
+      },
+      "2023-26": {
+        "ret": 0.1409199880640497,
+        "maxDD": -0.056818218322949865,
+        "Calmar": 0.6222085010761125
+      },
+      "book": "WIDE-159922"
+    }
+  ],
   "coverage": {
-    "nav_rows": 139861,
-    "nav_codes": 183,
     "hk_ok": 42,
     "hk_total": 42,
-    "full_ok": 168,
-    "full_total": 280
+    "full_ok": 199,
+    "full_total": 280,
+    "nav_codes": 212
   },
-  "data_source": "zsmcp mf_fundnetvaluere.UnitNVRestored (SecuCategory=8 InnerCode)"
+  "elapsed_s": 18.18
 }
